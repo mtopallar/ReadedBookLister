@@ -18,12 +18,12 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //add => ok
         //update
         //delete
-        //get userbooks by user id * default
-        //list userbooks by bookname
-        //list userbooks by authorname
+        //GetAllByUserId(int userId) * default => ok
+        //list userbooks by bookname //titlecase
+        //list userbooks by authorname //titlecase
         //list userbooks by readdate (not null olanları)
-        //list userbooks by note
-        //list userbooks bu native
+        //list GetByNoteState(int userId, bool hasNote) => ok
+        //list GetByNativeStatue(int userId, bool nativeStatue) => ok
 
         //getall => ok
 
@@ -50,7 +50,65 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         }
 
-        public static List<UserBook> GetAll()
+        public static List<UserBook> GetByNoteState(int userId, bool hasNote)
+        {
+            if (HasUserGotAnyBook(userId))
+            {
+                var getUsersAllBooks = GetAllByUserId(userId);
+                if (hasNote)
+                {
+                    // notu olanlar
+                    var booksHasNote = getUsersAllBooks.Where(u => u.Note != null).ToList();
+                    if (booksHasNote.Count != 0)
+                    {
+                        return booksHasNote;
+                    }
+                    System.Windows.Forms.MessageBox.Show(Messages.NoBookWithNote);
+                    return null;
+                }
+                else
+                {
+                    // notu olmayanlar
+                    var booksHasNoNote = getUsersAllBooks.Where(u => u.Note == null).ToList();
+                    if (booksHasNoNote.Count != 0)
+                    {
+                        return booksHasNoNote;
+                    }
+                    System.Windows.Forms.MessageBox.Show(Messages.NoBookWithoutNote);
+                }
+            }
+            return null;
+        }
+
+        public static List<UserBook> GetByNativeState(int userId, bool nativeState)
+        {
+            if (HasUserGotAnyBook(userId))
+            {
+                var getUserBooksByNative = GetAllByUserId(userId).Where(u => u.Native == nativeState).ToList();
+                if (getUserBooksByNative.Count != 0)
+                {
+                    return getUserBooksByNative;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoBookForNativeStatue);
+            }
+            return null;
+        }
+
+        public static List<UserBook> GetAllByUserId(int userId)
+        {
+            var getAllBooks = GetAll();
+            if (getAllBooks != null)
+            {
+                if (HasUserGotAnyBook(userId))
+                {
+                    var getUserBooks = getAllBooks.Where(u => u.UserId == userId).ToList();
+                    return getUserBooks;
+                }
+            }
+            return null;
+        }
+
+        private static List<UserBook> GetAll()
         {
             var jsonUserBookList = File.ReadAllText(userBookFileName);
             var userBookList = JsonConvert.DeserializeObject<List<UserBook>>(jsonUserBookList);
@@ -60,6 +118,22 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
             System.Windows.Forms.MessageBox.Show(Messages.UserBookListNotFoundOrEmpty);
             return null;
+        }
+
+        private static bool HasUserGotAnyBook(int userId)
+        {
+            var getAllBooks = GetAll();
+            if (getAllBooks != null)
+            {
+                var getUserBooks = getAllBooks.Where(u => u.UserId == userId).ToList();
+                if (getUserBooks.Count != 0)
+                {
+                    return true;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.UserHasNoAnyBook);
+                return false;
+            }
+            return false;
         }
 
         private static UserBook EditNamesByNativeState(UserBook userBook)

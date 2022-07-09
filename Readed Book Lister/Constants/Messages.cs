@@ -20,5 +20,9 @@ namespace Readed_Book_Lister.Constants
         public static string UserListNotFoundOrEmpty = "Kullanıcı listesine erişilemiyor.";
         public static string UserBookListNotFoundOrEmpty = "Kitaplar listesine ulaşılamıyor.";
         public static string UserBookAddSuccessful = "Kitap başarıyla kaydedildi.";
+        public static string UserHasNoAnyBook = "Sistemde kayıtlı kitabınız mevcut değildir.";
+        public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";
+        public static string NoBookWithNote = "Notu olan kitabınız bulunmamaktadır.";
+        public static string NoBookWithoutNote = "Notu olmayan kitabınız bulunmamaktadır.";
     }
 }
