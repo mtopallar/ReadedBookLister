@@ -25,7 +25,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //list GetByNoteState(int userId, bool hasNote) => ok
         //list GetByNativeStatue(int userId, bool nativeStatue) => ok
 
-        //getall => ok
+        //getall => ok (private)
 
         public static void Add(UserBook userBook)
         {
