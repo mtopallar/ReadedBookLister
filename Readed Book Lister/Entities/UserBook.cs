@@ -14,7 +14,8 @@ namespace Readed_Book_Lister.Entities
         public string AuthorName { get; set; }
         public bool Readed { get; set; }
         public bool Native { get; set; }
-        public DateTime? ReadDate { get; set; } //Ay ve yıl => string olarak tutmak gerekebilir.
+        public int? ReadMouth { get; set; } //Ay ve yıl => string olarak tutmak gerekebilir.
+        public int? ReadYear { get; set; }
         public string Image { get; set; }
         public string Note { get; set; }
     }
