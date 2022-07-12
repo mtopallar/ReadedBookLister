@@ -72,7 +72,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             
         }
 
-        public static User GetUserById(int id)
+        public static User? GetUserById(int id)
         {
             var jsonUserList = File.ReadAllText(userFileName);
             var userList = JsonConvert.DeserializeObject<List<User>>(jsonUserList);
@@ -89,7 +89,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
 
         }
-        public static List<User> GetAllUsers()
+        public static List<User>? GetAllUsers()
         {
             var jsonUserList = File.ReadAllText(userFileName);
             var userList = JsonConvert.DeserializeObject<List<User>>(jsonUserList);
@@ -101,7 +101,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        public static User GetByNickName(string nickName)
+        public static User? GetByNickName(string nickName)
         {
             var userList = GetAllUsers();
             if (userList != null)

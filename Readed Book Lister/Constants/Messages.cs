@@ -24,5 +24,6 @@ namespace Readed_Book_Lister.Constants
         public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";
         public static string NoBookWithNote = "Notu olan kitabınız bulunmamaktadır.";
         public static string NoBookWithoutNote = "Notu olmayan kitabınız bulunmamaktadır.";
+        public static string NoBookByUnkownDateStatue = "Tarih detayı bilinmeyen kitap yoktur.";
     }
 }
