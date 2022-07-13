@@ -14,6 +14,8 @@ namespace Readed_Book_Lister.Methods.App_Methods
 {
     public class UserOperations
     {
+        //Checked.
+
         // Mbox kontrolleri de ok.
         // add (auth a alındı) ok
         // update => ok
@@ -41,16 +43,23 @@ namespace Readed_Book_Lister.Methods.App_Methods
                         getUser.PasswordSalt = passwordSalt;
 
                         var getAllUsers = GetAllUsers();
-                        var oldUser = getAllUsers.Where(u => u.Id == userUpdateDto.Id).FirstOrDefault();
-                        oldUser = getUser; //referans tip olduğu için getAll daki veri de değişmiş olmalı.
-                        var convertUpdatedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
-                        File.WriteAllText(userFileName, convertUpdatedListToJson);
-                        System.Windows.Forms.MessageBox.Show(Messages.UserUpdateSuccesful);
+                        if (getAllUsers != null) //defensive programming
+                        {
+                            var oldUser = getAllUsers.Where(u => u.Id == userUpdateDto.Id).FirstOrDefault();
+                            oldUser = getUser; //referans tip olduğu için getAll daki veri de değişmiş olmalı.
+                            var convertUpdatedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
+                            File.WriteAllText(userFileName, convertUpdatedListToJson);
+                            System.Windows.Forms.MessageBox.Show(Messages.UserUpdateSuccesful);
+                            return;
+                        }
+
                         return;
                     }
 
-                    System.Windows.Forms.MessageBox.Show(Messages.CurrentPasswordError);                    
+                    System.Windows.Forms.MessageBox.Show(Messages.CurrentPasswordError);
+                    return;
                 }
+
             }
         }
         public static void Delete(int userId)
@@ -66,10 +75,10 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     File.WriteAllText(userFileName, convertDeletedListToJson);
                     System.Windows.Forms.MessageBox.Show(Messages.DeleteUserSuccesful);
                     JsonOperations.DeleteUserFile();
-                }                
-                
+                }
+
             }
-            
+
         }
 
         public static User? GetUserById(int id)
@@ -93,11 +102,16 @@ namespace Readed_Book_Lister.Methods.App_Methods
         {
             var jsonUserList = File.ReadAllText(userFileName);
             var userList = JsonConvert.DeserializeObject<List<User>>(jsonUserList);
-            if (userList.Count != 0)
+            if (userList != null)
             {
-                return userList;
+                if (userList.Count != 0)
+                {
+                    return userList;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.UsersListIsEmpty);
+                return null;
             }
-            System.Windows.Forms.MessageBox.Show(Messages.UserListNotFoundOrEmpty);
+            System.Windows.Forms.MessageBox.Show(Messages.UsersFileNotExist);
             return null;
         }
 

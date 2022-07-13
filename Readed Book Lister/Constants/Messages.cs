@@ -17,8 +17,8 @@ namespace Readed_Book_Lister.Constants
         public static string UserUpdateSuccesful = "Kullanıcı başarıyla güncellendi.";
         public static string CurrentPasswordError = "Mevcut parolanızı hatalı girdiniz.";
         public static string DeleteUserSuccesful = "Kullanıcı bşarıyla silindi.";
-        public static string UserListNotFoundOrEmpty = "Kullanıcı listesine erişilemiyor.";
-        public static string UserBookListNotFoundOrEmpty = "Kitaplar listesine ulaşılamıyor.";
+        public static string UsersListIsEmpty = "Kayıtlı kullanıcı yok.";
+        public static string UserBooksListIsEmpty = "Kitaplar listesine ulaşılamıyor.";
         public static string UserBookAddSuccessful = "Kitap başarıyla kaydedildi.";
         public static string UserHasNoAnyBook = "Sistemde kayıtlı kitabınız mevcut değildir.";
         public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";
@@ -26,7 +26,7 @@ namespace Readed_Book_Lister.Constants
         public static string NoBookWithoutNote = "Notu olmayan kitabınız bulunmamaktadır.";
         public static string NoBookByUnkownDateStatue = "Tarih detayı bilinmeyen kitap yoktur.";
         public static string NoBookByKnownDateStatue = "Okunma yılı bilinen kitap yoktur.";
-        public static string UserFileNotExist = "Kullanıcı dosyası bulunamadı.";
+        public static string UsersFileNotExist = "Kullanıcı dosyası bulunamadı.";
         public static string UserBooksFileNotExist = "Kullanıcı kitapları dosyası bulunamadı.";
     }
 }

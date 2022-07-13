@@ -141,6 +141,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         public static List<UserBook>? GetAllByUserId(int userId)
         {
+            // Checked.
             var getAllBooks = GetAll();
             if (getAllBooks != null)
             {
@@ -155,18 +156,25 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         private static List<UserBook>? GetAll()
         {
+            // Checked.
             var jsonUserBookList = File.ReadAllText(userBookFileName);
             var userBookList = JsonConvert.DeserializeObject<List<UserBook>>(jsonUserBookList);
-            if (userBookList.Count != 0)
+            if (userBookList != null)
             {
-                return userBookList;
+                if (userBookList.Count != 0)
+                {
+                    return userBookList;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.UserBooksListIsEmpty);
+                return null;
             }
-            System.Windows.Forms.MessageBox.Show(Messages.UserBookListNotFoundOrEmpty);
+            System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
             return null;
         }
 
         private static bool HasUserGotAnyBook(int userId)
         {
+            // Checked.
             var getAllBooks = GetAll();
             if (getAllBooks != null)
             {
@@ -183,6 +191,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         private static UserBook EditNamesByNativeState(UserBook userBook)
         {
+            // Checked.
             if (userBook.Native)
             {
                 userBook.BookName = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.BookName));
@@ -196,6 +205,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         private static UserBook NoteTrimmer(UserBook userBook)
         {
+            // Checked.
             StringUtilityHelper.TrimStartAndFinish(userBook.Note);
             return userBook;
         }
