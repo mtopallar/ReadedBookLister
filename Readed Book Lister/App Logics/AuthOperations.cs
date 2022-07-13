@@ -18,67 +18,65 @@ namespace Readed_Book_Lister.App_Logics
         //Register => ok.
         //Login => ok. 
 
+        //Checked.
+
         const string userFileName = "users.json";
 
-        public static void Register(UserLoginDto UserLoginDto)
+        public static User Register(UserLoginDto UserLoginDto)
         {
             JsonOperations.CreateDbFilesIfNot();
 
             var getUserList = UserOperations.GetAllUsers();
             byte[] passwordHash, passwordSalt;
             HashingHelper.CreatePasswordHash(StringUtilityHelper.TrimStartAndFinish(UserLoginDto.Password), out passwordHash, out passwordSalt);
+            User user = new();
 
             if (getUserList == null)
             {
+                user.Id = IdGeneratorForNewUser();
+                user.NickName = StringUtilityHelper.TrimStartAndFinish(UserLoginDto.NickName);
+                user.PasswordSalt = passwordSalt;
+                user.PasswordHash = passwordHash;
+
                 var newUserList = new List<User>
                 {
-                    new User
-                    {
-                        Id = IdGeneratorForNewUser(),
-                        NickName = StringUtilityHelper.TrimStartAndFinish(UserLoginDto.NickName),
-                        PasswordSalt = passwordSalt,
-                        PasswordHash = passwordHash
-                    }
-
+                   user
                 };
 
                 var convertNewListToJson = JsonConvert.SerializeObject(newUserList, Formatting.Indented);
-                File.WriteAllText(userFileName, convertNewListToJson);
-                System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
-                return;
+                File.WriteAllText(userFileName, convertNewListToJson);                
+
             }
 
             else if (UserOperations.IsNickNameExists(UserLoginDto.NickName))
             {
+                user.Id = IdGeneratorForNewUser();
+                user.NickName = StringUtilityHelper.TrimStartAndFinish(UserLoginDto.NickName);
+                user.PasswordSalt = passwordSalt;
+                user.PasswordHash = passwordHash;
 
-                User user = new()
-                {
-                    Id = IdGeneratorForNewUser(),
-                    NickName = StringUtilityHelper.TrimStartAndFinish(UserLoginDto.NickName),
-                    PasswordSalt = passwordSalt,
-                    PasswordHash = passwordHash
-                };
                 getUserList.Add(user);
                 var convertListToJson = JsonConvert.SerializeObject(getUserList, Formatting.Indented);
                 File.WriteAllText(userFileName, convertListToJson);
-                System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
+                
             }
-
+            System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
+            return user;
         }
 
-        public static bool Login(UserLoginDto userLoginDto)
+        public static User? Login(UserLoginDto userLoginDto)
         {
             var user = UserOperations.GetByNickName(userLoginDto.NickName);
             if (user != null)
             {
                 if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(userLoginDto.Password), user.PasswordHash, user.PasswordSalt))
                 {
-                    return true;
+                    return user;
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.LoginError);
             }
 
-            return false;
+            return null;
         }
 
         private static int IdGeneratorForNewUser()

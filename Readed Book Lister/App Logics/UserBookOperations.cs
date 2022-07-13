@@ -15,6 +15,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
     {
         const string userBookFileName = "userbooks.json";
 
+        // USER ID yi UNUTMAAAAAAAAAAAAAAAAAAA
         //add => ok
         //update
         //delete
@@ -22,10 +23,10 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //list userbooks by bookname //titlecase
         //list userbooks by authorname //titlecase
         //list userbooks by readmouth and year
-        //list userbooks by readyear (just year) => GetAllKnownReadYearByUserId(int userId) => ok
-        //list userbooks by unknown read date // GetUnknownReadDateListByUserId(int userId) => ok
-        //list GetByNoteState(int userId, bool hasNote) => ok
-        //list GetByNativeStatue(int userId, bool nativeStatue) => ok
+        //list userbooks by readyear (just year) => GetAllByJustReadYearAndUserId(int userId) => ok
+        //list userbooks by unknown read date // GetAllUnknownReadDateAndUserId(int userId) => ok
+        //list GetByNoteStateAndUserId(int userId, bool hasNote) => ok
+        //list GetByNativeStatueAndUserId(int userId, bool nativeStatue) => ok
 
         //getall => ok (private)
 
@@ -52,9 +53,9 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         }
 
-        public static List<UserBook>? GetAllKnownReadYearByUserId(int userId)
+        public static List<UserBook>? GetAllByJustReadYearAndUserId(int userId)
         {
-            // Güzel bir örnek oldu.
+            // Geliştirildi.
 
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
@@ -64,15 +65,15 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return knownReadYearList;
                 }
-                System.Windows.Forms.MessageBox.Show("yılı bilinen yok");
+                System.Windows.Forms.MessageBox.Show(Messages.NoBookByKnownDateStatue);
             }
 
             return null;
         }
 
-        public static List<UserBook>? GetUnknownReadDateListByUserId(int userId)
+        public static List<UserBook>? GetAllUnknownReadDateAndUserId(int userId)
         {
-            // Güzel bir örnek oldu.
+            // Geliştirildi.
 
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
@@ -88,9 +89,9 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        public static List<UserBook>? GetByNoteState(int userId, bool hasNote)
+        public static List<UserBook>? GetByNoteStateAndUserId(int userId, bool hasNote)
         {
-            // Güzel bir örnek oldu.
+            // Geliştirildi.
 
             var getUsersAllBooks = GetAllByUserId(userId);
             if (getUsersAllBooks != null)
@@ -120,9 +121,9 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        public static List<UserBook>? GetByNativeState(int userId, bool nativeState)
+        public static List<UserBook>? GetByNativeStateAndUserId(int userId, bool nativeState)
         {
-            // Güzel bir örnek oldu.
+            // Geliştirildi.
 
             var getUsersBook = GetAllByUserId(userId);
             if (getUsersBook != null)
