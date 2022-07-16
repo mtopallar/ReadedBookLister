@@ -20,15 +20,17 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //update
         //delete
         //GetAllByUserId(int userId) * default => ok
-        //list userbooks by bookname //titlecase
-        //list userbooks by authorname //titlecase
-        //list userbooks by readmouth and year
-        //list userbooks by readyear (just year) => GetAllByJustReadYearAndUserId(int userId) => ok
+        //list userbooks by bookname //titlecase// GetAllByUserIdAndBookName(int userId, string bookName) => ok
+        //list userbooks by authorname //titlecase// GetAllByUserIdAndAuthorName(int userId, string authorName) => ok
+        //list userbooks by readmouth and year => GetAllByReadMouthYearAndUserId(int userId,int readMouth, int readYear) => ok
+        //list userbooks by readyear (just year) => GetAllByJustReadYearAndUserId(int userId, int readYear) => ok
         //list userbooks by unknown read date // GetAllUnknownReadDateAndUserId(int userId) => ok
         //list GetByNoteStateAndUserId(int userId, bool hasNote) => ok
         //list GetByNativeStatueAndUserId(int userId, bool nativeStatue) => ok
 
         //getall => ok (private)
+        //GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName) private
+        //GetByUserIdAndAuthorNameWithBothLocalizations(int userId, string authorName) private
 
         public static void Add(UserBook userBook)
         {
@@ -53,14 +55,53 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         }
 
-        public static List<UserBook>? GetAllByJustReadYearAndUserId(int userId)
+        public static List<UserBook>? GetAllByUserIdAndBookName(int userId, string bookName)
+        {
+            // Checked.
+            var getAllByUserIdAndBookName = GetByUserIdAndBookNameWithBothLocalizations(userId, bookName);
+            if (getAllByUserIdAndBookName != null)
+            {
+                return getAllByUserIdAndBookName;
+            }
+            return null;
+        }
+
+        public static List<UserBook>? GetAllByUserIdAndAuthorName(int userId, string authorName)
+        {
+            //Checked.
+            var getAllByUserIdAndAuthorName = GetByUserIdAndAuthorNameWithBothLocalizations(userId, authorName);
+            if (getAllByUserIdAndAuthorName!=null)
+            {
+                return getAllByUserIdAndAuthorName;
+            }
+            return null;
+        }
+
+        public static List<UserBook>? GetAllByReadMouthYearAndUserId(int userId, int readMouth, int readYear)
+        {
+            //Checked.
+
+            var getAllByUserId = GetAllByUserId(userId);
+            if (getAllByUserId != null)
+            {
+                var getListByCriteria = getAllByUserId.Where(u => u.ReadMouth == readMouth && u.ReadYear == readYear).ToList();
+                if (getListByCriteria.Count != 0)
+                {
+                    return getListByCriteria;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByReadMountAndYear);
+            }
+            return null;
+        }
+
+        public static List<UserBook>? GetAllByJustReadYearAndUserId(int userId, int readYear)
         {
             // Geliştirildi.
 
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
-                var knownReadYearList = getAllByUserId.Where(u => u.ReadYear != null).ToList();
+                var knownReadYearList = getAllByUserId.Where(u => u.ReadYear == readYear).ToList();
                 if (knownReadYearList.Count != 0)
                 {
                     return knownReadYearList;
@@ -150,6 +191,51 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     var getUserBooks = getAllBooks.Where(u => u.UserId == userId).ToList();
                     return getUserBooks;
                 }
+            }
+            return null;
+        }
+        private static List<UserBook>? GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName)
+        {
+            var getAllByUserId = GetAllByUserId(userId);
+            if (getAllByUserId != null)
+            {
+                var editedTextByTr = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(bookName));
+                var tryReturnTrEditedBooksByBookName = getAllByUserId.Where(u => u.BookName == editedTextByTr).ToList();
+                if (tryReturnTrEditedBooksByBookName.Count != 0)
+                {
+                    return tryReturnTrEditedBooksByBookName;
+                }
+                var editedTextByEng = StringUtilityHelper.ToEngLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(bookName));
+                var tryReturnEngEditedBooksByBookName = getAllByUserId.Where(u => u.BookName == editedTextByEng).ToList();
+                if (tryReturnEngEditedBooksByBookName.Count != 0)
+                {
+                    return tryReturnEngEditedBooksByBookName;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByBookName);
+            }
+            
+            return null;
+        }
+
+        private static List<UserBook>? GetByUserIdAndAuthorNameWithBothLocalizations(int userId, string authorName)
+        {
+            var getAllByUserId = GetAllByUserId(userId);
+            if (getAllByUserId != null)
+            {
+                var editedTextByTr = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(authorName));
+                var tryReturnTrEditedBooksByAuthorName = getAllByUserId.Where(u => u.AuthorName == editedTextByTr).ToList();
+                if (tryReturnTrEditedBooksByAuthorName.Count != 0)
+                {
+                    return tryReturnTrEditedBooksByAuthorName;
+                }
+
+                var editedTextByEng = StringUtilityHelper.ToEngLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(authorName));
+                var tryReturnEngEditedBooksByAuthorName = getAllByUserId.Where(u => u.AuthorName == editedTextByEng).ToList();
+                if (tryReturnEngEditedBooksByAuthorName.Count != 0)
+                {
+                    return tryReturnEngEditedBooksByAuthorName;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByAuthorName);
             }
             return null;
         }

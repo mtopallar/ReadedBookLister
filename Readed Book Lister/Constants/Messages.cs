@@ -28,5 +28,8 @@ namespace Readed_Book_Lister.Constants
         public static string NoBookByKnownDateStatue = "Okunma yılı bilinen kitap yoktur.";
         public static string UsersFileNotExist = "Kullanıcı dosyası bulunamadı.";
         public static string UserBooksFileNotExist = "Kullanıcı kitapları dosyası bulunamadı.";
+        public static string NoUserBookByReadMountAndYear = "Belirtilen tarih aralığında kayıtlı kitap yoktur.";
+        public static string NoUserBookByBookName = "Belirtilen isimde kayıtlı kitap yoktur.";
+        public static string NoUserBookByAuthorName = "Belirtilen yazar adında kayıtlı kitap yoktur.";
     }
 }

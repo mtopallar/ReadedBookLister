@@ -43,7 +43,7 @@ namespace Readed_Book_Lister.Methods.Helpers
                     File.Delete(userFileName);
                 }
             }
-            System.Windows.Forms.MessageBox.Show(Messages.UserFileNotExist);
+            System.Windows.Forms.MessageBox.Show(Messages.UsersFileNotExist);
         }
 
         public static void DeleteUserBooksFile()
