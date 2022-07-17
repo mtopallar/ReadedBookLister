@@ -31,5 +31,7 @@ namespace Readed_Book_Lister.Constants
         public static string NoUserBookByReadMountAndYear = "Belirtilen tarih aralığında kayıtlı kitap yoktur.";
         public static string NoUserBookByBookName = "Belirtilen isimde kayıtlı kitap yoktur.";
         public static string NoUserBookByAuthorName = "Belirtilen yazar adında kayıtlı kitap yoktur.";
+        public static string NoUserBookByUserBookId = "Belirtilen kitaba erişilemiyor.";
+        public static string UserBookUpdateSuccessful = "Kitap başarıyla güncellendi.";
     }
 }
