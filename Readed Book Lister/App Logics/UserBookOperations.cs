@@ -226,20 +226,17 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        //private static UserBook? GetByUserBookId(int userBookId)
-        //{
-        //    var getAllBooks = GetAll();
-        //    if (getAllBooks != null)
-        //    {
-        //        var getUserBookById = getAllBooks.Where(u => u.Id == userBookId).FirstOrDefault();
-        //        if (getUserBookById != null)
-        //        {
-        //            return getUserBookById;
-        //        }
-        //        System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
-        //    }
-        //    return null;
-        //}
+        //PRIVATE Helper Methods
+        // Image Size için bir method yazman gerekebilir.
+
+        private static UserBook SetDefaultImageIfNoImageSelected(UserBook userBook)
+        {
+            if (userBook.Image == null)
+            {
+                userBook.Image = @"Image\default.png";                
+            }
+            return userBook;
+        }
         private static List<UserBook>? GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName)
         {
             var getAllByUserId = GetAllByUserId(userId);
