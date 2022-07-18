@@ -18,7 +18,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         // USER ID yi UNUTMAAAAAAAAAAAAAAAAAAA
         //add => ok
         //update => ok
-        //delete
+        //delete => ok
         //GetAllByUserId(int userId) * default => ok
         //list userbooks by bookname //titlecase// GetAllByUserIdAndBookName(int userId, string bookName) => ok
         //list userbooks by authorname //titlecase// GetAllByUserIdAndAuthorName(int userId, string authorName) => ok
@@ -31,25 +31,26 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //getall => ok (private)
         //GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName) private
         //GetByUserIdAndAuthorNameWithBothLocalizations(int userId, string authorName) private
-        //UserBook? GetByUserBookId(int userBookId) private // yoruma alındı.
         // resmi olmayan kitaplara default resmi atayan metodu yaz. add ve update metodlarının içinde kullan.
 
         public static void Add(UserBook userBook)
         {
             // Güzel bir örnek oldu.
             JsonOperations.CreateDbFilesIfNot();
-            var editedBook = EditNamesByNativeState(NoteTrimmer(userBook));
-            editedBook.Id = IdGeneratorForNewUserBook();
+            SetDefaultImageIfNoImageSelected(userBook);
+            EditNamesByNativeState(NoteTrimmer(userBook));
+            userBook.Id = IdGeneratorForNewUserBook();
+
             var getAllList = GetAll();
             if (getAllList == null)
             {
-                var userBookToJson = JsonConvert.SerializeObject(editedBook, Formatting.Indented);
+                var userBookToJson = JsonConvert.SerializeObject(userBook, Formatting.Indented);
                 File.WriteAllText(userBookFileName, userBookToJson);
                 System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
                 return;
             }
 
-            getAllList.Add(editedBook);
+            getAllList.Add(userBook);
             var addedListToJson = JsonConvert.SerializeObject(getAllList, Formatting.Indented);
             File.WriteAllText(userBookFileName, addedListToJson);
             System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
@@ -67,22 +68,41 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
                 if (getBookToUpdate != null)
                 {
-                    var nameEditedUpdateBook = EditNamesByNativeState(NoteTrimmer(userBook));
-                    getBookToUpdate.BookName = nameEditedUpdateBook.BookName;
-                    getBookToUpdate.AuthorName = nameEditedUpdateBook.AuthorName;
-                    getBookToUpdate.Readed = nameEditedUpdateBook.Readed;
-                    getBookToUpdate.Native = nameEditedUpdateBook.Native;
-                    getBookToUpdate.ReadMouth = nameEditedUpdateBook.ReadMouth;
-                    getBookToUpdate.ReadYear = nameEditedUpdateBook.ReadYear;
-                    getBookToUpdate.Image = nameEditedUpdateBook.Image;
-                    getBookToUpdate.Note = nameEditedUpdateBook.Note;
+                    EditNamesByNativeState(NoteTrimmer(userBook));
+                    SetDefaultImageIfNoImageSelected(userBook);
+                    getBookToUpdate.BookName = userBook.BookName;
+                    getBookToUpdate.AuthorName = userBook.AuthorName;
+                    getBookToUpdate.Readed = userBook.Readed;
+                    getBookToUpdate.Native = userBook.Native;
+                    getBookToUpdate.ReadMouth = userBook.ReadMouth;
+                    getBookToUpdate.ReadYear = userBook.ReadYear;
+                    getBookToUpdate.Image = userBook.Image;
+                    getBookToUpdate.Note = userBook.Note;
 
                     var updatedListToJson = JsonConvert.SerializeObject(getAllBooks, Formatting.Indented);
                     File.WriteAllText(userBookFileName, updatedListToJson);
                     System.Windows.Forms.MessageBox.Show(Messages.UserBookUpdateSuccessful);
                     return;
                 }
-                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);                
+                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
+            }
+        }
+
+        public static void Delete(UserBook userBook)
+        {
+            var getAllBooks = GetAll();
+            if (getAllBooks != null)
+            {
+                var userBookToRemove = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();
+                if (userBookToRemove != null)
+                {
+                    getAllBooks.Remove(userBookToRemove);
+                    var updatedListToJson = JsonConvert.SerializeObject(getAllBooks, Formatting.Indented);
+                    File.WriteAllText(userBookFileName, updatedListToJson);
+                    System.Windows.Forms.MessageBox.Show(Messages.DeleteUserBookSuccessful);
+                    return;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
             }
         }
 
@@ -233,7 +253,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         {
             if (userBook.Image == null)
             {
-                userBook.Image = @"Image\default.png";                
+                userBook.Image = @"Image\default.png";
             }
             return userBook;
         }

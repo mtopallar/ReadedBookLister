@@ -33,5 +33,6 @@ namespace Readed_Book_Lister.Constants
         public static string NoUserBookByAuthorName = "Belirtilen yazar adında kayıtlı kitap yoktur.";
         public static string NoUserBookByUserBookId = "Belirtilen kitaba erişilemiyor.";
         public static string UserBookUpdateSuccessful = "Kitap başarıyla güncellendi.";
+        public static string DeleteUserBookSuccessful = "Kitap başarıyla silindi.";
     }
 }
