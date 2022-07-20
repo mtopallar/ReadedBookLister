@@ -31,7 +31,8 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //getall => ok (private)
         //GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName) private
         //GetByUserIdAndAuthorNameWithBothLocalizations(int userId, string authorName) private
-        // resmi olmayan kitaplara default resmi atayan metodu yaz. add ve update metodlarının içinde kullan.
+
+        // resmi olmayan kitaplara default resmi atayan metodu yaz. add ve update metodlarının içinde kullan. Resim boyutlandırma ve seçilen resmi dosyaya kopyalayan metodlara bak.
 
         public static void Add(UserBook userBook)
         {
@@ -90,6 +91,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         public static void Delete(UserBook userBook)
         {
+            //Checked.
             var getAllBooks = GetAll();
             if (getAllBooks != null)
             {
