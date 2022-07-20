@@ -25,7 +25,8 @@ namespace Readed_Book_Lister
         private void btnRegister_MouseHover(object sender, EventArgs e)
         {
             btnRegister.FlatAppearance.BorderSize = 1;
-            toolTipRegister.SetToolTip(btnRegister, "Yeni Kayıt");
+            toolTipLogin.SetToolTip(btnRegister, "Yeni Kayıt");
+           
         }
 
         private void btnRegister_MouseLeave(object sender, EventArgs e)
@@ -37,7 +38,8 @@ namespace Readed_Book_Lister
         private void btnRemove_MouseHover(object sender, EventArgs e)
         {
             btnRemove.FlatAppearance.BorderSize = 1;
-            toolTipRegister.SetToolTip(btnRemove, "Kullanıcı Sil");
+            toolTipLogin.SetToolTip(btnRemove, "Kullanıcı Sil");
+            
         }
 
         private void btnRemove_MouseLeave(object sender, EventArgs e)
@@ -49,6 +51,7 @@ namespace Readed_Book_Lister
         {
             btnLogin.FlatAppearance.BorderSize = 1;
             toolTipLogin.SetToolTip(btnLogin, "Giriş");
+            
         }
 
         private void btnLogin_MouseLeave(object sender, EventArgs e)
@@ -60,6 +63,7 @@ namespace Readed_Book_Lister
         {
             btnClose.FlatAppearance.BorderSize = 1;
             toolTipClose.SetToolTip(btnClose, "Kapat");
+            
         }
 
         private void btnClose_MouseLeave(object sender, EventArgs e)

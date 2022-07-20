@@ -39,10 +39,8 @@
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
-            this.toolTipRegister = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipDelete = new System.Windows.Forms.ToolTip(this.components);
-            this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipLogin = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // lblLogin
@@ -174,17 +172,12 @@
             this.btnRemove.MouseLeave += new System.EventHandler(this.btnRemove_MouseLeave);
             this.btnRemove.MouseHover += new System.EventHandler(this.btnRemove_MouseHover);
             // 
-            // toolTipRegister
-            // 
-            this.toolTipRegister.IsBalloon = true;
-            // 
-            // toolTipDelete
-            // 
-            this.toolTipDelete.IsBalloon = true;
-            // 
             // toolTipLogin
             // 
+            this.toolTipLogin.AutoPopDelay = 5000;
+            this.toolTipLogin.InitialDelay = 500;
             this.toolTipLogin.IsBalloon = true;
+            this.toolTipLogin.ReshowDelay = 100;
             // 
             // Login
             // 
@@ -226,9 +219,7 @@
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
         private System.Windows.Forms.Button btnRemove;
-        private System.Windows.Forms.ToolTip toolTipRegister;
-        private System.Windows.Forms.ToolTip toolTipDelete;
-        private System.Windows.Forms.ToolTip toolTipClose;
         private System.Windows.Forms.ToolTip toolTipLogin;
+        private System.Windows.Forms.ToolTip toolTipClose;
     }
 }
