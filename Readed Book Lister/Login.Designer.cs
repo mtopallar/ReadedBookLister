@@ -28,28 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.lblLogin = new System.Windows.Forms.Label();
             this.pnlUserName = new System.Windows.Forms.Panel();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.tbxPassword = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnLogin = new System.Windows.Forms.Button();
+            this.btnRegister = new System.Windows.Forms.Button();
+            this.btnRemove = new System.Windows.Forms.Button();
+            this.toolTipRegister = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipDelete = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipLogin = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
             // 
             // lblLogin
             // 
             this.lblLogin.AutoSize = true;
-            this.lblLogin.Font = new System.Drawing.Font("Trebuchet MS", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblLogin.ForeColor = System.Drawing.Color.White;
-            this.lblLogin.Location = new System.Drawing.Point(97, 80);
+            this.lblLogin.BackColor = System.Drawing.Color.Transparent;
+            this.lblLogin.Font = new System.Drawing.Font("Tempus Sans ITC", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.lblLogin.ForeColor = System.Drawing.Color.Black;
+            this.lblLogin.Location = new System.Drawing.Point(103, 102);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(147, 61);
+            this.lblLogin.Size = new System.Drawing.Size(147, 62);
             this.lblLogin.TabIndex = 0;
             this.lblLogin.Text = "Login";
             // 
             // pnlUserName
             // 
             this.pnlUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pnlUserName.BackColor = System.Drawing.Color.White;
+            this.pnlUserName.BackColor = System.Drawing.Color.Black;
             this.pnlUserName.Location = new System.Drawing.Point(53, 228);
             this.pnlUserName.Name = "pnlUserName";
             this.pnlUserName.Size = new System.Drawing.Size(235, 1);
@@ -58,10 +69,10 @@
             // tbxName
             // 
             this.tbxName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxName.BackColor = System.Drawing.Color.DarkGreen;
+            this.tbxName.BackColor = System.Drawing.Color.White;
             this.tbxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxName.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbxName.ForeColor = System.Drawing.Color.White;
+            this.tbxName.ForeColor = System.Drawing.Color.Black;
             this.tbxName.Location = new System.Drawing.Point(53, 207);
             this.tbxName.Name = "tbxName";
             this.tbxName.PlaceholderText = "Nickname";
@@ -71,10 +82,10 @@
             // 
             // tbxPassword
             // 
-            this.tbxPassword.BackColor = System.Drawing.Color.DarkGreen;
+            this.tbxPassword.BackColor = System.Drawing.Color.White;
             this.tbxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.tbxPassword.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.tbxPassword.ForeColor = System.Drawing.Color.White;
+            this.tbxPassword.ForeColor = System.Drawing.Color.Black;
             this.tbxPassword.Location = new System.Drawing.Point(54, 267);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PlaceholderText = "Password";
@@ -86,18 +97,107 @@
             // panel1
             // 
             this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.BackColor = System.Drawing.Color.Black;
             this.panel1.Location = new System.Drawing.Point(54, 288);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(235, 1);
             this.panel1.TabIndex = 4;
             // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClose.BackgroundImage")));
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(229)))), ((int)(((byte)(29)))));
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(316, 5);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(22, 26);
+            this.btnClose.TabIndex = 5;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+            this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
+            // 
+            // btnLogin
+            // 
+            this.btnLogin.BackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLogin.BackgroundImage")));
+            this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnLogin.FlatAppearance.BorderSize = 0;
+            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnLogin.Location = new System.Drawing.Point(141, 300);
+            this.btnLogin.Name = "btnLogin";
+            this.btnLogin.Size = new System.Drawing.Size(69, 78);
+            this.btnLogin.TabIndex = 6;
+            this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
+            this.btnLogin.MouseHover += new System.EventHandler(this.btnLogin_MouseHover);
+            // 
+            // btnRegister
+            // 
+            this.btnRegister.AccessibleDescription = "";
+            this.btnRegister.BackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRegister.BackgroundImage")));
+            this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRegister.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnRegister.FlatAppearance.BorderSize = 0;
+            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(231)))));
+            this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRegister.Location = new System.Drawing.Point(213, 422);
+            this.btnRegister.Name = "btnRegister";
+            this.btnRegister.Size = new System.Drawing.Size(64, 71);
+            this.btnRegister.TabIndex = 7;
+            this.btnRegister.Tag = "";
+            this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.MouseLeave += new System.EventHandler(this.btnRegister_MouseLeave);
+            this.btnRegister.MouseHover += new System.EventHandler(this.btnRegister_MouseHover);
+            // 
+            // btnRemove
+            // 
+            this.btnRemove.BackColor = System.Drawing.Color.Transparent;
+            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
+            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnRemove.FlatAppearance.BorderSize = 0;
+            this.btnRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(231)))));
+            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRemove.Location = new System.Drawing.Point(278, 422);
+            this.btnRemove.Name = "btnRemove";
+            this.btnRemove.Size = new System.Drawing.Size(62, 71);
+            this.btnRemove.TabIndex = 8;
+            this.btnRemove.UseVisualStyleBackColor = false;
+            this.btnRemove.MouseLeave += new System.EventHandler(this.btnRemove_MouseLeave);
+            this.btnRemove.MouseHover += new System.EventHandler(this.btnRemove_MouseHover);
+            // 
+            // toolTipRegister
+            // 
+            this.toolTipRegister.IsBalloon = true;
+            // 
+            // toolTipDelete
+            // 
+            this.toolTipDelete.IsBalloon = true;
+            // 
+            // toolTipLogin
+            // 
+            this.toolTipLogin.IsBalloon = true;
+            // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.DarkGreen;
+            this.BackColor = System.Drawing.Color.White;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(342, 498);
+            this.Controls.Add(this.btnRemove);
+            this.Controls.Add(this.btnRegister);
+            this.Controls.Add(this.btnLogin);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tbxPassword);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbxName);
@@ -108,6 +208,7 @@
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "Login";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Tag = "";
             this.Text = "Login";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -121,5 +222,13 @@
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.TextBox tbxPassword;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Button btnLogin;
+        private System.Windows.Forms.Button btnRegister;
+        private System.Windows.Forms.Button btnRemove;
+        private System.Windows.Forms.ToolTip toolTipRegister;
+        private System.Windows.Forms.ToolTip toolTipDelete;
+        private System.Windows.Forms.ToolTip toolTipClose;
+        private System.Windows.Forms.ToolTip toolTipLogin;
     }
 }
