@@ -24,39 +24,24 @@ namespace Readed_Book_Lister
 
         private void btnRegister_MouseHover(object sender, EventArgs e)
         {
-            btnRegister.FlatAppearance.BorderSize = 1;
+            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register_hover.png");
             toolTipLogin.SetToolTip(btnRegister, "Yeni Kayıt");
-           
         }
 
         private void btnRegister_MouseLeave(object sender, EventArgs e)
         {
-            btnRegister.FlatAppearance.BorderSize = 0;
-            
-        }
-
-        private void btnRemove_MouseHover(object sender, EventArgs e)
-        {
-            btnRemove.FlatAppearance.BorderSize = 1;
-            toolTipLogin.SetToolTip(btnRemove, "Kullanıcı Sil");
-            
-        }
-
-        private void btnRemove_MouseLeave(object sender, EventArgs e)
-        {
-            btnRemove.FlatAppearance.BorderSize = 0;
-        }
+            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register.png");
+        }        
 
         private void btnLogin_MouseHover(object sender, EventArgs e)
-        {
-            btnLogin.FlatAppearance.BorderSize = 1;
+        {   
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login_hover.png");
             toolTipLogin.SetToolTip(btnLogin, "Giriş");
-            
         }
 
         private void btnLogin_MouseLeave(object sender, EventArgs e)
-        {
-            btnLogin.FlatAppearance.BorderSize = 0;
+        {            
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");
         }
 
         private void btnClose_MouseHover(object sender, EventArgs e)

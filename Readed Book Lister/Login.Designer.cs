@@ -38,7 +38,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
-            this.btnRemove = new System.Windows.Forms.Button();
             this.toolTipLogin = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.SuspendLayout();
@@ -47,11 +46,11 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.BackColor = System.Drawing.Color.Transparent;
-            this.lblLogin.Font = new System.Drawing.Font("Tempus Sans ITC", 36F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point);
+            this.lblLogin.Font = new System.Drawing.Font("Berlin Sans FB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.lblLogin.ForeColor = System.Drawing.Color.Black;
-            this.lblLogin.Location = new System.Drawing.Point(103, 102);
+            this.lblLogin.Location = new System.Drawing.Point(111, 116);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(147, 62);
+            this.lblLogin.Size = new System.Drawing.Size(134, 54);
             this.lblLogin.TabIndex = 0;
             this.lblLogin.Text = "Login";
             // 
@@ -146,7 +145,7 @@
             this.btnRegister.FlatAppearance.BorderSize = 0;
             this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(231)))));
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Location = new System.Drawing.Point(213, 422);
+            this.btnRegister.Location = new System.Drawing.Point(249, 424);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(64, 71);
             this.btnRegister.TabIndex = 7;
@@ -154,23 +153,6 @@
             this.btnRegister.UseVisualStyleBackColor = false;
             this.btnRegister.MouseLeave += new System.EventHandler(this.btnRegister_MouseLeave);
             this.btnRegister.MouseHover += new System.EventHandler(this.btnRegister_MouseHover);
-            // 
-            // btnRemove
-            // 
-            this.btnRemove.BackColor = System.Drawing.Color.Transparent;
-            this.btnRemove.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnRemove.BackgroundImage")));
-            this.btnRemove.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnRemove.FlatAppearance.BorderColor = System.Drawing.Color.Black;
-            this.btnRemove.FlatAppearance.BorderSize = 0;
-            this.btnRemove.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(231)))));
-            this.btnRemove.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRemove.Location = new System.Drawing.Point(278, 422);
-            this.btnRemove.Name = "btnRemove";
-            this.btnRemove.Size = new System.Drawing.Size(62, 71);
-            this.btnRemove.TabIndex = 8;
-            this.btnRemove.UseVisualStyleBackColor = false;
-            this.btnRemove.MouseLeave += new System.EventHandler(this.btnRemove_MouseLeave);
-            this.btnRemove.MouseHover += new System.EventHandler(this.btnRemove_MouseHover);
             // 
             // toolTipLogin
             // 
@@ -187,7 +169,6 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(342, 498);
-            this.Controls.Add(this.btnRemove);
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnClose);
@@ -218,7 +199,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
-        private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.ToolTip toolTipLogin;
         private System.Windows.Forms.ToolTip toolTipClose;
     }
