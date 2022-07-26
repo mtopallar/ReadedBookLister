@@ -55,7 +55,7 @@
             // tbxName
             // 
             this.tbxName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxName.BackColor = System.Drawing.Color.Gainsboro;
+            this.tbxName.BackColor = System.Drawing.Color.Wheat;
             this.tbxName.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxName.ForeColor = System.Drawing.Color.Black;
             this.tbxName.Location = new System.Drawing.Point(54, 207);
@@ -67,7 +67,7 @@
             // 
             // tbxPassword
             // 
-            this.tbxPassword.BackColor = System.Drawing.Color.LightGray;
+            this.tbxPassword.BackColor = System.Drawing.Color.Wheat;
             this.tbxPassword.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxPassword.ForeColor = System.Drawing.Color.Black;
             this.tbxPassword.Location = new System.Drawing.Point(54, 267);
