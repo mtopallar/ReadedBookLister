@@ -48,14 +48,13 @@ namespace Readed_Book_Lister
 
         private void btnClose_MouseHover(object sender, EventArgs e)
         {
-            btnClose.FlatAppearance.BorderSize = 1;
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close_hover.png");
             toolTipClose.SetToolTip(btnClose, "Kapat");
-
         }
 
         private void btnClose_MouseLeave(object sender, EventArgs e)
         {
-            btnClose.FlatAppearance.BorderSize = 0;
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
         }
     }
 }

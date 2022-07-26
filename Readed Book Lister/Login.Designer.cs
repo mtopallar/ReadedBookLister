@@ -31,10 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.lblLogin = new System.Windows.Forms.Label();
-            this.pnlUserName = new System.Windows.Forms.Panel();
             this.tbxName = new System.Windows.Forms.TextBox();
             this.tbxPassword = new System.Windows.Forms.TextBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnLogin = new System.Windows.Forms.Button();
             this.btnRegister = new System.Windows.Forms.Button();
@@ -54,51 +52,31 @@
             this.lblLogin.TabIndex = 0;
             this.lblLogin.Text = "Login";
             // 
-            // pnlUserName
-            // 
-            this.pnlUserName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pnlUserName.BackColor = System.Drawing.Color.Black;
-            this.pnlUserName.Location = new System.Drawing.Point(53, 228);
-            this.pnlUserName.Name = "pnlUserName";
-            this.pnlUserName.Size = new System.Drawing.Size(235, 1);
-            this.pnlUserName.TabIndex = 1;
-            // 
             // tbxName
             // 
             this.tbxName.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.tbxName.BackColor = System.Drawing.Color.White;
-            this.tbxName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxName.BackColor = System.Drawing.Color.Gainsboro;
             this.tbxName.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxName.ForeColor = System.Drawing.Color.Black;
-            this.tbxName.Location = new System.Drawing.Point(53, 207);
+            this.tbxName.Location = new System.Drawing.Point(54, 207);
             this.tbxName.Name = "tbxName";
             this.tbxName.PlaceholderText = "Nickname";
-            this.tbxName.Size = new System.Drawing.Size(235, 18);
+            this.tbxName.Size = new System.Drawing.Size(235, 25);
             this.tbxName.TabIndex = 0;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // tbxPassword
             // 
-            this.tbxPassword.BackColor = System.Drawing.Color.White;
-            this.tbxPassword.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbxPassword.BackColor = System.Drawing.Color.LightGray;
             this.tbxPassword.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxPassword.ForeColor = System.Drawing.Color.Black;
             this.tbxPassword.Location = new System.Drawing.Point(54, 267);
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PlaceholderText = "Password";
-            this.tbxPassword.Size = new System.Drawing.Size(235, 18);
+            this.tbxPassword.Size = new System.Drawing.Size(235, 25);
             this.tbxPassword.TabIndex = 3;
             this.tbxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxPassword.UseSystemPasswordChar = true;
-            // 
-            // panel1
-            // 
-            this.panel1.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.panel1.BackColor = System.Drawing.Color.Black;
-            this.panel1.Location = new System.Drawing.Point(54, 288);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(235, 1);
-            this.panel1.TabIndex = 4;
             // 
             // btnClose
             // 
@@ -107,7 +85,7 @@
             this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnClose.FlatAppearance.BorderSize = 0;
-            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(181)))), ((int)(((byte)(229)))), ((int)(((byte)(29)))));
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnClose.Location = new System.Drawing.Point(316, 5);
             this.btnClose.Name = "btnClose";
@@ -125,9 +103,10 @@
             this.btnLogin.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnLogin.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnLogin.FlatAppearance.BorderSize = 0;
-            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
+            this.btnLogin.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnLogin.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLogin.Location = new System.Drawing.Point(141, 300);
+            this.btnLogin.Location = new System.Drawing.Point(137, 309);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(69, 78);
             this.btnLogin.TabIndex = 6;
@@ -143,9 +122,10 @@
             this.btnRegister.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnRegister.FlatAppearance.BorderColor = System.Drawing.Color.Black;
             this.btnRegister.FlatAppearance.BorderSize = 0;
-            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(162)))), ((int)(((byte)(231)))));
+            this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnRegister.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnRegister.Location = new System.Drawing.Point(249, 424);
+            this.btnRegister.Location = new System.Drawing.Point(273, 428);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(64, 71);
             this.btnRegister.TabIndex = 7;
@@ -167,20 +147,22 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(342, 498);
+            this.ControlBox = false;
             this.Controls.Add(this.btnRegister);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.tbxPassword);
-            this.Controls.Add(this.panel1);
             this.Controls.Add(this.tbxName);
-            this.Controls.Add(this.pnlUserName);
             this.Controls.Add(this.lblLogin);
             this.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "Login";
+            this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "Login";
@@ -192,10 +174,8 @@
         #endregion
 
         private System.Windows.Forms.Label lblLogin;
-        private System.Windows.Forms.Panel pnlUserName;
         private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.TextBox tbxPassword;
-        private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnLogin;
         private System.Windows.Forms.Button btnRegister;
