@@ -125,8 +125,8 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return returnUser;
                 }
-            }
-            System.Windows.Forms.MessageBox.Show(Messages.UserNotFoundByName);
+                System.Windows.Forms.MessageBox.Show(Messages.UserNotFoundByName);
+            }            
             return null;
 
         }

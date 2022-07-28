@@ -23,12 +23,20 @@ namespace Readed_Book_Lister.Methods.Helpers
             {
                 //File.SetAttributes(userFileName, FileAttributes.Hidden);
                 //File.SetAttributes(path, File.GetAttributes(path) | FileAttributes.Hidden);
-                File.Create(userFileName);
+                var userDbFile = File.Create(userFileName);
+                userDbFile.Close();
+                var emptyUserList = new List<User>();
+                var convertNewListToJson = JsonConvert.SerializeObject(emptyUserList, Formatting.Indented);
+                File.WriteAllText(userFileName, convertNewListToJson);
 
             }
             if (!File.Exists(userBooksFileName))
             {
-                File.Create(userBooksFileName);
+                var userBooksDbFile = File.Create(userBooksFileName);
+                userBooksDbFile.Close();
+                var emptyUserBooksList = new List<UserBook>();
+                var convertNewListToJson = JsonConvert.SerializeObject(emptyUserBooksList, Formatting.Indented);
+                File.WriteAllText(userBooksFileName, convertNewListToJson);
             }
         }
 
@@ -59,5 +67,6 @@ namespace Readed_Book_Lister.Methods.Helpers
             }
             System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
         }
+
     }
 }

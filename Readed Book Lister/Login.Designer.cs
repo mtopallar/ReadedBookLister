@@ -64,6 +64,7 @@
             this.tbxName.Size = new System.Drawing.Size(235, 25);
             this.tbxName.TabIndex = 0;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // tbxPassword
             // 
@@ -77,6 +78,7 @@
             this.tbxPassword.TabIndex = 3;
             this.tbxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxPassword.UseSystemPasswordChar = true;
+            this.tbxPassword.TextChanged += new System.EventHandler(this.tbxPassword_TextChanged);
             // 
             // btnClose
             // 
@@ -111,6 +113,7 @@
             this.btnLogin.Size = new System.Drawing.Size(69, 78);
             this.btnLogin.TabIndex = 6;
             this.btnLogin.UseVisualStyleBackColor = false;
+            this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
             this.btnLogin.MouseHover += new System.EventHandler(this.btnLogin_MouseHover);
             // 

@@ -1,4 +1,8 @@
-﻿using Readed_Book_Lister.Constants;
+﻿using Readed_Book_Lister.App_Logics;
+using Readed_Book_Lister.Constants;
+using Readed_Book_Lister.Dtos;
+using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -14,9 +18,12 @@ namespace Readed_Book_Lister
 {
     public partial class Login : Form
     {
+        User? logedUser;
         public Login()
         {
             InitializeComponent();
+            JsonOperations.CreateDbFilesIfNot();
+
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -33,8 +40,8 @@ namespace Readed_Book_Lister
 
         private void btnRegister_MouseLeave(object sender, EventArgs e)
         {
-            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register.png");
-            toolTipLogin.RemoveAll();
+            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register.png");            
+            toolTipLogin.Hide(btnRegister);
         }
 
         private void btnLogin_MouseHover(object sender, EventArgs e)
@@ -46,8 +53,8 @@ namespace Readed_Book_Lister
 
         private void btnLogin_MouseLeave(object sender, EventArgs e)
         {
-            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");
-            toolTipLogin.RemoveAll();
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");            
+            toolTipLogin.Hide(btnLogin);
         }
 
         private void btnClose_MouseHover(object sender, EventArgs e)
@@ -59,8 +66,68 @@ namespace Readed_Book_Lister
 
         private void btnClose_MouseLeave(object sender, EventArgs e)
         {
-            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
-            toolTipLogin.RemoveAll();
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");            
+            toolTipClose.Hide(btnClose);
         }
+
+        private void btnLogin_Click(object sender, EventArgs e)
+        {
+            if (!TextBoxEmptyChecker())
+            {
+                return;
+            }
+            var loginUserDto = new UserLoginDto
+            {
+                NickName = tbxName.Text,
+                Password = tbxPassword.Text
+            };
+            logedUser = AuthOperations.Login(loginUserDto);
+            if (logedUser == null)
+            {
+                btnLogin.BackgroundImage = Image.FromFile(@".\assets\login_error.png");
+                ErrorStatue();                
+                return;
+            }
+            // main form load et.
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();           
+        }
+                
+
+        private void tbxPassword_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();            
+        }
+
+        // MyHelper Methods
+        private void ErrorStatue()
+        {
+            tbxName.BackColor = Color.FromArgb(250, 184, 187);
+            tbxPassword.BackColor = Color.FromArgb(250, 184, 187);
+            btnLogin.Enabled = false;
+        }
+
+        private void ClearErrorStatue()
+        {
+            tbxName.BackColor = Color.Wheat;
+            tbxPassword.BackColor = Color.Wheat;
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");
+            btnLogin.Enabled = true;
+        }
+
+        private bool TextBoxEmptyChecker()
+        {
+            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxName.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxPassword.Text)))
+            {
+                ErrorStatue();
+                MessageBox.Show(Messages.AllFieldsAreRequired);                
+                return false;
+            }
+            return true;
+        }
+        //End of MyHelper Methods
     }
 }

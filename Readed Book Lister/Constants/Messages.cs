@@ -35,5 +35,7 @@ namespace Readed_Book_Lister.Constants
         public static string UserBookUpdateSuccessful = "Kitap başarıyla güncellendi.";
         public static string DeleteUserBookSuccessful = "Kitap başarıyla silindi.";
 
+        //Form
+        public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
     }
 }
