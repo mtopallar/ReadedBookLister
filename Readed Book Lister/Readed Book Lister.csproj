@@ -43,6 +43,9 @@
     <None Update="assets\register.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\register_error.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\register_hover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

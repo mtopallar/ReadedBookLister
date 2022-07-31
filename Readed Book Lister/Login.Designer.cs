@@ -62,7 +62,7 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.PlaceholderText = "Nickname";
             this.tbxName.Size = new System.Drawing.Size(235, 25);
-            this.tbxName.TabIndex = 0;
+            this.tbxName.TabIndex = 1;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
@@ -75,7 +75,7 @@
             this.tbxPassword.Name = "tbxPassword";
             this.tbxPassword.PlaceholderText = "Password";
             this.tbxPassword.Size = new System.Drawing.Size(235, 25);
-            this.tbxPassword.TabIndex = 3;
+            this.tbxPassword.TabIndex = 2;
             this.tbxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxPassword.UseSystemPasswordChar = true;
             this.tbxPassword.TextChanged += new System.EventHandler(this.tbxPassword_TextChanged);
@@ -111,7 +111,7 @@
             this.btnLogin.Location = new System.Drawing.Point(137, 309);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(69, 78);
-            this.btnLogin.TabIndex = 6;
+            this.btnLogin.TabIndex = 3;
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
             this.btnLogin.MouseLeave += new System.EventHandler(this.btnLogin_MouseLeave);
@@ -131,9 +131,10 @@
             this.btnRegister.Location = new System.Drawing.Point(273, 428);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(64, 71);
-            this.btnRegister.TabIndex = 7;
+            this.btnRegister.TabIndex = 4;
             this.btnRegister.Tag = "";
             this.btnRegister.UseVisualStyleBackColor = false;
+            this.btnRegister.Click += new System.EventHandler(this.btnRegister_Click);
             this.btnRegister.MouseLeave += new System.EventHandler(this.btnRegister_MouseLeave);
             this.btnRegister.MouseHover += new System.EventHandler(this.btnRegister_MouseHover);
             // 

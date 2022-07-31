@@ -22,7 +22,7 @@ namespace Readed_Book_Lister.App_Logics
 
         const string userFileName = "users.json";
 
-        public static User Register(UserLoginDto UserLoginDto)
+        public static User? Register(UserLoginDto UserLoginDto)
         {
             JsonOperations.CreateDbFilesIfNot();
 
@@ -44,9 +44,10 @@ namespace Readed_Book_Lister.App_Logics
                 };
 
                 var convertNewListToJson = JsonConvert.SerializeObject(newUserList, Formatting.Indented);
-                File.WriteAllText(userFileName, convertNewListToJson);                
-
-            }
+                File.WriteAllText(userFileName, convertNewListToJson);
+                System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
+                return user;
+            }            
 
             else if (UserOperations.IsNickNameExists(UserLoginDto.NickName))
             {
@@ -58,10 +59,12 @@ namespace Readed_Book_Lister.App_Logics
                 getUserList.Add(user);
                 var convertListToJson = JsonConvert.SerializeObject(getUserList, Formatting.Indented);
                 File.WriteAllText(userFileName, convertListToJson);
-                
+                System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
+                return user;
+
             }
-            System.Windows.Forms.MessageBox.Show(Messages.RegisterSuccessful);
-            return user;
+            
+            return null;
         }
 
         public static User? Login(UserLoginDto userLoginDto)
@@ -74,8 +77,9 @@ namespace Readed_Book_Lister.App_Logics
                     return user;
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.LoginError);
+                return null;
             }
-
+            System.Windows.Forms.MessageBox.Show(Messages.UserNotFoundByName);
             return null;
         }
 

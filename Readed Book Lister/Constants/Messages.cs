@@ -37,5 +37,6 @@ namespace Readed_Book_Lister.Constants
 
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
+        public static string PasswordMatchError = "Parolalar eşleşmiyor.";
     }
 }

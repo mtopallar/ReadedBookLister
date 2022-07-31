@@ -28,19 +28,19 @@ namespace Readed_Book_Lister
 
         private void btnClose_Click(object sender, EventArgs e)
         {
-            this.Close();
+            Application.Exit();
         }
 
         private void btnRegister_MouseHover(object sender, EventArgs e)
         {
             btnRegister.BackgroundImage = Image.FromFile(@".\assets\register_hover.png");
             toolTipLogin.SetToolTip(btnRegister, "Yeni Kayıt");
-            
+
         }
 
         private void btnRegister_MouseLeave(object sender, EventArgs e)
         {
-            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register.png");            
+            btnRegister.BackgroundImage = Image.FromFile(@".\assets\register.png");
             toolTipLogin.Hide(btnRegister);
         }
 
@@ -48,12 +48,12 @@ namespace Readed_Book_Lister
         {
             btnLogin.BackgroundImage = Image.FromFile(@".\assets\login_hover.png");
             toolTipLogin.SetToolTip(btnLogin, "Giriş");
-            
+
         }
 
         private void btnLogin_MouseLeave(object sender, EventArgs e)
         {
-            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");            
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login.png");
             toolTipLogin.Hide(btnLogin);
         }
 
@@ -61,12 +61,12 @@ namespace Readed_Book_Lister
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close_hover.png");
             toolTipClose.SetToolTip(btnClose, "Kapat");
-            
+
         }
 
         private void btnClose_MouseLeave(object sender, EventArgs e)
         {
-            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");            
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
             toolTipClose.Hide(btnClose);
         }
 
@@ -74,6 +74,7 @@ namespace Readed_Book_Lister
         {
             if (!TextBoxEmptyChecker())
             {
+                ErrorStatue();
                 return;
             }
             var loginUserDto = new UserLoginDto
@@ -84,22 +85,29 @@ namespace Readed_Book_Lister
             logedUser = AuthOperations.Login(loginUserDto);
             if (logedUser == null)
             {
-                btnLogin.BackgroundImage = Image.FromFile(@".\assets\login_error.png");
-                ErrorStatue();                
+                ErrorStatue();
                 return;
             }
             // main form load et.
+            MessageBox.Show("Girildi.");
+        }
+
+        private void btnRegister_Click(object sender, EventArgs e)
+        {
+            Register registerForm = new Register();
+            Hide();
+            registerForm.Show();
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)
         {
-            ClearErrorStatue();           
+            ClearErrorStatue();
         }
-                
+
 
         private void tbxPassword_TextChanged(object sender, EventArgs e)
         {
-            ClearErrorStatue();            
+            ClearErrorStatue();
         }
 
         // MyHelper Methods
@@ -107,7 +115,9 @@ namespace Readed_Book_Lister
         {
             tbxName.BackColor = Color.FromArgb(250, 184, 187);
             tbxPassword.BackColor = Color.FromArgb(250, 184, 187);
-            btnLogin.Enabled = false;
+            btnLogin.BackgroundImage = Image.FromFile(@".\assets\login_error.png");
+            btnLogin.Enabled = false;           
+            
         }
 
         private void ClearErrorStatue()
@@ -121,9 +131,8 @@ namespace Readed_Book_Lister
         private bool TextBoxEmptyChecker()
         {
             if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxName.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxPassword.Text)))
-            {
-                ErrorStatue();
-                MessageBox.Show(Messages.AllFieldsAreRequired);                
+            {                
+                MessageBox.Show(Messages.AllFieldsAreRequired);
                 return false;
             }
             return true;
