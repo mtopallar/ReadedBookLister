@@ -75,7 +75,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     getBookToUpdate.AuthorName = userBook.AuthorName;
                     getBookToUpdate.Readed = userBook.Readed;
                     getBookToUpdate.Native = userBook.Native;
-                    getBookToUpdate.ReadMouth = userBook.ReadMouth;
+                    getBookToUpdate.ReadMonth = userBook.ReadMonth;
                     getBookToUpdate.ReadYear = userBook.ReadYear;
                     getBookToUpdate.Image = userBook.Image;
                     getBookToUpdate.Note = userBook.Note;
@@ -130,14 +130,14 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        public static List<UserBook>? GetAllByReadMouthYearAndUserId(int userId, int readMouth, int readYear)
+        public static List<UserBook>? GetAllByReadMouthYearAndUserId(int userId, int readMonth, int readYear)
         {
             //Checked.
 
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
-                var getListByCriteria = getAllByUserId.Where(u => u.ReadMouth == readMouth && u.ReadYear == readYear).ToList();
+                var getListByCriteria = getAllByUserId.Where(u => u.ReadMonth == readMonth && u.ReadYear == readYear).ToList();
                 if (getListByCriteria.Count != 0)
                 {
                     return getListByCriteria;
@@ -172,7 +172,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
-                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMouth == null && u.ReadYear == null).ToList();
+                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();
                 if (getUnknownReadDateList.Count != 0)
                 {
                     return getUnknownReadDateList;

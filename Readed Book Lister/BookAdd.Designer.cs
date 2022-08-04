@@ -33,7 +33,7 @@
             this.btnClear = new System.Windows.Forms.Button();
             this.btnBrowse = new System.Windows.Forms.Button();
             this.cmbYear = new System.Windows.Forms.ComboBox();
-            this.cmbMouth = new System.Windows.Forms.ComboBox();
+            this.cmbMonth = new System.Windows.Forms.ComboBox();
             this.cbxReaded = new System.Windows.Forms.CheckBox();
             this.cbxNative = new System.Windows.Forms.CheckBox();
             this.cbxYear = new System.Windows.Forms.CheckBox();
@@ -47,6 +47,7 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.toolTipAddBook = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
+            this.cbxMonth = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnClear
@@ -61,7 +62,7 @@
             this.btnClear.Location = new System.Drawing.Point(583, 339);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(49, 48);
-            this.btnClear.TabIndex = 11;
+            this.btnClear.TabIndex = 12;
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             this.btnClear.MouseLeave += new System.EventHandler(this.btnClear_MouseLeave);
@@ -79,7 +80,7 @@
             this.btnBrowse.Location = new System.Drawing.Point(672, 105);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(65, 53);
-            this.btnBrowse.TabIndex = 9;
+            this.btnBrowse.TabIndex = 10;
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.MouseLeave += new System.EventHandler(this.btnBrowse_MouseLeave);
             this.btnBrowse.MouseHover += new System.EventHandler(this.btnBrowse_MouseHover);
@@ -93,21 +94,34 @@
             this.cmbYear.Location = new System.Drawing.Point(214, 274);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(134, 26);
-            this.cmbYear.TabIndex = 7;
+            this.cmbYear.TabIndex = 8;
             this.cmbYear.Text = "Bitirme Tarihi (Yıl)";
             // 
-            // cmbMouth
+            // cmbMonth
             // 
-            this.cmbMouth.BackColor = System.Drawing.Color.Wheat;
-            this.cmbMouth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.cmbMouth.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.cmbMouth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.cmbMouth.FormattingEnabled = true;
-            this.cmbMouth.Location = new System.Drawing.Point(64, 274);
-            this.cmbMouth.Name = "cmbMouth";
-            this.cmbMouth.Size = new System.Drawing.Size(134, 26);
-            this.cmbMouth.TabIndex = 6;
-            this.cmbMouth.Text = "Bitirme Tarihi (Ay)";
+            this.cmbMonth.BackColor = System.Drawing.Color.Wheat;
+            this.cmbMonth.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.cmbMonth.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.cmbMonth.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.cmbMonth.FormattingEnabled = true;
+            this.cmbMonth.Items.AddRange(new object[] {
+            "Ocak",
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs",
+            "Haziran",
+            "Temmuz",
+            "Ağustos",
+            "Eylül",
+            "Ekim",
+            "Kasım",
+            "Aralık"});
+            this.cmbMonth.Location = new System.Drawing.Point(64, 274);
+            this.cmbMonth.Name = "cmbMonth";
+            this.cmbMonth.Size = new System.Drawing.Size(134, 26);
+            this.cmbMonth.TabIndex = 7;
+            this.cmbMonth.Text = "Bitirme Tarihi (Ay)";
             // 
             // cbxReaded
             // 
@@ -120,10 +134,10 @@
             this.cbxReaded.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxReaded.ForeColor = System.Drawing.Color.White;
             this.cbxReaded.Image = ((System.Drawing.Image)(resources.GetObject("cbxReaded.Image")));
-            this.cbxReaded.Location = new System.Drawing.Point(169, 207);
+            this.cbxReaded.Location = new System.Drawing.Point(209, 205);
             this.cbxReaded.Name = "cbxReaded";
             this.cbxReaded.Size = new System.Drawing.Size(75, 60);
-            this.cbxReaded.TabIndex = 4;
+            this.cbxReaded.TabIndex = 5;
             this.cbxReaded.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxReaded.UseVisualStyleBackColor = false;
             this.cbxReaded.MouseLeave += new System.EventHandler(this.cbxReaded_MouseLeave);
@@ -140,10 +154,10 @@
             this.cbxNative.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxNative.ForeColor = System.Drawing.Color.White;
             this.cbxNative.Image = ((System.Drawing.Image)(resources.GetObject("cbxNative.Image")));
-            this.cbxNative.Location = new System.Drawing.Point(281, 211);
+            this.cbxNative.Location = new System.Drawing.Point(291, 211);
             this.cbxNative.Name = "cbxNative";
             this.cbxNative.Size = new System.Drawing.Size(63, 48);
-            this.cbxNative.TabIndex = 5;
+            this.cbxNative.TabIndex = 6;
             this.cbxNative.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxNative.UseVisualStyleBackColor = false;
             this.cbxNative.MouseLeave += new System.EventHandler(this.cbxNative_MouseLeave);
@@ -160,12 +174,13 @@
             this.cbxYear.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxYear.ForeColor = System.Drawing.Color.White;
             this.cbxYear.Image = ((System.Drawing.Image)(resources.GetObject("cbxYear.Image")));
-            this.cbxYear.Location = new System.Drawing.Point(64, 210);
+            this.cbxYear.Location = new System.Drawing.Point(134, 205);
             this.cbxYear.Name = "cbxYear";
             this.cbxYear.Size = new System.Drawing.Size(69, 54);
-            this.cbxYear.TabIndex = 3;
+            this.cbxYear.TabIndex = 4;
             this.cbxYear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxYear.UseVisualStyleBackColor = false;
+            this.cbxYear.CheckedChanged += new System.EventHandler(this.cbxYear_CheckedChanged);
             this.cbxYear.MouseLeave += new System.EventHandler(this.cbxYear_MouseLeave);
             this.cbxYear.MouseHover += new System.EventHandler(this.cbxYear_MouseHover);
             // 
@@ -180,7 +195,7 @@
             this.tbxNote.Name = "tbxNote";
             this.tbxNote.PlaceholderText = "Notlar (tercihen)";
             this.tbxNote.Size = new System.Drawing.Size(348, 131);
-            this.tbxNote.TabIndex = 10;
+            this.tbxNote.TabIndex = 11;
             // 
             // tbxImage
             // 
@@ -192,7 +207,7 @@
             this.tbxImage.Name = "tbxImage";
             this.tbxImage.PlaceholderText = "Kapak Resmi";
             this.tbxImage.Size = new System.Drawing.Size(277, 25);
-            this.tbxImage.TabIndex = 8;
+            this.tbxImage.TabIndex = 9;
             // 
             // tbxAuthor
             // 
@@ -243,7 +258,7 @@
             this.btnCancel.Location = new System.Drawing.Point(639, 339);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(49, 48);
-            this.btnCancel.TabIndex = 12;
+            this.btnCancel.TabIndex = 13;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
             this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
@@ -260,8 +275,9 @@
             this.btnSave.Location = new System.Drawing.Point(688, 339);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(49, 48);
-            this.btnSave.TabIndex = 13;
+            this.btnSave.TabIndex = 14;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
             this.btnSave.MouseHover += new System.EventHandler(this.btnSave_MouseHover);
             // 
@@ -278,7 +294,7 @@
             this.btnClose.Location = new System.Drawing.Point(732, 24);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(22, 26);
-            this.btnClose.TabIndex = 14;
+            this.btnClose.TabIndex = 15;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
@@ -287,6 +303,27 @@
             // toolTipAddBook
             // 
             this.toolTipAddBook.IsBalloon = true;
+            // 
+            // cbxMonth
+            // 
+            this.cbxMonth.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbxMonth.AutoSize = true;
+            this.cbxMonth.BackColor = System.Drawing.Color.Transparent;
+            this.cbxMonth.FlatAppearance.CheckedBackColor = System.Drawing.Color.Transparent;
+            this.cbxMonth.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.cbxMonth.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.cbxMonth.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.cbxMonth.ForeColor = System.Drawing.Color.White;
+            this.cbxMonth.Image = ((System.Drawing.Image)(resources.GetObject("cbxMonth.Image")));
+            this.cbxMonth.Location = new System.Drawing.Point(64, 205);
+            this.cbxMonth.Name = "cbxMonth";
+            this.cbxMonth.Size = new System.Drawing.Size(69, 54);
+            this.cbxMonth.TabIndex = 3;
+            this.cbxMonth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.cbxMonth.UseVisualStyleBackColor = false;
+            this.cbxMonth.CheckedChanged += new System.EventHandler(this.cbxMonth_CheckedChanged);
+            this.cbxMonth.MouseLeave += new System.EventHandler(this.cbxMonth_MouseLeave);
+            this.cbxMonth.MouseHover += new System.EventHandler(this.cbxMonth_MouseHover);
             // 
             // BookAdd
             // 
@@ -302,9 +339,10 @@
             this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnBrowse);
             this.Controls.Add(this.cmbYear);
-            this.Controls.Add(this.cmbMouth);
+            this.Controls.Add(this.cmbMonth);
             this.Controls.Add(this.cbxReaded);
             this.Controls.Add(this.cbxNative);
+            this.Controls.Add(this.cbxMonth);
             this.Controls.Add(this.cbxYear);
             this.Controls.Add(this.tbxNote);
             this.Controls.Add(this.tbxImage);
@@ -330,7 +368,7 @@
         private System.Windows.Forms.Button btnClear;
         private System.Windows.Forms.Button btnBrowse;
         private System.Windows.Forms.ComboBox cmbYear;
-        private System.Windows.Forms.ComboBox cmbMouth;
+        private System.Windows.Forms.ComboBox cmbMonth;
         private System.Windows.Forms.CheckBox cbxReaded;
         private System.Windows.Forms.CheckBox cbxNative;
         private System.Windows.Forms.CheckBox cbxYear;
@@ -344,5 +382,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.ToolTip toolTipAddBook;
         private System.Windows.Forms.ToolTip toolTipClose;
+        private System.Windows.Forms.CheckBox cbxMonth;
     }
 }

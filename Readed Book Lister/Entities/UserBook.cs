@@ -14,7 +14,7 @@ namespace Readed_Book_Lister.Entities
         public string AuthorName { get; set; }
         public bool Readed { get; set; }
         public bool Native { get; set; }
-        public int? ReadMouth { get; set; }
+        public int? ReadMonth { get; set; }
         public int? ReadYear { get; set; }
         public string Image { get; set; }
         public string Note { get; set; }

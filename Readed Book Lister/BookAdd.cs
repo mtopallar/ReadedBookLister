@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Readed_Book_Lister.Methods.Helpers;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,12 +13,14 @@ namespace Readed_Book_Lister
 {
     public partial class BookAdd : Form
     {
+
         public BookAdd()
         {
             InitializeComponent();
+            CmbYearFiller();
         }
 
-        
+
         #region Clicks
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -28,6 +31,48 @@ namespace Readed_Book_Lister
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearControls();
+        }
+
+        private void cbxYear_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxYear.Checked)
+            {
+                cmbMonth.Text = "Bitirme Tarihi (Ay)";
+                cmbYear.Text = "Bitirme Tarihi (Yıl)";
+                cmbMonth.Enabled = false;
+                cmbYear.Enabled = false;
+                cbxMonth.Enabled = false;
+            }
+            else
+            {
+                cmbMonth.Enabled = true;
+                cmbYear.Enabled = true;
+                cbxMonth.Checked = false;
+                cbxMonth.Enabled = true;
+            }
+        }
+
+        private void cbxMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxMonth.Checked)
+            {
+                cmbMonth.Text = "Bitirme Tarihi (Ay)";
+                cmbMonth.Enabled = false;
+            }
+            else
+            {
+                cmbMonth.Enabled = true;
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!FormControlsErrorChecker())
+            {
+                SetErrorStatue();
+                return;
+            }
+            MessageBox.Show("Hata yok");
         }
 
         #endregion
@@ -44,7 +89,7 @@ namespace Readed_Book_Lister
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
             toolTipClose.Hide(btnClose);
-        }       
+        }
 
         private void btnBrowse_MouseHover(object sender, EventArgs e)
         {
@@ -129,6 +174,20 @@ namespace Readed_Book_Lister
             cbxNative.Image = Image.FromFile(@".\assets\native.png");
             toolTipAddBook.Hide(cbxNative);
         }
+
+        private void cbxMonth_MouseHover(object sender, EventArgs e)
+        {
+            cbxMonth.Image = Image.FromFile(@".\assets\month_hover.png");
+            toolTipAddBook.SetToolTip(cbxMonth, "Ayı Hatırlamıyorum");
+        }
+
+        private void cbxMonth_MouseLeave(object sender, EventArgs e)
+        {
+            cbxMonth.Image = Image.FromFile(@".\assets\month.png");
+            toolTipAddBook.Hide(cbxMonth);
+        }
+
+
         #endregion
 
         #region Helpers
@@ -142,15 +201,96 @@ namespace Readed_Book_Lister
             cbxNative.Checked = false;
             cbxReaded.Checked = false;
             cbxYear.Checked = false;
-            cmbMouth.SelectedIndex = -1;
-            cmbMouth.Text = "Bitirme Tarihi (Ay)";
+            cbxMonth.Checked = false;
+            cmbMonth.SelectedIndex = -1;
+            cmbMonth.Text = "Bitirme Tarihi (Ay)";
             cmbYear.SelectedIndex = -1;
             cmbYear.Text = "Bitirme Tarihi (Yıl)";
+        }
+
+        private int MonthNameToInt(string selectedMouth)
+        {
+            switch (selectedMouth)
+            {
+                case "Ocak":
+                    return 1;
+                case "Şubat":
+                    return 2;
+                case "Mart":
+                    return 3;
+                case "Nisan":
+                    return 4;
+                case "Mayıs":
+                    return 5;
+                case "Haziran":
+                    return 6;
+                case "Temmuz":
+                    return 7;
+                case "Ağustos":
+                    return 8;
+                case "Eylül":
+                    return 9;
+                case "Ekim":
+                    return 10;
+                case "Kasım":
+                    return 11;
+                case "Aralık":
+                    return 12;
+                default: return 0;
+            }
+        }
+
+
+        private void CmbYearFiller()
+        {
+            int startYear = 1700;
+
+            for (int i = DateTime.Now.Year; i >= startYear; i--)
+            {
+                cmbYear.Items.Add(i.ToString());
+            }
+        }
+
+        private void SetErrorStatue()
+        {
+            MessageBox.Show("Hata var.");
+            //ad, yazar ve tarih alanlarının arka rengini pembe, kaydet butonunu hata resmi yap. (tarihi ay ve yıla göre ayarla)
+        }
+
+        private void ClearErrorStatue()
+        {
 
         }
 
+        private bool FormControlsErrorChecker()
+        {
+            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxName.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxAuthor.Text)) || !DateTimeActiveButNotSelectedChecker())
+            {
+                return false;
+            }
+            return true;
+        }
+
+        private bool DateTimeActiveButNotSelectedChecker()
+        {
+
+            if (!cmbMonth.Enabled && cmbYear.Enabled && !int.TryParse(cmbYear.Text, out _))
+            {
+                return false;
+            }
+            
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) == 0 || !int.TryParse(cmbYear.Text, out _)))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+
+
         #endregion
 
-        
+
     }
 }
