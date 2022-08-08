@@ -96,6 +96,7 @@
             this.cmbYear.Size = new System.Drawing.Size(134, 26);
             this.cmbYear.TabIndex = 8;
             this.cmbYear.Text = "Bitirme Tarihi (Yıl)";
+            this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
             // 
             // cmbMonth
             // 
@@ -122,6 +123,7 @@
             this.cmbMonth.Size = new System.Drawing.Size(134, 26);
             this.cmbMonth.TabIndex = 7;
             this.cmbMonth.Text = "Bitirme Tarihi (Ay)";
+            this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
             // 
             // cbxReaded
             // 
@@ -221,6 +223,7 @@
             this.tbxAuthor.Size = new System.Drawing.Size(284, 25);
             this.tbxAuthor.TabIndex = 2;
             this.tbxAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxAuthor.TextChanged += new System.EventHandler(this.tbxAuthor_TextChanged);
             // 
             // tbxName
             // 
@@ -233,6 +236,7 @@
             this.tbxName.Size = new System.Drawing.Size(284, 25);
             this.tbxName.TabIndex = 1;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // lblAddBook
             // 

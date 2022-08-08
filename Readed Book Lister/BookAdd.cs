@@ -30,45 +30,13 @@ namespace Readed_Book_Lister
 
         private void btnClear_Click(object sender, EventArgs e)
         {
-            ClearControls();
-        }
-
-        private void cbxYear_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxYear.Checked)
-            {
-                cmbMonth.Text = "Bitirme Tarihi (Ay)";
-                cmbYear.Text = "Bitirme Tarihi (Yıl)";
-                cmbMonth.Enabled = false;
-                cmbYear.Enabled = false;
-                cbxMonth.Enabled = false;
-            }
-            else
-            {
-                cmbMonth.Enabled = true;
-                cmbYear.Enabled = true;
-                cbxMonth.Checked = false;
-                cbxMonth.Enabled = true;
-            }
-        }
-
-        private void cbxMonth_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxMonth.Checked)
-            {
-                cmbMonth.Text = "Bitirme Tarihi (Ay)";
-                cmbMonth.Enabled = false;
-            }
-            else
-            {
-                cmbMonth.Enabled = true;
-            }
-        }
+            ClearForm();
+        }        
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!FormControlsErrorChecker())
-            {
+            {               
                 SetErrorStatue();
                 return;
             }
@@ -129,14 +97,22 @@ namespace Readed_Book_Lister
 
         private void btnSave_MouseHover(object sender, EventArgs e)
         {
-            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_hover.png");
-            toolTipAddBook.SetToolTip(btnSave, "Kaydet");
+            if (btnSave.Enabled)
+            {
+                btnSave.BackgroundImage = Image.FromFile(@".\assets\save_hover.png");
+                toolTipAddBook.SetToolTip(btnSave, "Kaydet");
+            }
+            
         }
 
         private void btnSave_MouseLeave(object sender, EventArgs e)
         {
-            btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
-            toolTipAddBook.Hide(btnSave);
+            if (btnSave.Enabled)
+            {
+                btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
+                toolTipAddBook.Hide(btnSave);
+            }
+            
         }
 
         private void cbxYear_MouseHover(object sender, EventArgs e)
@@ -192,7 +168,7 @@ namespace Readed_Book_Lister
 
         #region Helpers
 
-        private void ClearControls()
+        private void ClearForm()
         {
             tbxName.Text = string.Empty;
             tbxAuthor.Text = string.Empty;
@@ -206,6 +182,12 @@ namespace Readed_Book_Lister
             cmbMonth.Text = "Bitirme Tarihi (Ay)";
             cmbYear.SelectedIndex = -1;
             cmbYear.Text = "Bitirme Tarihi (Yıl)";
+            tbxName.BackColor = Color.Wheat;
+            tbxAuthor.BackColor = Color.Wheat;
+            cmbMonth.BackColor = Color.Wheat;
+            cmbYear.BackColor = Color.Wheat;
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
+            btnSave.Enabled = true;
         }
 
         private int MonthNameToInt(string selectedMouth)
@@ -251,15 +233,77 @@ namespace Readed_Book_Lister
             }
         }
 
+
         private void SetErrorStatue()
         {
-            MessageBox.Show("Hata var.");
-            //ad, yazar ve tarih alanlarının arka rengini pembe, kaydet butonunu hata resmi yap. (tarihi ay ve yıla göre ayarla)
+            TextboxErrorSetter(tbxName, tbxAuthor);
+            DateComboboxErrorSetter();
+            btnSave.Enabled = false;
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_error.png");            
+        }
+
+        private void DateComboboxErrorSetter()
+        {
+            if (!cmbMonth.Enabled && cmbYear.Enabled && !int.TryParse(cmbYear.Text, out _))
+            {
+                cmbYear.BackColor = Color.FromArgb(250, 184, 187);
+            }
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) == 0))
+            {
+                cmbMonth.BackColor = Color.FromArgb(250, 184, 187);
+
+            }
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (!int.TryParse(cmbYear.Text, out _)))
+            {
+                cmbYear.BackColor = Color.FromArgb(250, 184, 187);
+            }
+        }
+
+        private void DateComboboxErrorCleaner()
+        {
+            if (!cmbMonth.Enabled && cmbYear.Enabled && int.TryParse(cmbYear.Text, out _))
+            {
+                cmbYear.BackColor = Color.Wheat;
+            }
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) != 0))
+            {
+                cmbMonth.BackColor = Color.Wheat;
+
+            }
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (int.TryParse(cmbYear.Text, out _)))
+            {
+                cmbYear.BackColor = Color.Wheat;
+            }
+        }
+
+        private void TextboxErrorSetter(params TextBox[] textBoxes)
+        {
+            foreach (var textbox in textBoxes)
+            {
+                if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(textbox.Text)))
+                {
+                    textbox.BackColor = Color.FromArgb(250, 184, 187);
+                }
+            }
+        }
+
+        private void TextboxErrorCleaner(params TextBox[] textBoxes)
+        {
+            foreach (var textbox in textBoxes)
+            {
+                if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(textbox.Text)))
+                {
+                    textbox.BackColor = Color.Wheat;
+                }
+            }
         }
 
         private void ClearErrorStatue()
         {
-
+            TextboxErrorCleaner(tbxName, tbxAuthor);
+            DateComboboxErrorCleaner();
+            btnSave.Enabled = true;
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
         }
 
         private bool FormControlsErrorChecker()
@@ -278,17 +322,73 @@ namespace Readed_Book_Lister
             {
                 return false;
             }
-            
+
             if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) == 0 || !int.TryParse(cmbYear.Text, out _)))
             {
+
                 return false;
             }
 
             return true;
         }
 
+        #endregion
 
+        #region TextOrSelectedValueOrCheckedChanged
 
+        private void cbxYear_CheckedChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+            if (cbxYear.Checked)
+            {
+                cmbMonth.Text = "Bitirme Tarihi (Ay)";
+                cmbYear.Text = "Bitirme Tarihi (Yıl)";
+                cmbMonth.Enabled = false;
+                cmbYear.Enabled = false;
+                cbxMonth.Enabled = false;
+            }
+            else
+            {
+                cmbMonth.Enabled = true;
+                cmbYear.Enabled = true;
+                cbxMonth.Checked = false;
+                cbxMonth.Enabled = true;
+            }
+        }
+
+        private void cbxMonth_CheckedChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+            if (cbxMonth.Checked)
+            {
+                cmbMonth.Text = "Bitirme Tarihi (Ay)";
+                cmbMonth.Enabled = false;
+            }
+            else
+            {
+                cmbMonth.Enabled = true;
+            }
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }
+
+        private void tbxAuthor_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }        
+
+        private void cmbMonth_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }
+
+        private void cmbYear_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }
         #endregion
 
 
