@@ -48,6 +48,8 @@
             this.toolTipAddBook = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.cbxMonth = new System.Windows.Forms.CheckBox();
+            this.pbxImage = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
             // btnClear
@@ -82,6 +84,7 @@
             this.btnBrowse.Size = new System.Drawing.Size(65, 53);
             this.btnBrowse.TabIndex = 10;
             this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             this.btnBrowse.MouseLeave += new System.EventHandler(this.btnBrowse_MouseLeave);
             this.btnBrowse.MouseHover += new System.EventHandler(this.btnBrowse_MouseHover);
             // 
@@ -196,7 +199,7 @@
             this.tbxNote.Multiline = true;
             this.tbxNote.Name = "tbxNote";
             this.tbxNote.PlaceholderText = "Notlar (tercihen)";
-            this.tbxNote.Size = new System.Drawing.Size(348, 131);
+            this.tbxNote.Size = new System.Drawing.Size(243, 131);
             this.tbxNote.TabIndex = 11;
             // 
             // tbxImage
@@ -208,6 +211,7 @@
             this.tbxImage.Location = new System.Drawing.Point(389, 116);
             this.tbxImage.Name = "tbxImage";
             this.tbxImage.PlaceholderText = "Kapak Resmi";
+            this.tbxImage.ReadOnly = true;
             this.tbxImage.Size = new System.Drawing.Size(277, 25);
             this.tbxImage.TabIndex = 9;
             // 
@@ -264,6 +268,7 @@
             this.btnCancel.Size = new System.Drawing.Size(49, 48);
             this.btnCancel.TabIndex = 13;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
             this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
             // 
@@ -329,6 +334,18 @@
             this.cbxMonth.MouseLeave += new System.EventHandler(this.cbxMonth_MouseLeave);
             this.cbxMonth.MouseHover += new System.EventHandler(this.cbxMonth_MouseHover);
             // 
+            // pbxImage
+            // 
+            this.pbxImage.BackColor = System.Drawing.Color.Wheat;
+            this.pbxImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.pbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pbxImage.Image")));
+            this.pbxImage.Location = new System.Drawing.Point(637, 169);
+            this.pbxImage.Name = "pbxImage";
+            this.pbxImage.Size = new System.Drawing.Size(100, 131);
+            this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxImage.TabIndex = 16;
+            this.pbxImage.TabStop = false;
+            // 
             // BookAdd
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -337,6 +354,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(800, 420);
             this.ControlBox = false;
+            this.Controls.Add(this.pbxImage);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.btnCancel);
@@ -362,6 +380,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookAdd";
+            ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -387,5 +406,6 @@
         private System.Windows.Forms.ToolTip toolTipAddBook;
         private System.Windows.Forms.ToolTip toolTipClose;
         private System.Windows.Forms.CheckBox cbxMonth;
+        private System.Windows.Forms.PictureBox pbxImage;
     }
 }

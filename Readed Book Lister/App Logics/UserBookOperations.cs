@@ -38,7 +38,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         {
             // Güzel bir örnek oldu.
             JsonOperations.CreateDbFilesIfNot();
-            SetDefaultImageIfNoImageSelected(userBook);
+
             EditNamesByNativeState(NoteTrimmer(userBook));
             userBook.Id = IdGeneratorForNewUserBook();
 
@@ -70,7 +70,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 if (getBookToUpdate != null)
                 {
                     EditNamesByNativeState(NoteTrimmer(userBook));
-                    SetDefaultImageIfNoImageSelected(userBook);
+                    getBookToUpdate.Image = userBook.Image;
                     getBookToUpdate.BookName = userBook.BookName;
                     getBookToUpdate.AuthorName = userBook.AuthorName;
                     getBookToUpdate.Readed = userBook.Readed;
@@ -249,16 +249,8 @@ namespace Readed_Book_Lister.Methods.App_Methods
         }
 
         //PRIVATE Helper Methods
-        // Image Size için bir method yazman gerekebilir.
-
-        private static UserBook SetDefaultImageIfNoImageSelected(UserBook userBook)
-        {
-            if (userBook.Image == null)
-            {
-                userBook.Image = @"Image\default.png";
-            }
-            return userBook;
-        }
+        
+                
         private static List<UserBook>? GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName)
         {
             var getAllByUserId = GetAllByUserId(userId);

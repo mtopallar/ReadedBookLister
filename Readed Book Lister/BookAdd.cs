@@ -1,9 +1,13 @@
-﻿using Readed_Book_Lister.Methods.Helpers;
+﻿using Readed_Book_Lister.Constants;
+using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,7 +17,7 @@ namespace Readed_Book_Lister
 {
     public partial class BookAdd : Form
     {
-
+        User loggedUser;
         public BookAdd()
         {
             InitializeComponent();
@@ -31,16 +35,61 @@ namespace Readed_Book_Lister
         private void btnClear_Click(object sender, EventArgs e)
         {
             ClearForm();
-        }        
+        }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!FormControlsErrorChecker())
-            {               
+            {
                 SetErrorStatue();
                 return;
             }
+            int result;
+            var userBook = new UserBook
+            {
+                //id add metodunda hallediliyor
+                //userId için ctor enjeksiyonu gerekebilir. logged user a erişip id sini userbook a verebilmem için.
+                BookName = tbxName.Text,
+                AuthorName = tbxAuthor.Text,
+                Readed = cbxReaded.Checked,
+                Native = cbxNative.Checked,
+                ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
+                ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
+                Image = GenerateGuidForImageIfImageSelected(tbxImage.Text),
+                Note = tbxNote.Text,
+            };
+            SaveImage(userBook.Image);
+            // Buraya da add metodunu çağırıp içine bu kitabı göndericem.
             MessageBox.Show("Hata yok");
+            //ClearForm();
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Resim Dosyaları (*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.jpg; *.jpeg; *.gif; *.bmp; *.png;";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    tbxImage.Text = fileDialog.FileName;
+                    pbxImage.Image = new Bitmap(fileDialog.FileName);
+                }
+                catch (Exception)
+                {
+                    tbxImage.Text = string.Empty;
+                    MessageBox.Show(Messages.ImageNotProper);
+                    return;
+                }
+            }
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Main main = new Main();
+            Close();
+            //Hide();
+            main.Show();
         }
 
         #endregion
@@ -102,7 +151,7 @@ namespace Readed_Book_Lister
                 btnSave.BackgroundImage = Image.FromFile(@".\assets\save_hover.png");
                 toolTipAddBook.SetToolTip(btnSave, "Kaydet");
             }
-            
+
         }
 
         private void btnSave_MouseLeave(object sender, EventArgs e)
@@ -112,7 +161,7 @@ namespace Readed_Book_Lister
                 btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
                 toolTipAddBook.Hide(btnSave);
             }
-            
+
         }
 
         private void cbxYear_MouseHover(object sender, EventArgs e)
@@ -168,6 +217,28 @@ namespace Readed_Book_Lister
 
         #region Helpers
 
+        private void SaveImage(string guidedImageName)
+        {
+            if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
+            {
+                File.Copy(tbxImage.Text, guidedImageName, false);
+                //pbxImage.Image = new Bitmap(Image.FromFile(@".\images\default.png"));
+                //pbxImage.SizeMode = PictureBoxSizeMode.StretchImage;
+            }
+
+        }
+
+        private string GenerateGuidForImageIfImageSelected(string imageFileName)
+        {
+            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(imageFileName)))
+            {
+                return @".\images\default.png";
+            }
+            var extension = Path.GetExtension(imageFileName);
+            var guidedNameWithExtension = @".\images\" + Guid.NewGuid() + extension;
+            return guidedNameWithExtension;
+        }
+
         private void ClearForm()
         {
             tbxName.Text = string.Empty;
@@ -186,6 +257,7 @@ namespace Readed_Book_Lister
             tbxAuthor.BackColor = Color.Wheat;
             cmbMonth.BackColor = Color.Wheat;
             cmbYear.BackColor = Color.Wheat;
+            pbxImage.Image = new Bitmap(Image.FromFile(@".\images\default.png"));
             btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
             btnSave.Enabled = true;
         }
@@ -239,7 +311,7 @@ namespace Readed_Book_Lister
             TextboxErrorSetter(tbxName, tbxAuthor);
             DateComboboxErrorSetter();
             btnSave.Enabled = false;
-            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_error.png");            
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_error.png");
         }
 
         private void DateComboboxErrorSetter()
@@ -378,7 +450,7 @@ namespace Readed_Book_Lister
         private void tbxAuthor_TextChanged(object sender, EventArgs e)
         {
             ClearErrorStatue();
-        }        
+        }
 
         private void cmbMonth_SelectedValueChanged(object sender, EventArgs e)
         {
@@ -389,8 +461,10 @@ namespace Readed_Book_Lister
         {
             ClearErrorStatue();
         }
+
+
         #endregion
 
-
+        
     }
 }
