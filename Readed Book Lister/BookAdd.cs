@@ -86,10 +86,11 @@ namespace Readed_Book_Lister
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
+            // Yeni formu gösterdikten sonra eskisini kapatmak.
             Main main = new Main();
+            Hide();
+            main.ShowDialog();
             Close();
-            //Hide();
-            main.Show();
         }
 
         #endregion
@@ -465,6 +466,6 @@ namespace Readed_Book_Lister
 
         #endregion
 
-        
+
     }
 }
