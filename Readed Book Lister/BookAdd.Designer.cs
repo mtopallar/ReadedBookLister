@@ -352,7 +352,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(800, 420);
+            this.ClientSize = new System.Drawing.Size(796, 416);
             this.ControlBox = false;
             this.Controls.Add(this.pbxImage);
             this.Controls.Add(this.btnClose);
@@ -380,6 +380,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookAdd";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BookAdd_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BookAdd_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BookAdd_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

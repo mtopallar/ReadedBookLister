@@ -38,6 +38,6 @@ namespace Readed_Book_Lister.Constants
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
         public static string PasswordMatchError = "Parolalar eşleşmiyor.";
-        public static string ImageNotProper = "Farklı bir resim ile yeniden deneyiniz.";
+        public static string ImageNotProper = "Uygun olmayan öznitelikler (saydam alan vb). Farklı bir resim ile yeniden deneyiniz.";
     }
 }
