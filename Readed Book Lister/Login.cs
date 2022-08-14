@@ -19,6 +19,8 @@ namespace Readed_Book_Lister
     public partial class Login : Form
     {
         User? logedUser;
+        private bool _dragging = false;
+        private Point _startPoint = new Point(0, 0);
         public Login()
         {
             InitializeComponent();
@@ -137,6 +139,30 @@ namespace Readed_Book_Lister
             }
             return true;
         }
+
         //End of MyHelper Methods
+
+        //Move Form
+        private void Login_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragging = true;
+            _startPoint = new Point(e.X, e.Y);
+        }
+
+        private void Login_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragging)
+            {
+                Point point = PointToScreen(e.Location);
+                Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
+            }
+        }
+
+        private void Login_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragging = false;
+        }
+
+        //End of Move Form
     }
 }
