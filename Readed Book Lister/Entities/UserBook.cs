@@ -12,6 +12,8 @@ namespace Readed_Book_Lister.Entities
         public int UserId { get; set; }
         public string BookName { get; set; }
         public string AuthorName { get; set; }
+        public string Isbn { get; set; }
+        public string Publisher { get; set; }
         public bool Readed { get; set; }
         public bool Native { get; set; }
         public int? ReadMonth { get; set; }

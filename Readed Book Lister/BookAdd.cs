@@ -248,6 +248,8 @@ namespace Readed_Book_Lister
             tbxAuthor.Text = string.Empty;
             tbxImage.Text = string.Empty;
             tbxNote.Text = string.Empty;
+            tbxPublisher.Text = string.Empty;
+            tbxIsbn.Text = string.Empty;
             cbxNative.Checked = false;
             cbxReaded.Checked = false;
             cbxYear.Checked = false;
@@ -258,6 +260,8 @@ namespace Readed_Book_Lister
             cmbYear.Text = "Bitirme Tarihi (Yıl)";
             tbxName.BackColor = Color.Wheat;
             tbxAuthor.BackColor = Color.Wheat;
+            tbxPublisher.BackColor = Color.Wheat;
+            tbxIsbn.BackColor = Color.Wheat;
             cmbMonth.BackColor = Color.Wheat;
             cmbYear.BackColor = Color.Wheat;
             pbxImage.Image = new Bitmap(Image.FromFile(@".\images\default.png"));
@@ -311,7 +315,7 @@ namespace Readed_Book_Lister
 
         private void SetErrorStatue()
         {
-            TextboxErrorSetter(tbxName, tbxAuthor);
+            TextboxErrorSetter(tbxName, tbxAuthor, tbxPublisher, tbxIsbn);
             DateComboboxErrorSetter();
             btnSave.Enabled = false;
             btnSave.BackgroundImage = Image.FromFile(@".\assets\save_error.png");
@@ -355,10 +359,21 @@ namespace Readed_Book_Lister
         {
             foreach (var textbox in textBoxes)
             {
-                if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(textbox.Text)))
+                if (textbox != tbxIsbn)
                 {
-                    textbox.BackColor = Color.FromArgb(250, 184, 187);
+                    if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(textbox.Text)))
+                    {
+                        textbox.BackColor = Color.FromArgb(250, 184, 187);
+                    }
                 }
+                else
+                {
+                    if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(textbox.Text)) || textbox.Text.Length != 13)
+                    {
+                        textbox.BackColor = Color.FromArgb(250, 184, 187);
+                    }
+                }
+
             }
         }
 
@@ -375,7 +390,7 @@ namespace Readed_Book_Lister
 
         private void ClearErrorStatue()
         {
-            TextboxErrorCleaner(tbxName, tbxAuthor);
+            TextboxErrorCleaner(tbxName, tbxAuthor, tbxPublisher, tbxIsbn);
             DateComboboxErrorCleaner();
             btnSave.Enabled = true;
             btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
@@ -383,11 +398,22 @@ namespace Readed_Book_Lister
 
         private bool FormControlsErrorChecker()
         {
-            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxName.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxAuthor.Text)) || !DateTimeActiveButNotSelectedChecker())
+            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxName.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxAuthor.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxPublisher.Text)) || string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text)) || !DateTimeActiveButNotSelectedChecker() || !IsbnLengthChecker())
             {
                 return false;
             }
             return true;
+        }
+
+        private bool IsbnLengthChecker()
+        {
+            var isbnText = StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text);
+            if (isbnText.Length == 13)
+            {
+                return true;
+            }
+                        
+            return false;
         }
 
         private bool DateTimeActiveButNotSelectedChecker()
@@ -449,6 +475,15 @@ namespace Readed_Book_Lister
         {
             ClearErrorStatue();
         }
+        private void tbxPublisher_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }
+
+        private void tbxIsbn_TextChanged(object sender, EventArgs e)
+        {
+            ClearErrorStatue();
+        }
 
         private void tbxAuthor_TextChanged(object sender, EventArgs e)
         {
@@ -489,8 +524,17 @@ namespace Readed_Book_Lister
                 Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
             }
         }
+
         #endregion
 
+        private void tbxIsbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
+        }
 
+        
     }
 }

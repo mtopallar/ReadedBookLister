@@ -34,10 +34,12 @@ namespace Readed_Book_Lister.Constants
         public static string NoUserBookByUserBookId = "Belirtilen kitaba erişilemiyor.";
         public static string UserBookUpdateSuccessful = "Kitap başarıyla güncellendi.";
         public static string DeleteUserBookSuccessful = "Kitap başarıyla silindi.";
+        public static string IsbnUsedBefore = "Belirtilen ISBN daha önce kullanılmış.";
 
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
         public static string PasswordMatchError = "Parolalar eşleşmiyor.";
         public static string ImageNotProper = "Uygun olmayan öznitelikler (saydam alan vb). Farklı bir resim ile yeniden deneyiniz.";
+        
     }
 }

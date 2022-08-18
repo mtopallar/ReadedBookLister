@@ -14,6 +14,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
     public class UserBookOperations
     {
         const string userBookFileName = "userbooks.json";
+        // publisher ve isbn e göre aramayı yazmadım. yazsam iyi olur. tabi user id ile
 
         // USER ID yi UNUTMAAAAAAAAAAAAAAAAAAA
         //add => ok
@@ -39,7 +40,12 @@ namespace Readed_Book_Lister.Methods.App_Methods
             // Güzel bir örnek oldu.
             JsonOperations.CreateDbFilesIfNot();
 
-            EditNamesByNativeState(NoteTrimmer(userBook));
+            if (!IsIsbnUsedBefore(userBook))
+            {
+                return;
+            }
+
+            EditNamesByNativeState(PublisherTrimmer(NoteTrimmer(userBook)));            
             userBook.Id = IdGeneratorForNewUserBook();
 
             var getAllList = GetAll();
@@ -65,14 +71,21 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
             if (getAllBooks != null)
             {
-                var getBookToUpdate = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();
+                if (!IsIsbnUsedBefore(userBook))
+                {
+                    return;
+                }
+
+                var getBookToUpdate = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();               
 
                 if (getBookToUpdate != null)
-                {
-                    EditNamesByNativeState(NoteTrimmer(userBook));
+                {                    
+                    EditNamesByNativeState(PublisherTrimmer(NoteTrimmer(userBook)));
                     getBookToUpdate.Image = userBook.Image;
                     getBookToUpdate.BookName = userBook.BookName;
                     getBookToUpdate.AuthorName = userBook.AuthorName;
+                    getBookToUpdate.Isbn = userBook.Isbn;
+                    getBookToUpdate.Publisher = userBook.Publisher;
                     getBookToUpdate.Readed = userBook.Readed;
                     getBookToUpdate.Native = userBook.Native;
                     getBookToUpdate.ReadMonth = userBook.ReadMonth;
@@ -250,6 +263,28 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         //PRIVATE Helper Methods
         
+        private static bool IsIsbnUsedBefore(UserBook userBook)
+        {
+            var getAllByUserId = GetAllByUserId(userBook.UserId);
+            if (userBook.Id == 0)
+            {                
+                if (getAllByUserId != null && getAllByUserId.Any(u=>u.Isbn == userBook.Isbn))
+                {
+                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                if (getAllByUserId != null && getAllByUserId.Any(u=>u.Id != userBook.Id && u.Isbn == userBook.Isbn))
+                {
+                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
+                    return false;
+                }
+                return true;
+            }
+        }
                 
         private static List<UserBook>? GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName)
         {
@@ -350,6 +385,12 @@ namespace Readed_Book_Lister.Methods.App_Methods
         {
             // Checked.
             StringUtilityHelper.TrimStartAndFinish(userBook.Note);
+            return userBook;
+        }
+
+        private static UserBook PublisherTrimmer(UserBook userBook)
+        {
+            userBook.Publisher = StringUtilityHelper.TrimStartAndFinish(userBook.Publisher);
             return userBook;
         }
 

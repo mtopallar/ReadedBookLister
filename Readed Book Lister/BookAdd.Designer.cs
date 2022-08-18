@@ -49,6 +49,8 @@
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.cbxMonth = new System.Windows.Forms.CheckBox();
             this.pbxImage = new System.Windows.Forms.PictureBox();
+            this.tbxIsbn = new System.Windows.Forms.TextBox();
+            this.tbxPublisher = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -61,10 +63,10 @@
             this.btnClear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClear.Location = new System.Drawing.Point(583, 339);
+            this.btnClear.Location = new System.Drawing.Point(583, 349);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(49, 48);
-            this.btnClear.TabIndex = 12;
+            this.btnClear.TabIndex = 13;
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             this.btnClear.MouseLeave += new System.EventHandler(this.btnClear_MouseLeave);
@@ -79,10 +81,10 @@
             this.btnBrowse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBrowse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBrowse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBrowse.Location = new System.Drawing.Point(672, 105);
+            this.btnBrowse.Location = new System.Drawing.Point(672, 141);
             this.btnBrowse.Name = "btnBrowse";
             this.btnBrowse.Size = new System.Drawing.Size(65, 53);
-            this.btnBrowse.TabIndex = 10;
+            this.btnBrowse.TabIndex = 11;
             this.btnBrowse.UseVisualStyleBackColor = false;
             this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             this.btnBrowse.MouseLeave += new System.EventHandler(this.btnBrowse_MouseLeave);
@@ -94,10 +96,10 @@
             this.cmbYear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.cmbYear.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.cmbYear.FormattingEnabled = true;
-            this.cmbYear.Location = new System.Drawing.Point(214, 274);
+            this.cmbYear.Location = new System.Drawing.Point(214, 305);
             this.cmbYear.Name = "cmbYear";
             this.cmbYear.Size = new System.Drawing.Size(134, 26);
-            this.cmbYear.TabIndex = 8;
+            this.cmbYear.TabIndex = 9;
             this.cmbYear.Text = "Bitirme Tarihi (Yıl)";
             this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
             // 
@@ -121,10 +123,10 @@
             "Ekim",
             "Kasım",
             "Aralık"});
-            this.cmbMonth.Location = new System.Drawing.Point(64, 274);
+            this.cmbMonth.Location = new System.Drawing.Point(64, 305);
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(134, 26);
-            this.cmbMonth.TabIndex = 7;
+            this.cmbMonth.TabIndex = 8;
             this.cmbMonth.Text = "Bitirme Tarihi (Ay)";
             this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
             // 
@@ -139,10 +141,10 @@
             this.cbxReaded.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxReaded.ForeColor = System.Drawing.Color.White;
             this.cbxReaded.Image = ((System.Drawing.Image)(resources.GetObject("cbxReaded.Image")));
-            this.cbxReaded.Location = new System.Drawing.Point(209, 205);
+            this.cbxReaded.Location = new System.Drawing.Point(214, 229);
             this.cbxReaded.Name = "cbxReaded";
             this.cbxReaded.Size = new System.Drawing.Size(75, 60);
-            this.cbxReaded.TabIndex = 5;
+            this.cbxReaded.TabIndex = 6;
             this.cbxReaded.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxReaded.UseVisualStyleBackColor = false;
             this.cbxReaded.MouseLeave += new System.EventHandler(this.cbxReaded_MouseLeave);
@@ -159,10 +161,10 @@
             this.cbxNative.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxNative.ForeColor = System.Drawing.Color.White;
             this.cbxNative.Image = ((System.Drawing.Image)(resources.GetObject("cbxNative.Image")));
-            this.cbxNative.Location = new System.Drawing.Point(291, 211);
+            this.cbxNative.Location = new System.Drawing.Point(296, 235);
             this.cbxNative.Name = "cbxNative";
             this.cbxNative.Size = new System.Drawing.Size(63, 48);
-            this.cbxNative.TabIndex = 6;
+            this.cbxNative.TabIndex = 7;
             this.cbxNative.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxNative.UseVisualStyleBackColor = false;
             this.cbxNative.MouseLeave += new System.EventHandler(this.cbxNative_MouseLeave);
@@ -179,10 +181,10 @@
             this.cbxYear.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxYear.ForeColor = System.Drawing.Color.White;
             this.cbxYear.Image = ((System.Drawing.Image)(resources.GetObject("cbxYear.Image")));
-            this.cbxYear.Location = new System.Drawing.Point(134, 205);
+            this.cbxYear.Location = new System.Drawing.Point(139, 229);
             this.cbxYear.Name = "cbxYear";
             this.cbxYear.Size = new System.Drawing.Size(69, 54);
-            this.cbxYear.TabIndex = 4;
+            this.cbxYear.TabIndex = 5;
             this.cbxYear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxYear.UseVisualStyleBackColor = false;
             this.cbxYear.CheckedChanged += new System.EventHandler(this.cbxYear_CheckedChanged);
@@ -195,12 +197,12 @@
             this.tbxNote.BackColor = System.Drawing.Color.Wheat;
             this.tbxNote.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxNote.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbxNote.Location = new System.Drawing.Point(389, 169);
+            this.tbxNote.Location = new System.Drawing.Point(389, 200);
             this.tbxNote.Multiline = true;
             this.tbxNote.Name = "tbxNote";
             this.tbxNote.PlaceholderText = "Notlar (tercihen)";
             this.tbxNote.Size = new System.Drawing.Size(243, 131);
-            this.tbxNote.TabIndex = 11;
+            this.tbxNote.TabIndex = 12;
             // 
             // tbxImage
             // 
@@ -208,12 +210,13 @@
             this.tbxImage.BackColor = System.Drawing.Color.Wheat;
             this.tbxImage.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbxImage.Location = new System.Drawing.Point(389, 116);
+            this.tbxImage.Location = new System.Drawing.Point(389, 152);
             this.tbxImage.Name = "tbxImage";
             this.tbxImage.PlaceholderText = "Kapak Resmi";
             this.tbxImage.ReadOnly = true;
             this.tbxImage.Size = new System.Drawing.Size(277, 25);
-            this.tbxImage.TabIndex = 9;
+            this.tbxImage.TabIndex = 11;
+            this.tbxImage.TabStop = false;
             // 
             // tbxAuthor
             // 
@@ -221,7 +224,7 @@
             this.tbxAuthor.BackColor = System.Drawing.Color.Wheat;
             this.tbxAuthor.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbxAuthor.Location = new System.Drawing.Point(64, 169);
+            this.tbxAuthor.Location = new System.Drawing.Point(64, 152);
             this.tbxAuthor.Name = "tbxAuthor";
             this.tbxAuthor.PlaceholderText = "Yazarı";
             this.tbxAuthor.Size = new System.Drawing.Size(284, 25);
@@ -263,10 +266,10 @@
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(639, 339);
+            this.btnCancel.Location = new System.Drawing.Point(639, 349);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(49, 48);
-            this.btnCancel.TabIndex = 13;
+            this.btnCancel.TabIndex = 14;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
@@ -281,10 +284,10 @@
             this.btnSave.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnSave.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnSave.Location = new System.Drawing.Point(688, 339);
+            this.btnSave.Location = new System.Drawing.Point(688, 349);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(49, 48);
-            this.btnSave.TabIndex = 14;
+            this.btnSave.TabIndex = 15;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
@@ -303,7 +306,7 @@
             this.btnClose.Location = new System.Drawing.Point(732, 24);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(22, 26);
-            this.btnClose.TabIndex = 15;
+            this.btnClose.TabIndex = 16;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
@@ -324,10 +327,10 @@
             this.cbxMonth.Font = new System.Drawing.Font("Berlin Sans FB", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.cbxMonth.ForeColor = System.Drawing.Color.White;
             this.cbxMonth.Image = ((System.Drawing.Image)(resources.GetObject("cbxMonth.Image")));
-            this.cbxMonth.Location = new System.Drawing.Point(64, 205);
+            this.cbxMonth.Location = new System.Drawing.Point(69, 229);
             this.cbxMonth.Name = "cbxMonth";
             this.cbxMonth.Size = new System.Drawing.Size(69, 54);
-            this.cbxMonth.TabIndex = 3;
+            this.cbxMonth.TabIndex = 4;
             this.cbxMonth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxMonth.UseVisualStyleBackColor = false;
             this.cbxMonth.CheckedChanged += new System.EventHandler(this.cbxMonth_CheckedChanged);
@@ -339,12 +342,41 @@
             this.pbxImage.BackColor = System.Drawing.Color.Wheat;
             this.pbxImage.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.pbxImage.Image = ((System.Drawing.Image)(resources.GetObject("pbxImage.Image")));
-            this.pbxImage.Location = new System.Drawing.Point(637, 169);
+            this.pbxImage.Location = new System.Drawing.Point(637, 200);
             this.pbxImage.Name = "pbxImage";
             this.pbxImage.Size = new System.Drawing.Size(100, 131);
             this.pbxImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbxImage.TabIndex = 16;
             this.pbxImage.TabStop = false;
+            // 
+            // tbxIsbn
+            // 
+            this.tbxIsbn.BackColor = System.Drawing.Color.Wheat;
+            this.tbxIsbn.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxIsbn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbxIsbn.Location = new System.Drawing.Point(389, 116);
+            this.tbxIsbn.MaxLength = 13;
+            this.tbxIsbn.Name = "tbxIsbn";
+            this.tbxIsbn.PlaceholderText = "ISBN No";
+            this.tbxIsbn.Size = new System.Drawing.Size(277, 25);
+            this.tbxIsbn.TabIndex = 10;
+            this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxIsbn.TextChanged += new System.EventHandler(this.tbxIsbn_TextChanged);
+            this.tbxIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxIsbn_KeyPress);
+            // 
+            // tbxPublisher
+            // 
+            this.tbxPublisher.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.tbxPublisher.BackColor = System.Drawing.Color.Wheat;
+            this.tbxPublisher.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxPublisher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.tbxPublisher.Location = new System.Drawing.Point(64, 189);
+            this.tbxPublisher.Name = "tbxPublisher";
+            this.tbxPublisher.PlaceholderText = "Yayınevi";
+            this.tbxPublisher.Size = new System.Drawing.Size(284, 25);
+            this.tbxPublisher.TabIndex = 3;
+            this.tbxPublisher.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxPublisher.TextChanged += new System.EventHandler(this.tbxPublisher_TextChanged);
             // 
             // BookAdd
             // 
@@ -368,6 +400,8 @@
             this.Controls.Add(this.cbxYear);
             this.Controls.Add(this.tbxNote);
             this.Controls.Add(this.tbxImage);
+            this.Controls.Add(this.tbxPublisher);
+            this.Controls.Add(this.tbxIsbn);
             this.Controls.Add(this.tbxAuthor);
             this.Controls.Add(this.tbxName);
             this.Controls.Add(this.lblAddBook);
@@ -410,5 +444,7 @@
         private System.Windows.Forms.ToolTip toolTipClose;
         private System.Windows.Forms.CheckBox cbxMonth;
         private System.Windows.Forms.PictureBox pbxImage;
+        private System.Windows.Forms.TextBox tbxIsbn;
+        private System.Windows.Forms.TextBox tbxPublisher;
     }
 }
