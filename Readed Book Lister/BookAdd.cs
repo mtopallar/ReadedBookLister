@@ -66,7 +66,7 @@ namespace Readed_Book_Lister
             };
             SaveImage(userBook.Image);
             UserBookOperations.Add(userBook);
-            //ClearForm();
+            ClearForm();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
