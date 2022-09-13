@@ -36,7 +36,7 @@
             // 
             // btnBookAdd
             // 
-            this.btnBookAdd.Location = new System.Drawing.Point(1248, 609);
+            this.btnBookAdd.Location = new System.Drawing.Point(1170, 612);
             this.btnBookAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookAdd.Name = "btnBookAdd";
             this.btnBookAdd.Size = new System.Drawing.Size(75, 28);
@@ -51,11 +51,12 @@
             this.dgvUserBookList.AllowUserToDeleteRows = false;
             this.dgvUserBookList.BackgroundColor = System.Drawing.Color.White;
             this.dgvUserBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUserBookList.Location = new System.Drawing.Point(40, 100);
+            this.dgvUserBookList.Location = new System.Drawing.Point(42, 113);
             this.dgvUserBookList.Name = "dgvUserBookList";
             this.dgvUserBookList.ReadOnly = true;
+            this.dgvUserBookList.RowHeadersVisible = false;
             this.dgvUserBookList.RowTemplate.Height = 25;
-            this.dgvUserBookList.Size = new System.Drawing.Size(1283, 478);
+            this.dgvUserBookList.Size = new System.Drawing.Size(1203, 465);
             this.dgvUserBookList.TabIndex = 1;
             // 
             // Main
@@ -64,7 +65,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1368, 673);
+            this.ClientSize = new System.Drawing.Size(1293, 680);
             this.ControlBox = false;
             this.Controls.Add(this.dgvUserBookList);
             this.Controls.Add(this.btnBookAdd);

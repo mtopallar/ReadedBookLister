@@ -39,6 +39,8 @@ namespace Readed_Book_Lister.Constants
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
         public static string PasswordMatchError = "Parolalar eşleşmiyor.";
         public static string ImageNotProper = "Uygun olmayan öznitelikler (saydam alan vb). Farklı bir resim ile yeniden deneyiniz.";
-        
+
+        //DataFridView Messages
+        public static string DataGridViewMessagesUserHasNoBook = "Sistemde kayıtlı kitabınız bulunmamaktadır. Kitap eklediğinizde burada görüntülenecektir.";
     }
 }
