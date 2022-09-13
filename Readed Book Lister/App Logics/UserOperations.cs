@@ -108,7 +108,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return userList;
                 }
-                System.Windows.Forms.MessageBox.Show(Messages.UsersListIsEmpty);
+                
                 return null;
             }
             System.Windows.Forms.MessageBox.Show(Messages.UsersFileNotExist);

@@ -18,15 +18,15 @@ namespace Readed_Book_Lister
 {
     public partial class BookAdd : Form
     {
-        private readonly int _loggedUserId;
+        private readonly User _loggedUser;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
-        public BookAdd(int userId)
+        public BookAdd(User loggedUser)
         {
             InitializeComponent();
             CmbYearFiller();
-            _loggedUserId = userId;
-        }      
+            _loggedUser = loggedUser;
+        }
 
 
         #region Clicks
@@ -52,7 +52,7 @@ namespace Readed_Book_Lister
             var userBook = new UserBook
             {
                 //id add metodunda hallediliyor
-                //userId için ctor enjeksiyonu gerekebilir. logged user a erişip id sini userbook a verebilmem için.
+                UserId = _loggedUser.Id,
                 BookName = tbxName.Text,
                 AuthorName = tbxAuthor.Text,
                 Isbn = tbxIsbn.Text,
@@ -64,9 +64,8 @@ namespace Readed_Book_Lister
                 Image = GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
             };
-            SaveImage(userBook.Image);            
+            SaveImage(userBook.Image);
             UserBookOperations.Add(userBook);
-            MessageBox.Show("Hata yok");
             //ClearForm();
         }
 
@@ -93,7 +92,7 @@ namespace Readed_Book_Lister
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Yeni formu gösterdikten sonra eskisini kapatmak.
-            Main main = new Main(_loggedUserId);
+            Main main = new Main(_loggedUser);
             Hide();
             main.ShowDialog();
             Close();
@@ -228,9 +227,19 @@ namespace Readed_Book_Lister
         {
             if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
             {
-                File.Copy(tbxImage.Text, guidedImageName, false);                
+                Image loadedImage = Bitmap.FromFile(tbxImage.Text);
+                Image imageToSave = ResizeImage(loadedImage);
+                imageToSave.Save(guidedImageName);
+
+                //imageToSave.Save(guidedImageName,ImageFormat.Jpeg); => uzantı belirlemek istersen bunu kullanabilirsin.
+                //File.Copy(tbxImage.Text, guidedImageName, false); => eski kayıt, resmi resize yapmadan olduğu gibi kaydeden. (çalışıyor)
             }
 
+        }
+
+        private Image ResizeImage(Image imgToResize)
+        {
+            return new Bitmap(imgToResize, new Size(220, 343));
         }
 
         private string GenerateGuidForImageIfImageSelected(string imageFileName)
@@ -414,7 +423,7 @@ namespace Readed_Book_Lister
             {
                 return true;
             }
-                        
+
             return false;
         }
 
@@ -537,6 +546,6 @@ namespace Readed_Book_Lister
             }
         }
 
-        
+
     }
 }

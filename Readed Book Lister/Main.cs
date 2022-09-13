@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Readed_Book_Lister.Entities;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,17 +13,17 @@ namespace Readed_Book_Lister
 {
     public partial class Main : Form
     {
-        private readonly int _loggedUserId;
-        public Main(int loggedUserId)
+        private readonly User _loggedUser;
+        public Main(User loggedUser)
         {
             InitializeComponent();
-             _loggedUserId = loggedUserId;
-            MessageBox.Show(_loggedUserId.ToString());
+             _loggedUser = loggedUser;
+            MessageBox.Show(_loggedUser.Id.ToString());
         }      
 
         private void btnBookAdd_Click(object sender, EventArgs e)
         {
-            BookAdd bookAdd = new BookAdd(_loggedUserId);
+            BookAdd bookAdd = new BookAdd(_loggedUser);
             Hide();
             bookAdd.ShowDialog();
             Close();

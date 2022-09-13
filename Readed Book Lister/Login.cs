@@ -91,7 +91,7 @@ namespace Readed_Book_Lister
                 return;
             }
             // main form load et.
-            Main main = new Main(logedUser.Id);
+            Main main = new Main(logedUser);
             Hide();
             main.ShowDialog();
             Close();

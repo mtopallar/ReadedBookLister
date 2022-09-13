@@ -133,7 +133,7 @@ namespace Readed_Book_Lister
                 return;
             }
             
-            Main main = new Main(loggedUser.Id);
+            Main main = new Main(loggedUser);
             Hide();
             main.ShowDialog();
             Close();
