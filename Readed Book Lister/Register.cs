@@ -132,7 +132,11 @@ namespace Readed_Book_Lister
                 ErrorStatue();
                 return;
             }
-            MessageBox.Show("Kitap sayfası geldi.");
+            
+            Main main = new Main(loggedUser.Id);
+            Hide();
+            main.ShowDialog();
+            Close();
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)

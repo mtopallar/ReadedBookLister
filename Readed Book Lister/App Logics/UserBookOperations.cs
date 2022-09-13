@@ -45,14 +45,15 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 return;
             }
 
-            EditNamesByNativeState(PublisherTrimmer(NoteTrimmer(userBook)));            
+            EditNamesByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook)));            
             userBook.Id = IdGeneratorForNewUserBook();
 
             var getAllList = GetAll();
             if (getAllList == null)
             {
-                var userBookToJson = JsonConvert.SerializeObject(userBook, Formatting.Indented);
-                File.WriteAllText(userBookFileName, userBookToJson);
+                var addBookToNewList = new List<UserBook> {userBook};
+                var newListToJson = JsonConvert.SerializeObject(addBookToNewList,Formatting.Indented);
+                File.WriteAllText(userBookFileName, newListToJson);
                 System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
                 return;
             }
@@ -80,7 +81,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
                 if (getBookToUpdate != null)
                 {                    
-                    EditNamesByNativeState(PublisherTrimmer(NoteTrimmer(userBook)));
+                    EditNamesByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook)));
                     getBookToUpdate.Image = userBook.Image;
                     getBookToUpdate.BookName = userBook.BookName;
                     getBookToUpdate.AuthorName = userBook.AuthorName;
@@ -343,7 +344,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return userBookList;
                 }
-                System.Windows.Forms.MessageBox.Show(Messages.UserBooksListIsEmpty);
+               
                 return null;
             }
             System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
@@ -388,9 +389,9 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return userBook;
         }
 
-        private static UserBook PublisherTrimmer(UserBook userBook)
+        private static UserBook PublisherToTitleCaseAndTrim(UserBook userBook)
         {
-            userBook.Publisher = StringUtilityHelper.TrimStartAndFinish(userBook.Publisher);
+            userBook.Publisher = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.Publisher));
             return userBook;
         }
 

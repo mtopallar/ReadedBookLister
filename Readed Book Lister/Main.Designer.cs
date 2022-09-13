@@ -28,12 +28,33 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.btnBookAdd = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // btnBookAdd
+            // 
+            this.btnBookAdd.Location = new System.Drawing.Point(679, 31);
+            this.btnBookAdd.Name = "btnBookAdd";
+            this.btnBookAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnBookAdd.TabIndex = 0;
+            this.btnBookAdd.Text = "Kitap Ekle";
+            this.btnBookAdd.UseVisualStyleBackColor = true;
+            this.btnBookAdd.Click += new System.EventHandler(this.btnBookAdd_Click);
+            // 
+            // Main
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.btnBookAdd);
+            this.Name = "Main";
             this.Text = "Main";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnBookAdd;
     }
 }

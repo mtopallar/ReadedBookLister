@@ -17,7 +17,7 @@ namespace Readed_Book_Lister
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new BookAdd());
+            Application.Run(new Login());
         }
     }
 }

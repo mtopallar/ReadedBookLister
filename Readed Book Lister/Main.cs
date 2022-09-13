@@ -12,9 +12,20 @@ namespace Readed_Book_Lister
 {
     public partial class Main : Form
     {
-        public Main()
+        private readonly int _loggedUserId;
+        public Main(int loggedUserId)
         {
             InitializeComponent();
+             _loggedUserId = loggedUserId;
+            MessageBox.Show(_loggedUserId.ToString());
+        }      
+
+        private void btnBookAdd_Click(object sender, EventArgs e)
+        {
+            BookAdd bookAdd = new BookAdd(_loggedUserId);
+            Hide();
+            bookAdd.ShowDialog();
+            Close();
         }
     }
 }

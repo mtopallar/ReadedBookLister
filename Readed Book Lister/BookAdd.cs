@@ -1,5 +1,6 @@
 ﻿using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
@@ -17,14 +18,15 @@ namespace Readed_Book_Lister
 {
     public partial class BookAdd : Form
     {
-        User loggedUser;
+        private readonly int _loggedUserId;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
-        public BookAdd()
+        public BookAdd(int userId)
         {
             InitializeComponent();
             CmbYearFiller();
-        }
+            _loggedUserId = userId;
+        }      
 
 
         #region Clicks
@@ -53,6 +55,8 @@ namespace Readed_Book_Lister
                 //userId için ctor enjeksiyonu gerekebilir. logged user a erişip id sini userbook a verebilmem için.
                 BookName = tbxName.Text,
                 AuthorName = tbxAuthor.Text,
+                Isbn = tbxIsbn.Text,
+                Publisher = tbxPublisher.Text,
                 Readed = cbxReaded.Checked,
                 Native = cbxNative.Checked,
                 ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
@@ -60,8 +64,8 @@ namespace Readed_Book_Lister
                 Image = GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
             };
-            SaveImage(userBook.Image);
-            // Buraya da add metodunu çağırıp içine bu kitabı göndericem.
+            SaveImage(userBook.Image);            
+            UserBookOperations.Add(userBook);
             MessageBox.Show("Hata yok");
             //ClearForm();
         }
@@ -89,7 +93,7 @@ namespace Readed_Book_Lister
         private void btnCancel_Click(object sender, EventArgs e)
         {
             // Yeni formu gösterdikten sonra eskisini kapatmak.
-            Main main = new Main();
+            Main main = new Main(_loggedUserId);
             Hide();
             main.ShowDialog();
             Close();
@@ -224,9 +228,7 @@ namespace Readed_Book_Lister
         {
             if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
             {
-                File.Copy(tbxImage.Text, guidedImageName, false);
-                //pbxImage.Image = new Bitmap(Image.FromFile(@".\images\default.png"));
-                //pbxImage.SizeMode = PictureBoxSizeMode.StretchImage;
+                File.Copy(tbxImage.Text, guidedImageName, false);                
             }
 
         }

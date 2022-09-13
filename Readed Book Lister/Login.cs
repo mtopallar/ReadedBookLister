@@ -91,7 +91,10 @@ namespace Readed_Book_Lister
                 return;
             }
             // main form load et.
-            MessageBox.Show("Girildi.");
+            Main main = new Main(logedUser.Id);
+            Hide();
+            main.ShowDialog();
+            Close();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)
