@@ -17,10 +17,14 @@ namespace Readed_Book_Lister
     public partial class Main : Form
     {
         private readonly User _loggedUser;
+        private List<UserBook>? UsersBookList;
         public Main(User loggedUser)
         {
             InitializeComponent();
             _loggedUser = loggedUser;
+            //GetUsersBook(_loggedUser.Id);
+            GetUsersBook(1);
+            CreateDataGridViewColums();
             FillDataGridView();
         }
 
@@ -32,13 +36,16 @@ namespace Readed_Book_Lister
             Close();
         }
 
-
-        private void FillDataGridView()
+        private void GetUsersBook(int userId)
         {
-            List<UserBook>? UsersBookList = UserBookOperations.GetAllByUserId(1);
+            UsersBookList = UserBookOperations.GetAllByUserId(userId);
+        }
+
+        private void CreateDataGridViewColums()
+        {
             if (UsersBookList != null)
             {
-                //Önce dgv e eklenecek kolon tiplerini belirle.
+                // 1) Önce dgv e eklenecek kolon tiplerini belirle.
                 DataGridViewTextBoxColumn dgvPlaceColumn = new DataGridViewTextBoxColumn();
                 dgvPlaceColumn.HeaderText = "Sıra";
                 dgvPlaceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -95,6 +102,40 @@ namespace Readed_Book_Lister
                 dgvDeleteColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvDeleteColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
 
+               
+
+                // 2) Sonra o kolonları dgv  e ekle
+                dgvUserBookList.Columns.Add(dgvPlaceColumn);
+                dgvUserBookList.Columns.Add(dgvBookNameColumn);
+                dgvUserBookList.Columns.Add(dgvIsbnColumn);
+                dgvUserBookList.Columns.Add(dgvPublisherColumn);
+                dgvUserBookList.Columns.Add(dgvReadedColumn);
+                dgvUserBookList.Columns.Add(dgvNativeColumn);
+                dgvUserBookList.Columns.Add(dgvReadMonthColumn);
+                dgvUserBookList.Columns.Add(dgvReadYearColumn);
+                dgvUserBookList.Columns.Add(dgvNoteColumn);
+                dgvUserBookList.Columns.Add(dgvImageColumn);
+                dgvUserBookList.Columns.Add(dgvUpdateColumn);
+                dgvUserBookList.Columns.Add(dgvDeleteColumn);
+            }
+            else
+            {
+                DataGridViewTextBoxColumn dgvNoData = new DataGridViewTextBoxColumn();
+                dgvNoData.HeaderText = "Veri Yok";
+                dgvNoData.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                dgvUserBookList.Columns.Add(dgvNoData);
+
+                
+            }
+        }
+        private void FillDataGridView()
+        {
+            if (UsersBookList != null)
+            {
+                #region UserBookList Boş Değilse Dgv Style
+
+                // stilleri ister kolon kısmında yaz ister satır farketmiyor.
                 dgvUserBookList.RowTemplate.Height = 130;
                 dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
@@ -110,23 +151,11 @@ namespace Readed_Book_Lister
                 // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
                 dgvUserBookList.EnableHeadersVisualStyles = false;
 
-                //Sonra o kolonları dgv  e ekle
-                dgvUserBookList.Columns.Add(dgvPlaceColumn);
-                dgvUserBookList.Columns.Add(dgvBookNameColumn);
-                dgvUserBookList.Columns.Add(dgvIsbnColumn);
-                dgvUserBookList.Columns.Add(dgvPublisherColumn);
-                dgvUserBookList.Columns.Add(dgvReadedColumn);
-                dgvUserBookList.Columns.Add(dgvNativeColumn);
-                dgvUserBookList.Columns.Add(dgvReadMonthColumn);
-                dgvUserBookList.Columns.Add(dgvReadYearColumn);
-                dgvUserBookList.Columns.Add(dgvNoteColumn);
-                dgvUserBookList.Columns.Add(dgvImageColumn);
-                dgvUserBookList.Columns.Add(dgvUpdateColumn);
-                dgvUserBookList.Columns.Add(dgvDeleteColumn);
+                #endregion
 
                 for (int i = 0; i < UsersBookList.Count; i++)
                 {
-                    //sonra ilgili verileri sırasıyla içeren satırları ekle. data sırası eşit olmalı colon sırası.                
+                    // 3) sonra ilgili verileri sırasıyla içeren satırları ekle. data sırası eşit olmalı colon sırası.                
                     dgvUserBookList.Rows.Add(
                         i + 1,
                         UsersBookList[i].BookName,
@@ -146,22 +175,20 @@ namespace Readed_Book_Lister
             }
             else
             {
-                DataGridViewTextBoxColumn dgvNoData = new DataGridViewTextBoxColumn();
-                dgvNoData.HeaderText = "Veri Yok";
-                dgvNoData.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                dgvUserBookList.Columns.Add(dgvNoData);
-                dgvUserBookList.Rows.Add(Messages.DataGridViewMessagesUserHasNoBook);
-
+                #region UserBookList Boşsa Dgv Style 
+                // stilleri ister kolon kısmında yaz ister satır farketmiyor.
                 dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
                 dgvUserBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvUserBookList.BackgroundColor = Color.LightGray;
-
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray; // sütun isimlerinin rengi
                 dgvUserBookList.EnableHeadersVisualStyles = false;
                 dgvUserBookList.Enabled = false;
+
+                #endregion
+
+                dgvUserBookList.Rows.Add(Messages.DataGridViewMessagesUserHasNoBook);
             }
 
         }
