@@ -18,6 +18,7 @@ namespace Readed_Book_Lister
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             Application.Run(new Main(new Entities.User { Id=1}));
+            //Application.Run(new Login());
         }
     }
 }

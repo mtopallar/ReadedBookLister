@@ -200,12 +200,15 @@ namespace Readed_Book_Lister
         private void LabelHeaderSet()
         {
             lblHeader.Text = _loggedUser.NickName + " kitaplığı";
+            LocateLabelToCentre();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        #region Hovers        
 
         private void btnBookAdd_MouseHover(object sender, EventArgs e)
         {
@@ -227,6 +230,8 @@ namespace Readed_Book_Lister
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
         }
 
+        #endregion
+
         private void dgvUserBookList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUserBookList.RowCount>0)
@@ -242,6 +247,11 @@ namespace Readed_Book_Lister
                     MessageBox.Show(selectedUserBook.BookName + " sil");
                 }
             }
+        }
+
+        private void LocateLabelToCentre()
+        {
+            lblHeader.Left = (this.Width / 2) - (lblHeader.Width / 2);
         }
     }
 }

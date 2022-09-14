@@ -91,10 +91,11 @@
             // 
             // lblHeader
             // 
+            this.lblHeader.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblHeader.AutoSize = true;
             this.lblHeader.BackColor = System.Drawing.Color.Transparent;
             this.lblHeader.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblHeader.Location = new System.Drawing.Point(575, 44);
+            this.lblHeader.Location = new System.Drawing.Point(586, 49);
             this.lblHeader.Name = "lblHeader";
             this.lblHeader.Size = new System.Drawing.Size(127, 46);
             this.lblHeader.TabIndex = 18;
