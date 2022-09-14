@@ -31,19 +31,29 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
             this.btnBookAdd = new System.Windows.Forms.Button();
             this.dgvUserBookList = new System.Windows.Forms.DataGridView();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.lblHeader = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).BeginInit();
             this.SuspendLayout();
             // 
             // btnBookAdd
             // 
-            this.btnBookAdd.Location = new System.Drawing.Point(1170, 612);
+            this.btnBookAdd.BackColor = System.Drawing.Color.Transparent;
+            this.btnBookAdd.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBookAdd.BackgroundImage")));
+            this.btnBookAdd.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBookAdd.FlatAppearance.BorderSize = 0;
+            this.btnBookAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBookAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBookAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookAdd.Location = new System.Drawing.Point(1179, 595);
             this.btnBookAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookAdd.Name = "btnBookAdd";
-            this.btnBookAdd.Size = new System.Drawing.Size(75, 28);
+            this.btnBookAdd.Size = new System.Drawing.Size(75, 55);
             this.btnBookAdd.TabIndex = 0;
-            this.btnBookAdd.Text = "Kitap Ekle";
-            this.btnBookAdd.UseVisualStyleBackColor = true;
+            this.btnBookAdd.UseVisualStyleBackColor = false;
             this.btnBookAdd.Click += new System.EventHandler(this.btnBookAdd_Click);
+            this.btnBookAdd.MouseLeave += new System.EventHandler(this.btnBookAdd_MouseLeave);
+            this.btnBookAdd.MouseHover += new System.EventHandler(this.btnBookAdd_MouseHover);
             // 
             // dgvUserBookList
             // 
@@ -58,6 +68,37 @@
             this.dgvUserBookList.RowTemplate.Height = 25;
             this.dgvUserBookList.Size = new System.Drawing.Size(1203, 465);
             this.dgvUserBookList.TabIndex = 1;
+            this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
+            // 
+            // btnClose
+            // 
+            this.btnClose.BackColor = System.Drawing.Color.Transparent;
+            this.btnClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClose.BackgroundImage")));
+            this.btnClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClose.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnClose.FlatAppearance.BorderSize = 0;
+            this.btnClose.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClose.Location = new System.Drawing.Point(1223, 35);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(22, 26);
+            this.btnClose.TabIndex = 17;
+            this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+            this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
+            // 
+            // lblHeader
+            // 
+            this.lblHeader.AutoSize = true;
+            this.lblHeader.BackColor = System.Drawing.Color.Transparent;
+            this.lblHeader.Font = new System.Drawing.Font("Trebuchet MS", 27.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblHeader.Location = new System.Drawing.Point(575, 44);
+            this.lblHeader.Name = "lblHeader";
+            this.lblHeader.Size = new System.Drawing.Size(127, 46);
+            this.lblHeader.TabIndex = 18;
+            this.lblHeader.Text = "label1";
             // 
             // Main
             // 
@@ -67,6 +108,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1293, 680);
             this.ControlBox = false;
+            this.Controls.Add(this.lblHeader);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvUserBookList);
             this.Controls.Add(this.btnBookAdd);
             this.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
@@ -80,6 +123,7 @@
             this.Text = "Main";
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -87,5 +131,7 @@
 
         private System.Windows.Forms.Button btnBookAdd;
         private System.Windows.Forms.DataGridView dgvUserBookList;
+        private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.Label lblHeader;
     }
 }
