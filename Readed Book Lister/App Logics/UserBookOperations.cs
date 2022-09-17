@@ -28,6 +28,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         //list userbooks by unknown read date // GetAllUnknownReadDateAndUserId(int userId) => ok
         //list GetByNoteStateAndUserId(int userId, bool hasNote) => ok
         //list GetByNativeStatueAndUserId(int userId, bool nativeStatue) => ok
+        //UserBook GetByUserIdAndIsbnNo(int userId, string isbn) isbn ve user id
 
         //getall => ok (private)
         //GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName) private
@@ -140,6 +141,21 @@ namespace Readed_Book_Lister.Methods.App_Methods
             if (getAllByUserIdAndAuthorName != null)
             {
                 return getAllByUserIdAndAuthorName;
+            }
+            return null;
+        }
+
+        public static UserBook? GetByUserIdAndIsbnNo(int userId, string isbn)
+        {
+            var tryGetUserBooks = GetAllByUserId(userId);
+            if (tryGetUserBooks != null)
+            {
+                var tryGetBookByIsbn =  tryGetUserBooks.Where(x => x.Isbn == isbn).SingleOrDefault();
+                if (tryGetBookByIsbn != null)
+                {
+                    return tryGetBookByIsbn;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.NoBookByIsnbNo);
             }
             return null;
         }

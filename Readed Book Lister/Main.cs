@@ -27,6 +27,7 @@ namespace Readed_Book_Lister
             CreateDataGridViewColums();
             SetDataGridViewStyleByUsersBookList();
             FillDataGridView();
+            DisableBookSearchButtonIfUserHasNoBook();
             LabelHeaderSet();
         }
 
@@ -50,11 +51,17 @@ namespace Readed_Book_Lister
                 // 1) Önce dgv e eklenecek kolon tiplerini belirle.
                 DataGridViewTextBoxColumn dgvPlaceColumn = new DataGridViewTextBoxColumn();
                 dgvPlaceColumn.HeaderText = "Sıra";
-                dgvPlaceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvPlaceColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;                
 
                 DataGridViewTextBoxColumn dgvBookNameColumn = new DataGridViewTextBoxColumn();
                 dgvBookNameColumn.HeaderText = "Kitap adı";
                 dgvBookNameColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvBookNameColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+
+                DataGridViewTextBoxColumn dgvAuthorNameColumn = new DataGridViewTextBoxColumn();
+                dgvAuthorNameColumn.HeaderText = "Yazar adı";
+                dgvAuthorNameColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvAuthorNameColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
                 DataGridViewTextBoxColumn dgvIsbnColumn = new DataGridViewTextBoxColumn();
                 dgvIsbnColumn.HeaderText = "Isbn No";
@@ -106,6 +113,7 @@ namespace Readed_Book_Lister
                 // 2) Sonra o kolonları dgv  e ekle
                 dgvUserBookList.Columns.Add(dgvPlaceColumn);
                 dgvUserBookList.Columns.Add(dgvBookNameColumn);
+                dgvUserBookList.Columns.Add(dgvAuthorNameColumn);
                 dgvUserBookList.Columns.Add(dgvIsbnColumn);
                 dgvUserBookList.Columns.Add(dgvPublisherColumn);
                 dgvUserBookList.Columns.Add(dgvReadedColumn);
@@ -136,6 +144,7 @@ namespace Readed_Book_Lister
                     dgvUserBookList.Rows.Add(
                         i + 1,
                         UsersBookList[i].BookName,
+                        UsersBookList[i].AuthorName,
                         UsersBookList[i].Isbn,
                         UsersBookList[i].Publisher,
                         UsersBookList[i].Readed ? "Okundu" : "Okunmadı",
@@ -146,7 +155,7 @@ namespace Readed_Book_Lister
                         Image.FromFile(UsersBookList[i].Image),
                         Image.FromFile(@"assets\updatebook.png"),
                         Image.FromFile(@"assets\deletebook.png")
-                        );
+                        ); ;
                 }
             }
             else
@@ -157,14 +166,17 @@ namespace Readed_Book_Lister
 
         private void SetDataGridViewStyleByUsersBookList()
         {
+
+            dgvUserBookList.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
             if (UsersBookList != null)
             {
                 #region UserBookList Boş Değilse Dgv Style
 
                 // stilleri ister kolon kısmında yaz ister satır farketmiyor. Ancak dgv datası dolmadan önce stilleri çağırmalısın.
                 dgvUserBookList.RowTemplate.Height = 130;
-                dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
                 dgvUserBookList.RowsDefaultCellStyle.BackColor = Color.Wheat;
                 dgvUserBookList.BackgroundColor = Color.Wheat;
                 //dgvUserBookList.AlternatingRowsDefaultCellStyle.BackColor = Color.SandyBrown; stripe efekti için.
@@ -172,7 +184,6 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
-
                 //dgvUserBookList.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
                 dgvUserBookList.EnableHeadersVisualStyles = false;
@@ -183,8 +194,7 @@ namespace Readed_Book_Lister
             {
                 #region UserBookList Boşsa Dgv Style 
 
-                // stilleri ister kolon kısmında yaz ister satır farketmiyor.
-                dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                // stilleri ister kolon kısmında yaz ister satır farketmiyor.                
                 dgvUserBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvUserBookList.BackgroundColor = Color.LightGray;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
@@ -195,6 +205,19 @@ namespace Readed_Book_Lister
 
                 #endregion
             }
+        }
+
+        private void DisableBookSearchButtonIfUserHasNoBook()
+        {
+            if (UsersBookList == null || UsersBookList.Count == 0)
+            {
+                btnBookSearch.Enabled = false;
+                btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_disabled.png");
+                //return;
+            }
+
+            //btnBookSearch.Enabled = true;
+            //btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook.png");
         }
 
         private void LabelHeaderSet()
@@ -213,21 +236,49 @@ namespace Readed_Book_Lister
         private void btnBookAdd_MouseHover(object sender, EventArgs e)
         {
             btnBookAdd.BackgroundImage = Image.FromFile(@".\assets\newbook_hover.png");
+            toolTipMain.SetToolTip(btnBookAdd, "Yeni Kitap Ekle");
         }
 
         private void btnBookAdd_MouseLeave(object sender, EventArgs e)
         {
             btnBookAdd.BackgroundImage = Image.FromFile(@".\assets\newbook.png");
+            toolTipMain.Hide(btnBookAdd);
         }
 
         private void btnClose_MouseHover(object sender, EventArgs e)
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close_hover.png");
+            toolTipClose.SetToolTip(btnClose, "Kapat");
         }
 
         private void btnClose_MouseLeave(object sender, EventArgs e)
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
+            toolTipClose.Hide(btnClose);
+        }
+
+        private void btnBookSearch_MouseHover(object sender, EventArgs e)
+        {
+            btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_hover.png");
+            toolTipMain.SetToolTip(btnBookSearch, "Kitap Ara");
+        }
+
+        private void btnBookSearch_MouseLeave(object sender, EventArgs e)
+        {
+            btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook.png");
+            toolTipMain.Hide(btnBookSearch);
+        }
+
+        private void btnProfileOperations_MouseHover(object sender, EventArgs e)
+        {
+            btnProfileOperations.BackgroundImage = Image.FromFile(@".\assets\profile_hover.png");
+            toolTipMain.SetToolTip(btnProfileOperations, "Profil İşlemleri");
+        }
+
+        private void btnProfileOperations_MouseLeave(object sender, EventArgs e)
+        {
+            btnProfileOperations.BackgroundImage = Image.FromFile(@".\assets\profile.png");
+            toolTipMain.Hide(btnProfileOperations);
         }
 
         #endregion
@@ -251,7 +302,9 @@ namespace Readed_Book_Lister
 
         private void LocateLabelToCentre()
         {
-            lblHeader.Left = (this.Width / 2) - (lblHeader.Width / 2);
+            lblHeader.Left = (Width / 2) - (lblHeader.Width / 2);
         }
+
+        
     }
 }

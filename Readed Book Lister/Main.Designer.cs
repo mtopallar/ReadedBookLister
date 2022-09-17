@@ -28,11 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnBookAdd = new System.Windows.Forms.Button();
             this.dgvUserBookList = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
             this.lblHeader = new System.Windows.Forms.Label();
+            this.btnBookSearch = new System.Windows.Forms.Button();
+            this.btnProfileOperations = new System.Windows.Forms.Button();
+            this.toolTipMain = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,14 +65,24 @@
             // 
             this.dgvUserBookList.AllowUserToAddRows = false;
             this.dgvUserBookList.AllowUserToDeleteRows = false;
+            this.dgvUserBookList.AllowUserToResizeColumns = false;
+            this.dgvUserBookList.AllowUserToResizeRows = false;
             this.dgvUserBookList.BackgroundColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUserBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserBookList.Location = new System.Drawing.Point(42, 113);
             this.dgvUserBookList.Name = "dgvUserBookList";
             this.dgvUserBookList.ReadOnly = true;
             this.dgvUserBookList.RowHeadersVisible = false;
             this.dgvUserBookList.RowTemplate.Height = 25;
-            this.dgvUserBookList.Size = new System.Drawing.Size(1203, 465);
+            this.dgvUserBookList.Size = new System.Drawing.Size(1122, 465);
             this.dgvUserBookList.TabIndex = 1;
             this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
             // 
@@ -101,6 +117,46 @@
             this.lblHeader.TabIndex = 18;
             this.lblHeader.Text = "label1";
             // 
+            // btnBookSearch
+            // 
+            this.btnBookSearch.BackColor = System.Drawing.Color.Transparent;
+            this.btnBookSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnBookSearch.BackgroundImage")));
+            this.btnBookSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnBookSearch.FlatAppearance.BorderSize = 0;
+            this.btnBookSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnBookSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnBookSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnBookSearch.Location = new System.Drawing.Point(1115, 595);
+            this.btnBookSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnBookSearch.Name = "btnBookSearch";
+            this.btnBookSearch.Size = new System.Drawing.Size(75, 55);
+            this.btnBookSearch.TabIndex = 19;
+            this.btnBookSearch.UseVisualStyleBackColor = false;
+            this.btnBookSearch.MouseLeave += new System.EventHandler(this.btnBookSearch_MouseLeave);
+            this.btnBookSearch.MouseHover += new System.EventHandler(this.btnBookSearch_MouseHover);
+            // 
+            // btnProfileOperations
+            // 
+            this.btnProfileOperations.BackColor = System.Drawing.Color.Transparent;
+            this.btnProfileOperations.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnProfileOperations.BackgroundImage")));
+            this.btnProfileOperations.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnProfileOperations.FlatAppearance.BorderSize = 0;
+            this.btnProfileOperations.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnProfileOperations.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnProfileOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnProfileOperations.Location = new System.Drawing.Point(1044, 595);
+            this.btnProfileOperations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnProfileOperations.Name = "btnProfileOperations";
+            this.btnProfileOperations.Size = new System.Drawing.Size(75, 55);
+            this.btnProfileOperations.TabIndex = 20;
+            this.btnProfileOperations.UseVisualStyleBackColor = false;
+            this.btnProfileOperations.MouseLeave += new System.EventHandler(this.btnProfileOperations_MouseLeave);
+            this.btnProfileOperations.MouseHover += new System.EventHandler(this.btnProfileOperations_MouseHover);
+            // 
+            // toolTipMain
+            // 
+            this.toolTipMain.IsBalloon = true;
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -109,6 +165,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1293, 680);
             this.ControlBox = false;
+            this.Controls.Add(this.btnProfileOperations);
+            this.Controls.Add(this.btnBookSearch);
             this.Controls.Add(this.lblHeader);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvUserBookList);
@@ -134,5 +192,9 @@
         private System.Windows.Forms.DataGridView dgvUserBookList;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Label lblHeader;
+        private System.Windows.Forms.Button btnBookSearch;
+        private System.Windows.Forms.Button btnProfileOperations;
+        private System.Windows.Forms.ToolTip toolTipMain;
+        private System.Windows.Forms.ToolTip toolTipClose;
     }
 }

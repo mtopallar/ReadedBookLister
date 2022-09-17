@@ -34,6 +34,7 @@ namespace Readed_Book_Lister.Constants
         public static string UserBookUpdateSuccessful = "Kitap başarıyla güncellendi.";
         public static string DeleteUserBookSuccessful = "Kitap başarıyla silindi.";
         public static string IsbnUsedBefore = "Belirtilen ISBN daha önce kullanılmış.";
+        public static string NoBookByIsnbNo = "Belirtilen Isbn numarasına sahip kitabınız yok.";
 
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
@@ -42,5 +43,6 @@ namespace Readed_Book_Lister.Constants
 
         //DataFridView Messages
         public static string DataGridViewMessagesUserHasNoBook = "Sistemde kayıtlı kitabınız bulunmamaktadır. Kitap eklediğinizde burada görüntülenecektir.";
+        
     }
 }
