@@ -85,6 +85,8 @@
             this.dgvUserBookList.Size = new System.Drawing.Size(1122, 465);
             this.dgvUserBookList.TabIndex = 1;
             this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
+            this.dgvUserBookList.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseEnter);
+            this.dgvUserBookList.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseLeave);
             // 
             // btnClose
             // 

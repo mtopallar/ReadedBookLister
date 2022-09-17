@@ -103,12 +103,14 @@ namespace Readed_Book_Lister
                 DataGridViewImageColumn dgvUpdateColumn = new DataGridViewImageColumn();
                 dgvUpdateColumn.HeaderText = "Güncelle";
                 dgvUpdateColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvUpdateColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                dgvUpdateColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;                
+                
 
                 DataGridViewImageColumn dgvDeleteColumn = new DataGridViewImageColumn();
                 dgvDeleteColumn.HeaderText = "Sil";
                 dgvDeleteColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvDeleteColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;
+                dgvDeleteColumn.ImageLayout = DataGridViewImageCellLayout.Normal; // normal yaptım.
+                
 
                 // 2) Sonra o kolonları dgv  e ekle
                 dgvUserBookList.Columns.Add(dgvPlaceColumn);
@@ -124,6 +126,7 @@ namespace Readed_Book_Lister
                 dgvUserBookList.Columns.Add(dgvImageColumn);
                 dgvUserBookList.Columns.Add(dgvUpdateColumn);
                 dgvUserBookList.Columns.Add(dgvDeleteColumn);
+                
             }
             else
             {
@@ -135,7 +138,7 @@ namespace Readed_Book_Lister
             }
         }
         private void FillDataGridView()
-        {
+        {   
             if (UsersBookList != null)
             {
                 for (int i = 0; i < UsersBookList.Count; i++)
@@ -154,8 +157,8 @@ namespace Readed_Book_Lister
                         UsersBookList[i].Note == "" ? "-" : UsersBookList[i].Note,
                         Image.FromFile(UsersBookList[i].Image),
                         Image.FromFile(@"assets\updatebook.png"),
-                        Image.FromFile(@"assets\deletebook.png")
-                        ); ;
+                        Image.FromFile(@"assets\delete_book_normal.png")
+                        );
                 }
             }
             else
@@ -288,12 +291,12 @@ namespace Readed_Book_Lister
             if (dgvUserBookList.RowCount>0)
             {
                 UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value)-1];
-
-                if (e.ColumnIndex == 10)
+                
+                if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
                     MessageBox.Show(selectedUserBook.BookName + " güncelle");
                 }
-                else if (e.ColumnIndex == 11)
+                else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {
                     MessageBox.Show(selectedUserBook.BookName + " sil");
                 }
@@ -305,6 +308,30 @@ namespace Readed_Book_Lister
             lblHeader.Left = (Width / 2) - (lblHeader.Width / 2);
         }
 
-        
+        private void dgvUserBookList_CellMouseLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 11 && e.RowIndex != -1)
+            {
+                
+                
+            }
+            else if (e.ColumnIndex == 12 && e.RowIndex != -1)
+            {
+                dgvUserBookList.Rows[e.RowIndex].Cells[12].Value = Image.FromFile(@"assets\delete_book_normal.png");
+            }
+        }
+
+        private void dgvUserBookList_CellMouseEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 11 && e.RowIndex != -1)
+            {
+                
+                
+            }
+            else if (e.ColumnIndex == 12 && e.RowIndex != -1)
+            {
+                dgvUserBookList.Rows[e.RowIndex].Cells[12].Value = Image.FromFile(@"assets\delete_book_hover.png");
+            }
+        }
     }
 }
