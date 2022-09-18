@@ -80,6 +80,7 @@
             this.btnClear.Size = new System.Drawing.Size(49, 48);
             this.btnClear.TabIndex = 31;
             this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // btnBrowse
             // 
@@ -187,6 +188,7 @@
             this.cbxMonth.TabIndex = 20;
             this.cbxMonth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxMonth.UseVisualStyleBackColor = false;
+            this.cbxMonth.CheckedChanged += new System.EventHandler(this.cbxMonth_CheckedChanged);
             // 
             // cbxYear
             // 
@@ -205,6 +207,7 @@
             this.cbxYear.TabIndex = 21;
             this.cbxYear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxYear.UseVisualStyleBackColor = false;
+            this.cbxYear.CheckedChanged += new System.EventHandler(this.cbxYear_CheckedChanged);
             // 
             // tbxNote
             // 
@@ -249,6 +252,7 @@
             this.btnClose.Size = new System.Drawing.Size(22, 26);
             this.btnClose.TabIndex = 34;
             this.btnClose.UseVisualStyleBackColor = false;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnSave
             // 
@@ -264,6 +268,7 @@
             this.btnSave.Size = new System.Drawing.Size(49, 48);
             this.btnSave.TabIndex = 33;
             this.btnSave.UseVisualStyleBackColor = false;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // btnCancel
             // 
@@ -305,6 +310,7 @@
             this.tbxIsbn.Size = new System.Drawing.Size(277, 25);
             this.tbxIsbn.TabIndex = 27;
             this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxIsbn_KeyPress);
             // 
             // tbxAuthor
             // 

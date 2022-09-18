@@ -293,7 +293,10 @@ namespace Readed_Book_Lister
                 
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
-                    MessageBox.Show(selectedUserBook.BookName + " güncelle");
+                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook);                    
+                    Hide();
+                    bookUpdateForm.ShowDialog();
+                    Close();
                 }
                 else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {
