@@ -213,7 +213,7 @@
             this.tbxImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tbxImage.Location = new System.Drawing.Point(389, 152);
             this.tbxImage.Name = "tbxImage";
-            this.tbxImage.PlaceholderText = "Kapak Resmi";
+            this.tbxImage.PlaceholderText = "                  Kapak Resmi";
             this.tbxImage.ReadOnly = true;
             this.tbxImage.Size = new System.Drawing.Size(277, 25);
             this.tbxImage.TabIndex = 11;

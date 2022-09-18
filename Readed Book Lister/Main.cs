@@ -156,8 +156,8 @@ namespace Readed_Book_Lister
                         UsersBookList[i].ReadYear == null ? "-" : UsersBookList[i].ReadYear,
                         UsersBookList[i].Note == "" ? "-" : UsersBookList[i].Note,
                         Image.FromFile(UsersBookList[i].Image),
-                        Image.FromFile(@"assets\update_book_normal.png"),
-                        Image.FromFile(@"assets\delete_book_normal.png")
+                        Image.FromFile(@".\assets\update_book_normal.png"),
+                        Image.FromFile(@".\assets\delete_book_normal.png")
                         );
                 }
             }
@@ -169,17 +169,18 @@ namespace Readed_Book_Lister
 
         private void SetDataGridViewStyleByUsersBookList()
         {
+            // stilleri ister kolon kısmında yaz ister satır farketmiyor. Ancak dgv datası dolmadan önce stilleri çağırmalısın.
             dgvUserBookList.ShowCellToolTips = false;
             // her hücre için tooltip ayarlamak için CellToolTipTextNeeded'e bak ancak performans uyarısı var.
             dgvUserBookList.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvUserBookList.EnableHeadersVisualStyles = false;
 
             if (UsersBookList != null)
             {
                 #region UserBookList Boş Değilse Dgv Style
-
-                // stilleri ister kolon kısmında yaz ister satır farketmiyor. Ancak dgv datası dolmadan önce stilleri çağırmalısın.
+                               
                 dgvUserBookList.RowTemplate.Height = 130;
                 dgvUserBookList.RowsDefaultCellStyle.BackColor = Color.Wheat;
                 dgvUserBookList.BackgroundColor = Color.Wheat;
@@ -189,22 +190,19 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 //dgvUserBookList.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
-                // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
-                dgvUserBookList.EnableHeadersVisualStyles = false;
+                // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.                
 
                 #endregion
             }
             else
             {
                 #region UserBookList Boşsa Dgv Style 
-
-                // stilleri ister kolon kısmında yaz ister satır farketmiyor.                
+                
                 dgvUserBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
                 dgvUserBookList.BackgroundColor = Color.LightGray;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray; // sütun isimlerinin rengi
-                dgvUserBookList.EnableHeadersVisualStyles = false;
                 dgvUserBookList.Enabled = false;
 
                 #endregion
