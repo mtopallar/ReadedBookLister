@@ -208,6 +208,7 @@
             // 
             this.tbxImage.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.tbxImage.BackColor = System.Drawing.Color.Wheat;
+            this.tbxImage.Enabled = false;
             this.tbxImage.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxImage.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tbxImage.Location = new System.Drawing.Point(389, 152);

@@ -51,7 +51,7 @@
             this.btnBookAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBookAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBookAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookAdd.Location = new System.Drawing.Point(1179, 595);
+            this.btnBookAdd.Location = new System.Drawing.Point(1098, 585);
             this.btnBookAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookAdd.Name = "btnBookAdd";
             this.btnBookAdd.Size = new System.Drawing.Size(75, 55);
@@ -82,7 +82,7 @@
             this.dgvUserBookList.ReadOnly = true;
             this.dgvUserBookList.RowHeadersVisible = false;
             this.dgvUserBookList.RowTemplate.Height = 25;
-            this.dgvUserBookList.Size = new System.Drawing.Size(1122, 465);
+            this.dgvUserBookList.Size = new System.Drawing.Size(1122, 434);
             this.dgvUserBookList.TabIndex = 1;
             this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
             this.dgvUserBookList.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseEnter);
@@ -128,7 +128,7 @@
             this.btnBookSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookSearch.Location = new System.Drawing.Point(1115, 595);
+            this.btnBookSearch.Location = new System.Drawing.Point(1032, 585);
             this.btnBookSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookSearch.Name = "btnBookSearch";
             this.btnBookSearch.Size = new System.Drawing.Size(75, 55);
@@ -146,7 +146,7 @@
             this.btnProfileOperations.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnProfileOperations.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnProfileOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProfileOperations.Location = new System.Drawing.Point(1044, 595);
+            this.btnProfileOperations.Location = new System.Drawing.Point(962, 585);
             this.btnProfileOperations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnProfileOperations.Name = "btnProfileOperations";
             this.btnProfileOperations.Size = new System.Drawing.Size(75, 55);

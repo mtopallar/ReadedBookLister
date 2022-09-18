@@ -103,7 +103,7 @@ namespace Readed_Book_Lister
                 DataGridViewImageColumn dgvUpdateColumn = new DataGridViewImageColumn();
                 dgvUpdateColumn.HeaderText = "Güncelle";
                 dgvUpdateColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-                dgvUpdateColumn.ImageLayout = DataGridViewImageCellLayout.Stretch;                
+                dgvUpdateColumn.ImageLayout = DataGridViewImageCellLayout.Normal;                
                 
 
                 DataGridViewImageColumn dgvDeleteColumn = new DataGridViewImageColumn();
@@ -156,7 +156,7 @@ namespace Readed_Book_Lister
                         UsersBookList[i].ReadYear == null ? "-" : UsersBookList[i].ReadYear,
                         UsersBookList[i].Note == "" ? "-" : UsersBookList[i].Note,
                         Image.FromFile(UsersBookList[i].Image),
-                        Image.FromFile(@"assets\updatebook.png"),
+                        Image.FromFile(@"assets\update_book_normal.png"),
                         Image.FromFile(@"assets\delete_book_normal.png")
                         );
                 }
@@ -169,7 +169,8 @@ namespace Readed_Book_Lister
 
         private void SetDataGridViewStyleByUsersBookList()
         {
-            dgvUserBookList.ShowCellToolTips = false; // her hücre için tooltip ayarlamak için CellToolTipTextNeeded'e bak ancak performans uyarısı var.
+            dgvUserBookList.ShowCellToolTips = false;
+            // her hücre için tooltip ayarlamak için CellToolTipTextNeeded'e bak ancak performans uyarısı var.
             dgvUserBookList.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -312,8 +313,8 @@ namespace Readed_Book_Lister
         {
             if (e.ColumnIndex == 11 && e.RowIndex != -1)
             {
-                
-                
+                dgvUserBookList.Rows[e.RowIndex].Cells[11].Value = Image.FromFile(@"assets\update_book_normal.png");
+
             }
             else if (e.ColumnIndex == 12 && e.RowIndex != -1)
             {
@@ -325,8 +326,8 @@ namespace Readed_Book_Lister
         {
             if (e.ColumnIndex == 11 && e.RowIndex != -1)
             {
-                
-                
+                dgvUserBookList.Rows[e.RowIndex].Cells[11].Value = Image.FromFile(@"assets\update_book_hover.png");
+
             }
             else if (e.ColumnIndex == 12 && e.RowIndex != -1)
             {
