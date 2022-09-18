@@ -169,7 +169,7 @@ namespace Readed_Book_Lister
 
         private void SetDataGridViewStyleByUsersBookList()
         {
-
+            dgvUserBookList.ShowCellToolTips = false; // her hücre için tooltip ayarlamak için CellToolTipTextNeeded'e bak ancak performans uyarısı var.
             dgvUserBookList.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;

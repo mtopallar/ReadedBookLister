@@ -315,7 +315,9 @@ namespace Readed_Book_Lister
 
         private void CmbYearFiller()
         {
-            int startYear = 1700;
+            SetCmbYearMaxDropItems();
+
+            int startYear = 1930;
 
             for (int i = DateTime.Now.Year; i >= startYear; i--)
             {
@@ -546,6 +548,11 @@ namespace Readed_Book_Lister
             }
         }
 
+        private void SetCmbYearMaxDropItems()
+        {
+            cmbYear.IntegralHeight = false;
+            cmbYear.MaxDropDownItems = 12;            
+        }
 
     }
 }
