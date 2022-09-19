@@ -401,7 +401,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         private static UserBook NoteTrimmer(UserBook userBook)
         {
             // Checked.
-            StringUtilityHelper.TrimStartAndFinish(userBook.Note);
+            userBook.Note = StringUtilityHelper.TrimStartAndFinish(userBook.Note);
             return userBook;
         }
 

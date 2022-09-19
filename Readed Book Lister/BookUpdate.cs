@@ -18,15 +18,16 @@ namespace Readed_Book_Lister
     public partial class BookUpdate : Form
     {
         private UserBook _userBookToUpdate;
-        public BookUpdate(UserBook userBookToUpdate)
+        private User _loggedUser;
+        public BookUpdate(UserBook userBookToUpdate, User loggedUser)
         {
             InitializeComponent();
             _userBookToUpdate = userBookToUpdate;
+            _loggedUser = loggedUser;
             FillBooksInfo();
             CmbYearFiller();
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
         }
 
         private void FillBooksInfo()
@@ -40,6 +41,7 @@ namespace Readed_Book_Lister
             cbxYear.Checked = _userBookToUpdate.ReadYear == null ? cbxYear.Checked = true : cbxYear.Checked = false;
             cbxReaded.Checked = _userBookToUpdate.Readed;
             cbxNative.Checked = _userBookToUpdate.Native;
+            tbxNote.Text = _userBookToUpdate.Note;
             cmbMonth.Text = _userBookToUpdate.ReadMonth == null ? "Bitirma Tarihi (Ay)" : MonthNameFromInt(_userBookToUpdate.ReadMonth.Value);
             cmbYear.Text = _userBookToUpdate.ReadYear == null ? "Bitirma Tarihi (Yıl)" : _userBookToUpdate.ReadYear.Value.ToString();
             pbxImage.Image = new Bitmap(Image.FromFile(_userBookToUpdate.Image));
@@ -277,10 +279,21 @@ namespace Readed_Book_Lister
                 };
                 UserBookOperations.Update(newBook);
                 SaveImage(newBook.Image);
-                pbxImage.Image = Image.FromFile(newBook.Image);
+                pbxImage.Image = Image.FromFile(tbxImage.Text);
                 DeleteOldImageIfImageChances(newBook.Image);
+                GoBackToMainFormAfterUpdate();
             }
         }
+
+        private void GoBackToMainFormAfterUpdate()
+        {
+            Main mainForm = new Main(_loggedUser);
+            Hide();            
+            mainForm.ShowDialog();
+            Close();
+        }
+
+        //Hower efektleri ile güncelleme bitince güncel liste ile main e geri dönüşü sağla. !!!!--------------------------------
 
         //image değişirse ve eğer eski imaj default değilse eski resmi images klasöründen sil ama tabi save işlemi başarılı olursa.
 

@@ -31,6 +31,8 @@ namespace Readed_Book_Lister
             FillDataGridView();
             DisableBookSearchButtonIfUserHasNoBook();
             LabelHeaderSet();
+            //GC.Collect();
+            //GC.WaitForPendingFinalizers();
         }
 
         private void btnBookAdd_Click(object sender, EventArgs e)
@@ -297,7 +299,7 @@ namespace Readed_Book_Lister
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {   
                     dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png"); // diğer taraftan silebilmek için
-                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook);
+                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook,_loggedUser);
                     Hide();                    
                     bookUpdateForm.ShowDialog();
                     Close();
