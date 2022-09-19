@@ -1,10 +1,13 @@
-﻿using Readed_Book_Lister.Entities;
+﻿using Readed_Book_Lister.Constants;
+using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,6 +24,8 @@ namespace Readed_Book_Lister
             _userBookToUpdate = userBookToUpdate;
             FillBooksInfo();
             CmbYearFiller();
+            System.GC.Collect();
+            System.GC.WaitForPendingFinalizers();
         }
 
         private void FillBooksInfo()
@@ -29,7 +34,7 @@ namespace Readed_Book_Lister
             tbxAuthor.Text = _userBookToUpdate.AuthorName;
             tbxIsbn.Text = _userBookToUpdate.Isbn;
             tbxPublisher.Text = _userBookToUpdate.Publisher;
-            tbxImage.Text = _userBookToUpdate.Image;
+            tbxImage.Text = _userBookToUpdate.Image == @".\images\default.png" ? string.Empty : _userBookToUpdate.Image;
             cbxMonth.Checked = _userBookToUpdate.ReadMonth == null ? cbxMonth.Checked = true : cbxMonth.Checked = false;
             cbxYear.Checked = _userBookToUpdate.ReadYear == null ? cbxYear.Checked = true : cbxYear.Checked = false;
             cbxReaded.Checked = _userBookToUpdate.Readed;
@@ -159,8 +164,6 @@ namespace Readed_Book_Lister
             }
         }
 
-
-
         private bool CheckMouthValueValid()
         {
             if (!cbxMonth.Checked && (MonthNameToInt(cmbMonth.Text) == 0))
@@ -172,14 +175,13 @@ namespace Readed_Book_Lister
             return true;
         }
 
-
         private bool CheckYearValueValid()
         {
             if (!cbxYear.Checked && !int.TryParse(cmbYear.Text, out _))
             {
                 cmbYear.BackColor = Color.FromArgb(250, 184, 187);
                 return false;
-            }            
+            }
             cmbYear.BackColor = Color.Wheat;
             return true;
         }
@@ -187,14 +189,14 @@ namespace Readed_Book_Lister
         private bool IsbnLengthChecker()
         {
             if (StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text).Length == 13)
-            {   
+            {
                 tbxIsbn.BackColor = Color.Wheat;
                 return true;
             }
             tbxIsbn.BackColor = Color.FromArgb(250, 184, 187);
             return false;
         }
-        
+
 
         private bool CheckPublisherNameIsValid()
         {
@@ -240,7 +242,7 @@ namespace Readed_Book_Lister
                 }
             }
             return true;
-        }
+        }        
 
         private void ClearErrorColors()
         {
@@ -256,11 +258,71 @@ namespace Readed_Book_Lister
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (CheckFormIfHasError(CheckMouthValueValid(), CheckYearValueValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
-            {
-                MessageBox.Show("Kaydet metodu çalıştı.");
-                return;
+            {                
+                UserBook newBook = new UserBook
+                {
+                    Id = _userBookToUpdate.Id,
+                    UserId = _userBookToUpdate.UserId,
+                    BookName = tbxName.Text,
+                    AuthorName = tbxAuthor.Text,
+                    Isbn = tbxIsbn.Text,
+                    Note = tbxNote.Text,
+                    Publisher = tbxPublisher.Text,
+                    Native = cbxNative.Checked,
+                    Readed = cbxReaded.Checked,
+                    ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
+                    ReadYear = int.TryParse(cmbYear.Text, out int result) ? result : null,
+                    Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : GenerateGuidForImageIfImageSelected(tbxImage.Text),
+                };
+                UserBookOperations.Update(newBook);
+                SaveImage(newBook.Image);
+                pbxImage.Image = Image.FromFile(newBook.Image);
+                DeleteOldImageIfImageChances(newBook.Image);
             }
-            MessageBox.Show("Hata(lar) olduğu için kaydetme işlemi devam etmedi.");
+        }
+
+        //image değişirse ve eğer eski imaj default değilse eski resmi images klasöründen sil ama tabi save işlemi başarılı olursa.
+
+        private void DeleteOldImageIfImageChances(string newImageAdress) // denenecek.
+        {
+            // Diğer tarafa bunu yollasam güncel listeyi çektikten sonra orda silmeyi denesem?            
+            if (_userBookToUpdate.Image != @".\images\default.png")
+            {
+                if (_userBookToUpdate.Image != newImageAdress)
+                {
+                    File.Delete(_userBookToUpdate.Image);
+                }
+            }
+        }
+
+        private void SaveImage(string guidedImageName)
+        {
+            if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)) && _userBookToUpdate.Image != tbxImage.Text)
+            {
+                Image loadedImage = Bitmap.FromFile(tbxImage.Text);
+                Image imageToSave = ResizeImage(loadedImage);
+                imageToSave.Save(guidedImageName);
+
+                //imageToSave.Save(guidedImageName,ImageFormat.Jpeg); => uzantı belirlemek istersen bunu kullanabilirsin.
+                //File.Copy(tbxImage.Text, guidedImageName, false); => eski kayıt, resmi resize yapmadan olduğu gibi kaydeden. (çalışıyor)
+            }
+
+        }
+
+        private Image ResizeImage(Image imgToResize)
+        {
+            return new Bitmap(imgToResize, new Size(220, 343));
+        }
+
+        private string GenerateGuidForImageIfImageSelected(string imageFileName)
+        {
+            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(imageFileName)))
+            {
+                return @".\images\default.png";
+            }
+            var extension = Path.GetExtension(imageFileName);
+            var guidedNameWithExtension = @".\images\" + Guid.NewGuid() + extension;
+            return guidedNameWithExtension;
         }
 
         private void DisableSaveButtonIfFormNotValid()
@@ -323,6 +385,26 @@ namespace Readed_Book_Lister
         {
             tbxPublisher.BackColor = Color.Wheat;
             EnableSaveButtonIfFormValid();
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog fileDialog = new OpenFileDialog();
+            fileDialog.Filter = "Resim Dosyaları (*.jpg; *.jpeg; *.gif; *.bmp; *.png;) | *.jpg; *.jpeg; *.gif; *.bmp; *.png;";
+            if (fileDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    tbxImage.Text = fileDialog.FileName;
+                    pbxImage.Image = new Bitmap(fileDialog.FileName);
+                }
+                catch (Exception)
+                {
+                    tbxImage.Text = string.Empty;
+                    MessageBox.Show(Messages.ImageNotProper);
+                    return;
+                }
+            }
         }
     }
 }

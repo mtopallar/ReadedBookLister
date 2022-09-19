@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.Common;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -71,6 +72,7 @@ namespace Readed_Book_Lister
                 DataGridViewTextBoxColumn dgvPublisherColumn = new DataGridViewTextBoxColumn();
                 dgvPublisherColumn.HeaderText = "Yayınevi";
                 dgvPublisherColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvPublisherColumn.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
 
                 DataGridViewTextBoxColumn dgvReadedColumn = new DataGridViewTextBoxColumn();
                 dgvReadedColumn.HeaderText = "Okunma";
@@ -292,11 +294,13 @@ namespace Readed_Book_Lister
                 UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value)-1];
                 
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
-                {
-                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook);                    
+                {   
+                    dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png"); // diğer taraftan silebilmek için
+                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook);
                     Hide();
-                    bookUpdateForm.ShowDialog();
+                    bookUpdateForm.ShowDialog();                    
                     Close();
+
                 }
                 else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {

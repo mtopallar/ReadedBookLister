@@ -96,6 +96,7 @@
             this.btnBrowse.Size = new System.Drawing.Size(65, 53);
             this.btnBrowse.TabIndex = 29;
             this.btnBrowse.UseVisualStyleBackColor = false;
+            this.btnBrowse.Click += new System.EventHandler(this.btnBrowse_Click);
             // 
             // cmbYear
             // 
