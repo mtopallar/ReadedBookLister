@@ -108,6 +108,7 @@
             this.cmbYear.Size = new System.Drawing.Size(134, 26);
             this.cmbYear.TabIndex = 26;
             this.cmbYear.Text = "Bitirme Tarihi (Yıl)";
+            this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
             // 
             // cmbMonth
             // 
@@ -134,6 +135,7 @@
             this.cmbMonth.Size = new System.Drawing.Size(134, 26);
             this.cmbMonth.TabIndex = 25;
             this.cmbMonth.Text = "Bitirme Tarihi (Ay)";
+            this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
             // 
             // cbxReaded
             // 
@@ -297,6 +299,7 @@
             this.tbxPublisher.Size = new System.Drawing.Size(284, 25);
             this.tbxPublisher.TabIndex = 19;
             this.tbxPublisher.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxPublisher.TextChanged += new System.EventHandler(this.tbxPublisher_TextChanged);
             // 
             // tbxIsbn
             // 
@@ -310,6 +313,7 @@
             this.tbxIsbn.Size = new System.Drawing.Size(277, 25);
             this.tbxIsbn.TabIndex = 27;
             this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxIsbn.TextChanged += new System.EventHandler(this.tbxIsbn_TextChanged);
             this.tbxIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxIsbn_KeyPress);
             // 
             // tbxAuthor
@@ -324,6 +328,7 @@
             this.tbxAuthor.Size = new System.Drawing.Size(284, 25);
             this.tbxAuthor.TabIndex = 18;
             this.tbxAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxAuthor.TextChanged += new System.EventHandler(this.tbxAuthor_TextChanged);
             // 
             // lblUpdateBook
             // 
@@ -352,6 +357,7 @@
             this.tbxName.Size = new System.Drawing.Size(284, 25);
             this.tbxName.TabIndex = 17;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // BookUpdate
             // 

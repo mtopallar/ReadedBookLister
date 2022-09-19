@@ -76,7 +76,7 @@ namespace Readed_Book_Lister
             switch (selectedMouthNumber)
             {
                 case 1:
-                    return "Ocak";                    
+                    return "Ocak";
                 case 2:
                     return "Şubat";
                 case 3:
@@ -107,7 +107,7 @@ namespace Readed_Book_Lister
         private void CmbYearFiller()
         {
             SetCmbYearMaxDropItems();
-           
+
             int startYear = 1930;
 
             for (int i = DateTime.Now.Year; i >= startYear; i--)
@@ -147,7 +147,7 @@ namespace Readed_Book_Lister
             {
                 cbxMonth.Checked = true;
                 cmbYear.Enabled = false;
-                cmbYear.Text = "Bitirma Tarihi (Yıl)";  
+                cmbYear.Text = "Bitirma Tarihi (Yıl)";
                 cbxMonth.Enabled = false;
             }
             else
@@ -160,8 +160,8 @@ namespace Readed_Book_Lister
         }
 
 
-        
-        private bool CheckMouthValueValid() // Ekle
+
+        private bool CheckMouthValueValid()
         {
             if (!cbxMonth.Checked && (MonthNameToInt(cmbMonth.Text) == 0))
             {
@@ -172,54 +172,107 @@ namespace Readed_Book_Lister
             return true;
         }
 
-        
-        private bool CheckYearValueValid() // Ekle
-        {            
+
+        private bool CheckYearValueValid()
+        {
             if (!cbxYear.Checked && !int.TryParse(cmbYear.Text, out _))
             {
                 cmbYear.BackColor = Color.FromArgb(250, 184, 187);
                 return false;
-            }
+            }            
             cmbYear.BackColor = Color.Wheat;
             return true;
         }
 
-        private bool IsbnLengthChecker() // Ekle
+        private bool IsbnLengthChecker()
         {
-            if ( StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text).Length == 13)
-            {
+            if (StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text).Length == 13)
+            {   
                 tbxIsbn.BackColor = Color.Wheat;
                 return true;
             }
             tbxIsbn.BackColor = Color.FromArgb(250, 184, 187);
             return false;
         }
-        //ad yazar yayınevi için de check error oluştur.
-        private bool CheckFormIfHasError(params bool[] checks) // saveden önce buraya hata kontrol metodlarını yolla.
+        
+
+        private bool CheckPublisherNameIsValid()
+        {
+            if (StringUtilityHelper.TrimStartAndFinish(tbxPublisher.Text).Length == 0)
+            {
+                tbxPublisher.BackColor = Color.FromArgb(250, 184, 187);
+                return false;
+            }
+            tbxPublisher.BackColor = Color.Wheat;
+            return true;
+        }
+
+        private bool CheckAuthorNameIsValid()
+        {
+            if (StringUtilityHelper.TrimStartAndFinish(tbxAuthor.Text).Length == 0)
+            {
+                tbxAuthor.BackColor = Color.FromArgb(250, 184, 187);
+                return false;
+            }
+            tbxAuthor.BackColor = Color.Wheat;
+            return true;
+        }
+
+        private bool CheckBookNameIsValid()
+        {
+            if (StringUtilityHelper.TrimStartAndFinish(tbxName.Text).Length == 0)
+            {
+                tbxName.BackColor = Color.FromArgb(250, 184, 187);
+                return false;
+            }
+            tbxName.BackColor = Color.Wheat;
+            return true;
+        }
+
+        private bool CheckFormIfHasError(params bool[] checks)
         {
             foreach (var item in checks)
             {
                 if (!item)
-                {                    
-                    return false;                    
-                }                
+                {
+                    DisableSaveButtonIfFormNotValid();
+                    return false;
+                }
             }
             return true;
         }
 
-        private void ClearErrorColors() // Kullanılacak
-        {            
+        private void ClearErrorColors()
+        {
             cmbMonth.BackColor = Color.Wheat;
             cmbYear.BackColor = Color.Wheat;
             tbxIsbn.BackColor = Color.Wheat;
+            tbxName.BackColor = Color.Wheat;
+            tbxAuthor.BackColor = Color.Wheat;
+            tbxPublisher.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            MessageBox.Show("Ay : " + CheckMouthValueValid());
-            MessageBox.Show("Yıl : " + CheckYearValueValid());
-            MessageBox.Show("Isbn : " + IsbnLengthChecker());
-            MessageBox.Show("Test");
+            if (CheckFormIfHasError(CheckMouthValueValid(), CheckYearValueValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
+            {
+                MessageBox.Show("Kaydet metodu çalıştı.");
+                return;
+            }
+            MessageBox.Show("Hata(lar) olduğu için kaydetme işlemi devam etmedi.");
+        }
+
+        private void DisableSaveButtonIfFormNotValid()
+        {
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_error.png");
+            btnSave.Enabled = false;
+        }
+
+        private void EnableSaveButtonIfFormValid()
+        {
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
+            btnSave.Enabled = true;
         }
 
         private void btnClear_Click(object sender, EventArgs e)
@@ -234,6 +287,42 @@ namespace Readed_Book_Lister
             {
                 e.Handled = true;
             }
+        }
+
+        private void cmbMonth_SelectedValueChanged(object sender, EventArgs e)
+        {
+            cmbMonth.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
+        }
+
+        private void cmbYear_SelectedValueChanged(object sender, EventArgs e)
+        {
+            cmbYear.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
+        }
+
+        private void tbxName_TextChanged(object sender, EventArgs e)
+        {
+            tbxName.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
+        }
+
+        private void tbxIsbn_TextChanged(object sender, EventArgs e)
+        {
+            tbxIsbn.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
+        }
+
+        private void tbxAuthor_TextChanged(object sender, EventArgs e)
+        {
+            tbxAuthor.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
+        }
+
+        private void tbxPublisher_TextChanged(object sender, EventArgs e)
+        {
+            tbxPublisher.BackColor = Color.Wheat;
+            EnableSaveButtonIfFormValid();
         }
     }
 }
