@@ -19,6 +19,7 @@ namespace Readed_Book_Lister
     {
         private readonly User _loggedUser;
         private List<UserBook>? UsersBookList;
+
         public Main(User loggedUser)
         {
             InitializeComponent();
@@ -297,8 +298,8 @@ namespace Readed_Book_Lister
                 {   
                     dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png"); // diğer taraftan silebilmek için
                     BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook);
-                    Hide();
-                    bookUpdateForm.ShowDialog();                    
+                    Hide();                    
+                    bookUpdateForm.ShowDialog();
                     Close();
 
                 }

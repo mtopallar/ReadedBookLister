@@ -24,8 +24,9 @@ namespace Readed_Book_Lister
             _userBookToUpdate = userBookToUpdate;
             FillBooksInfo();
             CmbYearFiller();
-            System.GC.Collect();
-            System.GC.WaitForPendingFinalizers();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
+
         }
 
         private void FillBooksInfo()
