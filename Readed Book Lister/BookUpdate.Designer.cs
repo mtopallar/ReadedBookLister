@@ -49,8 +49,8 @@
             this.tbxIsbn = new System.Windows.Forms.TextBox();
             this.tbxAuthor = new System.Windows.Forms.TextBox();
             this.lblUpdateBook = new System.Windows.Forms.Label();
-            this.toolTipAddBook = new System.Windows.Forms.ToolTip(this.components);
             this.tbxName = new System.Windows.Forms.TextBox();
+            this.toolTipUpdateBook = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).BeginInit();
             this.SuspendLayout();
             // 
@@ -81,6 +81,8 @@
             this.btnClear.TabIndex = 31;
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.MouseLeave += new System.EventHandler(this.btnClear_MouseLeave);
+            this.btnClear.MouseHover += new System.EventHandler(this.btnClear_MouseHover);
             // 
             // btnBrowse
             // 
@@ -256,6 +258,8 @@
             this.btnClose.TabIndex = 34;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+            this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
             // 
             // btnSave
             // 
@@ -272,6 +276,8 @@
             this.btnSave.TabIndex = 33;
             this.btnSave.UseVisualStyleBackColor = false;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            this.btnSave.MouseLeave += new System.EventHandler(this.btnSave_MouseLeave);
+            this.btnSave.MouseHover += new System.EventHandler(this.btnSave_MouseHover);
             // 
             // btnCancel
             // 
@@ -287,6 +293,9 @@
             this.btnCancel.Size = new System.Drawing.Size(49, 48);
             this.btnCancel.TabIndex = 32;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
+            this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
             // 
             // tbxPublisher
             // 
@@ -343,10 +352,6 @@
             this.lblUpdateBook.TabIndex = 24;
             this.lblUpdateBook.Text = "Kitabı Güncelle";
             // 
-            // toolTipAddBook
-            // 
-            this.toolTipAddBook.IsBalloon = true;
-            // 
             // tbxName
             // 
             this.tbxName.BackColor = System.Drawing.Color.Wheat;
@@ -359,6 +364,10 @@
             this.tbxName.TabIndex = 17;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
+            // 
+            // toolTipUpdateBook
+            // 
+            this.toolTipUpdateBook.IsBalloon = true;
             // 
             // BookUpdate
             // 
@@ -423,7 +432,7 @@
         private System.Windows.Forms.TextBox tbxIsbn;
         private System.Windows.Forms.TextBox tbxAuthor;
         private System.Windows.Forms.Label lblUpdateBook;
-        private System.Windows.Forms.ToolTip toolTipAddBook;
         private System.Windows.Forms.TextBox tbxName;
+        private System.Windows.Forms.ToolTip toolTipUpdateBook;
     }
 }

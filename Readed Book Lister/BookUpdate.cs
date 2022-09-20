@@ -174,7 +174,7 @@ namespace Readed_Book_Lister
                 cmbMonth.BackColor = Color.FromArgb(250, 184, 187);
                 return false;
             }
-            cmbMonth.BackColor = Color.Wheat;
+            cmbMonth.BackColor = Color.Wheat;            
             return true;
         }
 
@@ -292,10 +292,7 @@ namespace Readed_Book_Lister
             mainForm.ShowDialog();
             Close();
         }
-
-        //Hower efektleri ile güncelleme bitince güncel liste ile main e geri dönüşü sağla. !!!!--------------------------------
-
-        //image değişirse ve eğer eski imaj default değilse eski resmi images klasöründen sil ama tabi save işlemi başarılı olursa.
+                
 
         private void DeleteOldImageIfImageChances(string newImageAdress) // denenecek.
         {
@@ -419,6 +416,59 @@ namespace Readed_Book_Lister
                     return;
                 }
             }
+        }
+
+        private void btnSave_MouseHover(object sender, EventArgs e)
+        {
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save_hover.png");
+            toolTipUpdateBook.SetToolTip(btnSave, "Kaydet");
+        }
+
+        private void btnSave_MouseLeave(object sender, EventArgs e)
+        {
+            btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
+            toolTipUpdateBook.Hide(btnSave);
+        }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            GoBackToMainFormAfterUpdate();
+        }
+
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackgroundImage = Image.FromFile(@".\assets\cancel_hover.png");
+            toolTipUpdateBook.SetToolTip(btnCancel, "Vazgeç");
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackgroundImage = Image.FromFile(@".\assets\cancel.png");
+            toolTipUpdateBook.Hide(btnCancel);
+        }
+
+        private void btnClear_MouseHover(object sender, EventArgs e)
+        {
+            btnClear.BackgroundImage = Image.FromFile(@".\assets\clear_hover.png");
+            toolTipUpdateBook.SetToolTip(btnClear,"Temizle");
+        }
+
+        private void btnClear_MouseLeave(object sender, EventArgs e)
+        {
+            btnClear.BackgroundImage = Image.FromFile(@".\assets\clear.png");
+            toolTipUpdateBook.Hide(btnClear);
+        }
+
+        private void btnClose_MouseHover(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close_hover.png");
+            toolTipClose.SetToolTip(btnClose, "Kapat");
+        }
+
+        private void btnClose_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
+            toolTipClose.Hide(btnClose);
         }
     }
 }
