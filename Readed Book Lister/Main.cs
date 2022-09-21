@@ -354,8 +354,7 @@ namespace Readed_Book_Lister
                 Width = MaximumSize.Width;
                 searcAreaExpand = true;
                 pnlSearchArea.Enabled = true;
-                pnlSearchArea.Visible = true;
-                //DisableOtherSelections(pnlBookName); //sadece ilk selection aktif olsun.
+                pnlSearchArea.Visible = true;                
                 dgvUserBookList.Left += 7;
                 CenterToScreen();
             }
@@ -382,14 +381,15 @@ namespace Readed_Book_Lister
         private void tbxBookName_TextChanged(object sender, EventArgs e)
         {
             SendToSearchQuery();
-            dgvUserBookList.Rows.Clear();
-            FillDataGridView();
-            dgvUserBookList.Refresh();
         }
+
+        //diğer form öğeleri için de yap. Sonra dgw için list.count = 0 için flitreye göre veri yok uyarısı gir.
 
         private void SendToSearchQuery()
         {
             UsersBookList = UserBookOperations.GetListByQuery(_loggedUser.Id, tbxBookName, tbxAuthor, tbxPublisher, rbtnReaded, rbtNotReaded, rbtnHasNote, rbtnHasNoNote, rbtnNative, rbtnNotNative);
+            
+            RefreshDataGrivViewWithNewData();
         }
 
         private void rbtnQuery_CheckedChanged(object sender, EventArgs e)
@@ -469,15 +469,20 @@ namespace Readed_Book_Lister
             DisableIsbnArea();
             DisableQueryArea();
             EnableQueryArea();
-            GetUsersBook(_loggedUser.Id);
-            dgvUserBookList.Rows.Clear();
-            FillDataGridView();
-            dgvUserBookList.Refresh();
+            GetUsersBook(_loggedUser.Id);           
+            RefreshDataGrivViewWithNewData();
         }
 
         private void btnClearSearchArea_Click(object sender, EventArgs e)
         {
             ClearSearchArea();
+        }
+
+        private void RefreshDataGrivViewWithNewData()
+        {
+            dgvUserBookList.Rows.Clear();
+            FillDataGridView();
+            dgvUserBookList.Refresh();
         }
 
         
