@@ -79,6 +79,12 @@
     <None Update="assets\delete_hover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\filter.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\filter_hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\login-background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

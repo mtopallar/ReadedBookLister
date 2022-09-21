@@ -8,6 +8,8 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
+using System.Xml.Linq;
 
 namespace Readed_Book_Lister.Methods.App_Methods
 {
@@ -46,14 +48,14 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 return;
             }
 
-            EditNamesByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook)));            
+            EditNamesByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook)));
             userBook.Id = IdGeneratorForNewUserBook();
 
             var getAllList = GetAll();
             if (getAllList == null)
             {
-                var addBookToNewList = new List<UserBook> {userBook};
-                var newListToJson = JsonConvert.SerializeObject(addBookToNewList,Formatting.Indented);
+                var addBookToNewList = new List<UserBook> { userBook };
+                var newListToJson = JsonConvert.SerializeObject(addBookToNewList, Formatting.Indented);
                 File.WriteAllText(userBookFileName, newListToJson);
                 System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
                 return;
@@ -78,10 +80,10 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     return;
                 }
 
-                var getBookToUpdate = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();               
+                var getBookToUpdate = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();
 
                 if (getBookToUpdate != null)
-                {                    
+                {
                     EditNamesByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook)));
                     getBookToUpdate.Image = userBook.Image;
                     getBookToUpdate.BookName = userBook.BookName;
@@ -150,7 +152,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             var tryGetUserBooks = GetAllByUserId(userId);
             if (tryGetUserBooks != null)
             {
-                var tryGetBookByIsbn =  tryGetUserBooks.Where(x => x.Isbn == isbn).SingleOrDefault();
+                var tryGetBookByIsbn = tryGetUserBooks.Where(x => x.Isbn == isbn).SingleOrDefault();
                 if (tryGetBookByIsbn != null)
                 {
                     return tryGetBookByIsbn;
@@ -279,13 +281,13 @@ namespace Readed_Book_Lister.Methods.App_Methods
         }
 
         //PRIVATE Helper Methods
-        
+
         private static bool IsIsbnUsedBefore(UserBook userBook)
         {
             var getAllByUserId = GetAllByUserId(userBook.UserId);
             if (userBook.Id == 0)
-            {                
-                if (getAllByUserId != null && getAllByUserId.Any(u=>u.Isbn == userBook.Isbn))
+            {
+                if (getAllByUserId != null && getAllByUserId.Any(u => u.Isbn == userBook.Isbn))
                 {
                     System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
                     return false;
@@ -294,7 +296,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
             else
             {
-                if (getAllByUserId != null && getAllByUserId.Any(u=>u.Id != userBook.Id && u.Isbn == userBook.Isbn))
+                if (getAllByUserId != null && getAllByUserId.Any(u => u.Id != userBook.Id && u.Isbn == userBook.Isbn))
                 {
                     System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
                     return false;
@@ -302,7 +304,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 return true;
             }
         }
-                
+
         private static List<UserBook>? GetByUserIdAndBookNameWithBothLocalizations(int userId, string bookName)
         {
             var getAllByUserId = GetAllByUserId(userId);
@@ -360,7 +362,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return userBookList;
                 }
-               
+
                 return null;
             }
             System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
@@ -420,6 +422,101 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 return minId;
             }
             return (getUserBookList.OrderByDescending(u => u.Id).First().Id) + 1;
+        }
+
+        // Query temelli sorgu.
+        public static List<UserBook> GetListByQuery(int userId, TextBox tbxBookName, TextBox tbxAuthor, TextBox tbxPublisher, RadioButton rbtnReaded, RadioButton rbtnNotReaded, RadioButton rbtnHasNotes, RadioButton rbtnHasNoNotes, RadioButton rbtnNative, RadioButton rbtnNotNative)
+        {
+            var usersList = GetAllByUserId(userId);
+
+            if (usersList != null)
+            {
+                return GetListByNotNativeQuery( GetListByNativeQuery( GetListByHasNoNotesQuery( GetListByHasNotesQuery( GetListByNotReadedQuery( GetListByReadedQuery( GetListByPublisherQuery(GetListByAuthorNameQuery(GetListByBookNameQuery(usersList, tbxBookName),tbxAuthor),tbxPublisher),rbtnReaded),rbtnNotReaded),rbtnHasNotes),rbtnHasNoNotes),rbtnNative),rbtnNotNative);
+            }
+            return new List<UserBook>();
+            // burada count = 0 dönüyorum ki mainde dgv de !=0 !=null ve >0 durumları için ayrı cevap alabilelim. null ve >0 durumları zaten var. count == 0 için dgv düzenlenip flitre için text yazılırsa tamamdır.
+        }        
+
+        private static List<UserBook> GetListByBookNameQuery(List<UserBook> userBooks, TextBox tbxBookName)
+        {
+            if (userBooks.Count != 0 && !string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxBookName.Text)))
+            {
+                return userBooks.Where(u => u.BookName.StartsWith(StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(tbxBookName.Text)))).ToList();
+            }
+
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByAuthorNameQuery(List<UserBook> userBooks, TextBox tbxAuthorName)
+        {
+            if (userBooks.Count != 0 && !string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxAuthorName.Text)))
+            {
+                return userBooks.Where(u => u.AuthorName.StartsWith(StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(tbxAuthorName.Text)))).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByPublisherQuery(List<UserBook> userBooks, TextBox tbxPublisherName)
+        {
+            if (userBooks.Count != 0 && !string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxPublisherName.Text)))
+            {
+                return userBooks.Where(u => u.Publisher.StartsWith(StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(tbxPublisherName.Text)))).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByReadedQuery(List<UserBook> userBooks, RadioButton rbtnReaded)
+        {
+            if (userBooks.Count != 0 && rbtnReaded.Checked)
+            {
+                return userBooks.Where(u => u.Readed == true).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByNotReadedQuery(List<UserBook> userBooks, RadioButton rbtnNotReaded)
+        {
+            if (userBooks.Count != 0 && rbtnNotReaded.Checked)
+            {
+                return userBooks.Where(u => u.Readed == false).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByHasNotesQuery(List<UserBook> userBooks, RadioButton rbtnHasNotes)
+        {
+            if (userBooks.Count != 0 && rbtnHasNotes.Checked)
+            {
+                return userBooks.Where(u => u.Note != string.Empty).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByHasNoNotesQuery(List<UserBook> userBooks, RadioButton rbtnHasNoNotes)
+        {
+            if (userBooks.Count != 0 && rbtnHasNoNotes.Checked)
+            {
+                return userBooks.Where(u => u.Note == string.Empty).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByNativeQuery(List<UserBook> userBooks, RadioButton rbtnNative)
+        {
+            if (userBooks.Count != 0 && rbtnNative.Checked)
+            {
+                return userBooks.Where(u => u.Native == true).ToList();
+            }
+            return userBooks;
+        }
+
+        private static List<UserBook> GetListByNotNativeQuery(List<UserBook> userBooks, RadioButton rbtnNotNative)
+        {
+            if (userBooks.Count != 0 && rbtnNotNative.Checked)
+            {
+                return userBooks.Where(u => u.Native == false).ToList();
+            }
+            return userBooks;
         }
     }
 }
