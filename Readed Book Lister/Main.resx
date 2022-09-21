@@ -145,15 +145,6 @@
   <metadata name="toolTipClose.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>127, 17</value>
   </metadata>
-  <data name="btnStartSearch.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABGdBTUEAALGPC/xhBQAAAOJJREFUSEvt
-        lbENwkAUQ3/DDtmBkiYdsAxzULICyyCRHVLSMQQNAltyEYWvu8vBr7gnWZHy79uIWIk1/oud2QC9IrQ1
-        uyrmExwICd6bPXG9KMZnY7bCoV/+gIGesk+Dwx10nyzXih6dbMvAQg89ZFAj7vayWwaezWFmVizuyqYO
-        tPHsGafEHa3XU1G28jLlgFlp2ZaXKQcMc2WrL1OOVNm+LlNjjvc3UxrH4YVSGsfhhVIax+GFUhrH4YVS
-        GsfhhVIax+GFUhrHMQ3DV+iG6wlvLXwXgkHYiLAjwta61Wg4mL0Bl7APDEFlKKsAAAAASUVORK5CYII=
-</value>
-  </data>
   <data name="btnClearSearchArea.BackgroundImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAGQAAABkCAYAAABw4pVUAAAABGdBTUEAALGPC/xhBQAAB2VJREFUeF7t

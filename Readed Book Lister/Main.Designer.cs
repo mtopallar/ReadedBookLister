@@ -40,44 +40,32 @@
             this.toolTipMain = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             this.labelSearch = new System.Windows.Forms.Label();
-            this.rbtnNativeStatue = new System.Windows.Forms.RadioButton();
-            this.rbtnNote = new System.Windows.Forms.RadioButton();
             this.pnlNativeStatue = new System.Windows.Forms.Panel();
             this.rbtnNative = new System.Windows.Forms.RadioButton();
             this.rbtnNotNative = new System.Windows.Forms.RadioButton();
             this.pnlHasNote = new System.Windows.Forms.Panel();
             this.rbtnHasNote = new System.Windows.Forms.RadioButton();
             this.rbtnHasNoNote = new System.Windows.Forms.RadioButton();
-            this.rbtnReadStatue = new System.Windows.Forms.RadioButton();
             this.pnlReadStatue = new System.Windows.Forms.Panel();
             this.rbtnReaded = new System.Windows.Forms.RadioButton();
             this.rbtNotReaded = new System.Windows.Forms.RadioButton();
             this.tbxIsbn = new System.Windows.Forms.TextBox();
             this.rbtnIsbn = new System.Windows.Forms.RadioButton();
             this.tbxPublisher = new System.Windows.Forms.TextBox();
-            this.rbtnPublisher = new System.Windows.Forms.RadioButton();
             this.tbxAuthor = new System.Windows.Forms.TextBox();
-            this.rbtnAuthor = new System.Windows.Forms.RadioButton();
             this.tbxBookName = new System.Windows.Forms.TextBox();
-            this.rbtnBookName = new System.Windows.Forms.RadioButton();
-            this.pnlSearchButtons = new System.Windows.Forms.Panel();
-            this.btnStartSearch = new System.Windows.Forms.Button();
+            this.rbtnQuery = new System.Windows.Forms.RadioButton();
             this.btnClearSearchArea = new System.Windows.Forms.Button();
             this.pnlSearchArea = new System.Windows.Forms.Panel();
             this.pnlIsbn = new System.Windows.Forms.Panel();
-            this.pnlPublisher = new System.Windows.Forms.Panel();
-            this.pnlAuthor = new System.Windows.Forms.Panel();
-            this.pnlBookName = new System.Windows.Forms.Panel();
+            this.pnlQuery = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).BeginInit();
             this.pnlNativeStatue.SuspendLayout();
             this.pnlHasNote.SuspendLayout();
             this.pnlReadStatue.SuspendLayout();
-            this.pnlSearchButtons.SuspendLayout();
             this.pnlSearchArea.SuspendLayout();
             this.pnlIsbn.SuspendLayout();
-            this.pnlPublisher.SuspendLayout();
-            this.pnlAuthor.SuspendLayout();
-            this.pnlBookName.SuspendLayout();
+            this.pnlQuery.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnBookAdd
@@ -211,33 +199,15 @@
             this.labelSearch.TabIndex = 0;
             this.labelSearch.Text = "Kitap Ara...";
             // 
-            // rbtnNativeStatue
-            // 
-            this.rbtnNativeStatue.AutoSize = true;
-            this.rbtnNativeStatue.Location = new System.Drawing.Point(10, 337);
-            this.rbtnNativeStatue.Name = "rbtnNativeStatue";
-            this.rbtnNativeStatue.Size = new System.Drawing.Size(14, 13);
-            this.rbtnNativeStatue.TabIndex = 30;
-            this.rbtnNativeStatue.UseVisualStyleBackColor = true;
-            // 
-            // rbtnNote
-            // 
-            this.rbtnNote.AutoSize = true;
-            this.rbtnNote.Location = new System.Drawing.Point(10, 291);
-            this.rbtnNote.Name = "rbtnNote";
-            this.rbtnNote.Size = new System.Drawing.Size(14, 13);
-            this.rbtnNote.TabIndex = 28;
-            this.rbtnNote.UseVisualStyleBackColor = true;
-            // 
             // pnlNativeStatue
             // 
-            this.pnlNativeStatue.BackColor = System.Drawing.Color.Transparent;
+            this.pnlNativeStatue.BackColor = System.Drawing.Color.Tan;
             this.pnlNativeStatue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlNativeStatue.Controls.Add(this.rbtnNative);
             this.pnlNativeStatue.Controls.Add(this.rbtnNotNative);
-            this.pnlNativeStatue.Location = new System.Drawing.Point(29, 328);
+            this.pnlNativeStatue.Location = new System.Drawing.Point(3, 227);
             this.pnlNativeStatue.Name = "pnlNativeStatue";
-            this.pnlNativeStatue.Size = new System.Drawing.Size(281, 33);
+            this.pnlNativeStatue.Size = new System.Drawing.Size(279, 33);
             this.pnlNativeStatue.TabIndex = 29;
             // 
             // rbtnNative
@@ -262,13 +232,13 @@
             // 
             // pnlHasNote
             // 
-            this.pnlHasNote.BackColor = System.Drawing.Color.Transparent;
+            this.pnlHasNote.BackColor = System.Drawing.Color.Tan;
             this.pnlHasNote.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlHasNote.Controls.Add(this.rbtnHasNote);
             this.pnlHasNote.Controls.Add(this.rbtnHasNoNote);
-            this.pnlHasNote.Location = new System.Drawing.Point(29, 282);
+            this.pnlHasNote.Location = new System.Drawing.Point(3, 179);
             this.pnlHasNote.Name = "pnlHasNote";
-            this.pnlHasNote.Size = new System.Drawing.Size(280, 33);
+            this.pnlHasNote.Size = new System.Drawing.Size(278, 33);
             this.pnlHasNote.TabIndex = 27;
             // 
             // rbtnHasNote
@@ -291,24 +261,15 @@
             this.rbtnHasNoNote.Text = "Not İçermeyenler";
             this.rbtnHasNoNote.UseVisualStyleBackColor = true;
             // 
-            // rbtnReadStatue
-            // 
-            this.rbtnReadStatue.AutoSize = true;
-            this.rbtnReadStatue.Location = new System.Drawing.Point(10, 243);
-            this.rbtnReadStatue.Name = "rbtnReadStatue";
-            this.rbtnReadStatue.Size = new System.Drawing.Size(14, 13);
-            this.rbtnReadStatue.TabIndex = 26;
-            this.rbtnReadStatue.UseVisualStyleBackColor = true;
-            // 
             // pnlReadStatue
             // 
-            this.pnlReadStatue.BackColor = System.Drawing.Color.Transparent;
+            this.pnlReadStatue.BackColor = System.Drawing.Color.Tan;
             this.pnlReadStatue.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pnlReadStatue.Controls.Add(this.rbtnReaded);
             this.pnlReadStatue.Controls.Add(this.rbtNotReaded);
-            this.pnlReadStatue.Location = new System.Drawing.Point(29, 234);
+            this.pnlReadStatue.Location = new System.Drawing.Point(3, 131);
             this.pnlReadStatue.Name = "pnlReadStatue";
-            this.pnlReadStatue.Size = new System.Drawing.Size(281, 33);
+            this.pnlReadStatue.Size = new System.Drawing.Size(279, 33);
             this.pnlReadStatue.TabIndex = 25;
             // 
             // rbtnReaded
@@ -333,119 +294,78 @@
             // 
             // tbxIsbn
             // 
-            this.tbxIsbn.BackColor = System.Drawing.Color.Wheat;
-            this.tbxIsbn.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxIsbn.BackColor = System.Drawing.Color.Tan;
+            this.tbxIsbn.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxIsbn.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tbxIsbn.Location = new System.Drawing.Point(3, 7);
             this.tbxIsbn.Name = "tbxIsbn";
             this.tbxIsbn.PlaceholderText = "ISBN No";
-            this.tbxIsbn.Size = new System.Drawing.Size(278, 25);
+            this.tbxIsbn.Size = new System.Drawing.Size(274, 26);
             this.tbxIsbn.TabIndex = 24;
             this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // rbtnIsbn
             // 
-            this.rbtnIsbn.AutoSize = true;
-            this.rbtnIsbn.Location = new System.Drawing.Point(10, 199);
+            this.rbtnIsbn.BackColor = System.Drawing.Color.Tan;
+            this.rbtnIsbn.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnIsbn.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbtnIsbn.Location = new System.Drawing.Point(3, 322);
             this.rbtnIsbn.Name = "rbtnIsbn";
-            this.rbtnIsbn.Size = new System.Drawing.Size(14, 13);
+            this.rbtnIsbn.Size = new System.Drawing.Size(21, 39);
             this.rbtnIsbn.TabIndex = 23;
-            this.rbtnIsbn.UseVisualStyleBackColor = true;
+            this.rbtnIsbn.UseVisualStyleBackColor = false;
+            this.rbtnIsbn.CheckedChanged += new System.EventHandler(this.rbtnIsbn_CheckedChanged);
             // 
             // tbxPublisher
             // 
-            this.tbxPublisher.BackColor = System.Drawing.Color.Wheat;
-            this.tbxPublisher.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxPublisher.BackColor = System.Drawing.Color.Tan;
+            this.tbxPublisher.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxPublisher.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbxPublisher.Location = new System.Drawing.Point(3, 6);
+            this.tbxPublisher.Location = new System.Drawing.Point(2, 91);
             this.tbxPublisher.Name = "tbxPublisher";
             this.tbxPublisher.PlaceholderText = "Yayınevi Adı";
-            this.tbxPublisher.Size = new System.Drawing.Size(275, 25);
+            this.tbxPublisher.Size = new System.Drawing.Size(275, 26);
             this.tbxPublisher.TabIndex = 22;
             this.tbxPublisher.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // rbtnPublisher
-            // 
-            this.rbtnPublisher.AutoSize = true;
-            this.rbtnPublisher.Location = new System.Drawing.Point(10, 153);
-            this.rbtnPublisher.Name = "rbtnPublisher";
-            this.rbtnPublisher.Size = new System.Drawing.Size(14, 13);
-            this.rbtnPublisher.TabIndex = 21;
-            this.rbtnPublisher.UseVisualStyleBackColor = true;
-            // 
             // tbxAuthor
             // 
-            this.tbxAuthor.BackColor = System.Drawing.Color.Wheat;
-            this.tbxAuthor.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxAuthor.BackColor = System.Drawing.Color.Tan;
+            this.tbxAuthor.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxAuthor.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.tbxAuthor.Location = new System.Drawing.Point(3, 6);
+            this.tbxAuthor.Location = new System.Drawing.Point(3, 47);
             this.tbxAuthor.Name = "tbxAuthor";
             this.tbxAuthor.PlaceholderText = "Yazar Adı";
-            this.tbxAuthor.Size = new System.Drawing.Size(275, 25);
+            this.tbxAuthor.Size = new System.Drawing.Size(275, 26);
             this.tbxAuthor.TabIndex = 20;
             this.tbxAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
-            // rbtnAuthor
-            // 
-            this.rbtnAuthor.AutoSize = true;
-            this.rbtnAuthor.Location = new System.Drawing.Point(10, 107);
-            this.rbtnAuthor.Name = "rbtnAuthor";
-            this.rbtnAuthor.Size = new System.Drawing.Size(14, 13);
-            this.rbtnAuthor.TabIndex = 19;
-            this.rbtnAuthor.UseVisualStyleBackColor = true;
-            this.rbtnAuthor.CheckedChanged += new System.EventHandler(this.rbtnAuthor_CheckedChanged);
-            // 
             // tbxBookName
             // 
-            this.tbxBookName.BackColor = System.Drawing.Color.Wheat;
-            this.tbxBookName.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.tbxBookName.BackColor = System.Drawing.Color.Tan;
+            this.tbxBookName.Font = new System.Drawing.Font("Trebuchet MS", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.tbxBookName.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.tbxBookName.Location = new System.Drawing.Point(3, 6);
             this.tbxBookName.Name = "tbxBookName";
             this.tbxBookName.PlaceholderText = "Kitap Ad";
-            this.tbxBookName.Size = new System.Drawing.Size(275, 25);
+            this.tbxBookName.Size = new System.Drawing.Size(275, 26);
             this.tbxBookName.TabIndex = 18;
             this.tbxBookName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxBookName.TextChanged += new System.EventHandler(this.tbxBookName_TextChanged);
             // 
-            // rbtnBookName
+            // rbtnQuery
             // 
-            this.rbtnBookName.AutoSize = true;
-            this.rbtnBookName.Checked = true;
-            this.rbtnBookName.Location = new System.Drawing.Point(10, 59);
-            this.rbtnBookName.Name = "rbtnBookName";
-            this.rbtnBookName.Size = new System.Drawing.Size(14, 13);
-            this.rbtnBookName.TabIndex = 0;
-            this.rbtnBookName.TabStop = true;
-            this.rbtnBookName.UseVisualStyleBackColor = true;
-            this.rbtnBookName.CheckedChanged += new System.EventHandler(this.rbtnBookName_CheckedChanged);
-            // 
-            // pnlSearchButtons
-            // 
-            this.pnlSearchButtons.Controls.Add(this.btnStartSearch);
-            this.pnlSearchButtons.Controls.Add(this.btnClearSearchArea);
-            this.pnlSearchButtons.Location = new System.Drawing.Point(3, 367);
-            this.pnlSearchButtons.Name = "pnlSearchButtons";
-            this.pnlSearchButtons.Size = new System.Drawing.Size(309, 62);
-            this.pnlSearchButtons.TabIndex = 24;
-            // 
-            // btnStartSearch
-            // 
-            this.btnStartSearch.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnStartSearch.BackColor = System.Drawing.Color.Transparent;
-            this.btnStartSearch.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStartSearch.BackgroundImage")));
-            this.btnStartSearch.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnStartSearch.FlatAppearance.BorderSize = 0;
-            this.btnStartSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
-            this.btnStartSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
-            this.btnStartSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStartSearch.Location = new System.Drawing.Point(255, 5);
-            this.btnStartSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnStartSearch.Name = "btnStartSearch";
-            this.btnStartSearch.Size = new System.Drawing.Size(48, 54);
-            this.btnStartSearch.TabIndex = 22;
-            this.btnStartSearch.UseVisualStyleBackColor = false;
-            this.btnStartSearch.Click += new System.EventHandler(this.btnStartSearch_Click);
+            this.rbtnQuery.BackColor = System.Drawing.Color.Tan;
+            this.rbtnQuery.CheckAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.rbtnQuery.Checked = true;
+            this.rbtnQuery.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.rbtnQuery.Location = new System.Drawing.Point(3, 46);
+            this.rbtnQuery.Name = "rbtnQuery";
+            this.rbtnQuery.Size = new System.Drawing.Size(21, 266);
+            this.rbtnQuery.TabIndex = 0;
+            this.rbtnQuery.TabStop = true;
+            this.rbtnQuery.UseVisualStyleBackColor = false;
+            this.rbtnQuery.CheckedChanged += new System.EventHandler(this.rbtnQuery_CheckedChanged);
             // 
             // btnClearSearchArea
             // 
@@ -457,34 +377,25 @@
             this.btnClearSearchArea.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnClearSearchArea.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnClearSearchArea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnClearSearchArea.Location = new System.Drawing.Point(200, 4);
+            this.btnClearSearchArea.Location = new System.Drawing.Point(140, 368);
             this.btnClearSearchArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearSearchArea.Name = "btnClearSearchArea";
-            this.btnClearSearchArea.Size = new System.Drawing.Size(50, 54);
+            this.btnClearSearchArea.Size = new System.Drawing.Size(44, 54);
             this.btnClearSearchArea.TabIndex = 23;
             this.btnClearSearchArea.UseVisualStyleBackColor = false;
+            this.btnClearSearchArea.Click += new System.EventHandler(this.btnClearSearchArea_Click);
             // 
             // pnlSearchArea
             // 
             this.pnlSearchArea.Anchor = System.Windows.Forms.AnchorStyles.Right;
             this.pnlSearchArea.BackColor = System.Drawing.Color.Wheat;
             this.pnlSearchArea.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnlSearchArea.Controls.Add(this.btnClearSearchArea);
             this.pnlSearchArea.Controls.Add(this.labelSearch);
-            this.pnlSearchArea.Controls.Add(this.rbtnNativeStatue);
             this.pnlSearchArea.Controls.Add(this.pnlIsbn);
-            this.pnlSearchArea.Controls.Add(this.rbtnNote);
-            this.pnlSearchArea.Controls.Add(this.pnlSearchButtons);
-            this.pnlSearchArea.Controls.Add(this.rbtnReadStatue);
-            this.pnlSearchArea.Controls.Add(this.pnlPublisher);
             this.pnlSearchArea.Controls.Add(this.rbtnIsbn);
-            this.pnlSearchArea.Controls.Add(this.pnlNativeStatue);
-            this.pnlSearchArea.Controls.Add(this.rbtnPublisher);
-            this.pnlSearchArea.Controls.Add(this.pnlAuthor);
-            this.pnlSearchArea.Controls.Add(this.rbtnAuthor);
-            this.pnlSearchArea.Controls.Add(this.pnlHasNote);
-            this.pnlSearchArea.Controls.Add(this.rbtnBookName);
-            this.pnlSearchArea.Controls.Add(this.pnlBookName);
-            this.pnlSearchArea.Controls.Add(this.pnlReadStatue);
+            this.pnlSearchArea.Controls.Add(this.rbtnQuery);
+            this.pnlSearchArea.Controls.Add(this.pnlQuery);
             this.pnlSearchArea.Location = new System.Drawing.Point(1179, 113);
             this.pnlSearchArea.Name = "pnlSearchArea";
             this.pnlSearchArea.Size = new System.Drawing.Size(315, 434);
@@ -492,35 +403,26 @@
             // 
             // pnlIsbn
             // 
+            this.pnlIsbn.BackColor = System.Drawing.Color.Tan;
             this.pnlIsbn.Controls.Add(this.tbxIsbn);
-            this.pnlIsbn.Location = new System.Drawing.Point(29, 186);
+            this.pnlIsbn.Location = new System.Drawing.Point(29, 322);
             this.pnlIsbn.Name = "pnlIsbn";
             this.pnlIsbn.Size = new System.Drawing.Size(281, 39);
             this.pnlIsbn.TabIndex = 2;
             // 
-            // pnlPublisher
+            // pnlQuery
             // 
-            this.pnlPublisher.Controls.Add(this.tbxPublisher);
-            this.pnlPublisher.Location = new System.Drawing.Point(29, 140);
-            this.pnlPublisher.Name = "pnlPublisher";
-            this.pnlPublisher.Size = new System.Drawing.Size(281, 38);
-            this.pnlPublisher.TabIndex = 2;
-            // 
-            // pnlAuthor
-            // 
-            this.pnlAuthor.Controls.Add(this.tbxAuthor);
-            this.pnlAuthor.Location = new System.Drawing.Point(29, 94);
-            this.pnlAuthor.Name = "pnlAuthor";
-            this.pnlAuthor.Size = new System.Drawing.Size(281, 36);
-            this.pnlAuthor.TabIndex = 2;
-            // 
-            // pnlBookName
-            // 
-            this.pnlBookName.Controls.Add(this.tbxBookName);
-            this.pnlBookName.Location = new System.Drawing.Point(29, 46);
-            this.pnlBookName.Name = "pnlBookName";
-            this.pnlBookName.Size = new System.Drawing.Size(281, 38);
-            this.pnlBookName.TabIndex = 1;
+            this.pnlQuery.BackColor = System.Drawing.Color.Tan;
+            this.pnlQuery.Controls.Add(this.tbxPublisher);
+            this.pnlQuery.Controls.Add(this.tbxBookName);
+            this.pnlQuery.Controls.Add(this.tbxAuthor);
+            this.pnlQuery.Controls.Add(this.pnlNativeStatue);
+            this.pnlQuery.Controls.Add(this.pnlReadStatue);
+            this.pnlQuery.Controls.Add(this.pnlHasNote);
+            this.pnlQuery.Location = new System.Drawing.Point(29, 46);
+            this.pnlQuery.Name = "pnlQuery";
+            this.pnlQuery.Size = new System.Drawing.Size(281, 266);
+            this.pnlQuery.TabIndex = 1;
             // 
             // Main
             // 
@@ -555,17 +457,12 @@
             this.pnlHasNote.PerformLayout();
             this.pnlReadStatue.ResumeLayout(false);
             this.pnlReadStatue.PerformLayout();
-            this.pnlSearchButtons.ResumeLayout(false);
             this.pnlSearchArea.ResumeLayout(false);
             this.pnlSearchArea.PerformLayout();
             this.pnlIsbn.ResumeLayout(false);
             this.pnlIsbn.PerformLayout();
-            this.pnlPublisher.ResumeLayout(false);
-            this.pnlPublisher.PerformLayout();
-            this.pnlAuthor.ResumeLayout(false);
-            this.pnlAuthor.PerformLayout();
-            this.pnlBookName.ResumeLayout(false);
-            this.pnlBookName.PerformLayout();
+            this.pnlQuery.ResumeLayout(false);
+            this.pnlQuery.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -582,33 +479,24 @@
         private System.Windows.Forms.ToolTip toolTipMain;
         private System.Windows.Forms.ToolTip toolTipClose;
         private System.Windows.Forms.Label labelSearch;
-        private System.Windows.Forms.RadioButton rbtnBookName;
+        private System.Windows.Forms.RadioButton rbtnQuery;
         private System.Windows.Forms.TextBox tbxBookName;
         private System.Windows.Forms.TextBox tbxIsbn;
         private System.Windows.Forms.RadioButton rbtnIsbn;
         private System.Windows.Forms.TextBox tbxPublisher;
-        private System.Windows.Forms.RadioButton rbtnPublisher;
         private System.Windows.Forms.TextBox tbxAuthor;
-        private System.Windows.Forms.RadioButton rbtnAuthor;
-        private System.Windows.Forms.RadioButton rbtnNativeStatue;
-        private System.Windows.Forms.RadioButton rbtnNote;
         private System.Windows.Forms.Panel pnlNativeStatue;
         private System.Windows.Forms.RadioButton rbtnNative;
         private System.Windows.Forms.RadioButton rbtnNotNative;
         private System.Windows.Forms.Panel pnlHasNote;
         private System.Windows.Forms.RadioButton rbtnHasNote;
         private System.Windows.Forms.RadioButton rbtnHasNoNote;
-        private System.Windows.Forms.RadioButton rbtnReadStatue;
         private System.Windows.Forms.Panel pnlReadStatue;
         private System.Windows.Forms.RadioButton rbtnReaded;
         private System.Windows.Forms.RadioButton rbtNotReaded;
-        private System.Windows.Forms.Button btnStartSearch;
         private System.Windows.Forms.Button btnClearSearchArea;
-        private System.Windows.Forms.Panel pnlSearchButtons;
         private System.Windows.Forms.Panel pnlSearchArea;
         private System.Windows.Forms.Panel pnlIsbn;
-        private System.Windows.Forms.Panel pnlPublisher;
-        private System.Windows.Forms.Panel pnlAuthor;
-        private System.Windows.Forms.Panel pnlBookName;
+        private System.Windows.Forms.Panel pnlQuery;
     }
 }

@@ -26,14 +26,15 @@ namespace Readed_Book_Lister
         {
             InitializeComponent();
             _loggedUser = loggedUser;
-            //GetUsersBook(_loggedUser.Id);
-            GetUsersBook(1);
+            GetUsersBook(_loggedUser.Id);
+            //GetUsersBook(1);
             CreateDataGridViewColums();
             SetDataGridViewStyleByUsersBookList();
             FillDataGridView();
             DisableBookSearchButtonIfUserHasNoBook();
             LabelHeaderSet();
             SetFormToStartSize();
+            DisableIsbnArea();
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
         }
@@ -373,94 +374,112 @@ namespace Readed_Book_Lister
         {
             pnlSearchArea.Enabled = false;
             pnlSearchArea.Visible = false;
-            Size = MinimumSize;
+            Size = MinimumSize;            
             dgvUserBookList.Left = (Width / 2) - (dgvUserBookList.Width / 2);
         }
 
-        private void rbtnBookName_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (rbtnBookName.Checked)
-            //{
-            //    ClearSearcArea();
-            //    DisableOtherSelections(pnlBookName);
-            //}
-        }
-
-        private void rbtnAuthor_CheckedChanged(object sender, EventArgs e)
-        {
-            //if (rbtnAuthor.Checked)
-            //{
-            //    ClearSearcArea();
-            //    DisableOtherSelections(pnlAuthor);
-            //}
-        }
-
-        //Diğer Radiolar için devam et.
-
-        private void DisableOtherSelections(Panel panelShouldActive)
-        {
-            List<Panel> panelList = new() { pnlBookName, pnlAuthor, pnlPublisher, pnlIsbn, pnlReadStatue, pnlHasNote, pnlNativeStatue };
-
-            foreach (var panel in panelList)
-            {
-                if (panel != panelShouldActive)
-                {
-                    if (panel == pnlReadStatue || panel == pnlHasNote || panel == pnlNativeStatue)
-                    {
-                        panel.BackColor = Color.BurlyWood;
-                    }
-
-                    panel.Enabled = false;
-
-                    foreach (Control textBox in panel.Controls.Cast<Control>())
-                    {
-                        if (textBox is TextBox)
-                        {
-                            textBox.BackColor = Color.BurlyWood;
-                            textBox.Text = string.Empty;
-                        }
-                    }
-                }
-            }
-        }
-
-        private void ClearSearcArea()
-        {
-            List<Panel> panelList = new() { pnlBookName, pnlAuthor, pnlPublisher, pnlIsbn, pnlReadStatue, pnlHasNote, pnlNativeStatue };
-
-            foreach (var panel in panelList)
-            {
-                panel.BackColor = Color.Wheat;
-                panel.Enabled = true;
-
-                foreach (Control textBox in panel.Controls.Cast<Control>())
-                {
-                    if (textBox is TextBox)
-                    {
-                        textBox.BackColor = Color.Wheat;
-                        textBox.Text = string.Empty;
-                    }
-                }
-            }
-        }
-
-        private void btnStartSearch_Click(object sender, EventArgs e)
-        {
-            UsersBookList = UserBookOperations.GetListByQuery(_loggedUser.Id, tbxBookName, tbxAuthor,tbxPublisher,rbtnReaded,rbtNotReaded,rbtnHasNote,rbtnHasNoNote,rbtnNative,rbtnNotNative);
-
-            dgvUserBookList.Rows.Clear();
-            FillDataGridView();
-            dgvUserBookList.Refresh();
-
-        }
 
         private void tbxBookName_TextChanged(object sender, EventArgs e)
         {
-            UsersBookList = UserBookOperations.GetListByQuery(_loggedUser.Id, tbxBookName, tbxAuthor, tbxPublisher, rbtnReaded, rbtNotReaded, rbtnHasNote, rbtnHasNoNote, rbtnNative, rbtnNotNative);
-
+            SendToSearchQuery();
             dgvUserBookList.Rows.Clear();
             FillDataGridView();
             dgvUserBookList.Refresh();
         }
+
+        private void SendToSearchQuery()
+        {
+            UsersBookList = UserBookOperations.GetListByQuery(_loggedUser.Id, tbxBookName, tbxAuthor, tbxPublisher, rbtnReaded, rbtNotReaded, rbtnHasNote, rbtnHasNoNote, rbtnNative, rbtnNotNative);
+        }
+
+        private void rbtnQuery_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnQuery.Checked)
+            {
+                EnableQueryArea();
+                DisableIsbnArea();
+            }            
+        }
+
+        private void rbtnIsbn_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rbtnIsbn.Checked)
+            {
+                DisableQueryArea();
+                EnableIsbnArea();
+            }
+        }
+
+        private void DisableIsbnArea()
+        {
+            tbxIsbn.Text = string.Empty;
+            tbxIsbn.BackColor = Color.LightGray;
+            pnlIsbn.BackColor = Color.LightGray;
+            pnlIsbn.Enabled = false;
+            rbtnIsbn.BackColor = Color.LightGray;
+        }
+
+        private void EnableIsbnArea()
+        {
+            rbtnIsbn.Checked = true;
+            tbxIsbn.BackColor = Color.Tan;
+            pnlIsbn.BackColor = Color.Tan;
+            pnlIsbn.Enabled = true;
+            rbtnIsbn.BackColor = Color.Tan;
+        }
+
+        private void DisableQueryArea()
+        {
+            rbtnQuery.BackColor = Color.LightGray;
+            tbxBookName.BackColor = Color.LightGray;
+            tbxAuthor.BackColor = Color.LightGray;
+            tbxPublisher.BackColor = Color.LightGray;
+            pnlReadStatue.BackColor = Color.LightGray;
+            pnlHasNote.BackColor = Color.LightGray;
+            pnlNativeStatue.BackColor = Color.LightGray;
+            pnlQuery.BackColor = Color.LightGray;
+            tbxBookName.Text = string.Empty;
+            tbxAuthor.Text = string.Empty;
+            tbxPublisher.Text = string.Empty;
+            pnlQuery.Enabled = false;
+            rbtnReaded.Checked = false;
+            rbtNotReaded.Checked = false;
+            rbtnHasNote.Checked = false;
+            rbtnHasNoNote.Checked = false;
+            rbtnNative.Checked = false;
+            rbtnNotNative.Checked = false;
+        }
+
+        private void EnableQueryArea()
+        {
+            rbtnQuery.Checked = true;
+            pnlQuery.Enabled = true;
+            rbtnQuery.BackColor = Color.Tan;
+            tbxBookName.BackColor = Color.Tan;
+            tbxAuthor.BackColor = Color.Tan;
+            tbxPublisher.BackColor = Color.Tan;
+            pnlReadStatue.BackColor = Color.Tan;
+            pnlHasNote.BackColor = Color.Tan;
+            pnlNativeStatue.BackColor = Color.Tan;
+            pnlQuery.BackColor = Color.Tan;            
+        }
+
+        private void ClearSearchArea()
+        {                        
+            DisableIsbnArea();
+            DisableQueryArea();
+            EnableQueryArea();
+            GetUsersBook(_loggedUser.Id);
+            dgvUserBookList.Rows.Clear();
+            FillDataGridView();
+            dgvUserBookList.Refresh();
+        }
+
+        private void btnClearSearchArea_Click(object sender, EventArgs e)
+        {
+            ClearSearchArea();
+        }
+
+        
     }
 }
