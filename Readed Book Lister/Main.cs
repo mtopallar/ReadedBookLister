@@ -33,8 +33,9 @@ namespace Readed_Book_Lister
             FillDataGridView();
             DisableBookSearchButtonIfUserHasNoBook();
             LabelHeaderSet();
-            SetFormToStartSize();
-            DisableIsbnArea();
+            SetFormToStartSize();            
+            EnableSelectedPanel(pnlQuery);
+            EnabledPanelRadioButtonStatue(rbtnQuery);
             //GC.Collect();
             //GC.WaitForPendingFinalizers();
         }
@@ -354,7 +355,7 @@ namespace Readed_Book_Lister
                 Width = MaximumSize.Width;
                 searcAreaExpand = true;
                 pnlSearchArea.Enabled = true;
-                pnlSearchArea.Visible = true;                
+                pnlSearchArea.Visible = true;
                 dgvUserBookList.Left += 7;
                 CenterToScreen();
             }
@@ -373,7 +374,7 @@ namespace Readed_Book_Lister
         {
             pnlSearchArea.Enabled = false;
             pnlSearchArea.Visible = false;
-            Size = MinimumSize;            
+            Size = MinimumSize;
             dgvUserBookList.Left = (Width / 2) - (dgvUserBookList.Width / 2);
         }
 
@@ -388,7 +389,7 @@ namespace Readed_Book_Lister
         private void SendToSearchQuery()
         {
             UsersBookList = UserBookOperations.GetListByQuery(_loggedUser.Id, tbxBookName, tbxAuthor, tbxPublisher, rbtnReaded, rbtNotReaded, rbtnHasNote, rbtnHasNoNote, rbtnNative, rbtnNotNative);
-            
+
             RefreshDataGrivViewWithNewData();
         }
 
@@ -396,80 +397,119 @@ namespace Readed_Book_Lister
         {
             if (rbtnQuery.Checked)
             {
-                EnableQueryArea();
-                DisableIsbnArea();
-            }            
+                EnableSelectedPanel(pnlQuery);
+                EnabledPanelRadioButtonStatue(rbtnQuery);
+            }
         }
 
         private void rbtnIsbn_CheckedChanged(object sender, EventArgs e)
         {
             if (rbtnIsbn.Checked)
             {
-                DisableQueryArea();
-                EnableIsbnArea();
+                EnableSelectedPanel(pnlIsbn);
+                EnabledPanelRadioButtonStatue(rbtnIsbn);
             }
         }
 
-        private void DisableIsbnArea()
+        private void EnabledPanelRadioButtonStatue(RadioButton radiobuttonToEnable)
         {
-            tbxIsbn.Text = string.Empty;
-            tbxIsbn.BackColor = Color.LightGray;
-            pnlIsbn.BackColor = Color.LightGray;
-            pnlIsbn.Enabled = false;
-            rbtnIsbn.BackColor = Color.LightGray;
+            List<RadioButton> radioButtons = new() { rbtnQuery, rbtnIsbn };
+            foreach (var item in radioButtons)
+            {
+                if (item == radiobuttonToEnable)
+                {
+                    item.BackColor = Color.Tan;
+                    item.Checked = true;                    
+                }
+                else
+                {
+                    item.BackColor = Color.LightGray;
+                    item.Checked = false;
+                }
+            }
         }
 
-        private void EnableIsbnArea()
+        private void EnableSelectedPanel(Panel panelToEnable)
         {
-            rbtnIsbn.Checked = true;
-            tbxIsbn.BackColor = Color.Tan;
-            pnlIsbn.BackColor = Color.Tan;
-            pnlIsbn.Enabled = true;
-            rbtnIsbn.BackColor = Color.Tan;
+            List<Panel> formPanels = new() { pnlQuery, pnlIsbn };
+
+            foreach (var panel in formPanels)
+            {
+                if (panel == panelToEnable)
+                {
+                    foreach (var control in panel.Controls)
+                    {
+                        if (control is TextBox)
+                        {
+                            TextBox textBox = (TextBox)control;
+                            textBox.BackColor = Color.Tan;
+                            textBox.Text = string.Empty;
+                        }
+                        if (control is Panel)
+                        {
+                            Panel enabledPanel = (Panel)control;
+                            enabledPanel.BackColor = Color.Tan;
+
+                            foreach (var panelRadios in enabledPanel.Controls)
+                            {
+                                if (panelRadios is RadioButton)
+                                {
+                                    RadioButton radioButton = (RadioButton)panelRadios;
+                                    radioButton.BackColor = Color.Tan;
+                                    radioButton.Checked = false;
+                                }
+                            }
+                        }
+
+                    }
+                    panel.BackColor = Color.Tan;
+                    panel.Enabled = true;
+                }
+                else
+                {
+                    DisableUnselectedPanel(panel);
+                }
+            }
         }
 
-        private void DisableQueryArea()
+        private void DisableUnselectedPanel(Panel panelToDisable)
         {
-            rbtnQuery.BackColor = Color.LightGray;
-            tbxBookName.BackColor = Color.LightGray;
-            tbxAuthor.BackColor = Color.LightGray;
-            tbxPublisher.BackColor = Color.LightGray;
-            pnlReadStatue.BackColor = Color.LightGray;
-            pnlHasNote.BackColor = Color.LightGray;
-            pnlNativeStatue.BackColor = Color.LightGray;
-            pnlQuery.BackColor = Color.LightGray;
-            tbxBookName.Text = string.Empty;
-            tbxAuthor.Text = string.Empty;
-            tbxPublisher.Text = string.Empty;
-            pnlQuery.Enabled = false;
-            rbtnReaded.Checked = false;
-            rbtNotReaded.Checked = false;
-            rbtnHasNote.Checked = false;
-            rbtnHasNoNote.Checked = false;
-            rbtnNative.Checked = false;
-            rbtnNotNative.Checked = false;
-        }
+            foreach (var control in panelToDisable.Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox textBox = (TextBox)control;
+                    textBox.Text = string.Empty;
+                    textBox.BackColor = Color.LightGray;
+                }
+                if (control is Panel)
+                {
+                    Panel disabledPanel = (Panel)control;
+                    disabledPanel.BackColor = Color.LightGray;
 
-        private void EnableQueryArea()
-        {
-            rbtnQuery.Checked = true;
-            pnlQuery.Enabled = true;
-            rbtnQuery.BackColor = Color.Tan;
-            tbxBookName.BackColor = Color.Tan;
-            tbxAuthor.BackColor = Color.Tan;
-            tbxPublisher.BackColor = Color.Tan;
-            pnlReadStatue.BackColor = Color.Tan;
-            pnlHasNote.BackColor = Color.Tan;
-            pnlNativeStatue.BackColor = Color.Tan;
-            pnlQuery.BackColor = Color.Tan;            
-        }
+                    foreach (var panelRadios in disabledPanel.Controls)
+                    {
+                        if (panelRadios is RadioButton)
+                        {
+                            RadioButton radioButton = (RadioButton)panelRadios;
+                            radioButton.Checked = false;
+                            radioButton.BackColor = Color.LightGray;
+                        }
+                    }
+                }
 
+            }
+
+            panelToDisable.BackColor = Color.LightGray;
+            panelToDisable.Enabled = false;
+        }
+        
         private void ClearSearchArea()
-        {                        
-            DisableIsbnArea();
-            DisableQueryArea();
-            EnableQueryArea();
-            GetUsersBook(_loggedUser.Id);           
+        {
+            
+            EnableSelectedPanel(pnlQuery);
+            EnabledPanelRadioButtonStatue(rbtnQuery);
+            GetUsersBook(_loggedUser.Id);
             RefreshDataGrivViewWithNewData();
         }
 
@@ -485,6 +525,6 @@ namespace Readed_Book_Lister
             dgvUserBookList.Refresh();
         }
 
-        
+
     }
 }
