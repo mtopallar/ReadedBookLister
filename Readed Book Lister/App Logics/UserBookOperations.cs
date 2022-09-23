@@ -16,7 +16,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
     public class UserBookOperations
     {
         const string userBookFileName = "userbooks.json";
-        
+
         public static void Add(UserBook userBook)
         {
             // Güzel bir örnek oldu.
@@ -28,7 +28,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
 
             BookNameToTitleCaseAndTrim(EditAuthorNameByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook))));
-            
+
             userBook.Id = IdGeneratorForNewUserBook();
 
             var getAllList = GetAll();
@@ -105,21 +105,6 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
         }
 
-        public static UserBook? GetByUserIdAndIsbnNo(int userId, string isbn)
-        {
-            var tryGetUserBooks = GetAllByUserId(userId);
-            if (tryGetUserBooks != null)
-            {
-                var tryGetBookByIsbn = tryGetUserBooks.Where(x => x.Isbn == isbn).SingleOrDefault();
-                if (tryGetBookByIsbn != null)
-                {
-                    return tryGetBookByIsbn;
-                }
-                System.Windows.Forms.MessageBox.Show(Messages.NoBookByIsnbNo);
-            }
-            return null;
-        }
-
         public static List<UserBook>? GetAllByReadMouthYearAndUserId(int userId, int readMonth, int readYear)
         {
             //Checked.
@@ -188,106 +173,18 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-        //PRIVATE Helper Methods
-
-        private static bool IsIsbnUsedBefore(UserBook userBook)
+        public static List<UserBook> GetByUserIdAndIsbnNo(int userId, TextBox tbxIsbn)
         {
-            var getAllByUserId = GetAllByUserId(userBook.UserId);
-            if (userBook.Id == 0)
+            var userBooks = GetAllByUserId(userId);
+
+            if (userBooks != null)
             {
-                if (getAllByUserId != null && getAllByUserId.Any(u => u.Isbn == userBook.Isbn))
+                if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text)))
                 {
-                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
-                    return false;
+                    return userBooks.Where(u => u.Isbn.StartsWith(StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text))).ToList();
                 }
-                return true;
             }
-            else
-            {
-                if (getAllByUserId != null && getAllByUserId.Any(u => u.Id != userBook.Id && u.Isbn == userBook.Isbn))
-                {
-                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
-                    return false;
-                }
-                return true;
-            }
-        }
-        
-        private static List<UserBook>? GetAll()
-        {
-            // Checked.
-            var jsonUserBookList = File.ReadAllText(userBookFileName);
-            var userBookList = JsonConvert.DeserializeObject<List<UserBook>>(jsonUserBookList);
-            if (userBookList != null)
-            {
-                if (userBookList.Count != 0)
-                {
-                    return userBookList;
-                }
-
-                return null;
-            }
-            System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
-            return null;
-        }
-
-        private static bool HasUserGotAnyBook(int userId)
-        {
-            // Checked.
-            var getAllBooks = GetAll();
-            if (getAllBooks != null)
-            {
-                var getUserBooks = getAllBooks.Where(u => u.UserId == userId).ToList();
-                if (getUserBooks.Count != 0)
-                {
-                    return true;
-                }
-                System.Windows.Forms.MessageBox.Show(Messages.UserHasNoAnyBook);
-                return false;
-            }
-            return false;
-        }
-
-        private static UserBook EditAuthorNameByNativeState(UserBook userBook)
-        {
-            // Checked.
-            if (userBook.Native)
-            {
-                userBook.AuthorName = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.AuthorName));
-                return userBook;
-            }            
-            userBook.AuthorName = StringUtilityHelper.ToEngLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.AuthorName));
-            return userBook;
-        }
-
-        private static UserBook NoteTrimmer(UserBook userBook)
-        {
-            // Checked.
-            userBook.Note = StringUtilityHelper.TrimStartAndFinish(userBook.Note);
-            return userBook;
-        }
-
-        private static UserBook PublisherToTitleCaseAndTrim(UserBook userBook)
-        {
-            userBook.Publisher = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.Publisher));
-            return userBook;
-        }
-
-        private static UserBook BookNameToTitleCaseAndTrim(UserBook userBook)
-        {
-            userBook.BookName = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.BookName));
-            return userBook;
-        }
-
-        private static int IdGeneratorForNewUserBook()
-        {
-            int minId = 1;
-            var getUserBookList = GetAll();
-            if (getUserBookList == null)
-            {
-                return minId;
-            }
-            return (getUserBookList.OrderByDescending(u => u.Id).First().Id) + 1;
+            return new List<UserBook>();
         }
 
         // Query temelli sorgu.
@@ -297,11 +194,13 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
             if (usersList != null)
             {
-                return GetListByNotNativeQuery( GetListByNativeQuery( GetListByHasNoNotesQuery( GetListByHasNotesQuery( GetListByNotReadedQuery( GetListByReadedQuery( GetListByPublisherQuery(GetListByAuthorNameQuery(GetListByBookNameQuery(usersList, tbxBookName),tbxAuthor),tbxPublisher),rbtnReaded),rbtnNotReaded),rbtnHasNotes),rbtnHasNoNotes),rbtnNative),rbtnNotNative);
+                return GetListByNotNativeQuery(GetListByNativeQuery(GetListByHasNoNotesQuery(GetListByHasNotesQuery(GetListByNotReadedQuery(GetListByReadedQuery(GetListByPublisherQuery(GetListByAuthorNameQuery(GetListByBookNameQuery(usersList, tbxBookName), tbxAuthor), tbxPublisher), rbtnReaded), rbtnNotReaded), rbtnHasNotes), rbtnHasNoNotes), rbtnNative), rbtnNotNative);
             }
             return new List<UserBook>();
             // burada count = 0 dönüyorum ki mainde dgv de !=0 !=null ve >0 durumları için ayrı cevap alabilelim. null ve >0 durumları zaten var. count == 0 için dgv düzenlenip flitre için text yazılırsa tamamdır.
-        }        
+        }
+
+        //PRIVATE Helper Methods
 
         private static List<UserBook> GetListByBookNameQuery(List<UserBook> userBooks, TextBox tbxBookName)
         {
@@ -386,5 +285,106 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
             return userBooks;
         }
+        
+        private static bool IsIsbnUsedBefore(UserBook userBook)
+        {
+            var getAllByUserId = GetAllByUserId(userBook.UserId);
+            if (userBook.Id == 0)
+            {
+                if (getAllByUserId != null && getAllByUserId.Any(u => u.Isbn == userBook.Isbn))
+                {
+                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
+                    return false;
+                }
+                return true;
+            }
+            else
+            {
+                if (getAllByUserId != null && getAllByUserId.Any(u => u.Id != userBook.Id && u.Isbn == userBook.Isbn))
+                {
+                    System.Windows.Forms.MessageBox.Show(Messages.IsbnUsedBefore);
+                    return false;
+                }
+                return true;
+            }
+        }
+
+        private static List<UserBook>? GetAll()
+        {
+            // Checked.
+            var jsonUserBookList = File.ReadAllText(userBookFileName);
+            var userBookList = JsonConvert.DeserializeObject<List<UserBook>>(jsonUserBookList);
+            if (userBookList != null)
+            {
+                if (userBookList.Count != 0)
+                {
+                    return userBookList;
+                }
+
+                return null;
+            }
+            System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
+            return null;
+        }
+
+        private static bool HasUserGotAnyBook(int userId)
+        {
+            // Checked.
+            var getAllBooks = GetAll();
+            if (getAllBooks != null)
+            {
+                var getUserBooks = getAllBooks.Where(u => u.UserId == userId).ToList();
+                if (getUserBooks.Count != 0)
+                {
+                    return true;
+                }
+                System.Windows.Forms.MessageBox.Show(Messages.UserHasNoAnyBook);
+                return false;
+            }
+            return false;
+        }
+
+        private static UserBook EditAuthorNameByNativeState(UserBook userBook)
+        {
+            // Checked.
+            if (userBook.Native)
+            {
+                userBook.AuthorName = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.AuthorName));
+                return userBook;
+            }
+            userBook.AuthorName = StringUtilityHelper.ToEngLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.AuthorName));
+            return userBook;
+        }
+
+        private static UserBook NoteTrimmer(UserBook userBook)
+        {
+            // Checked.
+            userBook.Note = StringUtilityHelper.TrimStartAndFinish(userBook.Note);
+            return userBook;
+        }
+
+        private static UserBook PublisherToTitleCaseAndTrim(UserBook userBook)
+        {
+            userBook.Publisher = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.Publisher));
+            return userBook;
+        }
+
+        private static UserBook BookNameToTitleCaseAndTrim(UserBook userBook)
+        {
+            userBook.BookName = StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(userBook.BookName));
+            return userBook;
+        }
+
+        private static int IdGeneratorForNewUserBook()
+        {
+            int minId = 1;
+            var getUserBookList = GetAll();
+            if (getUserBookList == null)
+            {
+                return minId;
+            }
+            return (getUserBookList.OrderByDescending(u => u.Id).First().Id) + 1;
+        }
+        
     }
 }

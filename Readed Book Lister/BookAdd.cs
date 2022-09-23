@@ -1,4 +1,5 @@
-﻿using Readed_Book_Lister.Constants;
+﻿using Readed_Book_Lister.App_Logics;
+using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
@@ -61,10 +62,10 @@ namespace Readed_Book_Lister
                 Native = cbxNative.Checked,
                 ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
                 ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
-                Image = GenerateGuidForImageIfImageSelected(tbxImage.Text),
+                Image = ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
             };
-            SaveImage(userBook.Image);
+            ImageOperations.SaveImage(userBook.Image,tbxImage);
             UserBookOperations.Add(userBook);
             ClearForm();
         }
@@ -222,36 +223,6 @@ namespace Readed_Book_Lister
         #endregion
 
         #region Helpers
-
-        private void SaveImage(string guidedImageName)
-        {
-            if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
-            {
-                Image loadedImage = Bitmap.FromFile(tbxImage.Text);
-                Image imageToSave = ResizeImage(loadedImage);
-                imageToSave.Save(guidedImageName);
-
-                //imageToSave.Save(guidedImageName,ImageFormat.Jpeg); => uzantı belirlemek istersen bunu kullanabilirsin.
-                //File.Copy(tbxImage.Text, guidedImageName, false); => eski kayıt, resmi resize yapmadan olduğu gibi kaydeden. (çalışıyor)
-            }
-
-        }
-
-        private Image ResizeImage(Image imgToResize)
-        {
-            return new Bitmap(imgToResize, new Size(220, 343));
-        }
-
-        private string GenerateGuidForImageIfImageSelected(string imageFileName)
-        {
-            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(imageFileName)))
-            {
-                return @".\images\default.png";
-            }
-            var extension = Path.GetExtension(imageFileName);
-            var guidedNameWithExtension = @".\images\" + Guid.NewGuid() + extension;
-            return guidedNameWithExtension;
-        }
 
         private void ClearForm()
         {
