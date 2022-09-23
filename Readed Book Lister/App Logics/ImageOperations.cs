@@ -28,8 +28,7 @@ namespace Readed_Book_Lister.App_Logics
 
         private static Image ResizeImage(Image imgToResize)
         {
-            return new Bitmap(imgToResize, new Size(181, 278));
-            //return new Bitmap(imgToResize, new Size(220, 343));
+            return new Bitmap(imgToResize, new Size(220, 343));
         }
 
         public static string GenerateGuidForImageIfImageSelected(string imageFileName)
