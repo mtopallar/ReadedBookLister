@@ -458,7 +458,6 @@ namespace Readed_Book_Lister
                                 }
                             }
                         }
-
                     }
                     panel.BackColor = Color.Tan;
                     panel.Enabled = true;
@@ -472,7 +471,7 @@ namespace Readed_Book_Lister
 
         private void DisableUnselectedPanel(Panel panelToDisable)
         {
-            ClearDisabledPanelControls(panelToDisable);
+            ClearPanelControls(panelToDisable);
 
             foreach (var control in panelToDisable.Controls)
             {
@@ -495,14 +494,13 @@ namespace Readed_Book_Lister
                         }
                     }
                 }
-
             }
 
             panelToDisable.BackColor = Color.LightGray;
             panelToDisable.Enabled = false;
         }
 
-        private void ClearDisabledPanelControls(Panel panelToClearControls)
+        private void ClearPanelControls(Panel panelToClearControls)
         {
             foreach (var control in panelToClearControls.Controls)
             {
@@ -529,9 +527,15 @@ namespace Readed_Book_Lister
         
         private void ClearSearchArea()
         {
-            ClearDisabledPanelControls(pnlQuery);
-            EnableSelectedPanel(pnlQuery);
-            EnabledPanelRadioButtonStatue(rbtnQuery);
+            if (rbtnQuery.Checked)
+            {
+                ClearPanelControls(pnlQuery);
+            }
+            else
+            {
+                EnableSelectedPanel(pnlQuery);
+                EnabledPanelRadioButtonStatue(rbtnQuery);
+            }            
             GetUsersBook(_loggedUser.Id);
             RefreshDataGrivViewWithNewData();
         }
