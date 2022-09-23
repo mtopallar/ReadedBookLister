@@ -442,8 +442,7 @@ namespace Readed_Book_Lister
                         if (control is TextBox)
                         {
                             TextBox textBox = (TextBox)control;
-                            textBox.BackColor = Color.Tan;
-                            textBox.Text = string.Empty;
+                            textBox.BackColor = Color.Tan;                            
                         }
                         if (control is Panel)
                         {
@@ -455,8 +454,7 @@ namespace Readed_Book_Lister
                                 if (panelRadios is RadioButton)
                                 {
                                     RadioButton radioButton = (RadioButton)panelRadios;
-                                    radioButton.BackColor = Color.Tan;
-                                    radioButton.Checked = false;
+                                    radioButton.BackColor = Color.Tan;                                    
                                 }
                             }
                         }
@@ -474,12 +472,13 @@ namespace Readed_Book_Lister
 
         private void DisableUnselectedPanel(Panel panelToDisable)
         {
+            ClearDisabledPanelControls(panelToDisable);
+
             foreach (var control in panelToDisable.Controls)
             {
                 if (control is TextBox)
                 {
-                    TextBox textBox = (TextBox)control;
-                    textBox.Text = string.Empty;
+                    TextBox textBox = (TextBox)control;                    
                     textBox.BackColor = Color.LightGray;
                 }
                 if (control is Panel)
@@ -491,8 +490,7 @@ namespace Readed_Book_Lister
                     {
                         if (panelRadios is RadioButton)
                         {
-                            RadioButton radioButton = (RadioButton)panelRadios;
-                            radioButton.Checked = false;
+                            RadioButton radioButton = (RadioButton)panelRadios;                            
                             radioButton.BackColor = Color.LightGray;
                         }
                     }
@@ -503,10 +501,35 @@ namespace Readed_Book_Lister
             panelToDisable.BackColor = Color.LightGray;
             panelToDisable.Enabled = false;
         }
+
+        private void ClearDisabledPanelControls(Panel panelToClearControls)
+        {
+            foreach (var control in panelToClearControls.Controls)
+            {
+                if (control is TextBox)
+                {
+                    TextBox textBox = (TextBox)control;
+                    textBox.Text = string.Empty;                    
+                }
+                if (control is Panel)
+                {
+                    Panel disabledPanel = (Panel)control;                    
+
+                    foreach (var panelRadios in disabledPanel.Controls)
+                    {
+                        if (panelRadios is RadioButton)
+                        {
+                            RadioButton radioButton = (RadioButton)panelRadios;
+                            radioButton.Checked = false;                            
+                        }
+                    }
+                }
+            }
+        }
         
         private void ClearSearchArea()
         {
-            
+            ClearDisabledPanelControls(pnlQuery);
             EnableSelectedPanel(pnlQuery);
             EnabledPanelRadioButtonStatue(rbtnQuery);
             GetUsersBook(_loggedUser.Id);
