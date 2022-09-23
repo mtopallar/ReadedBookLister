@@ -207,7 +207,7 @@
             this.pnlNativeStatue.Controls.Add(this.rbtnNotNative);
             this.pnlNativeStatue.Location = new System.Drawing.Point(3, 227);
             this.pnlNativeStatue.Name = "pnlNativeStatue";
-            this.pnlNativeStatue.Size = new System.Drawing.Size(279, 33);
+            this.pnlNativeStatue.Size = new System.Drawing.Size(274, 33);
             this.pnlNativeStatue.TabIndex = 29;
             // 
             // rbtnNative
@@ -238,7 +238,7 @@
             this.pnlHasNote.Controls.Add(this.rbtnHasNoNote);
             this.pnlHasNote.Location = new System.Drawing.Point(3, 179);
             this.pnlHasNote.Name = "pnlHasNote";
-            this.pnlHasNote.Size = new System.Drawing.Size(278, 33);
+            this.pnlHasNote.Size = new System.Drawing.Size(274, 33);
             this.pnlHasNote.TabIndex = 27;
             // 
             // rbtnHasNote
@@ -269,7 +269,7 @@
             this.pnlReadStatue.Controls.Add(this.rbtNotReaded);
             this.pnlReadStatue.Location = new System.Drawing.Point(3, 131);
             this.pnlReadStatue.Name = "pnlReadStatue";
-            this.pnlReadStatue.Size = new System.Drawing.Size(279, 33);
+            this.pnlReadStatue.Size = new System.Drawing.Size(274, 33);
             this.pnlReadStatue.TabIndex = 25;
             // 
             // rbtnReaded
