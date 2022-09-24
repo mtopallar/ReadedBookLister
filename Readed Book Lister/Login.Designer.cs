@@ -60,7 +60,7 @@
             this.tbxName.ForeColor = System.Drawing.Color.Black;
             this.tbxName.Location = new System.Drawing.Point(54, 207);
             this.tbxName.Name = "tbxName";
-            this.tbxName.PlaceholderText = "Nickname";
+            this.tbxName.PlaceholderText = "Kullanıcı Adı";
             this.tbxName.Size = new System.Drawing.Size(235, 25);
             this.tbxName.TabIndex = 1;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -73,7 +73,7 @@
             this.tbxPassword.ForeColor = System.Drawing.Color.Black;
             this.tbxPassword.Location = new System.Drawing.Point(54, 267);
             this.tbxPassword.Name = "tbxPassword";
-            this.tbxPassword.PlaceholderText = "Password";
+            this.tbxPassword.PlaceholderText = "Şifre";
             this.tbxPassword.Size = new System.Drawing.Size(235, 25);
             this.tbxPassword.TabIndex = 2;
             this.tbxPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
