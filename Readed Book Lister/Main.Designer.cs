@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnBookAdd = new System.Windows.Forms.Button();
             this.dgvUserBookList = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
@@ -59,6 +59,7 @@
             this.pnlSearchArea = new System.Windows.Forms.Panel();
             this.pnlIsbn = new System.Windows.Forms.Panel();
             this.pnlQuery = new System.Windows.Forms.Panel();
+            this.btnStatistics = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).BeginInit();
             this.pnlNativeStatue.SuspendLayout();
             this.pnlHasNote.SuspendLayout();
@@ -77,7 +78,7 @@
             this.btnBookAdd.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBookAdd.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBookAdd.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookAdd.Location = new System.Drawing.Point(1099, 585);
+            this.btnBookAdd.Location = new System.Drawing.Point(962, 577);
             this.btnBookAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookAdd.Name = "btnBookAdd";
             this.btnBookAdd.Size = new System.Drawing.Size(75, 55);
@@ -95,14 +96,14 @@
             this.dgvUserBookList.AllowUserToResizeRows = false;
             this.dgvUserBookList.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dgvUserBookList.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle3;
             this.dgvUserBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserBookList.Location = new System.Drawing.Point(52, 113);
             this.dgvUserBookList.Name = "dgvUserBookList";
@@ -156,7 +157,7 @@
             this.btnBookSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookSearch.Location = new System.Drawing.Point(1033, 585);
+            this.btnBookSearch.Location = new System.Drawing.Point(1033, 577);
             this.btnBookSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookSearch.Name = "btnBookSearch";
             this.btnBookSearch.Size = new System.Drawing.Size(75, 55);
@@ -175,12 +176,13 @@
             this.btnProfileOperations.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnProfileOperations.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnProfileOperations.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnProfileOperations.Location = new System.Drawing.Point(963, 585);
+            this.btnProfileOperations.Location = new System.Drawing.Point(899, 577);
             this.btnProfileOperations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnProfileOperations.Name = "btnProfileOperations";
             this.btnProfileOperations.Size = new System.Drawing.Size(75, 55);
             this.btnProfileOperations.TabIndex = 20;
             this.btnProfileOperations.UseVisualStyleBackColor = false;
+            this.btnProfileOperations.Click += new System.EventHandler(this.btnProfileOperations_Click);
             this.btnProfileOperations.MouseLeave += new System.EventHandler(this.btnProfileOperations_MouseLeave);
             this.btnProfileOperations.MouseHover += new System.EventHandler(this.btnProfileOperations_MouseHover);
             // 
@@ -434,6 +436,25 @@
             this.pnlQuery.Size = new System.Drawing.Size(281, 266);
             this.pnlQuery.TabIndex = 1;
             // 
+            // btnStatistics
+            // 
+            this.btnStatistics.BackColor = System.Drawing.Color.Transparent;
+            this.btnStatistics.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnStatistics.BackgroundImage")));
+            this.btnStatistics.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnStatistics.FlatAppearance.BorderSize = 0;
+            this.btnStatistics.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnStatistics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStatistics.Location = new System.Drawing.Point(1099, 577);
+            this.btnStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnStatistics.Name = "btnStatistics";
+            this.btnStatistics.Size = new System.Drawing.Size(75, 55);
+            this.btnStatistics.TabIndex = 32;
+            this.btnStatistics.UseVisualStyleBackColor = false;
+            this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
+            this.btnStatistics.MouseLeave += new System.EventHandler(this.btnStatistics_MouseLeave);
+            this.btnStatistics.MouseHover += new System.EventHandler(this.btnStatistics_MouseHover);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -442,6 +463,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1545, 680);
             this.ControlBox = false;
+            this.Controls.Add(this.btnStatistics);
             this.Controls.Add(this.pnlSearchArea);
             this.Controls.Add(this.btnProfileOperations);
             this.Controls.Add(this.btnBookSearch);
@@ -460,6 +482,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.dgvUserBookList)).EndInit();
             this.pnlNativeStatue.ResumeLayout(false);
             this.pnlNativeStatue.PerformLayout();
@@ -508,5 +533,6 @@
         private System.Windows.Forms.Panel pnlSearchArea;
         private System.Windows.Forms.Panel pnlIsbn;
         private System.Windows.Forms.Panel pnlQuery;
+        private System.Windows.Forms.Button btnStatistics;
     }
 }

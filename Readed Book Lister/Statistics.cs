@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace Readed_Book_Lister
 {
-    public partial class BookSearch : Form
+    public partial class Statistics : Form
     {
-        public BookSearch()
+        public Statistics()
         {
             InitializeComponent();
         }

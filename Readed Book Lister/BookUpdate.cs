@@ -20,6 +20,8 @@ namespace Readed_Book_Lister
     {
         private UserBook _userBookToUpdate;
         private User _loggedUser;
+        private bool _dragging = false;
+        private Point _startPoint = new Point(0, 0);
         public BookUpdate(UserBook userBookToUpdate, User loggedUser)
         {
             InitializeComponent();
@@ -431,6 +433,27 @@ namespace Readed_Book_Lister
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
             toolTipClose.Hide(btnClose);
+        }
+
+        private void BookUpdate_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragging = true;
+            _startPoint = new Point(e.X, e.Y);
+        }
+
+        private void BookUpdate_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragging = false;
+        }
+
+        private void BookUpdate_MouseMove(object sender, MouseEventArgs e)
+        {
+
+            if (_dragging)
+            {
+                Point point = PointToScreen(e.Location);
+                Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
+            }
         }
     }
 }

@@ -405,6 +405,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "BookUpdate";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.BookUpdate_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.BookUpdate_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.BookUpdate_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.pbxImage)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

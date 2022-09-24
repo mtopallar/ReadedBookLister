@@ -1,6 +1,6 @@
 ﻿namespace Readed_Book_Lister
 {
-    partial class BookSearch
+    partial class Statistics
     {
         /// <summary>
         /// Required designer variable.
@@ -28,10 +28,17 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Statistics
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Text = "BookSearch";
+            this.Name = "Statistics";
+            this.Text = "Statistics";
+            this.ResumeLayout(false);
+
         }
 
         #endregion

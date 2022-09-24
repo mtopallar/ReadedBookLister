@@ -22,6 +22,8 @@ namespace Readed_Book_Lister
         private readonly User _loggedUser;
         private List<UserBook>? UsersBookList;
         bool searcAreaExpand = false;
+        private bool _dragging = false;
+        private Point _startPoint = new Point(0, 0);
         public Main(User loggedUser)
         {
             InitializeComponent();
@@ -455,7 +457,6 @@ namespace Readed_Book_Lister
             RefreshDataGrivViewWithNewData();
         }
 
-        //diğer form öğeleri için de yap. Sonra dgw için list.count = 0 için flitreye göre veri yok uyarısı gir. UP
 
         private void SendToSearchQuery()
         {
@@ -631,6 +632,54 @@ namespace Readed_Book_Lister
             if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
             {
                 e.Handled = true;
+            }
+        }
+
+        private void btnStatistics_MouseHover(object sender, EventArgs e)
+        {
+            btnStatistics.BackgroundImage = Image.FromFile(@".\assets\statistics_hover.png");
+            toolTipMain.SetToolTip(btnStatistics, "İstatistikler");
+        }
+
+        private void btnStatistics_MouseLeave(object sender, EventArgs e)
+        {
+            btnStatistics.BackgroundImage = Image.FromFile(@".\assets\statistics.png");
+            toolTipMain.Hide(btnStatistics);
+        }
+
+        private void btnProfileOperations_Click(object sender, EventArgs e)
+        {
+            ProfileOperations profileOperations = new ProfileOperations();
+            Hide();
+            profileOperations.ShowDialog();
+            Close();
+        }
+
+        private void btnStatistics_Click(object sender, EventArgs e)
+        {
+            Statistics statistics = new Statistics();
+            Hide();
+            statistics.ShowDialog();
+            Close();
+        }
+
+        private void Main_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragging = true;
+            _startPoint = new Point(e.X, e.Y);
+        }
+
+        private void Main_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragging = false;
+        }
+
+        private void Main_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragging)
+            {
+                Point point = PointToScreen(e.Location);
+                Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
             }
         }
     }
