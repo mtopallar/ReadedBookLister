@@ -30,8 +30,7 @@ namespace Readed_Book_Lister
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnClose);
             _loggedUser = loggedUser;
-            GetUsersBook(_loggedUser.Id);
-            //GetUsersBook(1);
+            GetUsersBook(_loggedUser.Id);            
             CreateDataGridViewColums();
             SetDataGridViewStyleByUsersBookList();
             FillDataGridView();
@@ -263,7 +262,7 @@ namespace Readed_Book_Lister
 
         private void LabelHeaderSet()
         {
-            lblHeader.Text = _loggedUser.NickName + " kitaplığı";
+            lblHeader.Text = _loggedUser.NickName + " Kitaplığı";
             LocateLabelToCentre();
         }
 

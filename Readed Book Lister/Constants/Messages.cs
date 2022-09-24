@@ -18,8 +18,7 @@ namespace Readed_Book_Lister.Constants
         public static string CurrentPasswordError = "Mevcut parolanızı hatalı girdiniz.";
         public static string DeleteUserSuccesful = "Kullanıcı bşarıyla silindi.";
         public static string UsersListIsEmpty = "Kayıtlı kullanıcı yok.";
-        public static string UserBookAddSuccessful = "Kitap başarıyla kaydedildi.";
-        public static string UserHasNoAnyBook = "Sistemde kayıtlı kitabınız mevcut değildir.";
+        public static string UserBookAddSuccessful = "Kitap başarıyla kaydedildi.";        
         public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";
         public static string NoBookWithNote = "Notu olan kitabınız bulunmamaktadır.";
         public static string NoBookWithoutNote = "Notu olmayan kitabınız bulunmamaktadır.";

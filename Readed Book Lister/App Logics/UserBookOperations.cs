@@ -340,8 +340,6 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return true;
                 }
-                System.Windows.Forms.MessageBox.Show(Messages.UserHasNoAnyBook);
-                return false;
             }
             return false;
         }
