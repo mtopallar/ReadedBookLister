@@ -300,13 +300,13 @@ namespace Readed_Book_Lister
             if (dgvUserBookList.RowCount > 0)
             {
                 UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value) - 1];
-
+                
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
-                    dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png"); // diğer taraftan silebilmek için
+                    dgvUserBookList.CurrentRow.Cells[10].Value = null;                    
                     BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
                     Hide();
-                    bookUpdateForm.ShowDialog();
+                    bookUpdateForm.ShowDialog();                    
                     Close();
 
                 }

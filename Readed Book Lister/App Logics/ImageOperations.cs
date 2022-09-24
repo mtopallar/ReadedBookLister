@@ -12,7 +12,7 @@ namespace Readed_Book_Lister.App_Logics
 {
     public class ImageOperations
     {
-        public static void SaveImage(string guidedImageName,TextBox tbxImage)
+        public static void SaveImage(string guidedImageName, TextBox tbxImage)
         {
             if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
             {
@@ -26,9 +26,14 @@ namespace Readed_Book_Lister.App_Logics
 
         }
 
-        private static Image ResizeImage(Image imgToResize)
+        public static void DeleteOldImageIfNotDefault(string oldImage) // denenecek.
         {
-            return new Bitmap(imgToResize, new Size(220, 343));
+            var defaultImage = @".\images\default.png";
+                      
+            if (oldImage != defaultImage)
+            {
+                File.Delete(oldImage);
+            }
         }
 
         public static string GenerateGuidForImageIfImageSelected(string imageFileName)
@@ -40,6 +45,11 @@ namespace Readed_Book_Lister.App_Logics
             var extension = Path.GetExtension(imageFileName);
             var guidedNameWithExtension = @".\images\" + Guid.NewGuid() + extension;
             return guidedNameWithExtension;
+        }
+
+        private static Image ResizeImage(Image imgToResize)
+        {
+            return new Bitmap(imgToResize, new Size(220, 343));
         }
     }
 }

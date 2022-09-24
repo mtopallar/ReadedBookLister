@@ -1,4 +1,5 @@
-﻿using Readed_Book_Lister.Constants;
+﻿using Readed_Book_Lister.App_Logics;
+using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
@@ -275,12 +276,16 @@ namespace Readed_Book_Lister
                     Readed = cbxReaded.Checked,
                     ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
                     ReadYear = int.TryParse(cmbYear.Text, out int result) ? result : null,
-                    Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : GenerateGuidForImageIfImageSelected(tbxImage.Text),
+                    Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text)
                 };
                 UserBookOperations.Update(newBook);
-                SaveImage(newBook.Image);
-                pbxImage.Image = Image.FromFile(tbxImage.Text);
-                DeleteOldImageIfImageChances(newBook.Image);
+                if (_userBookToUpdate.Image != tbxImage.Text)
+                {
+                    ImageOperations.SaveImage(newBook.Image, tbxImage);
+                    pbxImage.Image = Image.FromFile(tbxImage.Text);
+                    ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
+                }
+
                 GoBackToMainFormAfterUpdate();
             }
         }
@@ -291,49 +296,6 @@ namespace Readed_Book_Lister
             Hide();            
             mainForm.ShowDialog();
             Close();
-        }
-                
-
-        private void DeleteOldImageIfImageChances(string newImageAdress) // denenecek.
-        {
-            // Diğer tarafa bunu yollasam güncel listeyi çektikten sonra orda silmeyi denesem?            
-            if (_userBookToUpdate.Image != @".\images\default.png")
-            {
-                if (_userBookToUpdate.Image != newImageAdress)
-                {
-                    File.Delete(_userBookToUpdate.Image);
-                }
-            }
-        }
-
-        private void SaveImage(string guidedImageName)
-        {
-            if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)) && _userBookToUpdate.Image != tbxImage.Text)
-            {
-                Image loadedImage = Bitmap.FromFile(tbxImage.Text);
-                Image imageToSave = ResizeImage(loadedImage);
-                imageToSave.Save(guidedImageName);
-
-                //imageToSave.Save(guidedImageName,ImageFormat.Jpeg); => uzantı belirlemek istersen bunu kullanabilirsin.
-                //File.Copy(tbxImage.Text, guidedImageName, false); => eski kayıt, resmi resize yapmadan olduğu gibi kaydeden. (çalışıyor)
-            }
-
-        }
-
-        private Image ResizeImage(Image imgToResize)
-        {
-            return new Bitmap(imgToResize, new Size(220, 343));
-        }
-
-        private string GenerateGuidForImageIfImageSelected(string imageFileName)
-        {
-            if (string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(imageFileName)))
-            {
-                return @".\images\default.png";
-            }
-            var extension = Path.GetExtension(imageFileName);
-            var guidedNameWithExtension = @".\images\" + Guid.NewGuid() + extension;
-            return guidedNameWithExtension;
         }
 
         private void DisableSaveButtonIfFormNotValid()
