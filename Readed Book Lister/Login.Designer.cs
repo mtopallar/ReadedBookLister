@@ -147,11 +147,13 @@
             // 
             // Login
             // 
+            this.AcceptButton = this.btnLogin;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.CancelButton = this.btnClose;
             this.ClientSize = new System.Drawing.Size(342, 498);
             this.ControlBox = false;
             this.Controls.Add(this.btnRegister);

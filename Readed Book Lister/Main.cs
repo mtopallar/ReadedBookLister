@@ -1,5 +1,6 @@
 ﻿using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
@@ -27,6 +28,7 @@ namespace Readed_Book_Lister
         public Main(User loggedUser)
         {
             InitializeComponent();
+            DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnClose);
             _loggedUser = loggedUser;
             GetUsersBook(_loggedUser.Id);
             //GetUsersBook(1);
@@ -377,6 +379,7 @@ namespace Readed_Book_Lister
 
         private void btnBookSearch_Click(object sender, EventArgs e)
         {
+            ClearSearchArea();
             if (!searcAreaExpand)
             {
                 Width = MaximumSize.Width;
@@ -622,7 +625,7 @@ namespace Readed_Book_Lister
             dgvUserBookList.Rows.Clear();
             dgvUserBookList.Columns.Clear();
             CreateDataGridViewColums();
-            SetDataGridViewStyleByUsersBookList();            
+            SetDataGridViewStyleByUsersBookList();
             FillDataGridView();
             dgvUserBookList.Refresh();
         }

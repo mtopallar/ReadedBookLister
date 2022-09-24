@@ -2,6 +2,7 @@
 using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
@@ -21,11 +22,12 @@ namespace Readed_Book_Lister
         User? logedUser;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
+        
         public Login()
         {
             InitializeComponent();
             JsonOperations.CreateDbFilesIfNot();
-
+            DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnLogin,btnClose);
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -167,5 +169,6 @@ namespace Readed_Book_Lister
         }
 
         //End of Move Form
+                
     }
 }

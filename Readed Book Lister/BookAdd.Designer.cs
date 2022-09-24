@@ -381,10 +381,12 @@
             // 
             // BookAdd
             // 
+            this.AcceptButton = this.btnSave;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(796, 416);
             this.ControlBox = false;
             this.Controls.Add(this.pbxImage);

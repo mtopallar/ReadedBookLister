@@ -2,6 +2,7 @@
 using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
 using System.Collections.Generic;
@@ -23,6 +24,7 @@ namespace Readed_Book_Lister
         public Register()
         {
             InitializeComponent();
+            DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnRegister, btnClose);
         }
 
         private void btnClose_MouseHover(object sender, EventArgs e)

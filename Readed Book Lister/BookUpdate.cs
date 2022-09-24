@@ -1,6 +1,7 @@
 ﻿using Readed_Book_Lister.App_Logics;
 using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
@@ -25,6 +26,7 @@ namespace Readed_Book_Lister
         public BookUpdate(UserBook userBookToUpdate, User loggedUser)
         {
             InitializeComponent();
+            DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
             _userBookToUpdate = userBookToUpdate;
             _loggedUser = loggedUser;
             FillBooksInfo();
