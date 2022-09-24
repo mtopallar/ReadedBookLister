@@ -206,13 +206,14 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowTemplate.Height = 130;
                 dgvUserBookList.RowsDefaultCellStyle.BackColor = Color.Wheat;
                 dgvUserBookList.BackgroundColor = Color.Wheat;
-                //dgvUserBookList.AlternatingRowsDefaultCellStyle.BackColor = Color.SandyBrown; stripe efekti için.
+                //dgvUserBookList.AlternatingRowsDefaultCellStyle.BackColor = Color.SandyBrown; // stripe efekti için.
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.Wheat; // sütun isimlerinin rengi                
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 //dgvUserBookList.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
+                dgvUserBookList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None; //resimlerin boyuna göre hücre çok genişlemesin diye.
                 dgvUserBookList.Enabled = true;
 
                 #endregion
@@ -224,6 +225,7 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.MistyRose;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Red;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray; // sütun isimlerinin rengi
+                dgvUserBookList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells; // resimli datadan sonra flitre vs geldiğinde satır genişliği resimli verinin genişliğinde kalmasın diye.
                 dgvUserBookList.Enabled = false;
             }
             else
@@ -235,6 +237,7 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray; // sütun isimlerinin rengi
+                dgvUserBookList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.AllCells;
                 dgvUserBookList.Enabled = false;
 
                 #endregion
