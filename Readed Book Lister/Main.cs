@@ -384,7 +384,53 @@ namespace Readed_Book_Lister
             SendToSearchQuery();
         }
 
-        //diğer form öğeleri için de yap. Sonra dgw için list.count = 0 için flitreye göre veri yok uyarısı gir.
+        private void tbxAuthor_TextChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void tbxPublisher_TextChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtnReaded_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtNotReaded_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtnHasNote_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtnHasNoNote_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtnNative_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void rbtnNotNative_CheckedChanged(object sender, EventArgs e)
+        {
+            SendToSearchQuery();
+        }
+
+        private void tbxIsbn_TextChanged(object sender, EventArgs e)
+        {
+            UsersBookList = UserBookOperations.GetByUserIdAndIsbnNo(_loggedUser.Id, tbxIsbn);
+            RefreshDataGrivViewWithNewData();
+        }
+
+        //diğer form öğeleri için de yap. Sonra dgw için list.count = 0 için flitreye göre veri yok uyarısı gir. UP
 
         private void SendToSearchQuery()
         {
@@ -550,8 +596,14 @@ namespace Readed_Book_Lister
             dgvUserBookList.Rows.Clear();
             FillDataGridView();
             dgvUserBookList.Refresh();
+        }       
+
+        private void tbxIsbn_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (!char.IsControl(e.KeyChar) && !char.IsDigit(e.KeyChar))
+            {
+                e.Handled = true;
+            }
         }
-
-
     }
 }

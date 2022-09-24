@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Main));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnBookAdd = new System.Windows.Forms.Button();
             this.dgvUserBookList = new System.Windows.Forms.DataGridView();
             this.btnClose = new System.Windows.Forms.Button();
@@ -95,14 +95,14 @@
             this.dgvUserBookList.AllowUserToResizeRows = false;
             this.dgvUserBookList.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.dgvUserBookList.BackgroundColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Trebuchet MS", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dgvUserBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvUserBookList.Location = new System.Drawing.Point(52, 113);
             this.dgvUserBookList.Name = "dgvUserBookList";
@@ -219,6 +219,7 @@
             this.rbtnNative.TabIndex = 27;
             this.rbtnNative.Text = "Yerli Kitaplar";
             this.rbtnNative.UseVisualStyleBackColor = true;
+            this.rbtnNative.CheckedChanged += new System.EventHandler(this.rbtnNative_CheckedChanged);
             // 
             // rbtnNotNative
             // 
@@ -229,6 +230,7 @@
             this.rbtnNotNative.TabIndex = 28;
             this.rbtnNotNative.Text = "Yabancı Kitaplar";
             this.rbtnNotNative.UseVisualStyleBackColor = true;
+            this.rbtnNotNative.CheckedChanged += new System.EventHandler(this.rbtnNotNative_CheckedChanged);
             // 
             // pnlHasNote
             // 
@@ -250,6 +252,7 @@
             this.rbtnHasNote.TabIndex = 27;
             this.rbtnHasNote.Text = "Not İçerenler";
             this.rbtnHasNote.UseVisualStyleBackColor = true;
+            this.rbtnHasNote.CheckedChanged += new System.EventHandler(this.rbtnHasNote_CheckedChanged);
             // 
             // rbtnHasNoNote
             // 
@@ -260,6 +263,7 @@
             this.rbtnHasNoNote.TabIndex = 28;
             this.rbtnHasNoNote.Text = "Not İçermeyenler";
             this.rbtnHasNoNote.UseVisualStyleBackColor = true;
+            this.rbtnHasNoNote.CheckedChanged += new System.EventHandler(this.rbtnHasNoNote_CheckedChanged);
             // 
             // pnlReadStatue
             // 
@@ -281,6 +285,7 @@
             this.rbtnReaded.TabIndex = 27;
             this.rbtnReaded.Text = "Okuduklarım";
             this.rbtnReaded.UseVisualStyleBackColor = true;
+            this.rbtnReaded.CheckedChanged += new System.EventHandler(this.rbtnReaded_CheckedChanged);
             // 
             // rbtNotReaded
             // 
@@ -291,6 +296,7 @@
             this.rbtNotReaded.TabIndex = 28;
             this.rbtNotReaded.Text = "Okumadıklarım";
             this.rbtNotReaded.UseVisualStyleBackColor = true;
+            this.rbtNotReaded.CheckedChanged += new System.EventHandler(this.rbtNotReaded_CheckedChanged);
             // 
             // tbxIsbn
             // 
@@ -303,6 +309,8 @@
             this.tbxIsbn.Size = new System.Drawing.Size(274, 26);
             this.tbxIsbn.TabIndex = 24;
             this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxIsbn.TextChanged += new System.EventHandler(this.tbxIsbn_TextChanged);
+            this.tbxIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxIsbn_KeyPress);
             // 
             // rbtnIsbn
             // 
@@ -327,6 +335,7 @@
             this.tbxPublisher.Size = new System.Drawing.Size(275, 26);
             this.tbxPublisher.TabIndex = 22;
             this.tbxPublisher.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxPublisher.TextChanged += new System.EventHandler(this.tbxPublisher_TextChanged);
             // 
             // tbxAuthor
             // 
@@ -339,6 +348,7 @@
             this.tbxAuthor.Size = new System.Drawing.Size(275, 26);
             this.tbxAuthor.TabIndex = 20;
             this.tbxAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxAuthor.TextChanged += new System.EventHandler(this.tbxAuthor_TextChanged);
             // 
             // tbxBookName
             // 

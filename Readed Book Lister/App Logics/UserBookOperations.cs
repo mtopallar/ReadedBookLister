@@ -183,6 +183,8 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     return userBooks.Where(u => u.Isbn.StartsWith(StringUtilityHelper.TrimStartAndFinish(tbxIsbn.Text))).ToList();
                 }
+
+                return userBooks;
             }
             return new List<UserBook>();
         }
