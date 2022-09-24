@@ -43,5 +43,6 @@ namespace Readed_Book_Lister.Constants
 
         //DataFridView Messages
         public static string DataGridViewMessagesUserHasNoBook = "Sistemde kayıtlı kitabınız bulunmamaktadır. Kitap eklediğinizde burada görüntülenecektir.";
+        public static string NoDataByFilter = "Belirttiğiniz flitreye uygun kitap bulunmamaktadır. Arama kriterlerinizi değiştirip tekrar deneyiniz.";
     }
 }

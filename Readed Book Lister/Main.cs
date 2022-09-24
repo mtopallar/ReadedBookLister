@@ -33,7 +33,7 @@ namespace Readed_Book_Lister
             FillDataGridView();
             DisableBookSearchButtonIfUserHasNoBook();
             LabelHeaderSet();
-            SetFormToStartSize();            
+            SetFormToStartSize();
             EnableSelectedPanel(pnlQuery);
             EnabledPanelRadioButtonStatue(rbtnQuery);
             //GC.Collect();
@@ -55,7 +55,7 @@ namespace Readed_Book_Lister
 
         private void CreateDataGridViewColums()
         {
-            if (UsersBookList != null)
+            if (UsersBookList != null && UsersBookList.Count > 0)
             {
                 // 1) Önce dgv e eklenecek kolon tiplerini belirle.
                 DataGridViewTextBoxColumn dgvPlaceColumn = new DataGridViewTextBoxColumn();
@@ -138,6 +138,14 @@ namespace Readed_Book_Lister
                 dgvUserBookList.Columns.Add(dgvDeleteColumn);
 
             }
+            else if (UsersBookList != null && UsersBookList.Count == 0)
+            {
+                DataGridViewTextBoxColumn dgvNoFilteredData = new DataGridViewTextBoxColumn();
+                dgvNoFilteredData.HeaderText = "Veri Yok";
+                dgvNoFilteredData.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                dgvUserBookList.Columns.Add(dgvNoFilteredData);
+            }
             else
             {
                 DataGridViewTextBoxColumn dgvNoData = new DataGridViewTextBoxColumn();
@@ -149,7 +157,7 @@ namespace Readed_Book_Lister
         }
         private void FillDataGridView()
         {
-            if (UsersBookList != null)
+            if (UsersBookList != null && UsersBookList.Count > 0)
             {
                 for (int i = 0; i < UsersBookList.Count; i++)
                 {
@@ -171,6 +179,10 @@ namespace Readed_Book_Lister
                         );
                 }
             }
+            else if (UsersBookList != null && UsersBookList.Count == 0)
+            {
+                dgvUserBookList.Rows.Add(Messages.NoDataByFilter);
+            }
             else
             {
                 dgvUserBookList.Rows.Add(Messages.DataGridViewMessagesUserHasNoBook);
@@ -187,7 +199,7 @@ namespace Readed_Book_Lister
             dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.EnableHeadersVisualStyles = false;
 
-            if (UsersBookList != null)
+            if (UsersBookList != null && UsersBookList.Count > 0)
             {
                 #region UserBookList Boş Değilse Dgv Style
 
@@ -200,9 +212,19 @@ namespace Readed_Book_Lister
                 dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
                 dgvUserBookList.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 //dgvUserBookList.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
-                // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.                
+                // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
+                dgvUserBookList.Enabled = true;
 
                 #endregion
+            }
+            else if (UsersBookList != null && UsersBookList.Count == 0)
+            {
+                dgvUserBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvUserBookList.BackgroundColor = Color.LightGray;
+                dgvUserBookList.RowsDefaultCellStyle.SelectionBackColor = Color.MistyRose;
+                dgvUserBookList.RowsDefaultCellStyle.SelectionForeColor = Color.Red;
+                dgvUserBookList.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray; // sütun isimlerinin rengi
+                dgvUserBookList.Enabled = false;
             }
             else
             {
@@ -300,13 +322,13 @@ namespace Readed_Book_Lister
             if (dgvUserBookList.RowCount > 0)
             {
                 UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value) - 1];
-                
+
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
-                    dgvUserBookList.CurrentRow.Cells[10].Value = null;                    
+                    dgvUserBookList.CurrentRow.Cells[10].Value = null;
                     BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
                     Hide();
-                    bookUpdateForm.ShowDialog();                    
+                    bookUpdateForm.ShowDialog();
                     Close();
 
                 }
@@ -465,7 +487,7 @@ namespace Readed_Book_Lister
                 if (item == radiobuttonToEnable)
                 {
                     item.BackColor = Color.Tan;
-                    item.Checked = true;                    
+                    item.Checked = true;
                 }
                 else
                 {
@@ -488,7 +510,7 @@ namespace Readed_Book_Lister
                         if (control is TextBox)
                         {
                             TextBox textBox = (TextBox)control;
-                            textBox.BackColor = Color.Tan;                            
+                            textBox.BackColor = Color.Tan;
                         }
                         if (control is Panel)
                         {
@@ -500,7 +522,7 @@ namespace Readed_Book_Lister
                                 if (panelRadios is RadioButton)
                                 {
                                     RadioButton radioButton = (RadioButton)panelRadios;
-                                    radioButton.BackColor = Color.Tan;                                    
+                                    radioButton.BackColor = Color.Tan;
                                 }
                             }
                         }
@@ -523,7 +545,7 @@ namespace Readed_Book_Lister
             {
                 if (control is TextBox)
                 {
-                    TextBox textBox = (TextBox)control;                    
+                    TextBox textBox = (TextBox)control;
                     textBox.BackColor = Color.LightGray;
                 }
                 if (control is Panel)
@@ -535,7 +557,7 @@ namespace Readed_Book_Lister
                     {
                         if (panelRadios is RadioButton)
                         {
-                            RadioButton radioButton = (RadioButton)panelRadios;                            
+                            RadioButton radioButton = (RadioButton)panelRadios;
                             radioButton.BackColor = Color.LightGray;
                         }
                     }
@@ -553,24 +575,24 @@ namespace Readed_Book_Lister
                 if (control is TextBox)
                 {
                     TextBox textBox = (TextBox)control;
-                    textBox.Text = string.Empty;                    
+                    textBox.Text = string.Empty;
                 }
                 if (control is Panel)
                 {
-                    Panel disabledPanel = (Panel)control;                    
+                    Panel disabledPanel = (Panel)control;
 
                     foreach (var panelRadios in disabledPanel.Controls)
                     {
                         if (panelRadios is RadioButton)
                         {
                             RadioButton radioButton = (RadioButton)panelRadios;
-                            radioButton.Checked = false;                            
+                            radioButton.Checked = false;
                         }
                     }
                 }
             }
         }
-        
+
         private void ClearSearchArea()
         {
             if (rbtnQuery.Checked)
@@ -581,7 +603,7 @@ namespace Readed_Book_Lister
             {
                 EnableSelectedPanel(pnlQuery);
                 EnabledPanelRadioButtonStatue(rbtnQuery);
-            }            
+            }
             GetUsersBook(_loggedUser.Id);
             RefreshDataGrivViewWithNewData();
         }
@@ -594,9 +616,12 @@ namespace Readed_Book_Lister
         private void RefreshDataGrivViewWithNewData()
         {
             dgvUserBookList.Rows.Clear();
+            dgvUserBookList.Columns.Clear();
+            CreateDataGridViewColums();
+            SetDataGridViewStyleByUsersBookList();            
             FillDataGridView();
             dgvUserBookList.Refresh();
-        }       
+        }
 
         private void tbxIsbn_KeyPress(object sender, KeyPressEventArgs e)
         {
