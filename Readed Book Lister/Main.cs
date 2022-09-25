@@ -659,7 +659,7 @@ namespace Readed_Book_Lister
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            Statistics statistics = new Statistics();
+            Statistics statistics = new Statistics(_loggedUser);
             Hide();
             statistics.ShowDialog();
             Close();

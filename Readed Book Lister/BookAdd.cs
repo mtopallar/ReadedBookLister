@@ -527,5 +527,14 @@ namespace Readed_Book_Lister
             cmbYear.MaxDropDownItems = 12;            
         }
 
+        private void cmbMonth_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
+
+        private void cmbYear_KeyDown(object sender, KeyEventArgs e)
+        {
+            e.SuppressKeyPress = true;
+        }
     }
 }
