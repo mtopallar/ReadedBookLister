@@ -102,7 +102,6 @@
             this.cmbYear.TabIndex = 9;
             this.cmbYear.Text = "Bitirme Tarihi (Yıl)";
             this.cmbYear.SelectedValueChanged += new System.EventHandler(this.cmbYear_SelectedValueChanged);
-            this.cmbYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbYear_KeyDown);
             // 
             // cmbMonth
             // 
@@ -130,7 +129,6 @@
             this.cmbMonth.TabIndex = 8;
             this.cmbMonth.Text = "Bitirme Tarihi (Ay)";
             this.cmbMonth.SelectedValueChanged += new System.EventHandler(this.cmbMonth_SelectedValueChanged);
-            this.cmbMonth.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbMonth_KeyDown);
             // 
             // cbxReaded
             // 

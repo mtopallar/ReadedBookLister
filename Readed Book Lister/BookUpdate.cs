@@ -457,15 +457,6 @@ namespace Readed_Book_Lister
                 Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
             }
         }
-
-        private void cmbMonth_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.SuppressKeyPress = true;
-        }
-
-        private void cmbYear_KeyDown(object sender, KeyEventArgs e)
-        {
-            e.SuppressKeyPress = true;
-        }
+               
     }
 }
