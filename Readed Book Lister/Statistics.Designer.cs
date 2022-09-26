@@ -35,6 +35,9 @@
             this.cmbBetweenTwoYears = new System.Windows.Forms.ComboBox();
             this.cmbSelection = new System.Windows.Forms.ComboBox();
             this.btnClose = new System.Windows.Forms.Button();
+            this.dgwStatistics = new System.Windows.Forms.DataGridView();
+            this.btnCancel = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStatistics)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -52,6 +55,19 @@
             // 
             this.cmbJustMonthInAYear.BackColor = System.Drawing.Color.Wheat;
             this.cmbJustMonthInAYear.FormattingEnabled = true;
+            this.cmbJustMonthInAYear.Items.AddRange(new object[] {
+            "Ocak",
+            "Şubat",
+            "Mart",
+            "Nisan",
+            "Mayıs",
+            "Haziran",
+            "Temmuz",
+            "Ağustos",
+            "Eylül",
+            "Ekim",
+            "Kasım",
+            "Aralık"});
             this.cmbJustMonthInAYear.Location = new System.Drawing.Point(332, 158);
             this.cmbJustMonthInAYear.Name = "cmbJustMonthInAYear";
             this.cmbJustMonthInAYear.Size = new System.Drawing.Size(226, 26);
@@ -111,6 +127,34 @@
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
+            // dgwStatistics
+            // 
+            this.dgwStatistics.AllowUserToAddRows = false;
+            this.dgwStatistics.AllowUserToDeleteRows = false;
+            this.dgwStatistics.BackgroundColor = System.Drawing.Color.Wheat;
+            this.dgwStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgwStatistics.Location = new System.Drawing.Point(62, 213);
+            this.dgwStatistics.Name = "dgwStatistics";
+            this.dgwStatistics.ReadOnly = true;
+            this.dgwStatistics.RowTemplate.Height = 25;
+            this.dgwStatistics.Size = new System.Drawing.Size(1039, 335);
+            this.dgwStatistics.TabIndex = 19;
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.BackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnCancel.BackgroundImage")));
+            this.btnCancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCancel.FlatAppearance.BorderSize = 0;
+            this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnCancel.Location = new System.Drawing.Point(1052, 588);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(49, 48);
+            this.btnCancel.TabIndex = 33;
+            this.btnCancel.UseVisualStyleBackColor = false;
+            // 
             // Statistics
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
@@ -119,6 +163,8 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1155, 686);
             this.ControlBox = false;
+            this.Controls.Add(this.btnCancel);
+            this.Controls.Add(this.dgwStatistics);
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.cmbSelection);
             this.Controls.Add(this.cmbBetweenTwoYears);
@@ -134,6 +180,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Statistics";
+            ((System.ComponentModel.ISupportInitialize)(this.dgwStatistics)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -147,5 +194,7 @@
         private System.Windows.Forms.ComboBox cmbBetweenTwoYears;
         private System.Windows.Forms.ComboBox cmbSelection;
         private System.Windows.Forms.Button btnClose;
+        private System.Windows.Forms.DataGridView dgwStatistics;
+        private System.Windows.Forms.Button btnCancel;
     }
 }

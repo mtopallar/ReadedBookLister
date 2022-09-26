@@ -27,7 +27,7 @@ namespace Readed_Book_Lister
         {
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
-            CmbYearFiller();
+            ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
             _loggedUser = loggedUser;
         }
 
@@ -62,7 +62,7 @@ namespace Readed_Book_Lister
                 Publisher = tbxPublisher.Text,
                 Readed = cbxReaded.Checked,
                 Native = cbxNative.Checked,
-                ReadMonth = MonthNameToInt(cmbMonth.Text) == 0 ? null : MonthNameToInt(cmbMonth.Text),
+                ReadMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 ? null : ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text),
                 ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
                 Image = ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
@@ -252,52 +252,7 @@ namespace Readed_Book_Lister
             btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
             btnSave.Enabled = true;
         }
-
-        private int MonthNameToInt(string selectedMouth)
-        {
-            switch (selectedMouth)
-            {
-                case "Ocak":
-                    return 1;
-                case "Şubat":
-                    return 2;
-                case "Mart":
-                    return 3;
-                case "Nisan":
-                    return 4;
-                case "Mayıs":
-                    return 5;
-                case "Haziran":
-                    return 6;
-                case "Temmuz":
-                    return 7;
-                case "Ağustos":
-                    return 8;
-                case "Eylül":
-                    return 9;
-                case "Ekim":
-                    return 10;
-                case "Kasım":
-                    return 11;
-                case "Aralık":
-                    return 12;
-                default: return 0;
-            }
-        }
-
-
-        private void CmbYearFiller()
-        {
-            SetCmbYearMaxDropItems();
-
-            int startYear = 1930;
-
-            for (int i = DateTime.Now.Year; i >= startYear; i--)
-            {
-                cmbYear.Items.Add(i.ToString());
-            }
-        }
-
+        
 
         private void SetErrorStatue()
         {
@@ -313,7 +268,7 @@ namespace Readed_Book_Lister
             {
                 cmbYear.BackColor = Color.FromArgb(250, 184, 187);
             }
-            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) == 0))
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0))
             {
                 cmbMonth.BackColor = Color.FromArgb(250, 184, 187);
 
@@ -330,7 +285,7 @@ namespace Readed_Book_Lister
             {
                 cmbYear.BackColor = Color.Wheat;
             }
-            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) != 0))
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) != 0))
             {
                 cmbMonth.BackColor = Color.Wheat;
 
@@ -410,7 +365,7 @@ namespace Readed_Book_Lister
                 return false;
             }
 
-            if ((cmbMonth.Enabled && cmbYear.Enabled) && (MonthNameToInt(cmbMonth.Text) == 0 || !int.TryParse(cmbYear.Text, out _)))
+            if ((cmbMonth.Enabled && cmbYear.Enabled) && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 || !int.TryParse(cmbYear.Text, out _)))
             {
 
                 return false;
@@ -519,12 +474,6 @@ namespace Readed_Book_Lister
             {
                 e.Handled = true;
             }
-        }
-
-        private void SetCmbYearMaxDropItems()
-        {
-            cmbYear.IntegralHeight = false;
-            cmbYear.MaxDropDownItems = 12;            
         }
 
     }
