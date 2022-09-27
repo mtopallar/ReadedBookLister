@@ -136,10 +136,23 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.NoBookByKnownDateStatue);
             }
-
+            // belki count u sıfır olan yeni bi liste dönmek gerekebilir handle edişine göre.
             return null;
         }
 
+        public static List<UserBook>? GetUserBooksBetweenSelectedYears(int userId,int firstYear, int secondYear)
+        {
+            var getAllByUserId = GetAllByUserId(userId);
+            if (getAllByUserId != null)
+            {                
+                var getFilteredBooks = getAllByUserId.Where(u=>u.ReadYear >= firstYear && u.ReadYear <= secondYear).ToList();
+                return getFilteredBooks;
+            }
+            return null;
+        }
+
+
+        // Belki GetAllUnknownReadDateAndUserId(int userId) metodunu kullanmazsam silerim.
         public static List<UserBook>? GetAllUnknownReadDateAndUserId(int userId)
         {
             // Geliştirildi.

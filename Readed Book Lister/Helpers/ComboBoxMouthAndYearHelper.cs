@@ -79,11 +79,36 @@ namespace Readed_Book_Lister.Helpers
 
             int startYear = 1930;
             foreach (ComboBox comboBox in comboBoxes)
-            for (int i = DateTime.Now.Year; i >= startYear; i--)
+                for (int i = DateTime.Now.Year; i >= startYear; i--)
+                {
+                    comboBox.Items.Add(i.ToString());
+                }
+        }
+
+        #region Statistics için özel
+
+        // İlkini bir eksik dolduran - BetweenTwoYears
+        public static void CmbOneYearMinutesForBetweenTwoYears(ComboBox comboBox)
+        {
+            SetCmbYearMaxDropItems(comboBox);
+            int startYear = 1930;
+            for (int i = DateTime.Now.Year - 1; i >= startYear; i--)
             {
                 comboBox.Items.Add(i.ToString());
             }
         }
+
+        // İkinciyi ilkine göre dolduran - BetweenTwoYears
+        public static void CmbBetweenTwoYearsLessDateFiller(ComboBox comboBoxFromMinToNow, int minYear)
+        {
+            SetCmbYearMaxDropItems(comboBoxFromMinToNow);
+            for (int i = DateTime.Now.Year; i > minYear; i--)
+            {
+                comboBoxFromMinToNow.Items.Add(i.ToString());
+            }
+        }
+
+        #endregion
 
         private static void SetCmbYearMaxDropItems(ComboBox comboBox)
         {
