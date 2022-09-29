@@ -166,7 +166,6 @@ namespace Readed_Book_Lister
             }
             else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 2)
             {
-                int yearRange = Convert.ToInt32(cmbBetweenTwoYears.Text) - Convert.ToInt32(cmbJustAYear.Text);
                 List<StatisticsBetweenTwoYearsDto> statisticsBetweenTwoYearsDtoList = new List<StatisticsBetweenTwoYearsDto>();
 
                 for (int i = Convert.ToInt32(cmbJustAYear.Text); i <= Convert.ToInt32(cmbBetweenTwoYears.Text); i++)
@@ -189,8 +188,13 @@ namespace Readed_Book_Lister
                 {
                     int total = 0;
 
+                    #region Alternatif kullanıma örnek
+                    //dgvStatistics.Rows.Add();
+                    //DataGridViewRow dataGridViewRow = dgvStatistics.Rows[i];
+                    #endregion
+
                     var result = dgvStatistics.Rows.Add();
-                    DataGridViewRow dataGridViewRow = dgvStatistics.Rows[i];
+                    DataGridViewRow dataGridViewRow = dgvStatistics.Rows[result];
 
                     dataGridViewRow.Cells[0].Value = reOrderedList[i].Year.ToString();
 
