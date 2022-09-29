@@ -22,11 +22,9 @@ namespace Readed_Book_Lister.Constants
         public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";
         public static string NoBookWithNote = "Notu olan kitabınız bulunmamaktadır.";
         public static string NoBookWithoutNote = "Notu olmayan kitabınız bulunmamaktadır.";
-        public static string NoBookByUnkownDateStatue = "Tarih detayı bilinmeyen kitap yoktur.";
-        public static string NoBookByKnownDateStatue = "Okunma yılı bilinen kitap yoktur.";
+        public static string NoBookByUnkownDateStatue = "Tarih detayı bilinmeyen kitap yoktur.";        
         public static string UsersFileNotExist = "Kullanıcı dosyası bulunamadı.";
-        public static string UserBooksFileNotExist = "Kullanıcı kitapları dosyası bulunamadı.";
-        public static string NoUserBookByReadMountAndYear = "Belirtilen tarih aralığında kayıtlı kitap yoktur.";
+        public static string UserBooksFileNotExist = "Kullanıcı kitapları dosyası bulunamadı.";        
         public static string NoUserBookByBookName = "Belirtilen isimde kayıtlı kitap yoktur.";
         public static string NoUserBookByAuthorName = "Belirtilen yazar adında kayıtlı kitap yoktur.";
         public static string NoUserBookByUserBookId = "Belirtilen kitaba erişilemiyor.";

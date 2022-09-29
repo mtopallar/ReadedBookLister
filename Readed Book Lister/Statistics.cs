@@ -1,4 +1,5 @@
-﻿using Readed_Book_Lister.Entities;
+﻿using Readed_Book_Lister.Dtos;
+using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
 using System;
@@ -22,7 +23,8 @@ namespace Readed_Book_Lister
         {
             InitializeComponent();
             _loggedUser = loggedUser;
-            cmbSelection.SelectedIndex = 0;
+            ComboBoxTextSetter(cmbSelection, cmbJustMonthInAYear, cmbJustAYear);
+            FillUserBookStatisticsListForStartUp();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -36,9 +38,7 @@ namespace Readed_Book_Lister
         {
             if (UserBookListForStatistics != null)
             {
-
-
-                if (cmbSelection.SelectedIndex == 0 || cmbSelection.SelectedIndex == 2)
+                if (cmbSelection.SelectedIndex == 1 || cmbSelection.SelectedIndex == 2)
                 {
                     DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
                     dgvPlaceByYearColumn.HeaderText = "Yıl";
@@ -114,7 +114,7 @@ namespace Readed_Book_Lister
                 else
                 {
                     DataGridViewTextBoxColumn dgvMonthColumn = new DataGridViewTextBoxColumn();
-                    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.SelectedText;
+                    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text;
                     dgvMonthColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                     dgvStatistics.Columns.Add(dgvMonthColumn);
@@ -130,45 +130,106 @@ namespace Readed_Book_Lister
             }
         }
 
-        private void FillDgvRows()
+        private void SetDgvStyle()
         {
-            if (UserBookListForStatistics != null)
-            {
 
-            }
-            if (cmbSelection.SelectedIndex == 0)
-            {
-
-                if (UserBookListForStatistics == null)
-                {
-                    dgvStatistics.Rows.Add("Bu dönem kayıtlı kitabınız bulunmamaktadır.");
-                }
-                else
-                {
-                    dgvStatistics.Rows.Add("yıl burda olcak");
-                }
-
-            }
         }
 
-        private void ClearDgvColumns()
+        private void FillDgvRows()
+        {
+            if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 0)
+            {
+                dgvStatistics.Rows.Add(UserBookListForStatistics.Count().ToString());
+            }
+            else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 1)
+            {
+                List<string> counts = new List<string>();
+                int total = 0;
+                for (int i = 1; i <= 12; i++)
+                {
+                    counts.Add(UserBookListForStatistics.Where(u => u.ReadMonth == i).Count().ToString());
+                }
+
+                DataGridViewRow dataGridViewRow = new DataGridViewRow();
+                dgvStatistics.Rows.Add(dataGridViewRow);
+
+                dataGridViewRow.Cells[0].Value = cmbJustAYear.Text;
+
+                for (int i = 1; i <= counts.Count; i++)
+                {
+                    dataGridViewRow.Cells[i].Value = counts[i - 1];
+                    total += Convert.ToInt32(counts[i - 1]);
+                }
+                dataGridViewRow.Cells[13].Value = total.ToString();
+
+            }
+            else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 2)
+            {
+                int yearRange = Convert.ToInt32(cmbBetweenTwoYears.Text) - Convert.ToInt32(cmbJustAYear.Text);
+                List<StatisticsBetweenTwoYearsDto> statisticsBetweenTwoYearsDtoList = new List<StatisticsBetweenTwoYearsDto>();
+
+                for (int i = Convert.ToInt32(cmbJustAYear.Text); i <= Convert.ToInt32(cmbBetweenTwoYears.Text); i++)
+                {
+                    StatisticsBetweenTwoYearsDto statisticsBetweenTwoYearsDto = new();
+                    statisticsBetweenTwoYearsDto.Year = i;
+
+                    for (int j = 1; j <= 12; j++)
+                    {
+                        var total = UserBookListForStatistics.Where(u => u.ReadYear == i && u.ReadMonth == j).ToList().Count();
+
+                        statisticsBetweenTwoYearsDto.Counts.Add(total);
+                    }
+
+                    statisticsBetweenTwoYearsDtoList.Add(statisticsBetweenTwoYearsDto);
+                }
+               
+                var reOrderedList = statisticsBetweenTwoYearsDtoList.OrderByDescending(u => u.Year).ToList();
+                for (int i = 0; i < reOrderedList.Count; i++)
+                {
+                    int total = 0;
+
+                    var result = dgvStatistics.Rows.Add();
+                    DataGridViewRow dataGridViewRow = dgvStatistics.Rows[i];
+
+                    dataGridViewRow.Cells[0].Value = reOrderedList[i].Year.ToString();
+
+                    for (int j = 0; j <= 11; j++)
+                    {
+                        dataGridViewRow.Cells[j + 1].Value = reOrderedList[i].Counts[j].ToString();
+                        total += reOrderedList[i].Counts[j];
+                    }
+                    dataGridViewRow.Cells[13].Value = total.ToString();
+                }
+
+            }
+            else
+            {
+                dgvStatistics.Rows.Add("Seçilen aralıkta veri yok");
+            }
+
+        }
+
+        private void ClearDgv()
         {
             dgvStatistics.Columns.Clear();
-            dgvStatistics.Refresh();
+            dgvStatistics.Rows.Clear();
         }
 
         #endregion
-
-        // disablelar halledildi. two years da ortadaki mevcut yılın bir eksiğine, sağdaki ise soldakinden başlayıp günümüze kadar geliyor.
-        //dgv ve kitap getir dendiğinde gelen hata mesajları handle edilecek.
 
         private void cmbSelection_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (cmbSelection.SelectedIndex == 0) // Seçili Bir Ay İçin İstatistik
             {
-                ComboBoxActivator(cmbJustMonthInAYear,cmbJustAYear);
+                CreateDataGridViewColums();
+                FillDgvRows();
+                //
+                ComboBoxActivator(cmbJustMonthInAYear, cmbJustAYear);
                 CmbFillerForJustOneYear();
-                ComboBoxSelectedIndexSetter(cmbJustMonthInAYear);
+                ComboBoxTextSetter(cmbJustMonthInAYear);
+                //
+
+
             }
             else if (cmbSelection.SelectedIndex == 1) //Seçili Bir Yıl İçin İstatistik
             {
@@ -177,9 +238,9 @@ namespace Readed_Book_Lister
             }
             else // Seçili Yıllar Arasında İstatistik
             {
-                ComboBoxActivator(cmbJustAYear,cmbBetweenTwoYears);
-                CmbJustYearFillerForBetweenTwoYears();
-                CmbBetweenFillerForBetweenTwoYears();
+                ComboBoxActivator(cmbJustAYear, cmbBetweenTwoYears);
+                CmbJustYearFillerForBetweenTwoYears(); //ortadakini dolduran
+                CmbBetweenFillerForBetweenTwoYears(); // sağdakini dolduran
             }
         }
 
@@ -187,24 +248,24 @@ namespace Readed_Book_Lister
         {
             cmbJustAYear.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbJustAYear);
-            ComboBoxSelectedIndexSetter(cmbJustAYear);
+            ComboBoxTextSetter(cmbJustAYear);
         }
 
         private void CmbJustYearFillerForBetweenTwoYears()
         {
             cmbJustAYear.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbOneYearMinutesForBetweenTwoYears(cmbJustAYear);
-            ComboBoxSelectedIndexSetter(cmbJustAYear);
+            ComboBoxTextSetter(cmbJustAYear);
         }
 
         private void CmbBetweenFillerForBetweenTwoYears()
         {
-            cmbBetweenTwoYears.Items.Clear();            
+            cmbBetweenTwoYears.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbBetweenTwoYearsLessDateFiller(cmbBetweenTwoYears, Convert.ToInt32(cmbJustAYear.SelectedItem));
-            ComboBoxSelectedIndexSetter(cmbBetweenTwoYears);
+            ComboBoxTextSetter(cmbBetweenTwoYears);
         }
 
-        private void ComboBoxSelectedIndexSetter(params ComboBox[] comboBoxes)
+        private void ComboBoxTextSetter(params ComboBox[] comboBoxes)
         {
             Array.ForEach(comboBoxes, c => c.SelectedIndex = 0);
         }
@@ -248,35 +309,59 @@ namespace Readed_Book_Lister
 
         private void cmbJustMonthInAYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbJustMonthInAYear.Enabled && cmbJustAYear.Enabled)
-            {
-                UserBookListForStatistics = UserBookOperations.GetAllByReadMouthYearAndUserId(_loggedUser.Id, ComboBoxMouthAndYearHelper.MonthNameToInt(cmbJustMonthInAYear.SelectedText), Convert.ToInt32(cmbJustAYear.Text));
-            }
-
+            ClearDgv();
+            ReFillUserBooksListByCmbSelections();
+            CreateDataGridViewColums();
+            FillDgvRows();
         }
 
         private void cmbJustAYear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            
+
             if (cmbJustAYear.Enabled)
             {
                 if (cmbBetweenTwoYears.Enabled)
                 {
-                    // Just year ın durumuna göre two years yeniden dolduruluyor.
-                    CmbBetweenFillerForBetweenTwoYears();
+                    CmbBetweenFillerForBetweenTwoYears();  // Just year ın durumuna göre two years yeniden dolduruluyor.
                 }
-
-                UserBookListForStatistics = UserBookOperations.GetAllByJustReadYearAndUserId(_loggedUser.Id, Convert.ToInt32(cmbJustAYear.Text));
             }
+
+            ClearDgv();
+            ReFillUserBooksListByCmbSelections();
+            CreateDataGridViewColums();
+            FillDgvRows();
         }
 
         private void cmbBetweenTwoYears_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cmbBetweenTwoYears.Enabled && cmbJustAYear.Enabled)
+            ClearDgv();
+            ReFillUserBooksListByCmbSelections();
+            CreateDataGridViewColums();
+            FillDgvRows();
+        }
+
+        private void FillUserBookStatisticsListForStartUp()
+        {
+            UserBookListForStatistics = UserBookOperations.GetAllByReadMouthYearAndUserId(_loggedUser.Id, ComboBoxMouthAndYearHelper.MonthNameToInt(cmbJustMonthInAYear.Text), Convert.ToInt32(cmbJustAYear.Text));
+        }
+
+        private void ReFillUserBooksListByCmbSelections()
+        {
+            if (cmbSelection.SelectedIndex == 0)
             {
+                //sol ve orta aktif
+                UserBookListForStatistics = UserBookOperations.GetAllByReadMouthYearAndUserId(_loggedUser.Id, ComboBoxMouthAndYearHelper.MonthNameToInt(cmbJustMonthInAYear.Text), Convert.ToInt32(cmbJustAYear.Text));
+            }
+            else if (cmbSelection.SelectedIndex == 1)
+            {
+                //sadece orta aktif
+                UserBookListForStatistics = UserBookOperations.GetAllByJustReadYearAndUserId(_loggedUser.Id, Convert.ToInt32(cmbJustAYear.Text));
+            }
+            else
+            {
+                //orta ve sağ aktif
                 UserBookListForStatistics = UserBookOperations.GetUserBooksBetweenSelectedYears(_loggedUser.Id, Convert.ToInt32(cmbJustAYear.Text), Convert.ToInt32(cmbBetweenTwoYears.Text));
             }
-
         }
 
     }

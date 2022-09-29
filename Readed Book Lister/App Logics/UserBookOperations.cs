@@ -116,8 +116,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 if (getListByCriteria.Count != 0)
                 {
                     return getListByCriteria;
-                }
-                System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByReadMountAndYear);
+                }                
             }
             return null;
         }
@@ -133,8 +132,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 if (knownReadYearList.Count != 0)
                 {
                     return knownReadYearList;
-                }
-                System.Windows.Forms.MessageBox.Show(Messages.NoBookByKnownDateStatue);
+                }                
             }
             // belki count u sıfır olan yeni bi liste dönmek gerekebilir handle edişine göre.
             return null;
