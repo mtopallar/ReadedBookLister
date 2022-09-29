@@ -23,7 +23,8 @@ namespace Readed_Book_Lister
         {
             InitializeComponent();
             _loggedUser = loggedUser;
-            ComboBoxTextSetter(cmbSelection, cmbJustMonthInAYear, cmbJustAYear);
+            ComboBoxSelectedIndexSetter(cmbSelection, cmbJustMonthInAYear, cmbJustAYear);
+            cmbBetweenTwoYears.Text = DateTime.Now.Year.ToString(); //Just Text
             FillUserBookStatisticsListForStartUp();
         }
 
@@ -114,7 +115,7 @@ namespace Readed_Book_Lister
                 else
                 {
                     DataGridViewTextBoxColumn dgvMonthColumn = new DataGridViewTextBoxColumn();
-                    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text;
+                    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text + " " +cmbJustAYear.Text;
                     dgvMonthColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
                     dgvStatistics.Columns.Add(dgvMonthColumn);
@@ -226,7 +227,7 @@ namespace Readed_Book_Lister
                 //
                 ComboBoxActivator(cmbJustMonthInAYear, cmbJustAYear);
                 CmbFillerForJustOneYear();
-                ComboBoxTextSetter(cmbJustMonthInAYear);
+                ComboBoxSelectedIndexSetter(cmbJustMonthInAYear);
                 //
 
 
@@ -248,24 +249,24 @@ namespace Readed_Book_Lister
         {
             cmbJustAYear.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbJustAYear);
-            ComboBoxTextSetter(cmbJustAYear);
+            ComboBoxSelectedIndexSetter(cmbJustAYear);
         }
 
         private void CmbJustYearFillerForBetweenTwoYears()
         {
             cmbJustAYear.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbOneYearMinutesForBetweenTwoYears(cmbJustAYear);
-            ComboBoxTextSetter(cmbJustAYear);
+            ComboBoxSelectedIndexSetter(cmbJustAYear);
         }
 
         private void CmbBetweenFillerForBetweenTwoYears()
         {
             cmbBetweenTwoYears.Items.Clear();
             ComboBoxMouthAndYearHelper.CmbBetweenTwoYearsLessDateFiller(cmbBetweenTwoYears, Convert.ToInt32(cmbJustAYear.SelectedItem));
-            ComboBoxTextSetter(cmbBetweenTwoYears);
+            ComboBoxSelectedIndexSetter(cmbBetweenTwoYears);
         }
 
-        private void ComboBoxTextSetter(params ComboBox[] comboBoxes)
+        private void ComboBoxSelectedIndexSetter(params ComboBox[] comboBoxes)
         {
             Array.ForEach(comboBoxes, c => c.SelectedIndex = 0);
         }

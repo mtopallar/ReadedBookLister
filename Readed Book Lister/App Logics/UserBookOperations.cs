@@ -116,7 +116,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 if (getListByCriteria.Count != 0)
                 {
                     return getListByCriteria;
-                }                
+                }
             }
             return null;
         }
@@ -132,19 +132,22 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 if (knownReadYearList.Count != 0)
                 {
                     return knownReadYearList;
-                }                
+                }
             }
             // belki count u sıfır olan yeni bi liste dönmek gerekebilir handle edişine göre.
             return null;
         }
 
-        public static List<UserBook>? GetUserBooksBetweenSelectedYears(int userId,int firstYear, int secondYear)
+        public static List<UserBook>? GetUserBooksBetweenSelectedYears(int userId, int firstYear, int secondYear)
         {
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
-            {                
-                var getFilteredBooks = getAllByUserId.Where(u=>u.ReadYear >= firstYear && u.ReadYear <= secondYear).ToList();
-                return getFilteredBooks;
+            {
+                var getFilteredBooks = getAllByUserId.Where(u => u.ReadYear >= firstYear && u.ReadYear <= secondYear).ToList();
+                if (getFilteredBooks.Count != 0)
+                {
+                    return getFilteredBooks;
+                }
             }
             return null;
         }
@@ -298,7 +301,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
             return userBooks;
         }
-        
+
         private static bool IsIsbnUsedBefore(UserBook userBook)
         {
             var getAllByUserId = GetAllByUserId(userBook.UserId);
@@ -396,6 +399,6 @@ namespace Readed_Book_Lister.Methods.App_Methods
             }
             return (getUserBookList.OrderByDescending(u => u.Id).First().Id) + 1;
         }
-        
+
     }
 }
