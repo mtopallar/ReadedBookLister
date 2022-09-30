@@ -39,87 +39,87 @@ namespace Readed_Book_Lister
         {
             if (UserBookListForStatistics != null)
             {
-                if (cmbSelection.SelectedIndex == 1 || cmbSelection.SelectedIndex == 2)
-                {
-                    DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
-                    dgvPlaceByYearColumn.HeaderText = "Yıl";
-                    dgvPlaceByYearColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                //if (cmbSelection.SelectedIndex == 1 || cmbSelection.SelectedIndex == 2)
+                //{
+                DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
+                dgvPlaceByYearColumn.HeaderText = "Yıl";
+                dgvPlaceByYearColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvJanuaryColumn = new DataGridViewTextBoxColumn();
-                    dgvJanuaryColumn.HeaderText = "Ocak";
-                    dgvJanuaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvJanuaryColumn = new DataGridViewTextBoxColumn();
+                dgvJanuaryColumn.HeaderText = "Ocak";
+                dgvJanuaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvFebruaryColumn = new DataGridViewTextBoxColumn();
-                    dgvFebruaryColumn.HeaderText = "Şubat";
-                    dgvFebruaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvFebruaryColumn = new DataGridViewTextBoxColumn();
+                dgvFebruaryColumn.HeaderText = "Şubat";
+                dgvFebruaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvMarchColumn = new DataGridViewTextBoxColumn();
-                    dgvMarchColumn.HeaderText = "Mart";
-                    dgvMarchColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvMarchColumn = new DataGridViewTextBoxColumn();
+                dgvMarchColumn.HeaderText = "Mart";
+                dgvMarchColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvAprilColumn = new DataGridViewTextBoxColumn();
-                    dgvAprilColumn.HeaderText = "Nisan";
-                    dgvAprilColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvAprilColumn = new DataGridViewTextBoxColumn();
+                dgvAprilColumn.HeaderText = "Nisan";
+                dgvAprilColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvMayColumn = new DataGridViewTextBoxColumn();
-                    dgvMayColumn.HeaderText = "Mayıs";
-                    dgvMayColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvMayColumn = new DataGridViewTextBoxColumn();
+                dgvMayColumn.HeaderText = "Mayıs";
+                dgvMayColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvJuneColumn = new DataGridViewTextBoxColumn();
-                    dgvJuneColumn.HeaderText = "Haziran";
-                    dgvJuneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvJuneColumn = new DataGridViewTextBoxColumn();
+                dgvJuneColumn.HeaderText = "Haziran";
+                dgvJuneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvJulyColumn = new DataGridViewTextBoxColumn();
-                    dgvJulyColumn.HeaderText = "Temmuz";
-                    dgvJulyColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvJulyColumn = new DataGridViewTextBoxColumn();
+                dgvJulyColumn.HeaderText = "Temmuz";
+                dgvJulyColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvAugustColumn = new DataGridViewTextBoxColumn();
-                    dgvAugustColumn.HeaderText = "Ağustos";
-                    dgvAugustColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvAugustColumn = new DataGridViewTextBoxColumn();
+                dgvAugustColumn.HeaderText = "Ağustos";
+                dgvAugustColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvSeptemberColumn = new DataGridViewTextBoxColumn();
-                    dgvSeptemberColumn.HeaderText = "Eylül";
-                    dgvSeptemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvSeptemberColumn = new DataGridViewTextBoxColumn();
+                dgvSeptemberColumn.HeaderText = "Eylül";
+                dgvSeptemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvOctoberColumn = new DataGridViewTextBoxColumn();
-                    dgvOctoberColumn.HeaderText = "Ekim";
-                    dgvOctoberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvOctoberColumn = new DataGridViewTextBoxColumn();
+                dgvOctoberColumn.HeaderText = "Ekim";
+                dgvOctoberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvNovemberColumn = new DataGridViewTextBoxColumn();
-                    dgvNovemberColumn.HeaderText = "Kasım";
-                    dgvNovemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvNovemberColumn = new DataGridViewTextBoxColumn();
+                dgvNovemberColumn.HeaderText = "Kasım";
+                dgvNovemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvDecemberColumn = new DataGridViewTextBoxColumn();
-                    dgvDecemberColumn.HeaderText = "Aralık";
-                    dgvDecemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvDecemberColumn = new DataGridViewTextBoxColumn();
+                dgvDecemberColumn.HeaderText = "Aralık";
+                dgvDecemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    DataGridViewTextBoxColumn dgvTotalColumn = new DataGridViewTextBoxColumn();
-                    dgvTotalColumn.HeaderText = "Toplam";
-                    dgvTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                DataGridViewTextBoxColumn dgvTotalColumn = new DataGridViewTextBoxColumn();
+                dgvTotalColumn.HeaderText = "Toplam";
+                dgvTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    dgvStatistics.Columns.Add(dgvPlaceByYearColumn);
-                    dgvStatistics.Columns.Add(dgvJanuaryColumn);
-                    dgvStatistics.Columns.Add(dgvFebruaryColumn);
-                    dgvStatistics.Columns.Add(dgvMarchColumn);
-                    dgvStatistics.Columns.Add(dgvAprilColumn);
-                    dgvStatistics.Columns.Add(dgvMayColumn);
-                    dgvStatistics.Columns.Add(dgvJuneColumn);
-                    dgvStatistics.Columns.Add(dgvJulyColumn);
-                    dgvStatistics.Columns.Add(dgvAugustColumn);
-                    dgvStatistics.Columns.Add(dgvSeptemberColumn);
-                    dgvStatistics.Columns.Add(dgvOctoberColumn);
-                    dgvStatistics.Columns.Add(dgvNovemberColumn);
-                    dgvStatistics.Columns.Add(dgvDecemberColumn);
-                    dgvStatistics.Columns.Add(dgvTotalColumn);
-                }
-                else
-                {
-                    DataGridViewTextBoxColumn dgvMonthColumn = new DataGridViewTextBoxColumn();
-                    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text + " " +cmbJustAYear.Text;
-                    dgvMonthColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+                dgvStatistics.Columns.Add(dgvPlaceByYearColumn);
+                dgvStatistics.Columns.Add(dgvJanuaryColumn);
+                dgvStatistics.Columns.Add(dgvFebruaryColumn);
+                dgvStatistics.Columns.Add(dgvMarchColumn);
+                dgvStatistics.Columns.Add(dgvAprilColumn);
+                dgvStatistics.Columns.Add(dgvMayColumn);
+                dgvStatistics.Columns.Add(dgvJuneColumn);
+                dgvStatistics.Columns.Add(dgvJulyColumn);
+                dgvStatistics.Columns.Add(dgvAugustColumn);
+                dgvStatistics.Columns.Add(dgvSeptemberColumn);
+                dgvStatistics.Columns.Add(dgvOctoberColumn);
+                dgvStatistics.Columns.Add(dgvNovemberColumn);
+                dgvStatistics.Columns.Add(dgvDecemberColumn);
+                dgvStatistics.Columns.Add(dgvTotalColumn);
+                //}
+                //else
+                //{
+                //    DataGridViewTextBoxColumn dgvMonthColumn = new DataGridViewTextBoxColumn();
+                //    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text + " " +cmbJustAYear.Text;
+                //    dgvMonthColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
-                    dgvStatistics.Columns.Add(dgvMonthColumn);
-                }
+                //    dgvStatistics.Columns.Add(dgvMonthColumn);
+                //}
             }
             else
             {
@@ -129,18 +129,60 @@ namespace Readed_Book_Lister
 
                 dgvStatistics.Columns.Add(dgvNoDataColumn);
             }
+
         }
 
         private void SetDgvStyle()
         {
+            dgvStatistics.ShowCellToolTips = false;            
+            dgvStatistics.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvStatistics.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvStatistics.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
+            dgvStatistics.EnableHeadersVisualStyles = false;            
 
+            if (UserBookListForStatistics != null)
+            {
+                dgvStatistics.RowsDefaultCellStyle.BackColor = Color.Wheat;
+                dgvStatistics.BackgroundColor = Color.Wheat;
+                dgvStatistics.ColumnHeadersDefaultCellStyle.BackColor = Color.Wheat;               
+                dgvStatistics.RowsDefaultCellStyle.SelectionBackColor = Color.Wheat;
+                dgvStatistics.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
+                dgvStatistics.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
+
+                if (cmbSelection.SelectedIndex == 0)
+                {
+                    for (int i = 1; i <= 13; i++)
+                    {
+                        if (dgvStatistics.Rows[0].Cells[i].Value == null)
+                        {                            
+                            dgvStatistics.Rows[0].Cells[i].Style.BackColor = Color.LightGray;
+                        }
+                        else
+                        {
+                            dgvStatistics.Rows[0].Cells[i].Style.BackColor = Color.Wheat;
+                        }
+                    }
+                }               
+            }
+            else
+            {
+                dgvStatistics.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                dgvStatistics.BackgroundColor = Color.LightGray;
+                dgvStatistics.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
+                dgvStatistics.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
+                dgvStatistics.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;                
+            }
+            
         }
 
         private void FillDgvRows()
         {
             if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 0)
             {
-                dgvStatistics.Rows.Add(UserBookListForStatistics.Count().ToString());
+                var selectedMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbJustMonthInAYear.Text);
+                var rowIndex = dgvStatistics.Rows.Add();
+                dgvStatistics.Rows[rowIndex].Cells[0].Value = cmbJustAYear.Text;
+                dgvStatistics.Rows[rowIndex].Cells[selectedMonth].Value = UserBookListForStatistics.Count().ToString();
             }
             else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 1)
             {
@@ -182,7 +224,7 @@ namespace Readed_Book_Lister
 
                     statisticsBetweenTwoYearsDtoList.Add(statisticsBetweenTwoYearsDto);
                 }
-               
+
                 var reOrderedList = statisticsBetweenTwoYearsDtoList.OrderByDescending(u => u.Year).ToList();
                 for (int i = 0; i < reOrderedList.Count; i++)
                 {
@@ -211,7 +253,7 @@ namespace Readed_Book_Lister
             {
                 dgvStatistics.Rows.Add("Seçilen aralıkta veri yok");
             }
-
+            SetDgvStyle();
         }
 
         private void ClearDgv()
@@ -369,6 +411,37 @@ namespace Readed_Book_Lister
             }
         }
 
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            Main mainForm = new Main(_loggedUser);
+            Hide();
+            mainForm.ShowDialog();
+            Close();
+        }
+
+        private void btnCancel_MouseHover(object sender, EventArgs e)
+        {
+            btnCancel.BackgroundImage = Image.FromFile(@".\assets\cancel_hover.png");
+            toolTipStatistics.SetToolTip(btnCancel, "Vazgeç");
+        }
+
+        private void btnCancel_MouseLeave(object sender, EventArgs e)
+        {
+            btnCancel.BackgroundImage = Image.FromFile(@".\assets\cancel.png");
+            toolTipStatistics.Hide(btnCancel);
+        }
+
+        private void btnClose_MouseHover(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close_hover.png");
+            toolTipClose.SetToolTip(btnClose, "Kapat");
+        }
+
+        private void btnClose_MouseLeave(object sender, EventArgs e)
+        {
+            btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
+            toolTipClose.Hide(btnClose);
+        }
     }
 }
 

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Statistics));
             this.label1 = new System.Windows.Forms.Label();
             this.cmbJustMonthInAYear = new System.Windows.Forms.ComboBox();
@@ -37,6 +38,9 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvStatistics = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
+            this.lblInfo = new System.Windows.Forms.Label();
+            this.toolTipStatistics = new System.Windows.Forms.ToolTip(this.components);
+            this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
             this.SuspendLayout();
             // 
@@ -129,16 +133,21 @@
             this.btnClose.TabIndex = 18;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
+            this.btnClose.MouseHover += new System.EventHandler(this.btnClose_MouseHover);
             // 
             // dgvStatistics
             // 
             this.dgvStatistics.AllowUserToAddRows = false;
             this.dgvStatistics.AllowUserToDeleteRows = false;
+            this.dgvStatistics.AllowUserToResizeColumns = false;
+            this.dgvStatistics.AllowUserToResizeRows = false;
             this.dgvStatistics.BackgroundColor = System.Drawing.Color.Wheat;
             this.dgvStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvStatistics.Location = new System.Drawing.Point(62, 213);
             this.dgvStatistics.Name = "dgvStatistics";
             this.dgvStatistics.ReadOnly = true;
+            this.dgvStatistics.RowHeadersVisible = false;
             this.dgvStatistics.RowTemplate.Height = 25;
             this.dgvStatistics.Size = new System.Drawing.Size(1039, 335);
             this.dgvStatistics.TabIndex = 19;
@@ -157,6 +166,26 @@
             this.btnCancel.Size = new System.Drawing.Size(49, 48);
             this.btnCancel.TabIndex = 33;
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
+            this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
+            this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
+            // 
+            // lblInfo
+            // 
+            this.lblInfo.AutoSize = true;
+            this.lblInfo.BackColor = System.Drawing.Color.Tan;
+            this.lblInfo.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
+            this.lblInfo.ForeColor = System.Drawing.Color.Firebrick;
+            this.lblInfo.Location = new System.Drawing.Point(62, 551);
+            this.lblInfo.Name = "lblInfo";
+            this.lblInfo.Size = new System.Drawing.Size(939, 20);
+            this.lblInfo.TabIndex = 34;
+            this.lblInfo.Text = "* İstatistikler ilgili kategori için tarihi belli olan kitaplar üzerinden hesapla" +
+    "ndığı için, tarihi bilinmeyen kitaplar göz ardı edilmektedir.";
+            // 
+            // toolTipStatistics
+            // 
+            this.toolTipStatistics.IsBalloon = true;
             // 
             // Statistics
             // 
@@ -166,6 +195,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1155, 686);
             this.ControlBox = false;
+            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dgvStatistics);
             this.Controls.Add(this.btnClose);
@@ -199,5 +229,8 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvStatistics;
         private System.Windows.Forms.Button btnCancel;
+        private System.Windows.Forms.Label lblInfo;
+        private System.Windows.Forms.ToolTip toolTipStatistics;
+        private System.Windows.Forms.ToolTip toolTipClose;
     }
 }
