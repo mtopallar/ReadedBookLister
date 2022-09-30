@@ -1,4 +1,5 @@
-﻿using Readed_Book_Lister.Dtos;
+﻿using Readed_Book_Lister.Constants;
+using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
@@ -38,9 +39,7 @@ namespace Readed_Book_Lister
         private void CreateDataGridViewColums()
         {
             if (UserBookListForStatistics != null)
-            {
-                //if (cmbSelection.SelectedIndex == 1 || cmbSelection.SelectedIndex == 2)
-                //{
+            {  
                 DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
                 dgvPlaceByYearColumn.HeaderText = "Yıl";
                 dgvPlaceByYearColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -110,16 +109,7 @@ namespace Readed_Book_Lister
                 dgvStatistics.Columns.Add(dgvOctoberColumn);
                 dgvStatistics.Columns.Add(dgvNovemberColumn);
                 dgvStatistics.Columns.Add(dgvDecemberColumn);
-                dgvStatistics.Columns.Add(dgvTotalColumn);
-                //}
-                //else
-                //{
-                //    DataGridViewTextBoxColumn dgvMonthColumn = new DataGridViewTextBoxColumn();
-                //    dgvMonthColumn.HeaderText = cmbJustMonthInAYear.Text + " " +cmbJustAYear.Text;
-                //    dgvMonthColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-                //    dgvStatistics.Columns.Add(dgvMonthColumn);
-                //}
+                dgvStatistics.Columns.Add(dgvTotalColumn);                
             }
             else
             {
@@ -251,7 +241,7 @@ namespace Readed_Book_Lister
             }
             else
             {
-                dgvStatistics.Rows.Add("Seçilen aralıkta veri yok");
+                dgvStatistics.Rows.Add(Messages.NoStatisticByThisSelection);
             }
             SetDgvStyle();
         }
