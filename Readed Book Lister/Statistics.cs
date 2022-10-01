@@ -20,6 +20,8 @@ namespace Readed_Book_Lister
     {
         private readonly User _loggedUser;
         private List<UserBook>? UserBookListForStatistics;
+        private bool _dragging = false;
+        private Point _startPoint = new Point(0, 0);
         public Statistics(User loggedUser)
         {
             InitializeComponent();
@@ -160,7 +162,7 @@ namespace Readed_Book_Lister
                 dgvStatistics.BackgroundColor = Color.LightGray;
                 dgvStatistics.RowsDefaultCellStyle.SelectionBackColor = Color.DarkGray;
                 dgvStatistics.RowsDefaultCellStyle.SelectionForeColor = Color.Black;
-                dgvStatistics.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;                
+                dgvStatistics.ColumnHeadersDefaultCellStyle.BackColor = Color.DarkGray;
             }
             
         }
@@ -431,6 +433,26 @@ namespace Readed_Book_Lister
         {
             btnClose.BackgroundImage = Image.FromFile(@".\assets\close.png");
             toolTipClose.Hide(btnClose);
+        }
+
+        private void Statistics_MouseDown(object sender, MouseEventArgs e)
+        {
+            _dragging = true;
+            _startPoint = new Point(e.X, e.Y);
+        }
+
+        private void Statistics_MouseUp(object sender, MouseEventArgs e)
+        {
+            _dragging = false;
+        }
+
+        private void Statistics_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (_dragging)
+            {
+                Point point = PointToScreen(e.Location);
+                Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
+            }
         }
     }
 }

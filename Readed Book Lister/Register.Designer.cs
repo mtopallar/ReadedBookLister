@@ -59,13 +59,13 @@
             // 
             this.lblRegister.AutoSize = true;
             this.lblRegister.BackColor = System.Drawing.Color.Transparent;
-            this.lblRegister.Font = new System.Drawing.Font("Berlin Sans FB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblRegister.Font = new System.Drawing.Font("Trebuchet MS", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblRegister.ForeColor = System.Drawing.Color.Black;
-            this.lblRegister.Location = new System.Drawing.Point(85, 100);
+            this.lblRegister.Location = new System.Drawing.Point(48, 101);
             this.lblRegister.Name = "lblRegister";
-            this.lblRegister.Size = new System.Drawing.Size(180, 54);
+            this.lblRegister.Size = new System.Drawing.Size(251, 61);
             this.lblRegister.TabIndex = 2;
-            this.lblRegister.Text = "Register";
+            this.lblRegister.Text = "Yeni Kayıt";
             // 
             // tbxPassword
             // 

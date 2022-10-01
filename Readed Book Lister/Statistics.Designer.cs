@@ -213,6 +213,9 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Statistics";
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Statistics_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Statistics_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Statistics_MouseUp);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

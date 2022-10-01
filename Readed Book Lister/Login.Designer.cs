@@ -44,13 +44,13 @@
             // 
             this.lblLogin.AutoSize = true;
             this.lblLogin.BackColor = System.Drawing.Color.Transparent;
-            this.lblLogin.Font = new System.Drawing.Font("Berlin Sans FB", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.lblLogin.Font = new System.Drawing.Font("Trebuchet MS", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.lblLogin.ForeColor = System.Drawing.Color.Black;
-            this.lblLogin.Location = new System.Drawing.Point(111, 116);
+            this.lblLogin.Location = new System.Drawing.Point(107, 117);
             this.lblLogin.Name = "lblLogin";
-            this.lblLogin.Size = new System.Drawing.Size(134, 54);
+            this.lblLogin.Size = new System.Drawing.Size(129, 61);
             this.lblLogin.TabIndex = 0;
-            this.lblLogin.Text = "Login";
+            this.lblLogin.Text = "Giriş";
             // 
             // tbxName
             // 
