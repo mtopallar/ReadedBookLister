@@ -28,9 +28,32 @@ namespace Readed_Book_Lister
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
+            DisableDateAreaWhenAppStartsOrReadedUnchecked();
             _loggedUser = loggedUser;
         }
 
+        private void DisableDateAreaWhenAppStartsOrReadedUnchecked()
+        {
+            cbxMonth.Enabled = false;
+            cbxYear.Enabled = false;
+            cmbMonth.Enabled = false;
+            cmbYear.Enabled = false;
+        }
+
+        private void cbxReaded_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxReaded.Checked)
+            {
+                cbxMonth.Enabled = true;
+                cbxYear.Enabled = true;
+                cmbMonth.Enabled = true;
+                cmbYear.Enabled = true;
+            }
+            else
+            {
+                DisableDateAreaWhenAppStartsOrReadedUnchecked();
+            }
+        }
 
         #region Clicks
 
@@ -62,14 +85,17 @@ namespace Readed_Book_Lister
                 Publisher = tbxPublisher.Text,
                 Readed = cbxReaded.Checked,
                 Native = cbxNative.Checked,
-                ReadMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 ? null : ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text),
-                ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
+                //ReadMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 ? null : ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text),
+                //ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
+                ReadMonth = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbMonth),
+                ReadYear = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbYear),
                 Image = ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
             };
             ImageOperations.SaveImage(userBook.Image,tbxImage);
             UserBookOperations.Add(userBook);
             ClearForm();
+            //DisableDateAreaWhenAppStartsOrReadedUnchecked();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -251,6 +277,7 @@ namespace Readed_Book_Lister
             pbxImage.Image = new Bitmap(Image.FromFile(@".\images\default.png"));
             btnSave.BackgroundImage = Image.FromFile(@".\assets\save.png");
             btnSave.Enabled = true;
+            DisableDateAreaWhenAppStartsOrReadedUnchecked();
         }
         
 
@@ -475,6 +502,6 @@ namespace Readed_Book_Lister
                 e.Handled = true;
             }
         }
-
+                
     }
 }

@@ -31,6 +31,7 @@ namespace Readed_Book_Lister
             _loggedUser = loggedUser;
             FillBooksInfo();
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
+            DisableDateAreaIfBookToUpdateReadedNotChecked();
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }
@@ -47,11 +48,43 @@ namespace Readed_Book_Lister
             cbxReaded.Checked = _userBookToUpdate.Readed;
             cbxNative.Checked = _userBookToUpdate.Native;
             tbxNote.Text = _userBookToUpdate.Note;
-            cmbMonth.Text = _userBookToUpdate.ReadMonth == null ? "Bitirma Tarihi (Ay)" : ComboBoxMouthAndYearHelper.MonthNameFromInt(_userBookToUpdate.ReadMonth.Value);
-            cmbYear.Text = _userBookToUpdate.ReadYear == null ? "Bitirma Tarihi (Yıl)" : _userBookToUpdate.ReadYear.Value.ToString();
+            cmbMonth.Text = _userBookToUpdate.ReadMonth == null ? "Bitirme Tarihi (Ay)" : ComboBoxMouthAndYearHelper.MonthNameFromInt(_userBookToUpdate.ReadMonth.Value);
+            cmbYear.Text = _userBookToUpdate.ReadYear == null ? "Bitirme Tarihi (Yıl)" : _userBookToUpdate.ReadYear.Value.ToString();
             pbxImage.Image = new Bitmap(Image.FromFile(_userBookToUpdate.Image));
         }
-        
+
+        private void DisableDateAreaIfBookToUpdateReadedNotChecked()
+        {
+            if (!_userBookToUpdate.Readed)
+            {
+                DisableDateArea();
+            }
+            else
+            {
+                EnableDateArea();
+            }
+        }
+
+        private void DisableDateArea()
+        {
+            cbxMonth.Enabled = false;
+            cbxYear.Enabled = false;
+        }
+
+        private void EnableDateArea()
+        {
+            if (!cbxYear.Checked)
+            {
+                cbxMonth.Enabled = true;
+            }
+            else
+            {
+                cbxMonth.Enabled = false;
+            }
+            
+            cbxYear.Enabled = true;
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             Application.Exit();
@@ -61,12 +94,12 @@ namespace Readed_Book_Lister
         {
             if (cbxMonth.Checked)
             {
-                cmbMonth.Text = "Bitirma Tarihi (Ay)";
+                cmbMonth.Text = "Bitirme Tarihi (Ay)";
                 cmbMonth.Enabled = false;
             }
             else
             {
-                cmbMonth.Text = _userBookToUpdate.ReadMonth == null ? "Bitirma Tarihi (Ay)" : ComboBoxMouthAndYearHelper.MonthNameFromInt(_userBookToUpdate.ReadMonth.Value);
+                cmbMonth.Text = _userBookToUpdate.ReadMonth == null ? "Bitirme Tarihi (Ay)" : ComboBoxMouthAndYearHelper.MonthNameFromInt(_userBookToUpdate.ReadMonth.Value);
                 cmbMonth.Enabled = true;
             }
         }
@@ -77,32 +110,39 @@ namespace Readed_Book_Lister
             {
                 cbxMonth.Checked = true;
                 cmbYear.Enabled = false;
-                cmbYear.Text = "Bitirma Tarihi (Yıl)";
+                cmbYear.Text = "Bitirme Tarihi (Yıl)";
                 cbxMonth.Enabled = false;
             }
             else
             {
-                cbxMonth.Checked = false;
-                cmbYear.Text = _userBookToUpdate.ReadYear == null ? "Bitirma Tarihi (Yıl)" : _userBookToUpdate.ReadYear.Value.ToString();
                 cmbYear.Enabled = true;
                 cbxMonth.Enabled = true;
+                if (_userBookToUpdate.ReadMonth == null)
+                {
+                    cbxMonth.Checked = true;
+                }
+                else
+                {
+                    cbxMonth.Checked = false;
+                }
+                cmbYear.Text = _userBookToUpdate.ReadYear == null ? "Bitirme Tarihi (Yıl)" : _userBookToUpdate.ReadYear.Value.ToString();
             }
         }
 
         private bool CheckMouthValueValid()
         {
-            if (!cbxMonth.Checked && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0))
+            if (cbxReaded.Checked && !cbxMonth.Checked && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0))
             {
                 cmbMonth.BackColor = Color.FromArgb(250, 184, 187);
                 return false;
             }
-            cmbMonth.BackColor = Color.Wheat;            
+            cmbMonth.BackColor = Color.Wheat;
             return true;
         }
 
         private bool CheckYearValueValid()
         {
-            if (!cbxYear.Checked && !int.TryParse(cmbYear.Text, out _))
+            if (cbxReaded.Checked && !cbxYear.Checked && !int.TryParse(cmbYear.Text, out _))
             {
                 cmbYear.BackColor = Color.FromArgb(250, 184, 187);
                 return false;
@@ -167,7 +207,7 @@ namespace Readed_Book_Lister
                 }
             }
             return true;
-        }        
+        }
 
         private void ClearErrorColors()
         {
@@ -183,7 +223,7 @@ namespace Readed_Book_Lister
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (CheckFormIfHasError(CheckMouthValueValid(), CheckYearValueValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
-            {                
+            {
                 UserBook newBook = new UserBook
                 {
                     Id = _userBookToUpdate.Id,
@@ -194,15 +234,15 @@ namespace Readed_Book_Lister
                     Note = tbxNote.Text,
                     Publisher = tbxPublisher.Text,
                     Native = cbxNative.Checked,
-                    Readed = cbxReaded.Checked,
-                    ReadMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 ? null : ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text),
-                    ReadYear = int.TryParse(cmbYear.Text, out int result) ? result : null,
+                    Readed = cbxReaded.Checked,                    
+                    ReadMonth = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbMonth),
+                    ReadYear = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbYear),
                     Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text)
                 };
                 UserBookOperations.Update(newBook);
                 if (_userBookToUpdate.Image != tbxImage.Text)
                 {
-                    ImageOperations.SaveImage(newBook.Image, tbxImage);                    
+                    ImageOperations.SaveImage(newBook.Image, tbxImage);
                     ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
                 }
 
@@ -213,7 +253,7 @@ namespace Readed_Book_Lister
         private void GoBackToMainFormAfterUpdate()
         {
             Main mainForm = new Main(_loggedUser);
-            Hide();            
+            Hide();
             mainForm.ShowDialog();
             Close();
         }
@@ -332,7 +372,7 @@ namespace Readed_Book_Lister
         private void btnClear_MouseHover(object sender, EventArgs e)
         {
             btnClear.BackgroundImage = Image.FromFile(@".\assets\clear_hover.png");
-            toolTipUpdateBook.SetToolTip(btnClear,"Temizle");
+            toolTipUpdateBook.SetToolTip(btnClear, "Temizle");
         }
 
         private void btnClear_MouseLeave(object sender, EventArgs e)
@@ -373,6 +413,36 @@ namespace Readed_Book_Lister
                 Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
             }
         }
-               
+
+        private void cbxReaded_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!cbxReaded.Checked)
+            {
+                DisableDateArea();
+                cbxMonth.Checked = true;
+                cbxYear.Checked = true;               
+            }
+            else
+            {
+                if (_userBookToUpdate.ReadMonth == null)
+                {                    
+                    cbxMonth.Checked = true;
+                }
+                else
+                {                    
+                    cbxMonth.Checked = false;
+                }
+                if (_userBookToUpdate.ReadYear == null)
+                {                    
+                    cbxYear.Checked = true;
+                }
+                else
+                {                   
+                    cbxYear.Checked = false;
+                }
+                EnableDateArea();
+            }
+
+        }
     }
 }

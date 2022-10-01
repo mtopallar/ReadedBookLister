@@ -147,6 +147,7 @@
             this.cbxReaded.TabIndex = 6;
             this.cbxReaded.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxReaded.UseVisualStyleBackColor = false;
+            this.cbxReaded.CheckedChanged += new System.EventHandler(this.cbxReaded_CheckedChanged);
             this.cbxReaded.MouseLeave += new System.EventHandler(this.cbxReaded_MouseLeave);
             this.cbxReaded.MouseHover += new System.EventHandler(this.cbxReaded_MouseHover);
             // 
