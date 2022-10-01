@@ -31,30 +31,7 @@ namespace Readed_Book_Lister
             DisableDateAreaWhenAppStartsOrReadedUnchecked();
             _loggedUser = loggedUser;
         }
-
-        private void DisableDateAreaWhenAppStartsOrReadedUnchecked()
-        {
-            cbxMonth.Enabled = false;
-            cbxYear.Enabled = false;
-            cmbMonth.Enabled = false;
-            cmbYear.Enabled = false;
-        }
-
-        private void cbxReaded_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cbxReaded.Checked)
-            {
-                cbxMonth.Enabled = true;
-                cbxYear.Enabled = true;
-                cmbMonth.Enabled = true;
-                cmbYear.Enabled = true;
-            }
-            else
-            {
-                DisableDateAreaWhenAppStartsOrReadedUnchecked();
-            }
-        }
-
+        
         #region Clicks
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -74,7 +51,7 @@ namespace Readed_Book_Lister
                 SetErrorStatue();
                 return;
             }
-            int result;
+            
             var userBook = new UserBook
             {
                 //id add metodunda hallediliyor
@@ -84,9 +61,7 @@ namespace Readed_Book_Lister
                 Isbn = tbxIsbn.Text,
                 Publisher = tbxPublisher.Text,
                 Readed = cbxReaded.Checked,
-                Native = cbxNative.Checked,
-                //ReadMonth = ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0 ? null : ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text),
-                //ReadYear = int.TryParse(cmbYear.Text, out result) ? result : null,
+                Native = cbxNative.Checked,              
                 ReadMonth = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbMonth),
                 ReadYear = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbYear),
                 Image = ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text),
@@ -94,8 +69,7 @@ namespace Readed_Book_Lister
             };
             ImageOperations.SaveImage(userBook.Image,tbxImage);
             UserBookOperations.Add(userBook);
-            ClearForm();
-            //DisableDateAreaWhenAppStartsOrReadedUnchecked();
+            ClearForm();            
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
@@ -252,6 +226,14 @@ namespace Readed_Book_Lister
 
         #region Helpers
 
+        private void DisableDateAreaWhenAppStartsOrReadedUnchecked()
+        {
+            cbxMonth.Enabled = false;
+            cbxYear.Enabled = false;
+            cmbMonth.Enabled = false;
+            cmbYear.Enabled = false;
+        }
+
         private void ClearForm()
         {
             tbxName.Text = string.Empty;
@@ -404,6 +386,21 @@ namespace Readed_Book_Lister
         #endregion
 
         #region TextOrSelectedValueOrCheckedChanged
+
+        private void cbxReaded_CheckedChanged(object sender, EventArgs e)
+        {
+            if (cbxReaded.Checked)
+            {
+                cbxMonth.Enabled = true;
+                cbxYear.Enabled = true;
+                cmbMonth.Enabled = true;
+                cmbYear.Enabled = true;
+            }
+            else
+            {
+                DisableDateAreaWhenAppStartsOrReadedUnchecked();
+            }
+        }
 
         private void cbxYear_CheckedChanged(object sender, EventArgs e)
         {
