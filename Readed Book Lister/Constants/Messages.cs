@@ -38,12 +38,14 @@ namespace Readed_Book_Lister.Constants
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
         public static string PasswordMatchError = "Parolalar eşleşmiyor.";
         public static string ImageNotProper = "Uygun olmayan öznitelikler (saydam alan vb). Farklı bir resim ile yeniden deneyiniz.";
+        public static string AreYouSureToDeleteYourProfile = "Profilinizi silmek, kitaplarınız dahil tüm verilerinizi de siler. Bu işlem geri alınamaz. Devam etmek istediğinize emin misiniz?";
+        public static string AreYouSureToDeleteUserBook = "Kitabı silmek istediğinize emin misiniz?";
 
         //DataGridView Messages (Main)
         public static string DataGridViewMessagesUserHasNoBook = "Sistemde kayıtlı kitabınız bulunmamaktadır. Kitap eklediğinizde burada görüntülenecektir.";
         public static string NoDataByFilter = "Belirttiğiniz flitreye uygun kitap bulunmamaktadır. Arama kriterlerinizi değiştirip tekrar deneyiniz.";
 
         //DataGridView Messages (Statistics)
-        public static string NoStatisticByThisSelection = "İlgili aralıkta kayıtlı okunmuş kitabınız bulunmamaktadır.";
+        public static string NoStatisticByThisSelection = "İlgili aralıkta kayıtlı okunmuş kitabınız bulunmamaktadır.";        
     }
 }

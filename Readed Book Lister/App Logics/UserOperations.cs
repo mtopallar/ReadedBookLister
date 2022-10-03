@@ -26,14 +26,14 @@ namespace Readed_Book_Lister.Methods.App_Methods
         // GetByNickName => ok
         const string userFileName = "users.json";
 
-        public static void Update(UserUpdateDto userUpdateDto)
+        public static bool Update(UserUpdateDto userUpdateDto) // double check ok
         {
             var getUser = GetUserById(userUpdateDto.Id);
             if (getUser != null)
             {
                 if (userUpdateDto.NewNickName != getUser.NickName && !IsNickNameExists(StringUtilityHelper.TrimStartAndFinish(userUpdateDto.NewNickName)))
                 {
-                    return;
+                    return false;
                 }
 
                 if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(userUpdateDto.CurrentPassword), getUser.PasswordHash, getUser.PasswordSalt))
@@ -50,22 +50,22 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     {
                         var oldUser = getAllUsers.Where(u => u.Id == userUpdateDto.Id).FirstOrDefault();
                         getAllUsers.Remove(oldUser);
-                        getAllUsers.Add(getUser);                        
+                        getAllUsers.Add(getUser);
                         var convertUpdatedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
                         File.WriteAllText(userFileName, convertUpdatedListToJson);
                         System.Windows.Forms.MessageBox.Show(Messages.UserUpdateSuccesful);
-                        return;
+                        return true;
                     }
 
-                    return;
+                    return false;
                 }
 
                 System.Windows.Forms.MessageBox.Show(Messages.CurrentPasswordError);
-                return;
-
             }
+
+            return false;
         }
-        public static void Delete(UserDeleteDto userDeleteDto)
+        public static bool Delete(UserDeleteDto userDeleteDto) // double check ok
         {
             var getAllUsers = GetAllUsers();
             if (getAllUsers != null)
@@ -79,15 +79,15 @@ namespace Readed_Book_Lister.Methods.App_Methods
                         var convertDeletedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
                         File.WriteAllText(userFileName, convertDeletedListToJson);
                         System.Windows.Forms.MessageBox.Show(Messages.DeleteUserSuccesful);
-                        JsonOperations.DeleteUserFile();
-                        return;
+                        if (JsonOperations.DeleteUserFile())
+                        {
+                            return true;
+                        }
                     }
                     System.Windows.Forms.MessageBox.Show(Messages.CurrentPasswordError);
-                    return;
                 }
-
             }
-
+            return false;
         }
 
         public static User? GetUserById(int id)

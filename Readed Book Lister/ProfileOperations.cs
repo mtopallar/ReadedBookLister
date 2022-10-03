@@ -226,12 +226,13 @@ namespace Readed_Book_Lister
                     NewNickName = StringUtilityHelper.TrimStartAndFinish(tbxName.Text),
                     CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text),
                     NewPassword = StringUtilityHelper.TrimStartAndFinish(tbxNewPassword.Text)
-                };
-                // Burada işlem başarılı ise maine dönüş düşünülebilir.
-                UserOperations.Update(userUpdateDto);
-                //ClearTextBoxes(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);
-                //ReturnToMainForm();
-                return;
+                };                
+                if (UserOperations.Update(userUpdateDto))
+                {
+                    ClearTextBoxes(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);
+                    ReturnToMainForm();
+                    return;
+                }                
             }
             btnUpdate.BackgroundImage = Image.FromFile(@".\assets\update_user_error.png");
             btnUpdate.Enabled = false;
@@ -246,12 +247,16 @@ namespace Readed_Book_Lister
         {
             if (CheckTextBoxValuesAreValid(tbxCurrentPassword))
             {
-                UserDeleteDto userDeleteDto = new()
+                DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteYourProfile, "Dikkat!", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                if (dialogResult == DialogResult.Yes)
                 {
-                    UserId = _loggedUser.Id,
-                    CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text)
-                    // Buraya devam edilecek. Kullanıcıdan önce userbooks tan her bir image silinmeli, sonra ilgili id den user books, en son user silinmeli. Bu yüzden user delete ve update hatta gerekirse image delete bool dönebilir. işlem sonucuna göre iç içe yürütülür. 
-                };
+                    UserDeleteDto userDeleteDto = new()
+                    {
+                        UserId = _loggedUser.Id,
+                        CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text)
+                        // Buraya devam edilecek. Kullanıcıdan önce userbooks tan her bir image silinmeli, sonra ilgili id den user books, en son user silinmeli. Bu yüzden user delete ve update hatta gerekirse image delete bool dönebilir. işlem sonucuna göre iç içe yürütülür. 
+                    };
+                }
             }
         }
 

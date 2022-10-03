@@ -67,9 +67,16 @@ namespace Readed_Book_Lister
                 Image = ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text),
                 Note = tbxNote.Text,
             };
-            ImageOperations.SaveImage(userBook.Image,tbxImage);
-            UserBookOperations.Add(userBook);
-            ClearForm();            
+
+            // kitap ekleme true ise resim ekleme çalışmalı. yoksa isbn hatası verip kitabu eklemese bile resmi ekliyor.
+            if (UserBookOperations.Add(userBook))
+            {
+                ImageOperations.SaveImage(userBook.Image, tbxImage);
+                ClearForm();
+            }
+            //ImageOperations.SaveImage(userBook.Image, tbxImage);
+            //UserBookOperations.Add(userBook);
+            //ClearForm();
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)

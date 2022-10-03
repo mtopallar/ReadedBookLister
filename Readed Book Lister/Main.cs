@@ -1,4 +1,6 @@
-﻿using Readed_Book_Lister.Constants;
+﻿using Readed_Book_Lister.App_Logics;
+using Readed_Book_Lister.Constants;
+using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
@@ -331,7 +333,7 @@ namespace Readed_Book_Lister
 
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
-                    dgvUserBookList.CurrentRow.Cells[10].Value = null;
+                    dgvUserBookList.CurrentRow.Cells[10].Value = null;                    
                     BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
                     Hide();
                     bookUpdateForm.ShowDialog();
@@ -340,7 +342,19 @@ namespace Readed_Book_Lister
                 }
                 else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {
-                    MessageBox.Show(selectedUserBook.BookName + " sil");
+                    DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteUserBook, "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult == DialogResult.Yes)
+                    {                        
+                        if (UserBookOperations.Delete(selectedUserBook))
+                        {
+                            dgvUserBookList.CurrentRow.Cells[10].Value = null;
+                            GC.Collect();
+                            GC.WaitForPendingFinalizers();
+                            ImageOperations.DeleteOldImageIfNotDefault(selectedUserBook.Image);
+                            GetUsersBook(_loggedUser.Id);
+                            RefreshDataGrivViewWithNewData();
+                        }
+                    }                    
                 }
             }
         }

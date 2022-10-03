@@ -12,28 +12,26 @@ namespace Readed_Book_Lister.App_Logics
 {
     public class ImageOperations
     {
-        public static void SaveImage(string guidedImageName, TextBox tbxImage)
+        public static void SaveImage(string guidedImageName, TextBox tbxImage) // double check ok bool a gerek yok
         {
             if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxImage.Text)))
             {
                 Image loadedImage = Image.FromFile(tbxImage.Text); //Bitmap.FromFile dan değiştirdim.
                 Image imageToSave = ResizeImage(loadedImage);
-                imageToSave.Save(guidedImageName);
-
+                imageToSave.Save(guidedImageName);                
                 //imageToSave.Save(guidedImageName,ImageFormat.Jpeg); => uzantı belirlemek istersen bunu kullanabilirsin.
                 //File.Copy(tbxImage.Text, guidedImageName, false); => eski kayıt, resmi resize yapmadan olduğu gibi kaydeden. (çalışıyor)
-            }
-
+            }           
         }
 
-        public static void DeleteOldImageIfNotDefault(string oldImage)
+        public static void DeleteOldImageIfNotDefault(string oldImage) // double check ok bool a gerek yok
         {
             var defaultImage = @".\images\default.png";
                       
             if (oldImage != defaultImage)
             {
-                File.Delete(oldImage);
-            }
+                File.Delete(oldImage);                
+            }           
         }
 
         public static string GenerateGuidForImageIfImageSelected(string imageFileName)

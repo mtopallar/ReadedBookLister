@@ -17,15 +17,17 @@ namespace Readed_Book_Lister.Methods.App_Methods
     {
         const string userBookFileName = "userbooks.json";
 
-        public static void Add(UserBook userBook)
+        public static bool Add(UserBook userBook) // bool eklendi ve kullanıldı
         {
             // Güzel bir örnek oldu.
             JsonOperations.CreateDbFilesIfNot();
 
             if (!IsIsbnUsedBefore(userBook))
             {
-                return;
+                return false;
             }
+
+            //F.E. tarafında tbx null kontrolü var ama buraya da validasyon eklenebilir.
 
             BookNameToTitleCaseAndTrim(EditAuthorNameByNativeState(PublisherToTitleCaseAndTrim(NoteTrimmer(userBook))));
 
@@ -38,17 +40,17 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 var newListToJson = JsonConvert.SerializeObject(addBookToNewList, Formatting.Indented);
                 File.WriteAllText(userBookFileName, newListToJson);
                 System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
-                return;
+                return true;
             }
 
             getAllList.Add(userBook);
             var addedListToJson = JsonConvert.SerializeObject(getAllList, Formatting.Indented);
             File.WriteAllText(userBookFileName, addedListToJson);
             System.Windows.Forms.MessageBox.Show(Messages.UserBookAddSuccessful);
-
+            return true;
         }
 
-        public static void Update(UserBook userBook)
+        public static bool Update(UserBook userBook) // double check ok
         {
             //Checked.
             var getAllBooks = GetAll();
@@ -57,7 +59,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             {
                 if (!IsIsbnUsedBefore(userBook))
                 {
-                    return;
+                    return false;
                 }
 
                 var getBookToUpdate = getAllBooks.Where(u => u.Id == userBook.Id).FirstOrDefault();
@@ -80,13 +82,15 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     var updatedListToJson = JsonConvert.SerializeObject(getAllBooks, Formatting.Indented);
                     File.WriteAllText(userBookFileName, updatedListToJson);
                     System.Windows.Forms.MessageBox.Show(Messages.UserBookUpdateSuccessful);
-                    return;
+                    return true;
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
             }
+
+            return false;
         }
 
-        public static void Delete(UserBook userBook)
+        public static bool Delete(UserBook userBook) // double check ok
         {
             //Checked.
             var getAllBooks = GetAll();
@@ -99,10 +103,11 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     var updatedListToJson = JsonConvert.SerializeObject(getAllBooks, Formatting.Indented);
                     File.WriteAllText(userBookFileName, updatedListToJson);
                     System.Windows.Forms.MessageBox.Show(Messages.DeleteUserBookSuccessful);
-                    return;
+                    return true;
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
             }
+            return false;
         }
 
         public static List<UserBook>? GetAllByReadMouthYearAndUserId(int userId, int readMonth, int readYear)

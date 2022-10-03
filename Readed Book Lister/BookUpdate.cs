@@ -81,7 +81,7 @@ namespace Readed_Book_Lister
             {
                 cbxMonth.Enabled = false;
             }
-            
+
             cbxYear.Enabled = true;
         }
 
@@ -234,19 +234,30 @@ namespace Readed_Book_Lister
                     Note = tbxNote.Text,
                     Publisher = tbxPublisher.Text,
                     Native = cbxNative.Checked,
-                    Readed = cbxReaded.Checked,                    
+                    Readed = cbxReaded.Checked,
                     ReadMonth = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbMonth),
                     ReadYear = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbYear),
                     Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text)
                 };
-                UserBookOperations.Update(newBook);
-                if (_userBookToUpdate.Image != tbxImage.Text)
-                {
-                    ImageOperations.SaveImage(newBook.Image, tbxImage);
-                    ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
-                }
+                //UserBookOperations.Update(newBook);
+                //if (_userBookToUpdate.Image != tbxImage.Text)
+                //{
+                //    ImageOperations.SaveImage(newBook.Image, tbxImage); //artık bool dönüyor. (add book da da kullanılıyor)                   
+                //    ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image); // artık bool dönüyor. (burası tek kullanım)
+                //}
 
-                GoBackToMainFormAfterUpdate();
+                //GoBackToMainFormAfterUpdate();
+
+                if (UserBookOperations.Update(newBook))
+                {
+                    if (_userBookToUpdate.Image != tbxImage.Text)
+                    {
+                        ImageOperations.SaveImage(newBook.Image, tbxImage);
+                        ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
+                    }
+                    GoBackToMainFormAfterUpdate();
+                }
+                return;
             }
         }
 
@@ -420,24 +431,24 @@ namespace Readed_Book_Lister
             {
                 DisableDateArea();
                 cbxMonth.Checked = true;
-                cbxYear.Checked = true;               
+                cbxYear.Checked = true;
             }
             else
             {
                 if (_userBookToUpdate.ReadMonth == null)
-                {                    
+                {
                     cbxMonth.Checked = true;
                 }
                 else
-                {                    
+                {
                     cbxMonth.Checked = false;
                 }
                 if (_userBookToUpdate.ReadYear == null)
-                {                    
+                {
                     cbxYear.Checked = true;
                 }
                 else
-                {                   
+                {
                     cbxYear.Checked = false;
                 }
                 EnableDateArea();
