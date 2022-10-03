@@ -49,6 +49,12 @@
     <None Update="assets\clear_hover.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <None Update="assets\clear_user_ops.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="assets\clear_user_ops_hover.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Update="assets\close.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

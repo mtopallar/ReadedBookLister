@@ -17,7 +17,7 @@ namespace Readed_Book_Lister
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Main(new Entities.User { Id=1}));
+            Application.Run(new Main(new Entities.User { Id=1,NickName = "Murat" }));
             //Application.Run(new Login());
         }
     }

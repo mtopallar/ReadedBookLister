@@ -12,7 +12,7 @@ namespace Readed_Book_Lister.Constants
         public static string UserNotFoundByName = "Kullanıcı bulunamadı.";
         public static string UserNotFoundById = "Kullanıcı id'si hatalı.";
         public static string NickNameExists = "Kullanıcı adı kullanımda.";
-        public static string LoginError = "Hatalı girşi. Lütfen yeniden deneyin.";
+        public static string LoginError = "Hatalı giriş. Lütfen yeniden deneyin.";
         public static string UserNotFound = "Kullanıcı kaydına ulaşılamadı.";
         public static string UserUpdateSuccesful = "Kullanıcı başarıyla güncellendi.";
         public static string CurrentPasswordError = "Mevcut parolanızı hatalı girdiniz.";
@@ -32,6 +32,7 @@ namespace Readed_Book_Lister.Constants
         public static string DeleteUserBookSuccessful = "Kitap başarıyla silindi.";
         public static string IsbnUsedBefore = "Belirtilen ISBN daha önce kullanılmış.";
         public static string NoBookByIsnbNo = "Belirtilen Isbn numarasına sahip kitabınız yok.";
+        public static string NewPasswordAndNewPasswordAgainDoesNotMatch = "Yeni şifre ve Yeni Şifre Tekrar alanları eşleşmiyor.";
 
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";

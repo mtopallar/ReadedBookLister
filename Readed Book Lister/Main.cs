@@ -651,7 +651,7 @@ namespace Readed_Book_Lister
 
         private void btnProfileOperations_Click(object sender, EventArgs e)
         {
-            ProfileOperations profileOperations = new ProfileOperations();
+            ProfileOperations profileOperations = new ProfileOperations(_loggedUser);
             Hide();
             profileOperations.ShowDialog();
             Close();

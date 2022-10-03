@@ -41,6 +41,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.toolTipProfileOperations = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
+            this.btnClear = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // tbxCurrentPassword
@@ -55,6 +56,7 @@
             this.tbxCurrentPassword.TabIndex = 5;
             this.tbxCurrentPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxCurrentPassword.UseSystemPasswordChar = true;
+            this.tbxCurrentPassword.TextChanged += new System.EventHandler(this.tbxCurrentPassword_TextChanged);
             // 
             // tbxName
             // 
@@ -68,6 +70,7 @@
             this.tbxName.Size = new System.Drawing.Size(235, 25);
             this.tbxName.TabIndex = 4;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
             // lblProfileOperaitons
             // 
@@ -93,6 +96,7 @@
             this.tbxNewPassword.TabIndex = 6;
             this.tbxNewPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxNewPassword.UseSystemPasswordChar = true;
+            this.tbxNewPassword.TextChanged += new System.EventHandler(this.tbxNewPassword_TextChanged);
             // 
             // btnClose
             // 
@@ -124,6 +128,7 @@
             this.tbxNewPasswordAgain.TabIndex = 8;
             this.tbxNewPasswordAgain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxNewPasswordAgain.UseSystemPasswordChar = true;
+            this.tbxNewPasswordAgain.TextChanged += new System.EventHandler(this.tbxNewPasswordAgain_TextChanged);
             // 
             // btnDeleteUser
             // 
@@ -136,12 +141,13 @@
             this.btnDeleteUser.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnDeleteUser.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnDeleteUser.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnDeleteUser.Location = new System.Drawing.Point(271, 420);
+            this.btnDeleteUser.Location = new System.Drawing.Point(284, 441);
             this.btnDeleteUser.Name = "btnDeleteUser";
-            this.btnDeleteUser.Size = new System.Drawing.Size(59, 66);
+            this.btnDeleteUser.Size = new System.Drawing.Size(54, 55);
             this.btnDeleteUser.TabIndex = 10;
             this.btnDeleteUser.Tag = "";
             this.btnDeleteUser.UseVisualStyleBackColor = false;
+            this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
             this.btnDeleteUser.MouseLeave += new System.EventHandler(this.btnDeleteUser_MouseLeave);
             this.btnDeleteUser.MouseHover += new System.EventHandler(this.btnDeleteUser_MouseHover);
             // 
@@ -160,6 +166,7 @@
             this.btnUpdate.Size = new System.Drawing.Size(64, 73);
             this.btnUpdate.TabIndex = 9;
             this.btnUpdate.UseVisualStyleBackColor = false;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             this.btnUpdate.MouseLeave += new System.EventHandler(this.btnUpdate_MouseLeave);
             this.btnUpdate.MouseHover += new System.EventHandler(this.btnUpdate_MouseHover);
             // 
@@ -174,18 +181,40 @@
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(217, 420);
+            this.btnCancel.Location = new System.Drawing.Point(189, 441);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(59, 66);
+            this.btnCancel.Size = new System.Drawing.Size(54, 55);
             this.btnCancel.TabIndex = 11;
             this.btnCancel.Tag = "";
             this.btnCancel.UseVisualStyleBackColor = false;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
             this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
             // 
             // toolTipProfileOperations
             // 
             this.toolTipProfileOperations.IsBalloon = true;
+            // 
+            // btnClear
+            // 
+            this.btnClear.AccessibleDescription = "";
+            this.btnClear.BackColor = System.Drawing.Color.Transparent;
+            this.btnClear.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnClear.BackgroundImage")));
+            this.btnClear.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnClear.FlatAppearance.BorderColor = System.Drawing.Color.Black;
+            this.btnClear.FlatAppearance.BorderSize = 0;
+            this.btnClear.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
+            this.btnClear.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
+            this.btnClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnClear.Location = new System.Drawing.Point(239, 441);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(54, 55);
+            this.btnClear.TabIndex = 12;
+            this.btnClear.Tag = "";
+            this.btnClear.UseVisualStyleBackColor = false;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
+            this.btnClear.MouseLeave += new System.EventHandler(this.btnClear_MouseLeave);
+            this.btnClear.MouseHover += new System.EventHandler(this.btnClear_MouseHover);
             // 
             // ProfileOperations
             // 
@@ -195,6 +224,7 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(342, 498);
             this.ControlBox = false;
+            this.Controls.Add(this.btnClear);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnDeleteUser);
             this.Controls.Add(this.btnUpdate);
@@ -234,5 +264,6 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.ToolTip toolTipProfileOperations;
         private System.Windows.Forms.ToolTip toolTipClose;
+        private System.Windows.Forms.Button btnClear;
     }
 }

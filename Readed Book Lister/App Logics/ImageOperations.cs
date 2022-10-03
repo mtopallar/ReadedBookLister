@@ -26,7 +26,7 @@ namespace Readed_Book_Lister.App_Logics
 
         }
 
-        public static void DeleteOldImageIfNotDefault(string oldImage) // denenecek.
+        public static void DeleteOldImageIfNotDefault(string oldImage)
         {
             var defaultImage = @".\images\default.png";
                       

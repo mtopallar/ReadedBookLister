@@ -129,7 +129,7 @@ namespace Readed_Book_Lister
             }
         }
 
-        private bool CheckMouthValueValid()
+        private bool CheckMouthValueIsValid()
         {
             if (cbxReaded.Checked && !cbxMonth.Checked && (ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) == 0))
             {
@@ -140,7 +140,7 @@ namespace Readed_Book_Lister
             return true;
         }
 
-        private bool CheckYearValueValid()
+        private bool CheckYearValueIsValid()
         {
             if (cbxReaded.Checked && !cbxYear.Checked && !int.TryParse(cmbYear.Text, out _))
             {
@@ -222,7 +222,7 @@ namespace Readed_Book_Lister
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (CheckFormIfHasError(CheckMouthValueValid(), CheckYearValueValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
+            if (CheckFormIfHasError(CheckMouthValueIsValid(), CheckYearValueIsValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
             {
                 UserBook newBook = new UserBook
                 {
