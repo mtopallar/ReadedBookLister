@@ -89,12 +89,17 @@ namespace Readed_Book_Lister
             btnUpdate.Enabled = true;
         }
 
-        private void ReturnToMainForm()
+        private void ReturnToMainForm(User loggedUser)
         {
-            Main mainForm = new Main(_loggedUser);
+            Main mainForm = new Main(loggedUser);
             Hide();
             mainForm.ShowDialog();
             Close();
+        }
+
+        private User GetUpdatedUser()
+        {
+            return UserOperations.GetUserById(_loggedUser.Id);
         }
 
         #endregion
@@ -230,7 +235,7 @@ namespace Readed_Book_Lister
                 if (UserOperations.Update(userUpdateDto))
                 {
                     ClearTextBoxes(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);
-                    ReturnToMainForm();
+                    ReturnToMainForm(GetUpdatedUser());
                     return;
                 }                
             }
@@ -240,7 +245,7 @@ namespace Readed_Book_Lister
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            ReturnToMainForm();
+            ReturnToMainForm(_loggedUser);
         }
 
         private void btnDeleteUser_Click(object sender, EventArgs e)

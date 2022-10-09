@@ -235,10 +235,10 @@ namespace Readed_Book_Lister
 
         private void DisableDateAreaWhenAppStartsOrReadedUnchecked()
         {
+            cbxMonth.Checked = true;
+            cbxYear.Checked = true;
             cbxMonth.Enabled = false;
             cbxYear.Enabled = false;
-            cmbMonth.Enabled = false;
-            cmbYear.Enabled = false;
         }
 
         private void ClearForm()
@@ -400,12 +400,12 @@ namespace Readed_Book_Lister
             {
                 cbxMonth.Enabled = true;
                 cbxYear.Enabled = true;
-                cmbMonth.Enabled = true;
-                cmbYear.Enabled = true;
+                cbxMonth.Checked = false;
+                cbxYear.Checked = false;
             }
             else
-            {
-                DisableDateAreaWhenAppStartsOrReadedUnchecked();
+            {                
+                DisableDateAreaWhenAppStartsOrReadedUnchecked();                
             }
         }
 

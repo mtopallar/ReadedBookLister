@@ -142,16 +142,17 @@ namespace Readed_Book_Lister
                 dgvStatistics.ColumnHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
 
                 if (cmbSelection.SelectedIndex == 0)
-                {
+                {   
                     for (int i = 1; i <= 13; i++)
-                    {
+                    {                        
                         if (dgvStatistics.Rows[0].Cells[i].Value == null)
                         {                            
                             dgvStatistics.Rows[0].Cells[i].Style.BackColor = Color.LightGray;
+                            dgvStatistics.Rows[0].Cells[i].Style.SelectionBackColor = Color.LightGray;
                         }
                         else
                         {
-                            dgvStatistics.Rows[0].Cells[i].Style.BackColor = Color.Wheat;
+                            dgvStatistics.Rows[0].Cells[i].Style.BackColor = Color.Wheat;                            
                         }
                     }
                 }               
