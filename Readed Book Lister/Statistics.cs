@@ -40,7 +40,7 @@ namespace Readed_Book_Lister
 
         private void CreateDataGridViewColums()
         {
-            if (UserBookListForStatistics != null)
+            if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 0)
             {  
                 DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
                 dgvPlaceByYearColumn.HeaderText = "Yıl";
@@ -113,6 +113,92 @@ namespace Readed_Book_Lister
                 dgvStatistics.Columns.Add(dgvDecemberColumn);
                 dgvStatistics.Columns.Add(dgvTotalColumn);                
             }
+            else if (UserBookListForStatistics != null && (cmbSelection.SelectedIndex == 1 || cmbSelection.SelectedIndex == 2))
+            {
+                DataGridViewTextBoxColumn dgvPlaceByYearColumn = new DataGridViewTextBoxColumn();
+                dgvPlaceByYearColumn.HeaderText = "Yıl";
+                dgvPlaceByYearColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvJanuaryColumn = new DataGridViewTextBoxColumn();
+                dgvJanuaryColumn.HeaderText = "Ocak";
+                dgvJanuaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvFebruaryColumn = new DataGridViewTextBoxColumn();
+                dgvFebruaryColumn.HeaderText = "Şubat";
+                dgvFebruaryColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvMarchColumn = new DataGridViewTextBoxColumn();
+                dgvMarchColumn.HeaderText = "Mart";
+                dgvMarchColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvAprilColumn = new DataGridViewTextBoxColumn();
+                dgvAprilColumn.HeaderText = "Nisan";
+                dgvAprilColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvMayColumn = new DataGridViewTextBoxColumn();
+                dgvMayColumn.HeaderText = "Mayıs";
+                dgvMayColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvJuneColumn = new DataGridViewTextBoxColumn();
+                dgvJuneColumn.HeaderText = "Haziran";
+                dgvJuneColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvJulyColumn = new DataGridViewTextBoxColumn();
+                dgvJulyColumn.HeaderText = "Temmuz";
+                dgvJulyColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvAugustColumn = new DataGridViewTextBoxColumn();
+                dgvAugustColumn.HeaderText = "Ağustos";
+                dgvAugustColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvSeptemberColumn = new DataGridViewTextBoxColumn();
+                dgvSeptemberColumn.HeaderText = "Eylül";
+                dgvSeptemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvOctoberColumn = new DataGridViewTextBoxColumn();
+                dgvOctoberColumn.HeaderText = "Ekim";
+                dgvOctoberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvNovemberColumn = new DataGridViewTextBoxColumn();
+                dgvNovemberColumn.HeaderText = "Kasım";
+                dgvNovemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvDecemberColumn = new DataGridViewTextBoxColumn();
+                dgvDecemberColumn.HeaderText = "Aralık";
+                dgvDecemberColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvMouthUnknownColumn = new DataGridViewTextBoxColumn();
+                dgvMouthUnknownColumn.HeaderText = "Ayı Bilinmeyen";
+                dgvMouthUnknownColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                DataGridViewTextBoxColumn dgvTotalColumn = new DataGridViewTextBoxColumn();
+                dgvTotalColumn.HeaderText = "Toplam";
+                dgvTotalColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                dgvStatistics.Columns.Add(dgvPlaceByYearColumn);
+                dgvStatistics.Columns.Add(dgvJanuaryColumn);
+                dgvStatistics.Columns.Add(dgvFebruaryColumn);
+                dgvStatistics.Columns.Add(dgvMarchColumn);
+                dgvStatistics.Columns.Add(dgvAprilColumn);
+                dgvStatistics.Columns.Add(dgvMayColumn);
+                dgvStatistics.Columns.Add(dgvJuneColumn);
+                dgvStatistics.Columns.Add(dgvJulyColumn);
+                dgvStatistics.Columns.Add(dgvAugustColumn);
+                dgvStatistics.Columns.Add(dgvSeptemberColumn);
+                dgvStatistics.Columns.Add(dgvOctoberColumn);
+                dgvStatistics.Columns.Add(dgvNovemberColumn);
+                dgvStatistics.Columns.Add(dgvDecemberColumn);
+                dgvStatistics.Columns.Add(dgvMouthUnknownColumn);
+                dgvStatistics.Columns.Add(dgvTotalColumn);
+            }
+            else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 3)
+            {
+                DataGridViewTextBoxColumn dgvUnknownDateColumn = new DataGridViewTextBoxColumn();
+                dgvUnknownDateColumn.HeaderText = "Yıl Bilgisi Olmayan Okunmuş Kitaplar";
+                dgvUnknownDateColumn.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+                dgvStatistics.Columns.Add(dgvUnknownDateColumn);
+            }
             else
             {
                 DataGridViewTextBoxColumn dgvNoDataColumn = new DataGridViewTextBoxColumn();
@@ -168,7 +254,7 @@ namespace Readed_Book_Lister
             
         }
 
-        private void FillDgvRows()
+        private void FillDgvRows() 
         {
             if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 0)
             {
@@ -180,6 +266,7 @@ namespace Readed_Book_Lister
             else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 1)
             {
                 List<string> counts = new List<string>();
+                int monthUnknowns = UserBookListForStatistics.Where(u => u.ReadMonth == null).Count(); //
                 int total = 0;
                 for (int i = 1; i <= 12; i++)
                 {
@@ -196,7 +283,8 @@ namespace Readed_Book_Lister
                     dataGridViewRow.Cells[i].Value = counts[i - 1];
                     total += Convert.ToInt32(counts[i - 1]);
                 }
-                dataGridViewRow.Cells[13].Value = total.ToString();
+                dataGridViewRow.Cells[13].Value = monthUnknowns.ToString();//
+                dataGridViewRow.Cells[14].Value = (total+monthUnknowns).ToString();
 
             }
             else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 2)
@@ -214,7 +302,9 @@ namespace Readed_Book_Lister
 
                         statisticsBetweenTwoYearsDto.Counts.Add(total);
                     }
-
+                    //j 1 den 12 ye yani seçili seçili yıl için 12 ay yukarıdaki where koşuluna göre doluyor. aşağıda List<int> count a ben yılı i yani yukarıdaki yıl ile aynı ama ayı belli olmayanların count unu son öğe olarak ekliyorum
+                    var unknownMonthsPerYear = UserBookListForStatistics.Where(u => u.ReadYear == i && u.ReadMonth == null).ToList().Count(); //
+                    statisticsBetweenTwoYearsDto.Counts.Add(unknownMonthsPerYear); //
                     statisticsBetweenTwoYearsDtoList.Add(statisticsBetweenTwoYearsDto);
                 }
 
@@ -233,14 +323,20 @@ namespace Readed_Book_Lister
 
                     dataGridViewRow.Cells[0].Value = reOrderedList[i].Year.ToString();
 
-                    for (int j = 0; j <= 11; j++)
+                    for (int j = 0; j <= 12; j++)
                     {
+                        //j 0 dan 12 ye 12 dahil yani 13. hücre. 13. hücre de ayı bilinmeyenler.
                         dataGridViewRow.Cells[j + 1].Value = reOrderedList[i].Counts[j].ToString();
                         total += reOrderedList[i].Counts[j];
                     }
-                    dataGridViewRow.Cells[13].Value = total.ToString();
+                    
+                    dataGridViewRow.Cells[14].Value = total.ToString();
                 }
 
+            }
+            else if (UserBookListForStatistics != null && cmbSelection.SelectedIndex == 3) 
+            {
+                dgvStatistics.Rows.Add(UserBookListForStatistics.Count.ToString());
             }
             else
             {
@@ -276,11 +372,24 @@ namespace Readed_Book_Lister
                 ComboBoxActivator(cmbJustAYear);
                 CmbFillerForJustOneYear();
             }
-            else // Seçili Yıllar Arasında İstatistik
+            else if(cmbSelection.SelectedIndex == 2) // Seçili Yıllar Arasında İstatistik
             {
                 ComboBoxActivator(cmbJustAYear, cmbBetweenTwoYears);
                 CmbJustYearFillerForBetweenTwoYears(); //ortadakini dolduran
                 CmbBetweenFillerForBetweenTwoYears(); // sağdakini dolduran
+            }
+            else // Tarihi bilinmeyenler için istatistik.
+            {
+                ComboBoxActivator();
+                if(cmbBetweenTwoYears.Items.Count>0)
+                ComboBoxSelectedIndexSetter(cmbJustMonthInAYear, cmbJustAYear, cmbBetweenTwoYears);
+                else ComboBoxSelectedIndexSetter(cmbJustMonthInAYear, cmbJustAYear);
+                //
+                ClearDgv();
+                ReFillUserBooksListByCmbSelections();
+                CreateDataGridViewColums();
+                FillDgvRows();
+
             }
         }
 
@@ -397,10 +506,14 @@ namespace Readed_Book_Lister
                 //sadece orta aktif
                 UserBookListForStatistics = UserBookOperations.GetAllByJustReadYearAndUserId(_loggedUser.Id, Convert.ToInt32(cmbJustAYear.Text));
             }
-            else
+            else if(cmbSelection.SelectedIndex == 2)
             {
                 //orta ve sağ aktif
                 UserBookListForStatistics = UserBookOperations.GetUserBooksBetweenSelectedYears(_loggedUser.Id, Convert.ToInt32(cmbJustAYear.Text), Convert.ToInt32(cmbBetweenTwoYears.Text));
+            }
+            else // hepsi pasif
+            {
+                UserBookListForStatistics = UserBookOperations.GetAllUnknownReadDateAndUserId(_loggedUser.Id);
             }
         }
 

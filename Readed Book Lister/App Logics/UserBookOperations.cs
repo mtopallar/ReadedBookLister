@@ -157,8 +157,6 @@ namespace Readed_Book_Lister.Methods.App_Methods
             return null;
         }
 
-
-        // Belki GetAllUnknownReadDateAndUserId(int userId) metodunu kullanmazsam silerim.
         public static List<UserBook>? GetAllUnknownReadDateAndUserId(int userId)
         {
             // Geliştirildi.
@@ -166,12 +164,13 @@ namespace Readed_Book_Lister.Methods.App_Methods
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
-                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();
+                //sadece yıla baksam da olur çünkü sadece ay bilgisi ile kitap kaydı yok. ya sadece yıl ya da ay ve yıl olabiliyor.
+                //yani yılı boş olanın ay ı zaten boş olmak zorunda. yılı dolu ayı boş olanlar zaten dgv de yıl bazlı istatistiklerde listeleniyor.
+                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();                 
                 if (getUnknownReadDateList.Count != 0)
                 {
                     return getUnknownReadDateList;
-                }
-                System.Windows.Forms.MessageBox.Show(Messages.NoBookByUnkownDateStatue);
+                }                
             }
 
             return null;

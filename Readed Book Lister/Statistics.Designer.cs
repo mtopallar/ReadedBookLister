@@ -38,7 +38,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.dgvStatistics = new System.Windows.Forms.DataGridView();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.lblInfo = new System.Windows.Forms.Label();
             this.toolTipStatistics = new System.Windows.Forms.ToolTip(this.components);
             this.toolTipClose = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dgvStatistics)).BeginInit();
@@ -72,7 +71,7 @@
             "Ekim",
             "Kasım",
             "Aralık"});
-            this.cmbJustMonthInAYear.Location = new System.Drawing.Point(335, 158);
+            this.cmbJustMonthInAYear.Location = new System.Drawing.Point(325, 158);
             this.cmbJustMonthInAYear.Name = "cmbJustMonthInAYear";
             this.cmbJustMonthInAYear.Size = new System.Drawing.Size(226, 26);
             this.cmbJustMonthInAYear.TabIndex = 1;
@@ -83,7 +82,7 @@
             // 
             this.cmbJustAYear.BackColor = System.Drawing.Color.Wheat;
             this.cmbJustAYear.FormattingEnabled = true;
-            this.cmbJustAYear.Location = new System.Drawing.Point(608, 158);
+            this.cmbJustAYear.Location = new System.Drawing.Point(609, 158);
             this.cmbJustAYear.Name = "cmbJustAYear";
             this.cmbJustAYear.Size = new System.Drawing.Size(226, 26);
             this.cmbJustAYear.TabIndex = 2;
@@ -94,7 +93,7 @@
             // 
             this.cmbBetweenTwoYears.BackColor = System.Drawing.Color.Wheat;
             this.cmbBetweenTwoYears.FormattingEnabled = true;
-            this.cmbBetweenTwoYears.Location = new System.Drawing.Point(875, 158);
+            this.cmbBetweenTwoYears.Location = new System.Drawing.Point(889, 158);
             this.cmbBetweenTwoYears.Name = "cmbBetweenTwoYears";
             this.cmbBetweenTwoYears.Size = new System.Drawing.Size(226, 26);
             this.cmbBetweenTwoYears.TabIndex = 3;
@@ -108,8 +107,9 @@
             this.cmbSelection.Items.AddRange(new object[] {
             "Seçili Bir Ay İçin İstatistik",
             "Seçili Bir Yıl İçin İstatistik",
-            "Seçili Yıllar Arasında İstatistik"});
-            this.cmbSelection.Location = new System.Drawing.Point(62, 158);
+            "Seçili Yıllar Arasında İstatistik",
+            "Yılı Bilinmeyenler İçin İstatistik"});
+            this.cmbSelection.Location = new System.Drawing.Point(41, 158);
             this.cmbSelection.Name = "cmbSelection";
             this.cmbSelection.Size = new System.Drawing.Size(226, 26);
             this.cmbSelection.TabIndex = 4;
@@ -144,12 +144,12 @@
             this.dgvStatistics.AllowUserToResizeRows = false;
             this.dgvStatistics.BackgroundColor = System.Drawing.Color.Wheat;
             this.dgvStatistics.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvStatistics.Location = new System.Drawing.Point(62, 213);
+            this.dgvStatistics.Location = new System.Drawing.Point(41, 213);
             this.dgvStatistics.Name = "dgvStatistics";
             this.dgvStatistics.ReadOnly = true;
             this.dgvStatistics.RowHeadersVisible = false;
             this.dgvStatistics.RowTemplate.Height = 25;
-            this.dgvStatistics.Size = new System.Drawing.Size(1039, 335);
+            this.dgvStatistics.Size = new System.Drawing.Size(1074, 335);
             this.dgvStatistics.TabIndex = 19;
             // 
             // btnCancel
@@ -161,27 +161,14 @@
             this.btnCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnCancel.Location = new System.Drawing.Point(1052, 588);
+            this.btnCancel.Location = new System.Drawing.Point(1048, 583);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(49, 48);
+            this.btnCancel.Size = new System.Drawing.Size(66, 55);
             this.btnCancel.TabIndex = 33;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);
             this.btnCancel.MouseHover += new System.EventHandler(this.btnCancel_MouseHover);
-            // 
-            // lblInfo
-            // 
-            this.lblInfo.AutoSize = true;
-            this.lblInfo.BackColor = System.Drawing.Color.Tan;
-            this.lblInfo.Font = new System.Drawing.Font("Trebuchet MS", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
-            this.lblInfo.ForeColor = System.Drawing.Color.Firebrick;
-            this.lblInfo.Location = new System.Drawing.Point(62, 551);
-            this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(939, 20);
-            this.lblInfo.TabIndex = 34;
-            this.lblInfo.Text = "* İstatistikler ilgili kategori için tarihi belli olan kitaplar üzerinden hesapla" +
-    "ndığı için, tarihi bilinmeyen kitaplar göz ardı edilmektedir.";
             // 
             // toolTipStatistics
             // 
@@ -195,7 +182,6 @@
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(1155, 686);
             this.ControlBox = false;
-            this.Controls.Add(this.lblInfo);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.dgvStatistics);
             this.Controls.Add(this.btnClose);
@@ -232,7 +218,6 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.DataGridView dgvStatistics;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.ToolTip toolTipStatistics;
         private System.Windows.Forms.ToolTip toolTipClose;
     }
