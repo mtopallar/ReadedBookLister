@@ -38,12 +38,17 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
                 if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(userUpdateDto.CurrentPassword), getUser.PasswordHash, getUser.PasswordSalt))
                 {
-                    byte[] passwordHash, passwordSalt;
-                    HashingHelper.CreatePasswordHash(StringUtilityHelper.TrimStartAndFinish(userUpdateDto.NewPassword), out passwordHash, out passwordSalt);
                     getUser.Id = userUpdateDto.Id;
                     getUser.NickName = userUpdateDto.NewNickName;
-                    getUser.PasswordHash = passwordHash;
-                    getUser.PasswordSalt = passwordSalt;
+
+                    if (!string.IsNullOrEmpty(userUpdateDto.NewPassword))
+                    {
+                        byte[] passwordHash, passwordSalt;
+                        HashingHelper.CreatePasswordHash(StringUtilityHelper.TrimStartAndFinish(userUpdateDto.NewPassword), out passwordHash, out passwordSalt);
+
+                        getUser.PasswordHash = passwordHash;
+                        getUser.PasswordSalt = passwordSalt;
+                    }
 
                     var getAllUsers = GetAllUsers();
                     if (getAllUsers != null) //defensive programming
@@ -65,26 +70,20 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
             return false;
         }
-        public static bool Delete(UserDeleteDto userDeleteDto) // double check ok
+        public static bool Delete(int userId) // double check ok
         {
             var getAllUsers = GetAllUsers();
             if (getAllUsers != null)
             {
-                var getUserToDelete = GetUserById(userDeleteDto.UserId);
+                var getUserToDelete = getAllUsers.Where(u => u.Id == userId).FirstOrDefault();
                 if (getUserToDelete != null)
                 {
-                    if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(userDeleteDto.CurrentPassword), getUserToDelete.PasswordHash, getUserToDelete.PasswordSalt))
-                    {
-                        getAllUsers.Remove(getUserToDelete);
-                        var convertDeletedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
-                        File.WriteAllText(userFileName, convertDeletedListToJson);
-                        System.Windows.Forms.MessageBox.Show(Messages.DeleteUserSuccesful);
-                        if (JsonOperations.DeleteUserFile())
-                        {
-                            return true;
-                        }
-                    }
-                    System.Windows.Forms.MessageBox.Show(Messages.CurrentPasswordError);
+                    getAllUsers.Remove(getUserToDelete);
+                    var convertDeletedListToJson = JsonConvert.SerializeObject(getAllUsers, Formatting.Indented);
+                    File.WriteAllText(userFileName, convertDeletedListToJson);
+                    System.Windows.Forms.MessageBox.Show(Messages.DeleteUserSuccesful);
+                    
+                    return true;
                 }
             }
             return false;

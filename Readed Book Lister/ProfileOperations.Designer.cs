@@ -91,7 +91,7 @@
             this.tbxNewPassword.ForeColor = System.Drawing.Color.Black;
             this.tbxNewPassword.Location = new System.Drawing.Point(55, 257);
             this.tbxNewPassword.Name = "tbxNewPassword";
-            this.tbxNewPassword.PlaceholderText = "Yeni Şifre";
+            this.tbxNewPassword.PlaceholderText = "Yeni Şifre (Değişecekse)";
             this.tbxNewPassword.Size = new System.Drawing.Size(235, 25);
             this.tbxNewPassword.TabIndex = 6;
             this.tbxNewPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
@@ -123,7 +123,7 @@
             this.tbxNewPasswordAgain.ForeColor = System.Drawing.Color.Black;
             this.tbxNewPasswordAgain.Location = new System.Drawing.Point(55, 300);
             this.tbxNewPasswordAgain.Name = "tbxNewPasswordAgain";
-            this.tbxNewPasswordAgain.PlaceholderText = "Yeni Şifre Tekrar";
+            this.tbxNewPasswordAgain.PlaceholderText = "Yeni Şifre Tekrar (Değişecekse)";
             this.tbxNewPasswordAgain.Size = new System.Drawing.Size(235, 25);
             this.tbxNewPasswordAgain.TabIndex = 8;
             this.tbxNewPasswordAgain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;

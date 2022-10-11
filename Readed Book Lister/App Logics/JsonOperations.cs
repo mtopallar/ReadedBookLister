@@ -40,39 +40,41 @@ namespace Readed_Book_Lister.Methods.Helpers
             }
         }
 
-        public static bool DeleteUserFile() // double check ok
-        {
-            var jsonUserList = File.ReadAllText(userFileName);
-            var userList = JsonConvert.DeserializeObject<List<User>>(jsonUserList);
-            if (userList != null)
-            {
-                if (userList.Count == 0)
-                {
-                    File.Delete(userFileName);
-                    return true;
-                }
-                return true;
-            }
-            System.Windows.Forms.MessageBox.Show(Messages.UsersFileNotExist);
-            return false; //defensive
-        }
+        //Aşağıdaki metodlar users ve userbooks json dosyalarını eğer içleri boşsa siliyorlar. Çalışan metodlar (denendi) ancak kullanmadım.
 
-        public static bool DeleteUserBooksFile()  // double check ok
-        {
-            var jsonUserBookList = File.ReadAllText(userBooksFileName);
-            var userBooksList = JsonConvert.DeserializeObject<List<User>>(jsonUserBookList);
-            if (userBooksList != null)
-            {
-                if (userBooksList.Count == 0)
-                {
-                    File.Delete(userBooksFileName);
-                    return true;
-                }
-                return true;
-            }
-            System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
-            return false; //defensive
-        }
+        //public static bool DeleteUserFile() // double check ok
+        //{
+        //    var jsonUserList = File.ReadAllText(userFileName);
+        //    var userList = JsonConvert.DeserializeObject<List<User>>(jsonUserList);
+        //    if (userList != null)
+        //    {
+        //        if (userList.Count == 0)
+        //        {
+        //            File.Delete(userFileName);
+        //            return true;
+        //        }
+        //        return true;
+        //    }
+        //    System.Windows.Forms.MessageBox.Show(Messages.UsersFileNotExist);
+        //    return false; //defensive
+        //}
+
+        //public static bool DeleteUserBooksFile()  // double check ok
+        //{
+        //    var jsonUserBookList = File.ReadAllText(userBooksFileName);
+        //    var userBooksList = JsonConvert.DeserializeObject<List<User>>(jsonUserBookList);
+        //    if (userBooksList != null)
+        //    {
+        //        if (userBooksList.Count == 0)
+        //        {
+        //            File.Delete(userBooksFileName);
+        //            return true;
+        //        }
+        //        return true;
+        //    }
+        //    System.Windows.Forms.MessageBox.Show(Messages.UserBooksFileNotExist);
+        //    return false; //defensive
+        //}
 
     }
 }

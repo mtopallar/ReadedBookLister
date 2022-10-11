@@ -40,9 +40,7 @@ namespace Readed_Book_Lister
             LabelHeaderSet();
             SetFormToStartSize();
             EnableSelectedPanel(pnlQuery);
-            EnabledPanelRadioButtonStatue(rbtnQuery);
-            //GC.Collect();
-            //GC.WaitForPendingFinalizers();
+            EnabledPanelRadioButtonStatue(rbtnQuery);           
         }
 
         private void btnBookAdd_Click(object sender, EventArgs e)
@@ -254,12 +252,8 @@ namespace Readed_Book_Lister
             if (UsersBookList == null || UsersBookList.Count == 0)
             {
                 btnBookSearch.Enabled = false;
-                btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_disabled.png");
-                //return;
-            }
-
-            //btnBookSearch.Enabled = true;
-            //btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook.png");
+                btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_disabled.png");                
+            }                       
         }
 
         private void LabelHeaderSet()
@@ -347,6 +341,7 @@ namespace Readed_Book_Lister
                     {                        
                         if (UserBookOperations.Delete(selectedUserBook))
                         {
+                            MessageBox.Show(Messages.DeleteUserBookSuccessful);
                             dgvUserBookList.CurrentRow.Cells[10].Value = null;
                             GC.Collect();
                             GC.WaitForPendingFinalizers();
@@ -665,6 +660,9 @@ namespace Readed_Book_Lister
 
         private void btnProfileOperations_Click(object sender, EventArgs e)
         {
+            dgvUserBookList.Rows.Clear();
+            dgvUserBookList.Columns.Clear();
+
             ProfileOperations profileOperations = new ProfileOperations(_loggedUser);
             Hide();
             profileOperations.ShowDialog();

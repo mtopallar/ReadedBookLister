@@ -1,4 +1,5 @@
-﻿using Readed_Book_Lister.Constants;
+﻿using Readed_Book_Lister.App_Logics;
+using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
 using Readed_Book_Lister.Methods.App_Methods;
@@ -11,6 +12,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using System.Windows.Forms;
 
 namespace Readed_Book_Lister
@@ -25,6 +27,8 @@ namespace Readed_Book_Lister
             InitializeComponent();
             _loggedUser = loggedUser;
             SetUserNameToTextBox();
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         #region Helpers
@@ -84,7 +88,7 @@ namespace Readed_Book_Lister
 
         private void ClearFormErrorsToNormalStatue()
         {
-            ChangeTextBoxBackColorToNormal(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);                       
+            ChangeTextBoxBackColorToNormal(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);
             btnUpdate.BackgroundImage = Image.FromFile(@".\assets\update_user.png");
             btnUpdate.Enabled = true;
         }
@@ -132,7 +136,7 @@ namespace Readed_Book_Lister
             {
                 btnUpdate.BackgroundImage = Image.FromFile(@".\assets\update_user.png");
                 toolTipProfileOperations.Hide(btnUpdate);
-            } 
+            }
         }
 
         private void btnCancel_MouseHover(object sender, EventArgs e)
@@ -223,21 +227,34 @@ namespace Readed_Book_Lister
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
-            if (CheckTextBoxValuesAreValid(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain) && NewPasswordAndNewPasswordAgainMustBeSame())
+            if (CheckTextBoxValuesAreValid(tbxName, tbxCurrentPassword))
             {
-                UserUpdateDto userUpdateDto = new()
+                UserUpdateDto userUpdateDto = new();
+                userUpdateDto.Id = _loggedUser.Id;
+                userUpdateDto.NewNickName = StringUtilityHelper.TrimStartAndFinish(tbxName.Text);
+                userUpdateDto.CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text);
+
+                if (!string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxNewPassword.Text)) || !string.IsNullOrEmpty(StringUtilityHelper.TrimStartAndFinish(tbxNewPasswordAgain.Text)))
                 {
-                    Id = _loggedUser.Id,
-                    NewNickName = StringUtilityHelper.TrimStartAndFinish(tbxName.Text),
-                    CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text),
-                    NewPassword = StringUtilityHelper.TrimStartAndFinish(tbxNewPassword.Text)
-                };                
+                    if (CheckTextBoxValuesAreValid(tbxNewPassword, tbxNewPasswordAgain) && NewPasswordAndNewPasswordAgainMustBeSame())
+                    {
+                        userUpdateDto.NewPassword = StringUtilityHelper.TrimStartAndFinish(tbxNewPassword.Text);
+                    }
+                    else
+                    {
+                        return;
+                    }
+                }
+                else
+                {
+                    userUpdateDto.NewPassword = string.Empty;
+                }
                 if (UserOperations.Update(userUpdateDto))
                 {
                     ClearTextBoxes(tbxName, tbxCurrentPassword, tbxNewPassword, tbxNewPasswordAgain);
                     ReturnToMainForm(GetUpdatedUser());
                     return;
-                }                
+                }
             }
             btnUpdate.BackgroundImage = Image.FromFile(@".\assets\update_user_error.png");
             btnUpdate.Enabled = false;
@@ -252,15 +269,39 @@ namespace Readed_Book_Lister
         {
             if (CheckTextBoxValuesAreValid(tbxCurrentPassword))
             {
-                DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteYourProfile, "Dikkat!", MessageBoxButtons.YesNo,MessageBoxIcon.Warning);
+                DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteYourProfile, "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                 if (dialogResult == DialogResult.Yes)
                 {
-                    UserDeleteDto userDeleteDto = new()
+                    var getUserToDelete = UserOperations.GetUserById(_loggedUser.Id);
+
+                    if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text), getUserToDelete.PasswordHash, getUserToDelete.PasswordSalt))
                     {
-                        UserId = _loggedUser.Id,
-                        CurrentPassword = StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text)
-                        // Buraya devam edilecek. Kullanıcıdan önce userbooks tan her bir image silinmeli, sonra ilgili id den user books, en son user silinmeli. Bu yüzden user delete ve update hatta gerekirse image delete bool dönebilir. işlem sonucuna göre iç içe yürütülür. 
-                    };
+
+                        var getUsersAllBooks = UserBookOperations.GetAllByUserId(getUserToDelete.Id);
+                        if (getUsersAllBooks != null)
+                        {
+                            foreach (var userBook in getUsersAllBooks)
+                            {
+                                ImageOperations.DeleteOldImageIfNotDefault(userBook.Image);
+                                if (!UserBookOperations.Delete(userBook))
+                                {                                    
+                                    return;
+                                }
+                            }
+                        }
+
+                        if (UserOperations.Delete(getUserToDelete.Id))
+                        {
+                            Login login = new Login();
+                            Hide();
+                            login.ShowDialog();
+                            Close();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show(Messages.NoUserBookByUserBookId);
+                    }
                 }
             }
         }

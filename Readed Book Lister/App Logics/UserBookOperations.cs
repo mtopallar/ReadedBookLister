@@ -101,9 +101,10 @@ namespace Readed_Book_Lister.Methods.App_Methods
                 {
                     getAllBooks.Remove(userBookToRemove);
                     var updatedListToJson = JsonConvert.SerializeObject(getAllBooks, Formatting.Indented);
-                    File.WriteAllText(userBookFileName, updatedListToJson);
-                    System.Windows.Forms.MessageBox.Show(Messages.DeleteUserBookSuccessful);
+                    File.WriteAllText(userBookFileName, updatedListToJson);                    
+                    
                     return true;
+
                 }
                 System.Windows.Forms.MessageBox.Show(Messages.NoUserBookByUserBookId);
             }
@@ -139,7 +140,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
                     return knownReadYearList;
                 }
             }
-            // belki count u sıfır olan yeni bi liste dönmek gerekebilir handle edişine göre.
+            
             return null;
         }
 
@@ -166,11 +167,11 @@ namespace Readed_Book_Lister.Methods.App_Methods
             {
                 //sadece yıla baksam da olur çünkü sadece ay bilgisi ile kitap kaydı yok. ya sadece yıl ya da ay ve yıl olabiliyor.
                 //yani yılı boş olanın ay ı zaten boş olmak zorunda. yılı dolu ayı boş olanlar zaten dgv de yıl bazlı istatistiklerde listeleniyor.
-                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();                 
+                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();
                 if (getUnknownReadDateList.Count != 0)
                 {
                     return getUnknownReadDateList;
-                }                
+                }
             }
 
             return null;
@@ -228,7 +229,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             {
                 return userBooks.Where(u => u.BookName.Contains(StringUtilityHelper.ToTrLocaleTitleCase(StringUtilityHelper.TrimStartAndFinish(tbxBookName.Text)))).ToList();
 
-                //Contains yerine StartsWith de kullanabiliyorum.Ancak o zaman ilgili parametrenin sadece başından başlıor bakmaya. Yani rüzgara fısıldayan kadınlar için rüz diye aramaya başlaman gerek. fısıldayan yazınca yok diyor. contains dersen içerikte herhangi bir kelimede eşleşme varsa getiriyor.
+                //Contains yerine StartsWith de kullanabiliyorum.Ancak o zaman ilgili parametrenin sadece başından başlıyor bakmaya. Yani rüzgara fısıldayan kadınlar için rüz diye aramaya başlaman gerek. fısıldayan yazınca yok diyor. contains dersen içerikte herhangi bir kelimede eşleşme varsa getiriyor.
             }
 
             return userBooks;
