@@ -32,6 +32,7 @@ namespace Readed_Book_Lister.Constants
         public static string IsbnUsedBefore = "Belirtilen ISBN daha önce kullanılmış.";
         public static string NoBookByIsnbNo = "Belirtilen Isbn numarasına sahip kitabınız yok.";
         public static string NewPasswordAndNewPasswordAgainDoesNotMatch = "Yeni şifre ve Yeni Şifre Tekrar alanları eşleşmiyor.";
+        public static string AnErrorOccured = "Silme sırasında bir hata meydana geldi.";
 
         //Form
         public static string AllFieldsAreRequired = "Tüm alanları doldurunuz.";
@@ -45,6 +46,7 @@ namespace Readed_Book_Lister.Constants
         public static string NoDataByFilter = "Belirttiğiniz flitreye uygun kitap bulunmamaktadır. Arama kriterlerinizi değiştirip tekrar deneyiniz.";
 
         //DataGridView Messages (Statistics)
-        public static string NoStatisticByThisSelection = "İlgili aralıkta kayıtlı okunmuş kitabınız bulunmamaktadır.";        
+        public static string NoStatisticByThisSelection = "İlgili aralıkta kayıtlı okunmuş kitabınız bulunmamaktadır.";
+        
     }
 }

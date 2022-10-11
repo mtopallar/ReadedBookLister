@@ -16,6 +16,8 @@ namespace Readed_Book_Lister.Methods.Helpers
 
         const string userFileName = "users.json";
         const string userBooksFileName = "userbooks.json";
+        const string assetsFolderName = "assets";
+        const string imagesFolderName = "images";
 
         public static void CreateDbFilesIfNot()
         {
@@ -39,6 +41,32 @@ namespace Readed_Book_Lister.Methods.Helpers
                 File.WriteAllText(userBooksFileName, convertNewListToJson);
             }
         }
+
+        public static void HideSystemFoldersAndDbFiles()
+        {
+            HideAssetsFolder();
+            HideImagessFolder();   
+            // users ve userbooks json dosyalarını gizli yaptığım zaman file stream yaratarak okuma ve yazma erişimi vermem gerekiyor. direk dosyadan okuma / dosyaya yazma yetkisi olmuyor.
+        }
+
+        private static void HideAssetsFolder()
+        {
+            if (Directory.Exists(assetsFolderName))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(assetsFolderName);
+                directoryInfo.Attributes = FileAttributes.Hidden;
+            }
+        }
+
+        private static void HideImagessFolder()
+        {
+            if (Directory.Exists(imagesFolderName))
+            {
+                DirectoryInfo directoryInfo = new DirectoryInfo(imagesFolderName);
+                directoryInfo.Attributes = FileAttributes.Hidden;
+            }
+        }
+        
 
         //Aşağıdaki metodlar users ve userbooks json dosyalarını eğer içleri boşsa siliyorlar. Çalışan metodlar (denendi) ancak kullanmadım.
 

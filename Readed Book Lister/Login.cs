@@ -28,6 +28,7 @@ namespace Readed_Book_Lister
             InitializeComponent();
             JsonOperations.CreateDbFilesIfNot();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnLogin,btnClose);
+            JsonOperations.HideSystemFoldersAndDbFiles();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -92,7 +93,7 @@ namespace Readed_Book_Lister
                 ErrorStatue();
                 return;
             }
-            // main form load et.
+            
             Main main = new Main(logedUser);
             Hide();
             main.ShowDialog();
@@ -168,7 +169,7 @@ namespace Readed_Book_Lister
             _dragging = false;
         }
 
-        //End of Move Form
-                
+        //End of Move Form       
+
     }
 }

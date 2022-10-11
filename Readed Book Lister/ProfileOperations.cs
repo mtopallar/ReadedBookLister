@@ -274,33 +274,41 @@ namespace Readed_Book_Lister
                 {
                     var getUserToDelete = UserOperations.GetUserById(_loggedUser.Id);
 
+
+
                     if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text), getUserToDelete.PasswordHash, getUserToDelete.PasswordSalt))
                     {
-
-                        var getUsersAllBooks = UserBookOperations.GetAllByUserId(getUserToDelete.Id);
-                        if (getUsersAllBooks != null)
+                        try
                         {
-                            foreach (var userBook in getUsersAllBooks)
+                            var getUsersAllBooks = UserBookOperations.GetAllByUserId(getUserToDelete.Id);
+                            if (getUsersAllBooks != null)
                             {
-                                ImageOperations.DeleteOldImageIfNotDefault(userBook.Image);
-                                if (!UserBookOperations.Delete(userBook))
-                                {                                    
-                                    return;
+                                foreach (var userBook in getUsersAllBooks)
+                                {
+                                    ImageOperations.DeleteOldImageIfNotDefault(userBook.Image);
+                                    if (!UserBookOperations.Delete(userBook))
+                                    {
+                                        return;
+                                    }
                                 }
                             }
-                        }
 
-                        if (UserOperations.Delete(getUserToDelete.Id))
+                            if (UserOperations.Delete(getUserToDelete.Id))
+                            {
+                                Login login = new Login();
+                                Hide();
+                                login.ShowDialog();
+                                Close();
+                            }
+                        }
+                        catch (Exception)
                         {
-                            Login login = new Login();
-                            Hide();
-                            login.ShowDialog();
-                            Close();
+                            MessageBox.Show(Messages.AnErrorOccured);
                         }
                     }
                     else
                     {
-                        MessageBox.Show(Messages.NoUserBookByUserBookId);
+                        MessageBox.Show(Messages.CurrentPasswordError);
                     }
                 }
             }
