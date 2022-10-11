@@ -8,7 +8,7 @@ namespace Readed_Book_Lister.Constants
 {
     public class Messages
     {
-        public static string RegisterSuccessful = "Kayıt Başarılı!";
+        public static string RegisterSuccessful = "Kayıt başarılı.";
         public static string UserNotFoundByName = "Kullanıcı bulunamadı.";
         public static string UserNotFoundById = "Kullanıcı id'si hatalı.";
         public static string NickNameExists = "Kullanıcı adı kullanımda.";
@@ -16,7 +16,7 @@ namespace Readed_Book_Lister.Constants
         public static string UserNotFound = "Kullanıcı kaydına ulaşılamadı.";
         public static string UserUpdateSuccesful = "Kullanıcı başarıyla güncellendi.";
         public static string CurrentPasswordError = "Mevcut parolanızı hatalı girdiniz.";
-        public static string DeleteUserSuccesful = "Kullanıcı bşarıyla silindi.";
+        public static string DeleteUserSuccesful = "Kullanıcı başarıyla silindi.";
         public static string UsersListIsEmpty = "Kayıtlı kullanıcı yok.";
         public static string UserBookAddSuccessful = "Kitap başarıyla kaydedildi.";        
         public static string NoBookForNativeStatue = "Bu statüde kayıtlı kitabınız yoktur.";

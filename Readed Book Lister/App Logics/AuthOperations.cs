@@ -14,11 +14,7 @@ using System.Threading.Tasks;
 namespace Readed_Book_Lister.App_Logics
 {
     public class AuthOperations
-    {   // Mbox kontrolleri de ok
-        //Register => ok.
-        //Login => ok. 
-
-        //Checked.
+    {  
 
         const string userFileName = "users.json";
 

@@ -15,7 +15,7 @@ namespace Readed_Book_Lister.Methods.Helpers
         // Checked.
 
         const string userFileName = "users.json";
-        const string userBooksFileName = "userbooks.json";
+        const string userBooksFileName = "userBooks.json";
         const string assetsFolderName = "assets";
         const string imagesFolderName = "images";
 

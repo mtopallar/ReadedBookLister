@@ -15,11 +15,10 @@ namespace Readed_Book_Lister.Methods.App_Methods
 {
     public class UserBookOperations
     {
-        const string userBookFileName = "userbooks.json";
+        const string userBookFileName = "userBooks.json";
 
         public static bool Add(UserBook userBook) // bool eklendi ve kullanıldı
-        {
-            // Güzel bir örnek oldu.
+        {            
             JsonOperations.CreateDbFilesIfNot();
 
             if (!IsIsbnUsedBefore(userBook))

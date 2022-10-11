@@ -14,16 +14,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 {
     public class UserOperations
     {
-        //Checked.
-
-        // Mbox kontrolleri de ok.
-        // add (auth a alındı) ok
-        // update => ok
-        // delete => ok
-        // get all => ok
-        // get by id => ok
-        // IsNickNameExist => ok
-        // GetByNickName => ok
+        
         const string userFileName = "users.json";
 
         public static bool Update(UserUpdateDto userUpdateDto) // double check ok
