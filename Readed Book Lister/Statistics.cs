@@ -30,6 +30,8 @@ namespace Readed_Book_Lister
             cmbBetweenTwoYears.Text = DateTime.Now.Year.ToString(); //Just Text
             FillUserBookStatisticsListForStartUp();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnCancel);
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
         }
 
         private void btnClose_Click(object sender, EventArgs e)
@@ -519,7 +521,7 @@ namespace Readed_Book_Lister
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
-        {
+        {            
             Main mainForm = new Main(_loggedUser);
             Hide();
             mainForm.ShowDialog();

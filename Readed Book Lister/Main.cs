@@ -40,7 +40,8 @@ namespace Readed_Book_Lister
             LabelHeaderSet();
             SetFormToStartSize();
             EnableSelectedPanel(pnlQuery);
-            EnabledPanelRadioButtonStatue(rbtnQuery);           
+            EnabledPanelRadioButtonStatue(rbtnQuery);
+            
         }
 
         private void btnBookAdd_Click(object sender, EventArgs e)
@@ -324,7 +325,7 @@ namespace Readed_Book_Lister
             if (dgvUserBookList.RowCount > 0)
             {
                 UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value) - 1];
-
+                
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
                     dgvUserBookList.CurrentRow.Cells[10].Value = null;                    
@@ -341,8 +342,8 @@ namespace Readed_Book_Lister
                     {                        
                         if (UserBookOperations.Delete(selectedUserBook))
                         {
-                            MessageBox.Show(Messages.DeleteUserBookSuccessful);
-                            dgvUserBookList.CurrentRow.Cells[10].Value = null;
+                            MessageBox.Show(Messages.DeleteUserBookSuccessful);                            
+                            dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png");
                             GC.Collect();
                             GC.WaitForPendingFinalizers();
                             ImageOperations.DeleteOldImageIfNotDefault(selectedUserBook.Image);
@@ -659,9 +660,9 @@ namespace Readed_Book_Lister
         }
 
         private void btnProfileOperations_Click(object sender, EventArgs e)
-        {
+        {            
             dgvUserBookList.Rows.Clear();
-            dgvUserBookList.Columns.Clear();
+            dgvUserBookList.Columns.Clear();            
 
             ProfileOperations profileOperations = new ProfileOperations(_loggedUser);
             Hide();
@@ -671,6 +672,9 @@ namespace Readed_Book_Lister
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
+            dgvUserBookList.Rows.Clear();
+            dgvUserBookList.Columns.Clear();
+
             Statistics statistics = new Statistics(_loggedUser);
             Hide();
             statistics.ShowDialog();

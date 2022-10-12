@@ -274,17 +274,15 @@ namespace Readed_Book_Lister
                 {
                     var getUserToDelete = UserOperations.GetUserById(_loggedUser.Id);
 
-
-
                     if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text), getUserToDelete.PasswordHash, getUserToDelete.PasswordSalt))
-                    {
+                    {                        
                         try
                         {
                             var getUsersAllBooks = UserBookOperations.GetAllByUserId(getUserToDelete.Id);
                             if (getUsersAllBooks != null)
                             {
                                 foreach (var userBook in getUsersAllBooks)
-                                {
+                                {                                    
                                     ImageOperations.DeleteOldImageIfNotDefault(userBook.Image);
                                     if (!UserBookOperations.Delete(userBook))
                                     {
@@ -296,9 +294,7 @@ namespace Readed_Book_Lister
                             if (UserOperations.Delete(getUserToDelete.Id))
                             {
                                 Login login = new Login();
-                                Hide();
-                                login.ShowDialog();
-                                Close();
+                                login.Show();
                             }
                         }
                         catch (Exception)

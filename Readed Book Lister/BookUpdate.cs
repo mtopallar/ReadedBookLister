@@ -239,14 +239,6 @@ namespace Readed_Book_Lister
                     ReadYear = CanSetReadMonthAndYearIfReadedCheckHelper.UserCanSetReadedMonthAndYearIfReadedChecked(cbxReaded, cmbYear),
                     Image = (tbxImage.Text == _userBookToUpdate.Image) ? _userBookToUpdate.Image : ImageOperations.GenerateGuidForImageIfImageSelected(tbxImage.Text)
                 };
-                //UserBookOperations.Update(newBook);
-                //if (_userBookToUpdate.Image != tbxImage.Text)
-                //{
-                //    ImageOperations.SaveImage(newBook.Image, tbxImage); //artık bool dönüyor. (add book da da kullanılıyor)                   
-                //    ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image); // artık bool dönüyor. (burası tek kullanım)
-                //}
-
-                //GoBackToMainFormAfterUpdate();
 
                 if (UserBookOperations.Update(newBook))
                 {

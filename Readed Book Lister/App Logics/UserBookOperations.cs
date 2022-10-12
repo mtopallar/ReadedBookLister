@@ -117,6 +117,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
+                //tarih bilgisi varsa kitap zaten okunmuştur.
                 var getListByCriteria = getAllByUserId.Where(u => u.ReadMonth == readMonth && u.ReadYear == readYear).ToList();
                 if (getListByCriteria.Count != 0)
                 {
@@ -129,7 +130,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
         public static List<UserBook>? GetAllByJustReadYearAndUserId(int userId, int readYear)
         {
             // Geliştirildi.
-
+            //yıl bilgisi varsa kitap zaten okunmuştur.
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
@@ -145,6 +146,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
 
         public static List<UserBook>? GetUserBooksBetweenSelectedYears(int userId, int firstYear, int secondYear)
         {
+            //yıl bilgisi varsa kitap zaten okunmuştur.
             var getAllByUserId = GetAllByUserId(userId);
             if (getAllByUserId != null)
             {
@@ -166,7 +168,7 @@ namespace Readed_Book_Lister.Methods.App_Methods
             {
                 //sadece yıla baksam da olur çünkü sadece ay bilgisi ile kitap kaydı yok. ya sadece yıl ya da ay ve yıl olabiliyor.
                 //yani yılı boş olanın ay ı zaten boş olmak zorunda. yılı dolu ayı boş olanlar zaten dgv de yıl bazlı istatistiklerde listeleniyor.
-                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null).ToList();
+                var getUnknownReadDateList = getAllByUserId.Where(u => u.ReadMonth == null && u.ReadYear == null && u.Readed).ToList();
                 if (getUnknownReadDateList.Count != 0)
                 {
                     return getUnknownReadDateList;

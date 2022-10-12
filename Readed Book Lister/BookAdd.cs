@@ -29,7 +29,7 @@ namespace Readed_Book_Lister
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
             DisableDateAreaWhenAppStartsOrReadedUnchecked();
-            _loggedUser = loggedUser;
+            _loggedUser = loggedUser;           
         }
         
         #region Clicks
@@ -73,10 +73,7 @@ namespace Readed_Book_Lister
             {
                 ImageOperations.SaveImage(userBook.Image, tbxImage);
                 ClearForm();
-            }
-            //ImageOperations.SaveImage(userBook.Image, tbxImage);
-            //UserBookOperations.Add(userBook);
-            //ClearForm();
+            }            
         }
 
         private void btnBrowse_Click(object sender, EventArgs e)
