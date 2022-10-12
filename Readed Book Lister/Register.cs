@@ -112,7 +112,8 @@ namespace Readed_Book_Lister
         {
             Login loginForm = new Login();
             Hide();
-            loginForm.Show();
+            loginForm.ShowDialog();
+            Close();
         }
 
         private void btnRegister_Click(object sender, EventArgs e)

@@ -104,7 +104,8 @@ namespace Readed_Book_Lister
         {
             Register registerForm = new Register();
             Hide();
-            registerForm.Show();
+            registerForm.ShowDialog();
+            Close();
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)
