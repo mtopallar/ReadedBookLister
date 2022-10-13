@@ -44,18 +44,10 @@ namespace Readed_Book_Lister
             EnabledPanelRadioButtonStatue(rbtnQuery);
             GC.Collect();
             GC.WaitForPendingFinalizers();
-
         }
         
         private void btnBookAdd_Click(object sender, EventArgs e)
         {
-            //BookAdd bookAdd = new BookAdd(_loggedUser);
-            //Hide();
-            //bookAdd.ShowDialog();
-            //Close();
-            //this.Hide();
-            //bookAdd.Show();
-
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToBookAddWithNewThread));
             thread.SetApartmentState(System.Threading.ApartmentState.STA);
             thread.Start();
@@ -349,16 +341,11 @@ namespace Readed_Book_Lister
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
                     dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png");
-                    GC.Collect(); //kalmalı
-                    GC.WaitForPendingFinalizers(); //kalmalı
-                    //BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
-                    //Hide();
-                    //bookUpdateForm.ShowDialog();
-                    //Close();
+                                        
                     System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToBookUpdateWithNewThread));
                     thread.SetApartmentState(System.Threading.ApartmentState.STA);
                     thread.Start();
-                    this.Hide();
+                    Close();
                 }
                 else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {
@@ -686,13 +673,10 @@ namespace Readed_Book_Lister
 
         private void btnProfileOperations_Click(object sender, EventArgs e)
         {
-            ////////////////////////////////////////////
+            
             dgvUserBookList.Rows.Clear();
             dgvUserBookList.Columns.Clear();
-
-            GC.Collect(); //kalmalı
-            GC.WaitForPendingFinalizers(); //kalmalı
-
+            
             ProfileOperations profileOperations = new ProfileOperations(_loggedUser);
             Hide();
             profileOperations.ShowDialog();
@@ -701,13 +685,8 @@ namespace Readed_Book_Lister
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
-            /////////////////////////////////////////////////
-
             dgvUserBookList.Rows.Clear();
             dgvUserBookList.Columns.Clear();
-
-            GC.Collect(); //kalmalı
-            GC.WaitForPendingFinalizers(); //kalmalı
 
             Statistics statistics = new Statistics(_loggedUser);
             Hide();

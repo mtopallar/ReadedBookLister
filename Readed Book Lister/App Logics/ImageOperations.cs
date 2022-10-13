@@ -34,7 +34,7 @@ namespace Readed_Book_Lister.App_Logics
             }
         }
 
-        //public static void DeleteOldImageIfNotDefault(string oldImage) // double check ok bool a gerek yok
+        //public static void DeleteOldImageIfNotDefault(string oldImage) // folder ile filename i combine alternatifi ama split iyileştirilmeli.
         //{
         //    var defaultImage = @".\images\default.png";
         //    var folderPath = @".\images";

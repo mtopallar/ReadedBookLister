@@ -74,7 +74,7 @@
             this.cmbJustMonthInAYear.Location = new System.Drawing.Point(325, 158);
             this.cmbJustMonthInAYear.Name = "cmbJustMonthInAYear";
             this.cmbJustMonthInAYear.Size = new System.Drawing.Size(226, 26);
-            this.cmbJustMonthInAYear.TabIndex = 1;
+            this.cmbJustMonthInAYear.TabIndex = 2;
             this.cmbJustMonthInAYear.SelectedIndexChanged += new System.EventHandler(this.cmbJustMonthInAYear_SelectedIndexChanged);
             this.cmbJustMonthInAYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbJustMonthInAYear_KeyDown);
             // 
@@ -85,7 +85,7 @@
             this.cmbJustAYear.Location = new System.Drawing.Point(609, 158);
             this.cmbJustAYear.Name = "cmbJustAYear";
             this.cmbJustAYear.Size = new System.Drawing.Size(226, 26);
-            this.cmbJustAYear.TabIndex = 2;
+            this.cmbJustAYear.TabIndex = 3;
             this.cmbJustAYear.SelectedIndexChanged += new System.EventHandler(this.cmbJustAYear_SelectedIndexChanged);
             this.cmbJustAYear.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbJustAYear_KeyDown);
             // 
@@ -96,7 +96,7 @@
             this.cmbBetweenTwoYears.Location = new System.Drawing.Point(889, 158);
             this.cmbBetweenTwoYears.Name = "cmbBetweenTwoYears";
             this.cmbBetweenTwoYears.Size = new System.Drawing.Size(226, 26);
-            this.cmbBetweenTwoYears.TabIndex = 3;
+            this.cmbBetweenTwoYears.TabIndex = 4;
             this.cmbBetweenTwoYears.SelectedIndexChanged += new System.EventHandler(this.cmbBetweenTwoYears_SelectedIndexChanged);
             this.cmbBetweenTwoYears.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbBetweenTwoYears_KeyDown);
             // 
@@ -112,7 +112,7 @@
             this.cmbSelection.Location = new System.Drawing.Point(41, 158);
             this.cmbSelection.Name = "cmbSelection";
             this.cmbSelection.Size = new System.Drawing.Size(226, 26);
-            this.cmbSelection.TabIndex = 4;
+            this.cmbSelection.TabIndex = 1;
             this.cmbSelection.SelectedIndexChanged += new System.EventHandler(this.cmbSelection_SelectedIndexChanged);
             this.cmbSelection.KeyDown += new System.Windows.Forms.KeyEventHandler(this.cmbSelection_KeyDown);
             // 
@@ -130,7 +130,7 @@
             this.btnClose.Location = new System.Drawing.Point(1092, 36);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(22, 26);
-            this.btnClose.TabIndex = 18;
+            this.btnClose.TabIndex = 6;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
@@ -164,7 +164,7 @@
             this.btnCancel.Location = new System.Drawing.Point(1048, 583);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(66, 55);
-            this.btnCancel.TabIndex = 33;
+            this.btnCancel.TabIndex = 5;
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             this.btnCancel.MouseLeave += new System.EventHandler(this.btnCancel_MouseLeave);

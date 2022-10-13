@@ -2,6 +2,7 @@
 using Readed_Book_Lister.Constants;
 using Readed_Book_Lister.Dtos;
 using Readed_Book_Lister.Entities;
+using Readed_Book_Lister.Helpers;
 using Readed_Book_Lister.Methods.App_Methods;
 using Readed_Book_Lister.Methods.Helpers;
 using System;
@@ -27,6 +28,7 @@ namespace Readed_Book_Lister
             InitializeComponent();
             _loggedUser = loggedUser;
             SetUserNameToTextBox();
+            DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnUpdate, btnCancel);
             GC.Collect();
             GC.WaitForPendingFinalizers();
         }

@@ -82,7 +82,7 @@
             this.btnBookAdd.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookAdd.Name = "btnBookAdd";
             this.btnBookAdd.Size = new System.Drawing.Size(75, 55);
-            this.btnBookAdd.TabIndex = 0;
+            this.btnBookAdd.TabIndex = 2;
             this.btnBookAdd.UseVisualStyleBackColor = false;
             this.btnBookAdd.Click += new System.EventHandler(this.btnBookAdd_Click);
             this.btnBookAdd.MouseLeave += new System.EventHandler(this.btnBookAdd_MouseLeave);
@@ -111,7 +111,7 @@
             this.dgvUserBookList.RowHeadersVisible = false;
             this.dgvUserBookList.RowTemplate.Height = 25;
             this.dgvUserBookList.Size = new System.Drawing.Size(1122, 434);
-            this.dgvUserBookList.TabIndex = 1;
+            this.dgvUserBookList.TabIndex = 0;
             this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
             this.dgvUserBookList.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseEnter);
             this.dgvUserBookList.CellMouseLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseLeave);
@@ -130,7 +130,7 @@
             this.btnClose.Location = new System.Drawing.Point(1469, 35);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(22, 26);
-            this.btnClose.TabIndex = 17;
+            this.btnClose.TabIndex = 5;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
@@ -157,11 +157,11 @@
             this.btnBookSearch.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnBookSearch.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnBookSearch.Location = new System.Drawing.Point(1033, 577);
+            this.btnBookSearch.Location = new System.Drawing.Point(1099, 577);
             this.btnBookSearch.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnBookSearch.Name = "btnBookSearch";
             this.btnBookSearch.Size = new System.Drawing.Size(75, 55);
-            this.btnBookSearch.TabIndex = 19;
+            this.btnBookSearch.TabIndex = 4;
             this.btnBookSearch.UseVisualStyleBackColor = false;
             this.btnBookSearch.Click += new System.EventHandler(this.btnBookSearch_Click);
             this.btnBookSearch.MouseLeave += new System.EventHandler(this.btnBookSearch_MouseLeave);
@@ -180,7 +180,7 @@
             this.btnProfileOperations.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnProfileOperations.Name = "btnProfileOperations";
             this.btnProfileOperations.Size = new System.Drawing.Size(75, 55);
-            this.btnProfileOperations.TabIndex = 20;
+            this.btnProfileOperations.TabIndex = 1;
             this.btnProfileOperations.UseVisualStyleBackColor = false;
             this.btnProfileOperations.Click += new System.EventHandler(this.btnProfileOperations_Click);
             this.btnProfileOperations.MouseLeave += new System.EventHandler(this.btnProfileOperations_MouseLeave);
@@ -218,7 +218,8 @@
             this.rbtnNative.Location = new System.Drawing.Point(22, 6);
             this.rbtnNative.Name = "rbtnNative";
             this.rbtnNative.Size = new System.Drawing.Size(101, 22);
-            this.rbtnNative.TabIndex = 27;
+            this.rbtnNative.TabIndex = 14;
+            this.rbtnNative.TabStop = true;
             this.rbtnNative.Text = "Yerli Kitaplar";
             this.rbtnNative.UseVisualStyleBackColor = true;
             this.rbtnNative.CheckedChanged += new System.EventHandler(this.rbtnNative_CheckedChanged);
@@ -229,7 +230,8 @@
             this.rbtnNotNative.Location = new System.Drawing.Point(140, 6);
             this.rbtnNotNative.Name = "rbtnNotNative";
             this.rbtnNotNative.Size = new System.Drawing.Size(117, 22);
-            this.rbtnNotNative.TabIndex = 28;
+            this.rbtnNotNative.TabIndex = 15;
+            this.rbtnNotNative.TabStop = true;
             this.rbtnNotNative.Text = "Yabancı Kitaplar";
             this.rbtnNotNative.UseVisualStyleBackColor = true;
             this.rbtnNotNative.CheckedChanged += new System.EventHandler(this.rbtnNotNative_CheckedChanged);
@@ -251,7 +253,8 @@
             this.rbtnHasNote.Location = new System.Drawing.Point(22, 6);
             this.rbtnHasNote.Name = "rbtnHasNote";
             this.rbtnHasNote.Size = new System.Drawing.Size(101, 22);
-            this.rbtnHasNote.TabIndex = 27;
+            this.rbtnHasNote.TabIndex = 12;
+            this.rbtnHasNote.TabStop = true;
             this.rbtnHasNote.Text = "Not İçerenler";
             this.rbtnHasNote.UseVisualStyleBackColor = true;
             this.rbtnHasNote.CheckedChanged += new System.EventHandler(this.rbtnHasNote_CheckedChanged);
@@ -262,7 +265,8 @@
             this.rbtnHasNoNote.Location = new System.Drawing.Point(140, 6);
             this.rbtnHasNoNote.Name = "rbtnHasNoNote";
             this.rbtnHasNoNote.Size = new System.Drawing.Size(125, 22);
-            this.rbtnHasNoNote.TabIndex = 28;
+            this.rbtnHasNoNote.TabIndex = 13;
+            this.rbtnHasNoNote.TabStop = true;
             this.rbtnHasNoNote.Text = "Not İçermeyenler";
             this.rbtnHasNoNote.UseVisualStyleBackColor = true;
             this.rbtnHasNoNote.CheckedChanged += new System.EventHandler(this.rbtnHasNoNote_CheckedChanged);
@@ -284,7 +288,8 @@
             this.rbtnReaded.Location = new System.Drawing.Point(22, 6);
             this.rbtnReaded.Name = "rbtnReaded";
             this.rbtnReaded.Size = new System.Drawing.Size(98, 22);
-            this.rbtnReaded.TabIndex = 27;
+            this.rbtnReaded.TabIndex = 10;
+            this.rbtnReaded.TabStop = true;
             this.rbtnReaded.Text = "Okuduklarım";
             this.rbtnReaded.UseVisualStyleBackColor = true;
             this.rbtnReaded.CheckedChanged += new System.EventHandler(this.rbtnReaded_CheckedChanged);
@@ -295,7 +300,8 @@
             this.rbtNotReaded.Location = new System.Drawing.Point(140, 6);
             this.rbtNotReaded.Name = "rbtNotReaded";
             this.rbtNotReaded.Size = new System.Drawing.Size(111, 22);
-            this.rbtNotReaded.TabIndex = 28;
+            this.rbtNotReaded.TabIndex = 11;
+            this.rbtNotReaded.TabStop = true;
             this.rbtNotReaded.Text = "Okumadıklarım";
             this.rbtNotReaded.UseVisualStyleBackColor = true;
             this.rbtNotReaded.CheckedChanged += new System.EventHandler(this.rbtNotReaded_CheckedChanged);
@@ -309,7 +315,7 @@
             this.tbxIsbn.Name = "tbxIsbn";
             this.tbxIsbn.PlaceholderText = "ISBN No";
             this.tbxIsbn.Size = new System.Drawing.Size(274, 26);
-            this.tbxIsbn.TabIndex = 24;
+            this.tbxIsbn.TabIndex = 0;
             this.tbxIsbn.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxIsbn.TextChanged += new System.EventHandler(this.tbxIsbn_TextChanged);
             this.tbxIsbn.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbxIsbn_KeyPress);
@@ -322,7 +328,7 @@
             this.rbtnIsbn.Location = new System.Drawing.Point(3, 322);
             this.rbtnIsbn.Name = "rbtnIsbn";
             this.rbtnIsbn.Size = new System.Drawing.Size(21, 39);
-            this.rbtnIsbn.TabIndex = 23;
+            this.rbtnIsbn.TabIndex = 2;
             this.rbtnIsbn.UseVisualStyleBackColor = false;
             this.rbtnIsbn.CheckedChanged += new System.EventHandler(this.rbtnIsbn_CheckedChanged);
             // 
@@ -335,7 +341,7 @@
             this.tbxPublisher.Name = "tbxPublisher";
             this.tbxPublisher.PlaceholderText = "Yayınevi Adı";
             this.tbxPublisher.Size = new System.Drawing.Size(275, 26);
-            this.tbxPublisher.TabIndex = 22;
+            this.tbxPublisher.TabIndex = 9;
             this.tbxPublisher.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxPublisher.TextChanged += new System.EventHandler(this.tbxPublisher_TextChanged);
             // 
@@ -348,7 +354,7 @@
             this.tbxAuthor.Name = "tbxAuthor";
             this.tbxAuthor.PlaceholderText = "Yazar Adı";
             this.tbxAuthor.Size = new System.Drawing.Size(275, 26);
-            this.tbxAuthor.TabIndex = 20;
+            this.tbxAuthor.TabIndex = 8;
             this.tbxAuthor.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxAuthor.TextChanged += new System.EventHandler(this.tbxAuthor_TextChanged);
             // 
@@ -361,7 +367,7 @@
             this.tbxBookName.Name = "tbxBookName";
             this.tbxBookName.PlaceholderText = "Kitap Ad";
             this.tbxBookName.Size = new System.Drawing.Size(275, 26);
-            this.tbxBookName.TabIndex = 18;
+            this.tbxBookName.TabIndex = 6;
             this.tbxBookName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxBookName.TextChanged += new System.EventHandler(this.tbxBookName_TextChanged);
             // 
@@ -393,7 +399,7 @@
             this.btnClearSearchArea.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnClearSearchArea.Name = "btnClearSearchArea";
             this.btnClearSearchArea.Size = new System.Drawing.Size(44, 54);
-            this.btnClearSearchArea.TabIndex = 23;
+            this.btnClearSearchArea.TabIndex = 5;
             this.btnClearSearchArea.UseVisualStyleBackColor = false;
             this.btnClearSearchArea.Click += new System.EventHandler(this.btnClearSearchArea_Click);
             // 
@@ -411,7 +417,7 @@
             this.pnlSearchArea.Location = new System.Drawing.Point(1179, 113);
             this.pnlSearchArea.Name = "pnlSearchArea";
             this.pnlSearchArea.Size = new System.Drawing.Size(315, 434);
-            this.pnlSearchArea.TabIndex = 31;
+            this.pnlSearchArea.TabIndex = 5;
             // 
             // pnlIsbn
             // 
@@ -420,7 +426,8 @@
             this.pnlIsbn.Location = new System.Drawing.Point(29, 322);
             this.pnlIsbn.Name = "pnlIsbn";
             this.pnlIsbn.Size = new System.Drawing.Size(281, 39);
-            this.pnlIsbn.TabIndex = 2;
+            this.pnlIsbn.TabIndex = 3;
+            this.pnlIsbn.TabStop = true;
             // 
             // pnlQuery
             // 
@@ -435,6 +442,7 @@
             this.pnlQuery.Name = "pnlQuery";
             this.pnlQuery.Size = new System.Drawing.Size(281, 266);
             this.pnlQuery.TabIndex = 1;
+            this.pnlQuery.TabStop = true;
             // 
             // btnStatistics
             // 
@@ -445,11 +453,11 @@
             this.btnStatistics.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Transparent;
             this.btnStatistics.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Transparent;
             this.btnStatistics.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStatistics.Location = new System.Drawing.Point(1099, 577);
+            this.btnStatistics.Location = new System.Drawing.Point(1029, 577);
             this.btnStatistics.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStatistics.Name = "btnStatistics";
             this.btnStatistics.Size = new System.Drawing.Size(75, 55);
-            this.btnStatistics.TabIndex = 32;
+            this.btnStatistics.TabIndex = 3;
             this.btnStatistics.UseVisualStyleBackColor = false;
             this.btnStatistics.Click += new System.EventHandler(this.btnStatistics_Click);
             this.btnStatistics.MouseLeave += new System.EventHandler(this.btnStatistics_MouseLeave);

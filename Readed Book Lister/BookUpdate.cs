@@ -250,9 +250,7 @@ namespace Readed_Book_Lister
                         ImageOperations.SaveImage(newBook.Image, tbxImage);
                         ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
                     }
-                    pbxImage.Image = Image.FromFile(@".\images\default.png");
-                    //GC.Collect();
-                    //GC.WaitForPendingFinalizers();
+                    
                     GoBackToMainFormAfterUpdate();
                 }
                 else
@@ -264,17 +262,11 @@ namespace Readed_Book_Lister
         }
 
         private void GoBackToMainFormAfterUpdate()
-        {
-            //Main mainForm = new Main(_loggedUser);
-            //Hide();
-            //mainForm.ShowDialog();
-            //Close();
-
+        {            
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToMainFormWithNewThread));
             thread.SetApartmentState(System.Threading.ApartmentState.STA);
             thread.Start();            
             Close();
-
         }
         private void GoToMainFormWithNewThread()
         {

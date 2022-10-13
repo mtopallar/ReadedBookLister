@@ -53,7 +53,7 @@
             this.tbxCurrentPassword.Name = "tbxCurrentPassword";
             this.tbxCurrentPassword.PlaceholderText = "Mevcut Şifre";
             this.tbxCurrentPassword.Size = new System.Drawing.Size(235, 25);
-            this.tbxCurrentPassword.TabIndex = 5;
+            this.tbxCurrentPassword.TabIndex = 2;
             this.tbxCurrentPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxCurrentPassword.UseSystemPasswordChar = true;
             this.tbxCurrentPassword.TextChanged += new System.EventHandler(this.tbxCurrentPassword_TextChanged);
@@ -68,7 +68,7 @@
             this.tbxName.Name = "tbxName";
             this.tbxName.PlaceholderText = "Kullanıcı Adı";
             this.tbxName.Size = new System.Drawing.Size(235, 25);
-            this.tbxName.TabIndex = 4;
+            this.tbxName.TabIndex = 1;
             this.tbxName.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxName.TextChanged += new System.EventHandler(this.tbxName_TextChanged);
             // 
@@ -93,7 +93,7 @@
             this.tbxNewPassword.Name = "tbxNewPassword";
             this.tbxNewPassword.PlaceholderText = "Yeni Şifre (Değişecekse)";
             this.tbxNewPassword.Size = new System.Drawing.Size(235, 25);
-            this.tbxNewPassword.TabIndex = 6;
+            this.tbxNewPassword.TabIndex = 3;
             this.tbxNewPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxNewPassword.UseSystemPasswordChar = true;
             this.tbxNewPassword.TextChanged += new System.EventHandler(this.tbxNewPassword_TextChanged);
@@ -110,7 +110,7 @@
             this.btnClose.Location = new System.Drawing.Point(308, 12);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(22, 26);
-            this.btnClose.TabIndex = 7;
+            this.btnClose.TabIndex = 9;
             this.btnClose.UseVisualStyleBackColor = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             this.btnClose.MouseLeave += new System.EventHandler(this.btnClose_MouseLeave);
@@ -125,7 +125,7 @@
             this.tbxNewPasswordAgain.Name = "tbxNewPasswordAgain";
             this.tbxNewPasswordAgain.PlaceholderText = "Yeni Şifre Tekrar (Değişecekse)";
             this.tbxNewPasswordAgain.Size = new System.Drawing.Size(235, 25);
-            this.tbxNewPasswordAgain.TabIndex = 8;
+            this.tbxNewPasswordAgain.TabIndex = 4;
             this.tbxNewPasswordAgain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbxNewPasswordAgain.UseSystemPasswordChar = true;
             this.tbxNewPasswordAgain.TextChanged += new System.EventHandler(this.tbxNewPasswordAgain_TextChanged);
@@ -144,7 +144,7 @@
             this.btnDeleteUser.Location = new System.Drawing.Point(284, 441);
             this.btnDeleteUser.Name = "btnDeleteUser";
             this.btnDeleteUser.Size = new System.Drawing.Size(54, 55);
-            this.btnDeleteUser.TabIndex = 10;
+            this.btnDeleteUser.TabIndex = 8;
             this.btnDeleteUser.Tag = "";
             this.btnDeleteUser.UseVisualStyleBackColor = false;
             this.btnDeleteUser.Click += new System.EventHandler(this.btnDeleteUser_Click);
@@ -164,7 +164,7 @@
             this.btnUpdate.Location = new System.Drawing.Point(151, 331);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(64, 73);
-            this.btnUpdate.TabIndex = 9;
+            this.btnUpdate.TabIndex = 5;
             this.btnUpdate.UseVisualStyleBackColor = false;
             this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             this.btnUpdate.MouseLeave += new System.EventHandler(this.btnUpdate_MouseLeave);
@@ -184,7 +184,7 @@
             this.btnCancel.Location = new System.Drawing.Point(189, 441);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(54, 55);
-            this.btnCancel.TabIndex = 11;
+            this.btnCancel.TabIndex = 6;
             this.btnCancel.Tag = "";
             this.btnCancel.UseVisualStyleBackColor = false;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -209,7 +209,7 @@
             this.btnClear.Location = new System.Drawing.Point(239, 441);
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(54, 55);
-            this.btnClear.TabIndex = 12;
+            this.btnClear.TabIndex = 7;
             this.btnClear.Tag = "";
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
@@ -218,10 +218,12 @@
             // 
             // ProfileOperations
             // 
+            this.AcceptButton = this.btnUpdate;
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(342, 498);
             this.ControlBox = false;
             this.Controls.Add(this.btnClear);

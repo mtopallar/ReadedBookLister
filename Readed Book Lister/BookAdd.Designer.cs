@@ -124,6 +124,7 @@
             "Kasım",
             "Aralık"});
             this.cmbMonth.Location = new System.Drawing.Point(64, 305);
+            this.cmbMonth.MaxDropDownItems = 9;
             this.cmbMonth.Name = "cmbMonth";
             this.cmbMonth.Size = new System.Drawing.Size(134, 26);
             this.cmbMonth.TabIndex = 8;
@@ -144,7 +145,7 @@
             this.cbxReaded.Location = new System.Drawing.Point(214, 229);
             this.cbxReaded.Name = "cbxReaded";
             this.cbxReaded.Size = new System.Drawing.Size(75, 60);
-            this.cbxReaded.TabIndex = 6;
+            this.cbxReaded.TabIndex = 4;
             this.cbxReaded.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxReaded.UseVisualStyleBackColor = false;
             this.cbxReaded.CheckedChanged += new System.EventHandler(this.cbxReaded_CheckedChanged);
@@ -332,7 +333,7 @@
             this.cbxMonth.Location = new System.Drawing.Point(69, 229);
             this.cbxMonth.Name = "cbxMonth";
             this.cbxMonth.Size = new System.Drawing.Size(69, 54);
-            this.cbxMonth.TabIndex = 4;
+            this.cbxMonth.TabIndex = 6;
             this.cbxMonth.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.cbxMonth.UseVisualStyleBackColor = false;
             this.cbxMonth.CheckedChanged += new System.EventHandler(this.cbxMonth_CheckedChanged);
