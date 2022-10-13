@@ -23,13 +23,14 @@ namespace Readed_Book_Lister
         private readonly User _loggedUser;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
+        
         public BookAdd(User loggedUser)
         {
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
             DisableDateAreaWhenAppStartsOrReadedUnchecked();
-            _loggedUser = loggedUser;           
+            _loggedUser = loggedUser;            
         }
         
         #region Clicks
@@ -94,17 +95,17 @@ namespace Readed_Book_Lister
                     return;
                 }
             }
+            
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            // Yeni formu gösterdikten sonra eskisini kapatmak.
-            Main main = new Main(_loggedUser);
-            Hide();
-            main.ShowDialog();
+            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToMainFormWithNewThread));            
+            thread.SetApartmentState(System.Threading.ApartmentState.STA);
+            thread.Start();
             Close();
         }
-
+        
         #endregion
 
         #region Hovers        
@@ -229,6 +230,11 @@ namespace Readed_Book_Lister
         #endregion
 
         #region Helpers
+
+        private void GoToMainFormWithNewThread()
+        {
+            Application.Run(new Main(_loggedUser));
+        }
 
         private void DisableDateAreaWhenAppStartsOrReadedUnchecked()
         {

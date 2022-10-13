@@ -27,12 +27,13 @@ namespace Readed_Book_Lister
         bool searcAreaExpand = false;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
+
         public Main(User loggedUser)
         {
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnClose);
             _loggedUser = loggedUser;
-            GetUsersBook(_loggedUser.Id);            
+            GetUsersBook(_loggedUser.Id);
             CreateDataGridViewColums();
             SetDataGridViewStyleByUsersBookList();
             FillDataGridView();
@@ -41,14 +42,23 @@ namespace Readed_Book_Lister
             SetFormToStartSize();
             EnableSelectedPanel(pnlQuery);
             EnabledPanelRadioButtonStatue(rbtnQuery);
-            
-        }
+            GC.Collect();
+            GC.WaitForPendingFinalizers();
 
+        }
+        
         private void btnBookAdd_Click(object sender, EventArgs e)
         {
-            BookAdd bookAdd = new BookAdd(_loggedUser);
-            Hide();
-            bookAdd.ShowDialog();
+            //BookAdd bookAdd = new BookAdd(_loggedUser);
+            //Hide();
+            //bookAdd.ShowDialog();
+            //Close();
+            //this.Hide();
+            //bookAdd.Show();
+
+            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToBookAddWithNewThread));
+            thread.SetApartmentState(System.Threading.ApartmentState.STA);
+            thread.Start();
             Close();
         }
 
@@ -253,8 +263,8 @@ namespace Readed_Book_Lister
             if (UsersBookList == null || UsersBookList.Count == 0)
             {
                 btnBookSearch.Enabled = false;
-                btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_disabled.png");                
-            }                       
+                btnBookSearch.BackgroundImage = Image.FromFile(@".\assets\searchbook_disabled.png");
+            }
         }
 
         private void LabelHeaderSet()
@@ -319,38 +329,53 @@ namespace Readed_Book_Lister
         }
 
         #endregion
+        UserBook selectedUserBook;
+        private void GoToBookAddWithNewThread()
+        {
+            Application.Run(new BookAdd(_loggedUser));
+        }
+
+        private void GoToBookUpdateWithNewThread()
+        {
+            Application.Run(new BookUpdate(selectedUserBook, _loggedUser));
+        }
 
         private void dgvUserBookList_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
             if (dgvUserBookList.RowCount > 0)
             {
-                UserBook selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value) - 1];
-                
+                selectedUserBook = UsersBookList[Convert.ToInt32(dgvUserBookList.CurrentRow.Cells[0].Value) - 1];
+
                 if (e.ColumnIndex == 11 && e.RowIndex != -1)
                 {
-                    dgvUserBookList.CurrentRow.Cells[10].Value = null;                    
-                    BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
-                    Hide();
-                    bookUpdateForm.ShowDialog();
-                    Close();
-
+                    dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png");
+                    GC.Collect(); //kalmalı
+                    GC.WaitForPendingFinalizers(); //kalmalı
+                    //BookUpdate bookUpdateForm = new BookUpdate(selectedUserBook, _loggedUser);
+                    //Hide();
+                    //bookUpdateForm.ShowDialog();
+                    //Close();
+                    System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToBookUpdateWithNewThread));
+                    thread.SetApartmentState(System.Threading.ApartmentState.STA);
+                    thread.Start();
+                    this.Hide();
                 }
                 else if (e.ColumnIndex == 12 && e.RowIndex != -1)
                 {
                     DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteUserBook, "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
                     if (dialogResult == DialogResult.Yes)
-                    {                        
+                    {
                         if (UserBookOperations.Delete(selectedUserBook))
                         {
-                            MessageBox.Show(Messages.DeleteUserBookSuccessful);                            
+                            MessageBox.Show(Messages.DeleteUserBookSuccessful);
                             dgvUserBookList.CurrentRow.Cells[10].Value = Image.FromFile(@".\images\default.png");
-                            GC.Collect();
-                            GC.WaitForPendingFinalizers();
+                            GC.Collect(); //kalmalı
+                            GC.WaitForPendingFinalizers(); //kalmalı
                             ImageOperations.DeleteOldImageIfNotDefault(selectedUserBook.Image);
                             GetUsersBook(_loggedUser.Id);
                             RefreshDataGrivViewWithNewData();
                         }
-                    }                    
+                    }
                 }
             }
         }
@@ -660,9 +685,13 @@ namespace Readed_Book_Lister
         }
 
         private void btnProfileOperations_Click(object sender, EventArgs e)
-        {            
+        {
+            ////////////////////////////////////////////
             dgvUserBookList.Rows.Clear();
-            dgvUserBookList.Columns.Clear();            
+            dgvUserBookList.Columns.Clear();
+
+            GC.Collect(); //kalmalı
+            GC.WaitForPendingFinalizers(); //kalmalı
 
             ProfileOperations profileOperations = new ProfileOperations(_loggedUser);
             Hide();
@@ -672,8 +701,13 @@ namespace Readed_Book_Lister
 
         private void btnStatistics_Click(object sender, EventArgs e)
         {
+            /////////////////////////////////////////////////
+
             dgvUserBookList.Rows.Clear();
             dgvUserBookList.Columns.Clear();
+
+            GC.Collect(); //kalmalı
+            GC.WaitForPendingFinalizers(); //kalmalı
 
             Statistics statistics = new Statistics(_loggedUser);
             Hide();

@@ -45,7 +45,7 @@ namespace Readed_Book_Lister.Methods.Helpers
         public static void HideSystemFoldersAndDbFiles()
         {
             HideAssetsFolder();
-            HideImagesFolder();   
+            //HideImagesFolder();   
             // users ve userbooks json dosyalarını gizli yaptığım zaman file stream yaratarak okuma ve yazma erişimi vermem gerekiyor. direk dosyadan okuma / dosyaya yazma yetkisi olmuyor.
         }
 

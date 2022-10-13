@@ -12,8 +12,10 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.DataFormats;
 
 namespace Readed_Book_Lister
 {
@@ -23,6 +25,7 @@ namespace Readed_Book_Lister
         private User _loggedUser;
         private bool _dragging = false;
         private Point _startPoint = new Point(0, 0);
+
         public BookUpdate(UserBook userBookToUpdate, User loggedUser)
         {
             InitializeComponent();
@@ -220,7 +223,7 @@ namespace Readed_Book_Lister
             EnableSaveButtonIfFormValid();
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private async void btnSave_Click(object sender, EventArgs e)
         {
             if (CheckFormIfHasError(CheckMouthValueIsValid(), CheckYearValueIsValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
             {
@@ -247,18 +250,35 @@ namespace Readed_Book_Lister
                         ImageOperations.SaveImage(newBook.Image, tbxImage);
                         ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
                     }
+                    pbxImage.Image = Image.FromFile(@".\images\default.png");
+                    //GC.Collect();
+                    //GC.WaitForPendingFinalizers();
                     GoBackToMainFormAfterUpdate();
                 }
-                return;
+                else
+                {
+                    return;
+                }
+
             }
         }
 
         private void GoBackToMainFormAfterUpdate()
         {
-            Main mainForm = new Main(_loggedUser);
-            Hide();
-            mainForm.ShowDialog();
+            //Main mainForm = new Main(_loggedUser);
+            //Hide();
+            //mainForm.ShowDialog();
+            //Close();
+
+            System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToMainFormWithNewThread));
+            thread.SetApartmentState(System.Threading.ApartmentState.STA);
+            thread.Start();            
             Close();
+
+        }
+        private void GoToMainFormWithNewThread()
+        {
+            Application.Run(new Main(_loggedUser));
         }
 
         private void DisableSaveButtonIfFormNotValid()

@@ -267,6 +267,7 @@ namespace Readed_Book_Lister
 
         private void btnDeleteUser_Click(object sender, EventArgs e)
         {
+            
             if (CheckTextBoxValuesAreValid(tbxCurrentPassword))
             {
                 DialogResult dialogResult = MessageBox.Show(Messages.AreYouSureToDeleteYourProfile, "Dikkat!", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -275,7 +276,8 @@ namespace Readed_Book_Lister
                     var getUserToDelete = UserOperations.GetUserById(_loggedUser.Id);
 
                     if (HashingHelper.VerifyPasswordHash(StringUtilityHelper.TrimStartAndFinish(tbxCurrentPassword.Text), getUserToDelete.PasswordHash, getUserToDelete.PasswordSalt))
-                    {                        
+                    {
+                        
                         try
                         {
                             var getUsersAllBooks = UserBookOperations.GetAllByUserId(getUserToDelete.Id);
@@ -293,8 +295,9 @@ namespace Readed_Book_Lister
 
                             if (UserOperations.Delete(getUserToDelete.Id))
                             {
-                                Login login = new Login();
-                                login.Show();
+                                System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToLoginFormWithNewThread));
+                                thread.Start();
+                                this.Close();
                             }
                         }
                         catch (Exception)
@@ -308,6 +311,11 @@ namespace Readed_Book_Lister
                     }
                 }
             }
+        }
+
+        private void GoToLoginFormWithNewThread()
+        {
+            Application.Run(new Login());
         }
 
         private void btnClear_Click(object sender, EventArgs e)
