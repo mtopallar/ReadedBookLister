@@ -105,12 +105,12 @@
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dgvUserBookList.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgvUserBookList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvUserBookList.Location = new System.Drawing.Point(60, 113);
+            this.dgvUserBookList.Location = new System.Drawing.Point(52, 113);
             this.dgvUserBookList.Name = "dgvUserBookList";
             this.dgvUserBookList.ReadOnly = true;
             this.dgvUserBookList.RowHeadersVisible = false;
             this.dgvUserBookList.RowTemplate.Height = 25;
-            this.dgvUserBookList.Size = new System.Drawing.Size(1104, 434);
+            this.dgvUserBookList.Size = new System.Drawing.Size(1122, 434);
             this.dgvUserBookList.TabIndex = 0;
             this.dgvUserBookList.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellContentClick);
             this.dgvUserBookList.CellMouseEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvUserBookList_CellMouseEnter);
@@ -414,7 +414,7 @@
             this.pnlSearchArea.Controls.Add(this.rbtnIsbn);
             this.pnlSearchArea.Controls.Add(this.rbtnQuery);
             this.pnlSearchArea.Controls.Add(this.pnlQuery);
-            this.pnlSearchArea.Location = new System.Drawing.Point(1174, 113);
+            this.pnlSearchArea.Location = new System.Drawing.Point(1179, 113);
             this.pnlSearchArea.Name = "pnlSearchArea";
             this.pnlSearchArea.Size = new System.Drawing.Size(315, 434);
             this.pnlSearchArea.TabIndex = 5;
