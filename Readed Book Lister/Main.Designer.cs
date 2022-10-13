@@ -414,7 +414,7 @@
             this.pnlSearchArea.Controls.Add(this.rbtnIsbn);
             this.pnlSearchArea.Controls.Add(this.rbtnQuery);
             this.pnlSearchArea.Controls.Add(this.pnlQuery);
-            this.pnlSearchArea.Location = new System.Drawing.Point(1179, 113);
+            this.pnlSearchArea.Location = new System.Drawing.Point(1174, 113);
             this.pnlSearchArea.Name = "pnlSearchArea";
             this.pnlSearchArea.Size = new System.Drawing.Size(315, 434);
             this.pnlSearchArea.TabIndex = 5;
