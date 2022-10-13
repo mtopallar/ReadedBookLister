@@ -34,6 +34,7 @@ namespace Readed_Book_Lister
             _loggedUser = loggedUser;
             FillBooksInfo();
             ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
+            ComboBoxMouthAndYearHelper.CmbMonthFillerByCheckingCurrentYear(cmbMonth, cmbYear);
             DisableDateAreaIfBookToUpdateReadedNotChecked();
             GC.Collect();
             GC.WaitForPendingFinalizers();
@@ -223,7 +224,7 @@ namespace Readed_Book_Lister
             EnableSaveButtonIfFormValid();
         }
 
-        private async void btnSave_Click(object sender, EventArgs e)
+        private void btnSave_Click(object sender, EventArgs e)
         {
             if (CheckFormIfHasError(CheckMouthValueIsValid(), CheckYearValueIsValid(), IsbnLengthChecker(), CheckBookNameIsValid(), CheckAuthorNameIsValid(), CheckPublisherNameIsValid()))
             {
@@ -250,7 +251,7 @@ namespace Readed_Book_Lister
                         ImageOperations.SaveImage(newBook.Image, tbxImage);
                         ImageOperations.DeleteOldImageIfNotDefault(_userBookToUpdate.Image);
                     }
-                    
+
                     GoBackToMainFormAfterUpdate();
                 }
                 else
@@ -262,10 +263,10 @@ namespace Readed_Book_Lister
         }
 
         private void GoBackToMainFormAfterUpdate()
-        {            
+        {
             System.Threading.Thread thread = new System.Threading.Thread(new System.Threading.ThreadStart(GoToMainFormWithNewThread));
             thread.SetApartmentState(System.Threading.ApartmentState.STA);
-            thread.Start();            
+            thread.Start();
             Close();
         }
         private void GoToMainFormWithNewThread()
@@ -309,6 +310,13 @@ namespace Readed_Book_Lister
         {
             cmbYear.BackColor = Color.Wheat;
             EnableSaveButtonIfFormValid();
+            //cmbMonth.Text = "Bitirme Tarihi (Ay)"; ya böyle           
+            ComboBoxMouthAndYearHelper.CmbMonthFillerByCheckingCurrentYear(cmbMonth, cmbYear);
+            if (cmbYear.Text == DateTime.Now.Year.ToString() && ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) >= DateTime.Now.Month)
+            {
+                //cmbMonth.Text = ComboBoxMouthAndYearHelper.MonthNameFromInt(cmbMonth.Items.Count); ya böyle
+                cmbMonth.Text = "Bitirme Tarihi (Ay)"; //ya da böyle. Bu ayı yeniden seçmek zorunda bırakır, güvenlik önlemi.
+            }
         }
 
         private void tbxName_TextChanged(object sender, EventArgs e)

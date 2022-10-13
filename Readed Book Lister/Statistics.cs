@@ -475,6 +475,15 @@ namespace Readed_Book_Lister
                 if (cmbBetweenTwoYears.Enabled)
                 {
                     CmbBetweenFillerForBetweenTwoYears();  // Just year ın durumuna göre two years yeniden dolduruluyor.
+                }else if (cmbJustMonthInAYear.Enabled)
+                {
+                    //cmbJustMonthInAYear.SelectedIndex = 0; ya her yıl seçiminde ocak ayına yönlenecek
+                    ComboBoxMouthAndYearHelper.CmbMonthFillerByCheckingCurrentYear(cmbJustMonthInAYear, cmbJustAYear);
+                    if (cmbJustAYear.Text == DateTime.Now.Year.ToString() && ComboBoxMouthAndYearHelper.MonthNameToInt(cmbJustMonthInAYear.Text) >= DateTime.Now.Month)
+                    {
+                        cmbJustMonthInAYear.Text = ComboBoxMouthAndYearHelper.MonthNameFromInt(cmbJustMonthInAYear.Items.Count);
+                        //ya da bu şekilde eğer seçilen ay mevcut yılın mevcut ayından büyükse mevcut ayın son ayına yönlenecek.
+                    }
                 }
             }
 

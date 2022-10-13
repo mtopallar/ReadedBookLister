@@ -28,7 +28,7 @@ namespace Readed_Book_Lister
         {
             InitializeComponent();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnSave, btnCancel);
-            ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);
+            ComboBoxMouthAndYearHelper.CmbYearFiller(cmbYear);            
             DisableDateAreaWhenAppStartsOrReadedUnchecked();
             _loggedUser = loggedUser;            
         }
@@ -473,6 +473,13 @@ namespace Readed_Book_Lister
         private void cmbYear_SelectedValueChanged(object sender, EventArgs e)
         {
             ClearErrorStatue();
+            //cmbMonth.Text = "Bitirme Tarihi (Ay)"; ya böyle
+            ComboBoxMouthAndYearHelper.CmbMonthFillerByCheckingCurrentYear(cmbMonth, cmbYear);
+            if (cmbYear.Text == DateTime.Now.Year.ToString() && ComboBoxMouthAndYearHelper.MonthNameToInt(cmbMonth.Text) >= DateTime.Now.Month)
+            {
+                //cmbMonth.Text = ComboBoxMouthAndYearHelper.MonthNameFromInt(cmbMonth.Items.Count); //ya böyle
+                cmbMonth.Text = "Bitirme Tarihi (Ay)"; //ya da böyle. Bu ayı yeniden seçmek zorunda bırakır, güvenlik önlemi.
+            }
         }
 
 

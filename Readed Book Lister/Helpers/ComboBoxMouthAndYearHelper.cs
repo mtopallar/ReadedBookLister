@@ -85,6 +85,28 @@ namespace Readed_Book_Lister.Helpers
                 }
         }
 
+        public static void CmbMonthFillerByCheckingCurrentYear(ComboBox cmbMonth, ComboBox cmbYear)
+        {
+            cmbMonth.Items.Clear();
+
+            List<string> months = new() { "Ocak", "Şubat", "Mart", "Nisan","Mayıs","Haziran","Temmuz","Ağustos","Eylül","Ekim","Kasım","Aralık" };
+            if (cmbYear.Text == DateTime.Now.Year.ToString())
+            {
+                var maxMonth = DateTime.Now.Month;
+                for (int i = 0; i <= maxMonth-1; i++)
+                {
+                    cmbMonth.Items.Add(months[i].ToString());
+                }
+            }
+            else
+            {
+                foreach (var month in months)
+                {
+                    cmbMonth.Items.Add(month.ToString());
+                }
+            }
+        }
+
         #region Statistics için özel
 
         // İlkini bir eksik dolduran - BetweenTwoYears
