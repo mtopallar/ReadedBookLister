@@ -27,7 +27,7 @@ namespace Readed_Book_Lister
             InitializeComponent();
             _loggedUser = loggedUser;
             ComboBoxSelectedIndexSetter(cmbSelection, cmbJustMonthInAYear, cmbJustAYear);
-            cmbBetweenTwoYears.Text = DateTime.Now.Year.ToString(); //Just Text
+            cmbBetweenTwoYears.Text = DateTime.Now.Year.ToString(); //Just Text Not Item
             FillUserBookStatisticsListForStartUp();
             DisableAcceptOrCancelButtonFrames.DisableUnvantedFrames(btnCancel);
             GC.Collect();
