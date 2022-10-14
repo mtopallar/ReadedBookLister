@@ -203,7 +203,7 @@ namespace Readed_Book_Lister
             dgvUserBookList.RowHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
             dgvUserBookList.ColumnHeadersDefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleCenter;
-            dgvUserBookList.EnableHeadersVisualStyles = false;
+            dgvUserBookList.EnableHeadersVisualStyles = false;            
 
             if (UsersBookList != null && UsersBookList.Count > 0)
             {
@@ -220,6 +220,7 @@ namespace Readed_Book_Lister
                 //dgvUserBookList.RowHeadersDefaultCellStyle.SelectionBackColor = Color.Wheat;
                 // RowHeadersDefaultCellStyle denen kısım DataGridView da her satırın başında çıkan seçici okun olduğu kısım.
                 dgvUserBookList.AutoSizeRowsMode = DataGridViewAutoSizeRowsMode.None; //resimlerin boyuna göre hücre çok genişlemesin diye.
+                dgvUserBookList.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.None;// count = 0 veya null dan sonra scrool kaybolmasın diye
                 dgvUserBookList.Enabled = true;
 
                 #endregion
