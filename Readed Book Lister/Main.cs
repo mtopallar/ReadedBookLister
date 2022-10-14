@@ -321,6 +321,18 @@ namespace Readed_Book_Lister
             toolTipMain.Hide(btnProfileOperations);
         }
 
+        private void btnClearSearchArea_MouseHover(object sender, EventArgs e)
+        {
+            btnClearSearchArea.BackgroundImage = Image.FromFile(@".\assets\clear_hover.png");
+            toolTipMain.SetToolTip(btnClearSearchArea, "Formu temizle");
+        }
+
+        private void btnClearSearchArea_MouseLeave(object sender, EventArgs e)
+        {
+            btnClearSearchArea.BackgroundImage = Image.FromFile(@".\assets\clear.png");
+            toolTipMain.Hide(btnClearSearchArea);
+        }
+
         #endregion
         UserBook selectedUserBook;
         private void GoToBookAddWithNewThread()
@@ -714,5 +726,6 @@ namespace Readed_Book_Lister
                 Location = new Point(point.X - _startPoint.X, point.Y - _startPoint.Y);
             }
         }
+                
     }
 }
